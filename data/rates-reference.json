@@ -1,0 +1,13 @@
+{
+  "consultedAt": "2025-03-31",
+  "method": "Para cada banco se calcula el promedio entre la tasa minima y maxima disponible. Si solo existe una tasa valida, se utiliza como representativa. Luego se promedian los bancos dentro de cada segmento. Los ceros y vacios se consideran no disponibles.",
+  "products": [
+    {"id":"personal_privado","group":"Prestamos personales","name":"Personal privado","referenceRate":10.75,"observedMin":8.25,"observedMax":18.50,"banksWithData":6},
+    {"id":"personal_publico","group":"Prestamos personales","name":"Personal publico o gobierno","referenceRate":10.13,"observedMin":7.00,"observedMax":15.00,"banksWithData":7},
+    {"id":"personal_jubilados","group":"Prestamos personales","name":"Jubilados / CSS","referenceRate":8.10,"observedMin":6.00,"observedMax":15.00,"banksWithData":6},
+    {"id":"hipoteca_preferencial","group":"Hipotecas","name":"Primera vivienda - interes preferencial","referenceRate":3.07,"observedMin":1.00,"observedMax":6.25,"banksWithData":7},
+    {"id":"hipoteca_no_preferencial","group":"Hipotecas","name":"Hipoteca regular - no preferencial","referenceRate":7.55,"observedMin":6.00,"observedMax":9.00,"banksWithData":7},
+    {"id":"auto","group":"Otros productos","name":"Prestamo de auto","referenceRate":8.22,"observedMin":6.65,"observedMax":11.00,"banksWithData":6},
+    {"id":"tdc","group":"Otros productos","name":"Tarjeta de credito","referenceRate":18.75,"observedMin":7.99,"observedMax":28.99,"banksWithData":7}
+  ]
+}
