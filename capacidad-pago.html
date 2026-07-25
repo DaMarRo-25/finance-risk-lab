@@ -28,9 +28,45 @@
 <section class="panel form-section"><div class="form-heading"><span>02</span><div><h2>Gastos familiares mensuales</h2><p>Incluye el costo normal de mantener el hogar.</p></div></div><div class="expense-grid"><label>Vivienda<input class="capacity-input money-field" id="housing" type="number" value="550"></label><label>Alimentación<input class="capacity-input money-field" id="food" type="number" value="380"></label><label>Servicios<input class="capacity-input money-field" id="services" type="number" value="140"></label><label>Transporte<input class="capacity-input money-field" id="transport" type="number" value="180"></label><label>Educación y salud<input class="capacity-input money-field" id="educationHealth" type="number" value="120"></label><label>Otros gastos<input class="capacity-input money-field" id="otherExpenses" type="number" value="80"></label></div></section>
 <section class="panel form-section"><div class="form-heading"><span>03</span><div><h2>Obligaciones y gastos adicionales</h2><p>Separamos las deudas mensuales de los gastos ocasionales.</p></div></div><div class="two-col"><label>Obligaciones financieras actuales<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="obligations" type="number" value="260" min="0"></div><small>Préstamos, tarjetas, auto u otras cuotas.</small></label><label>Nueva cuota del préstamo<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="newPayment" type="number" value="180" min="0"></div><small>Puede llegar automáticamente desde la calculadora.</small></label></div><div class="two-col"><label>Gastos adicionales<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="additionalAmount" type="number" value="600" min="0"></div></label><label>Frecuencia<select class="capacity-input" id="additionalFrequency"><option value="1">Mensual</option><option value="3">Trimestral</option><option value="6">Semestral</option><option value="12" selected>Anual</option></select></label></div><p class="education-note">Equivalente mensual estimado: <strong id="additionalMonthlyLabel">B/. 50.00</strong></p></section>
 </div>
-<aside class="analysis-column"><div class="sticky-analysis"><div class="analysis-title"><span class="eyebrow">Centro de Análisis</span><h2>Tu presupuesto, explicado</h2></div><div class="metric-grid"><article class="metric"><span>Ingreso disponible</span><strong id="metricIncome">B/. 0.00</strong><small>Dinero mensual del hogar</small></article><article class="metric"><span>Margen después del préstamo</span><strong id="metricAvailable">B/. 0.00</strong><small id="availablePct">0% del ingreso</small></article><article class="metric"><span>Carga financiera</span><strong id="metricDebt">0%</strong><small>Obligaciones + nueva cuota</small></article><article class="metric"><span>Gastos familiares</span><strong id="metricExpenses">0%</strong><small>Parte del ingreso destinada al hogar</small></article></div>
+<aside class="analysis-column"><div class="sticky-analysis"><div class="analysis-title"><span class="eyebrow">Centro de Análisis</span><h2>Tu presupuesto, explicado</h2></div><div class="metric-grid"><article class="metric"><span>Ingreso disponible</span><strong id="metricIncome">B/. 0.00</strong><small>Dinero mensual del hogar</small></article>
+ 
+  <article class="metric">
+  <span>Dinero disponible al mes</span>
+  <strong id="metricAvailable">B/. 0.00</strong>
+  <small id="availablePct">0% disponible del ingreso</small>
+</article>
+  
+  <article class="metric">
+  <span>Ingreso comprometido</span>
+  <strong id="metricDebt">0%</strong>
+  <small>Después de incluir la nueva cuota</small>
+</article>
+  
+  <article class="metric"><span>Gastos familiares</span><strong id="metricExpenses">0%</strong><small>Parte del ingreso destinada al hogar</small></article></div>
 <div class="chart-card"><h3>¿En qué se utiliza tu ingreso?</h3><div id="budgetBar" class="budget-bar"><span class="seg expenses"></span><span class="seg obligations"></span><span class="seg payment"></span><span class="seg additional"></span><span class="seg available"></span></div><div class="legend"><span><i class="dot expenses"></i>Gastos familiares</span><span><i class="dot obligations"></i>Obligaciones</span><span><i class="dot payment"></i>Nueva cuota</span><span><i class="dot additional"></i>Adicionales</span><span><i class="dot available"></i>Disponible</span></div></div>
-<div class="chart-card"><h3>Gastos familiares frente a deudas</h3><div class="compare-row"><span>Gastos familiares</span><div><i id="familyCompare"></i></div><strong id="familyCompareValue">B/. 0</strong></div><div class="compare-row"><span>Obligaciones mensuales</span><div><i id="debtCompare"></i></div><strong id="debtCompareValue">B/. 0</strong></div><p id="comparisonSentence" class="helper"></p></div>
-<div class="chart-card before-after"><h3>Impacto de la nueva cuota</h3><div><span>Antes del préstamo</span><strong id="beforeAvailable">B/. 0</strong><div class="thin-bar"><i id="beforeBar"></i></div></div><div><span>Después del préstamo</span><strong id="afterAvailable">B/. 0</strong><div class="thin-bar"><i id="afterBar"></i></div></div></div>
-<div class="observations"><h3>Observaciones del análisis</h3><article><strong>Distribución del presupuesto</strong><p id="obsDistribution"></p></article><article><strong>Impacto del nuevo préstamo</strong><p id="obsImpact"></p></article><article><strong>¿Qué significa esto?</strong><p>La herramienta no busca decirte cuánto puedes endeudarte. Su objetivo es mostrar cómo una nueva obligación modifica el equilibrio de tu presupuesto.</p><a href="aprender.html#capacidad">Aprender sobre capacidad de pago →</a></article></div></div></aside></div></section></main>
+
+<div class="chart-card before-after">
+  <h3>Impacto en tu dinero disponible</h3>
+
+ <div><span>Antes del préstamo</span><strong id="beforeAvailable">B/. 0</strong><div class="thin-bar"><i id="beforeBar"></i></div></div><div><span>Después del préstamo</span><strong id="afterAvailable">B/. 0</strong><div class="thin-bar"><i id="afterBar"></i></div></div>
+  <p class="helper">
+  Es el dinero que te queda después de cubrir los gastos del hogar, tus obligaciones financieras actuales y la nueva cuota calculada o ingresada manualmente.
+</p>
+</div>
+<div class="observations"><h3>Observaciones del análisis</h3>
+  
+  
+ <article>
+  <strong>Así se distribuye tu ingreso</strong>
+  <p id="obsDistribution"></p>
+</article>
+
+<article>
+  <strong>Tu dinero disponible disminuirá</strong>
+  <p id="obsImpact"></p>
+</article>
+  
+  
+  
+  <article><strong>¿Qué significa esto?</strong><p>La herramienta no busca decirte cuánto puedes endeudarte. Su objetivo es mostrar cómo una nueva obligación modifica el equilibrio de tu presupuesto.</p><a href="aprender.html#capacidad">Aprender sobre capacidad de pago →</a></article></div></div></aside></div></section></main>
 <footer><div class="container footer-wrap"><span>Estimación educativa</span><span>No sustituye la evaluación de una entidad financiera.</span></div></footer><script src="script.js"></script></body></html>
