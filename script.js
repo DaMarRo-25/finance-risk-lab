@@ -1,11 +1,11 @@
 const referenceRates = {
-  personal_privado:{group:'Préstamos personales',name:'Personal privado',rate:10.75,min:8.25,max:18.50,banks:6,note:'Referencia exclusiva para trabajadores del sector privado.'},
-  personal_publico:{group:'Préstamos personales',name:'Personal público o gobierno',rate:10.13,min:7.00,max:15.00,banks:7,note:'Referencia para empleados públicos o de gobierno.'},
-  personal_jubilados:{group:'Préstamos personales',name:'Jubilados / CSS',rate:8.10,min:6.00,max:15.00,banks:6,note:'Referencia para jubilados y pensionados de la CSS.'},
-  hipoteca_preferencial:{group:'Hipotecas',name:'Primera vivienda · interés preferencial',rate:3.07,min:1.00,max:6.25,banks:7,note:'Referencia separada para primera vivienda bajo condiciones preferenciales.'},
-  hipoteca_no_preferencial:{group:'Hipotecas',name:'Hipoteca regular · no preferencial',rate:7.55,min:6.00,max:9.00,banks:7,note:'Referencia para operaciones hipotecarias regulares.'},
-  auto:{group:'Otros productos',name:'Préstamo de auto',rate:8.22,min:6.65,max:11.00,banks:6,note:'Promedio de la tasa representativa de cada banco.'},
-  tdc:{group:'Otros productos',name:'Tarjeta de crédito',rate:18.75,min:7.99,max:28.99,banks:7,note:'Referencia general. La tasa puede variar según el segmento y las condiciones de la tarjeta.'}
+  personal_privado:{group:'Préstamos personales',name:'Personal privado',rate:10.79,min:8.50,max:18.50,banks:6,note:'Referencia exclusiva para trabajadores del sector privado.'},
+  personal_publico:{group:'Préstamos personales',name:'Personal público o gobierno',rate:9.52,min:7.00,max:15.00,banks:7,note:'Referencia para empleados públicos o de gobierno.'},
+  personal_jubilados:{group:'Préstamos personales',name:'Jubilados / CSS',rate:7.60,min:6.00,max:12.75,banks:6,note:'Referencia para jubilados y pensionados de la CSS.'},
+  hipoteca_preferencial:{group:'Hipotecas',name:'Primera vivienda · interés preferencial',rate:2.84,min:1.00,max:6.25,banks:7,note:'Referencia separada para primera vivienda bajo condiciones preferenciales.'},
+  hipoteca_no_preferencial:{group:'Hipotecas',name:'Hipoteca regular · no preferencial',rate:7.66,min:6.00,max:9.25,banks:7,note:'Referencia para operaciones hipotecarias regulares.'},
+  auto:{group:'Otros productos',name:'Préstamo de auto',rate:7.88,min:6.75,max:11.00,banks:6,note:'Promedio de la tasa representativa de cada banco.'},
+  tdc:{group:'Otros productos',name:'Tarjeta de crédito',rate:20.08,min:7.99,max:37.77,banks:7,note:'Referencia general. La tasa puede variar según el segmento y las condiciones de la tarjeta.'}
 };
 const money=value=>new Intl.NumberFormat('es-PA',{style:'currency',currency:'PAB',minimumFractionDigits:2}).format(Number.isFinite(value)?value:0).replace('PAB','B/.');
 const num=id=>Math.max(0,Number(document.getElementById(id)?.value||0));
