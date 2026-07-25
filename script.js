@@ -25,7 +25,111 @@ function initCapacity(){
   const saved=Number(localStorage.getItem('frl-new-payment'));if(saved>0)document.getElementById('newPayment').value=saved.toFixed(2);
   const radios=[...document.querySelectorAll('input[name="incomeMode"]')];
   const setWidth=(id,value)=>document.getElementById(id).style.width=`${Math.max(0,Math.min(100,value))}%`;
-  function update(){const grossMode=radios.find(r=>r.checked)?.value==='gross';const primary=grossMode?Math.max(0,num('grossIncome')-num('deductions')):num('netIncome');const income=primary+num('otherIncome');const family=num('housing')+num('food')+num('services')+num('transport')+num('educationHealth')+num('otherExpenses');const obligations=num('obligations'),payment=num('newPayment'),additional=num('additionalAmount')/Math.max(1,num('additionalFrequency'));const before=income-family-obligations-additional,after=before-payment;const pct=v=>income>0?v/income*100:0;document.getElementById('additionalMonthlyLabel').textContent=money(additional);document.getElementById('metricIncome').textContent=money(income);document.getElementById('metricAvailable').textContent=money(after);document.getElementById('availablePct').textContent=`${pct(after).toFixed(1)}% del ingreso`;document.getElementById('metricDebt').textContent=`${pct(obligations+payment).toFixed(1)}%`;document.getElementById('metricExpenses').textContent=`${pct(family).toFixed(1)}%`;const segments={expenses:pct(family),obligations:pct(obligations),payment:pct(payment),additional:pct(additional),available:Math.max(0,pct(after))};Object.entries(segments).forEach(([key,val])=>document.querySelector(`.seg.${key}`).style.width=`${val}%`);const max=Math.max(family,obligations+payment,1);setWidth('familyCompare',family/max*100);setWidth('debtCompare',(obligations+payment)/max*100);document.getElementById('familyCompareValue').textContent=money(family);document.getElementById('debtCompareValue').textContent=money(obligations+payment);const outflow=family+obligations+payment;document.getElementById('comparisonSentence').textContent=outflow>0?`De cada B/. 100 destinados a gastos familiares y obligaciones, aproximadamente B/. ${(family/outflow*100).toFixed(0)} corresponden al hogar y B/. ${((obligations+payment)/outflow*100).toFixed(0)} a deudas.`:'Agrega gastos y obligaciones para visualizar la comparación.';document.getElementById('beforeAvailable').textContent=money(before);document.getElementById('afterAvailable').textContent=money(after);setWidth('beforeBar',pct(Math.max(0,before)));setWidth('afterBar',pct(Math.max(0,after)));document.getElementById('obsDistribution').textContent=family>=obligations+payment?'Los gastos familiares representan una porción mayor de tus salidas mensuales que las obligaciones financieras.':'Las obligaciones financieras representan una porción mayor de tus salidas mensuales que los gastos familiares.';document.getElementById('obsImpact').textContent=payment>0?`La nueva cuota reduciría tu margen mensual en ${money(payment)}, de ${money(before)} a ${money(after)}.`:'No se ha incorporado una nueva cuota al análisis.'}
+  
+  function update(){
+  const grossMode =
+    radios.find(radio => radio.checked)?.value === 'gross';
+
+  const primaryIncome = grossMode
+    ? Math.max(0, num('grossIncome') - num('deductions'))
+    : num('netIncome');
+
+  const income = primaryIncome + num('otherIncome');
+
+  const family =
+    num('housing') +
+    num('food') +
+    num('services') +
+    num('transport') +
+    num('educationHealth') +
+    num('otherExpenses');
+
+  const obligations = num('obligations');
+  const payment = num('newPayment');
+
+  const additional =
+    num('additionalAmount') /
+    Math.max(1, num('additionalFrequency'));
+
+  const before =
+    income -
+    family -
+    obligations -
+    additional;
+
+  const after = before - payment;
+
+  const pct = value =>
+    income > 0 ? (value / income) * 100 : 0;
+
+  const availablePct = pct(Math.max(0, after));
+  const debtBeforePct = pct(obligations);
+  const debtAfterPct = pct(obligations + payment);
+
+  document.getElementById('additionalMonthlyLabel').textContent =
+    money(additional);
+
+  document.getElementById('metricIncome').textContent =
+    money(income);
+
+  document.getElementById('metricAvailable').textContent =
+    money(after);
+
+  document.getElementById('availablePct').textContent =
+    `${availablePct.toFixed(1)}% disponible del ingreso`;
+
+  document.getElementById('debtBefore').textContent =
+    `${debtBeforePct.toFixed(1)}%`;
+
+  document.getElementById('metricDebt').textContent =
+    `${debtAfterPct.toFixed(1)}%`;
+
+  document.getElementById('metricExpenses').textContent =
+    `${pct(family).toFixed(1)}%`;
+
+  const segments = {
+    expenses: pct(family),
+    obligations: pct(obligations),
+    payment: pct(payment),
+    additional: pct(additional),
+    available: Math.max(0, pct(after))
+  };
+
+  Object.entries(segments).forEach(([key, value]) => {
+    const segment = document.querySelector(`.seg.${key}`);
+
+    if (segment) {
+      segment.style.width =
+        `${Math.max(0, Math.min(100, value))}%`;
+    }
+  });
+
+  document.getElementById('beforeAvailable').textContent =
+    money(before);
+
+  document.getElementById('afterAvailable').textContent =
+    money(after);
+
+  setWidth(
+    'beforeBar',
+    pct(Math.max(0, before))
+  );
+
+  setWidth(
+    'afterBar',
+    pct(Math.max(0, after))
+  );
+
+  document.getElementById('obsDistribution').textContent =
+    income > 0
+      ? `De cada B/. 100 que ingresan al hogar, aproximadamente B/. ${pct(family).toFixed(0)} se destinan a gastos familiares, B/. ${pct(obligations).toFixed(0)} a obligaciones actuales, B/. ${pct(payment).toFixed(0)} a la nueva cuota y B/. ${availablePct.toFixed(0)} quedan disponibles.`
+      : 'Agrega tus ingresos para visualizar cómo se distribuye tu presupuesto.';
+
+  document.getElementById('obsImpact').textContent =
+    payment > 0
+      ? `La nueva cuota hará que tu dinero disponible al mes se reduzca a ${money(after)}.`
+      : `Sin una nueva cuota, tu dinero disponible al mes es de ${money(before)}.`;}
+ 
   const toggle=()=>{const gross=radios.find(r=>r.checked)?.value==='gross';document.getElementById('gross-income-fields').hidden=!gross;document.getElementById('net-income-fields').hidden=gross;update()};
   inputs.forEach(el=>el.addEventListener('input',update));radios.forEach(r=>r.addEventListener('change',toggle));toggle();
 }
