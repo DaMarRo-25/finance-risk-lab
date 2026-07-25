@@ -1,0 +1,153 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 240 240"
+  role="img"
+  aria-labelledby="logoTitle logoDescription"
+>
+  <title id="logoTitle">Finance &amp; Risk Lab</title>
+  <desc id="logoDescription">
+    Monograma FR rodeado por puntos de conocimiento y conexiones incompletas.
+  </desc>
+
+  <!-- Conexiones superiores -->
+  <path
+    d="M35 68 L68 43 L103 24"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M103 24 L142 43 L180 68"
+    fill="none"
+    stroke="#94A3B8"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M142 43 L180 68"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="5"
+    stroke-linecap="round"
+  />
+
+  <!-- Conexión izquierda incompleta -->
+  <path
+    d="M35 68 L35 116"
+    fill="none"
+    stroke="#94A3B8"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M35 68 L47 76"
+    fill="none"
+    stroke="#CBD5E1"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <!-- Conexiones derechas -->
+  <path
+    d="M180 68 L146 91 L126 119"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M126 119 L146 152 L177 170"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M177 170 L208 170 L208 128"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Conexión inferior incompleta -->
+  <path
+    d="M146 152 L118 181"
+    fill="none"
+    stroke="#94A3B8"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M80 191 L103 207"
+    fill="none"
+    stroke="#10B981"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Monograma F -->
+  <path
+    d="M67 66
+       L67 161
+       M67 66
+       L115 66
+       M67 113
+       L112 113"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Unión central F-R -->
+  <path
+    d="M112 113
+       C132 113 142 120 142 135
+       C142 150 132 158 112 158"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Pierna de la R -->
+  <path
+    d="M125 157 L164 199"
+    fill="none"
+    stroke="#0F172A"
+    stroke-width="8"
+    stroke-linecap="round"
+  />
+
+  <!-- Puntos de conocimiento -->
+  <circle cx="35" cy="68" r="9" fill="#0F172A" />
+  <circle cx="68" cy="43" r="9" fill="#2563EB" />
+  <circle cx="103" cy="24" r="9" fill="#0F172A" />
+  <circle cx="142" cy="43" r="9" fill="#10B981" />
+  <circle cx="180" cy="68" r="9" fill="#0F172A" />
+
+  <circle cx="35" cy="116" r="9" fill="#0F172A" />
+  <circle cx="146" cy="91" r="9" fill="#0F172A" />
+
+  <circle cx="208" cy="128" r="9" fill="#0F172A" />
+  <circle cx="208" cy="170" r="9" fill="#10B981" />
+  <circle cx="177" cy="170" r="9" fill="#0F172A" />
+
+  <circle cx="80" cy="191" r="9" fill="#10B981" />
+  <circle cx="103" cy="207" r="9" fill="#0F172A" />
+</svg>
