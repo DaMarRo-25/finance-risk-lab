@@ -1,13 +1,27 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capacidad de Pago | Finance & Risk Lab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body data-page="capacity">
-<a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
-    <img
+<header class="site-header">
+  <div class="container nav-wrap">
+
+    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
+      <img
         src="assets/brand/logo-symbol.svg"
-        alt="Finance & Risk Lab"
+        alt=""
         class="brand-logo"
-    >
-    <span>Finance & Risk Lab</span>
-</a><nav><a href="index.html">Inicio</a><a href="calculadora.html">Calculadora</a><a href="capacidad-pago.html" class="active">Capacidad de Pago</a><a href="aprender.html">Aprender</a></nav></div></header>
-<main><section class="tool-hero"><div class="container split-heading"><div><span class="eyebrow">Herramienta 02</span><h1>Capacidad de Pago</h1><p>Descubre cómo una nueva cuota impactaría tu presupuesto familiar.</p></div><div class="time-badge">Tiempo estimado<br><strong>3–5 minutos</strong></div></div></section>
+      >
+      <span>Finance & Risk Lab</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="calculadora.html">Calculadora</a
+       <a class="active" href="capacidad-pago.html">Capacidad de Pago</a>
+      <a href="aprender.html">Aprender</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+
+  </div>
+</header><main><section class="tool-hero"><div class="container split-heading"><div><span class="eyebrow">Herramienta 02</span><h1>Capacidad de Pago</h1><p>Descubre cómo una nueva cuota impactaría tu presupuesto familiar.</p></div><div class="time-badge">Tiempo estimado<br><strong>3–5 minutos</strong></div></div></section>
 <section class="section capacity-layout"><div class="container capacity-grid"><div class="capacity-form">
 <div class="progress-strip"><span class="current">1. Ingresos</span><span>2. Gastos</span><span>3. Obligaciones</span><span>4. Análisis</span></div>
 <section class="panel form-section"><div class="form-heading"><span>01</span><div><h2>Ingresos del hogar</h2><p>Elige la forma que te resulte más sencilla.</p></div></div><div class="choice-row"><label class="choice"><input type="radio" name="incomeMode" value="net" checked>Conozco lo que recibo al mes</label><label class="choice"><input type="radio" name="incomeMode" value="gross">Solo conozco mi salario bruto</label></div><div id="net-income-fields"><label>Ingreso mensual que recibes<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="netIncome" type="number" value="2200" min="0"></div></label></div><div id="gross-income-fields" hidden><div class="two-col"><label>Salario bruto<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="grossIncome" type="number" value="2500" min="0"></div></label><label>Descuentos totales<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="deductions" type="number" value="300" min="0"></div></label></div><p class="education-note"><strong>¿Qué significa?</strong> El ingreso disponible es el dinero que realmente recibes después de descuentos.</p></div><label>Otros ingresos recurrentes del hogar<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="otherIncome" type="number" value="300" min="0"></div></label></section>
