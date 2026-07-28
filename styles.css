@@ -1692,3 +1692,40 @@ body[data-page="comparator"] .brand-logo {
     text-align: center;
   }
 }
+@media print {
+  body[data-page="comparator"] {
+    background: #ffffff;
+  }
+
+  body[data-page="comparator"] .site-header,
+  body[data-page="comparator"] footer,
+  body[data-page="comparator"] .tool-hero,
+  body[data-page="comparator"] .compare-intro,
+  body[data-page="comparator"] .compare-general-section,
+  body[data-page="comparator"] .compare-proposals-grid,
+  body[data-page="comparator"] .compare-actions,
+  body[data-page="comparator"] .compare-notice {
+    display: none !important;
+  }
+
+  body[data-page="comparator"] .section,
+  body[data-page="comparator"] .container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body[data-page="comparator"] .compare-results-section {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  body[data-page="comparator"] .compare-result-card,
+  body[data-page="comparator"] .compare-observations,
+  body[data-page="comparator"] .compare-observations article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
