@@ -460,7 +460,12 @@ function initComparator() {
     field.addEventListener("input", update);
     field.addEventListener("change", update);
   });
+const exportButton =
+  document.getElementById('compareExportPdf');
 
+exportButton?.addEventListener('click', () => {
+  window.print();
+});
   update();
 }
 document.addEventListener("DOMContentLoaded", () => {
