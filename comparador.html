@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Compara propuestas bancarias y comprende sus cuotas, intereses y costos." name="description"/>
+<title>Comparador de propuestas bancarias | Finance &amp; Risk Lab</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body data-page="comparator">
+<header class="site-header">
+<div class="container nav-wrap">
+<a aria-label="Finance &amp; Risk Lab - Inicio" class="brand" href="index.html">
+<img alt="" class="brand-logo" src="assets/brand/logo-symbol.svg"/>
+<span>Finance &amp; Risk Lab</span>
+</a>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="calculadora.html">Calculadora</a>
+<a href="aprender.html">Aprender</a>
+<a href="metodologia.html">Metodología</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="tool-hero">
+<div class="container">
+<span class="eyebrow">Herramienta 04</span>
+<h1>Comparador de propuestas bancarias</h1>
+<p>Organiza dos propuestas y comprende cómo cambian la cuota, los intereses, el dinero que recibirías y el costo total.</p>
+</div>
+</section>
+<section class="section comparison-tool">
+<div class="container">
+<div class="panel compare-intro">
+<div><span class="eyebrow">Antes de comenzar</span><h2>Compara solo con los datos que aparecen en tus propuestas.</h2><p>Monto, tasa y plazo son suficientes para calcular una cuota estimada. Puedes agregar seguros, comisiones y otros cargos para obtener una comparación más completa.</p></div>
+<div class="information-status" id="compareInformationStatus">
+<span>Nivel de información</span>
+<strong id="compareInformationStatusTitle">Comparación básica</strong>
+<p id="compareInformationStatusText">Agrega monto, tasa y plazo para comenzar.</p>
+</div>
+</div>
+<section class="panel compare-general-section">
+<div class="form-heading">
+<span>01</span>
+<div>
+<h2>Información general</h2>
+<p>Estos datos se utilizarán como punto de partida para ambas propuestas.</p>
+</div>
+</div>
+<div class="compare-general-grid">
+<label class="compare-field"><span class="compare-field-title">Tipo de producto</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Elige la opción que más se parece al préstamo que estás comparando.</small><select id="compareProduct">
+<option value="personal">Préstamo personal</option>
+<option value="auto">Préstamo de auto</option>
+<option value="hipoteca">Hipoteca</option>
+<option value="otro">Otro préstamo</option>
+</select></label>
+<label class="compare-field"><span class="compare-field-title">Monto solicitado</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Cantidad de dinero que deseas pedir prestada.</small><div class="input-wrap"><span>B/.</span><input id="compareAmount" min="0" step="100" type="number" value="10000"/></div></label>
+</div>
+</section>
+<div class="compare-proposals-grid">
+<section aria-labelledby="compareTitleA" class="panel compare-proposal">
+<div class="compare-proposal-heading">
+<span class="compare-proposal-letter">A</span>
+<div><span class="eyebrow">Primera propuesta</span><h2 id="compareTitleA">Propuesta A</h2></div>
+</div>
+<label class="compare-field"><span class="compare-field-title">Nombre de la propuesta</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Usa un nombre corto que te ayude a identificarla.</small><input class="compare-simple-input" id="compareNameA" maxlength="60" type="text" value="Propuesta A"/></label>
+<label class="compare-field"><span class="compare-field-title">Tasa de interés anual</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Porcentaje anual que cobra la entidad por prestarte el dinero.</small><div class="input-wrap"><input id="compareRateA" min="0" step="0.01" type="number" value="10.50"/><span>%</span></div></label>
+<label class="compare-field"><span class="compare-field-title">Plazo</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Número de meses que tendrás para pagar el préstamo.</small><div class="input-wrap"><input id="compareMonthsA" min="1" step="1" type="number" value="60"/><span>meses</span></div></label>
+
+<details class="compare-additional-details">
+<summary>Agregar costos opcionales</summary>
+<div class="compare-additional-grid">
+<label class="compare-field"><span class="compare-field-title">Comisión inicial</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Cargo adicional que cobra la entidad para cubrir trámites, estudio, apertura o cambios en el contrato.</small><div class="input-wrap"><span>B/.</span><input id="compareOpeningFeeA" min="0" step="0.01" type="number" value="0"/></div></label>
+
+
+<label class="compare-field"><span class="compare-field-title">Seguro mensual</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Pago mensual del seguro asociado al préstamo, si aparece en la propuesta.</small><div class="input-wrap"><span>B/.</span><input id="compareInsuranceA" min="0" step="0.01" type="number" value="0"/></div></label>
+<label class="compare-field"><span class="compare-field-title">Otros cargos mensuales</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Otros cobros mensuales indicados por la entidad y que no forman parte del seguro.</small><div class="input-wrap"><span>B/.</span><input id="compareOtherMonthlyA" min="0" step="0.01" type="number" value="0"/></div></label>
+</div>
+</details>
+</section>
+<section aria-labelledby="compareTitleB" class="panel compare-proposal">
+<div class="compare-proposal-heading">
+<span class="compare-proposal-letter">B</span>
+<div><span class="eyebrow">Segunda propuesta</span><h2 id="compareTitleB">Propuesta B</h2></div>
+</div>
+<label class="compare-field"><span class="compare-field-title">Nombre de la propuesta</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Usa un nombre corto que te ayude a identificarla.</small><input class="compare-simple-input" id="compareNameB" maxlength="60" type="text" value="Propuesta B"/></label>
+<label class="compare-field"><span class="compare-field-title">Tasa de interés anual</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Porcentaje anual que cobra la entidad por prestarte el dinero.</small><div class="input-wrap"><input id="compareRateB" min="0" step="0.01" type="number" value="11.25"/><span>%</span></div></label>
+<label class="compare-field"><span class="compare-field-title">Plazo</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Número de meses que tendrás para pagar el préstamo.</small><div class="input-wrap"><input id="compareMonthsB" min="1" step="1" type="number" value="60"/><span>meses</span></div></label>
+
+<details class="compare-additional-details">
+<summary>Agregar costos opcionales</summary>
+<div class="compare-additional-grid">
+<label class="compare-field"><span class="compare-field-title">Comisión inicial</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Cargo adicional que cobra la entidad para cubrir trámites, estudio, apertura o cambios en el contrato.</small><div class="input-wrap"><span>B/.</span><input id="compareOpeningFeeB" min="0" step="0.01" type="number" value="0"/></div></label>
+
+
+<label class="compare-field"><span class="compare-field-title">Seguro mensual</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Pago mensual del seguro asociado al préstamo, si aparece en la propuesta.</small><div class="input-wrap"><span>B/.</span><input id="compareInsuranceB" min="0" step="0.01" type="number" value="0"/></div></label>
+<label class="compare-field"><span class="compare-field-title">Otros cargos mensuales</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Otros cobros mensuales indicados por la entidad y que no forman parte del seguro.</small><div class="input-wrap"><span>B/.</span><input id="compareOtherMonthlyB" min="0" step="0.01" type="number" value="0"/></div></label>
+</div>
+</details>
+</section>
+</div>
+<section aria-live="polite" class="panel compare-results-section">
+<div class="form-heading">
+<span>02</span>
+<div>
+<h2>Comparación explicada</h2>
+<p>La herramienta calculará la cuota y explicará las diferencias principales.</p>
+</div>
+</div>
+<div class="compare-results-grid">
+<article class="compare-result-card">
+<span>Pago mensual estimado</span>
+<p><small id="compareResultNameA1">Propuesta A</small><strong id="compareMonthlyA">B/. 0.00</strong></p>
+<p><small id="compareResultNameB1">Propuesta B</small><strong id="compareMonthlyB">B/. 0.00</strong></p>
+<small>Incluye la cuota calculada y los cargos mensuales registrados.</small>
+</article>
+<article class="compare-result-card">
+<span>Costo total estimado</span>
+<p><small id="compareResultNameA2">Propuesta A</small><strong id="compareTotalCostA">B/. 0.00</strong></p>
+<p><small id="compareResultNameB2">Propuesta B</small><strong id="compareTotalCostB">B/. 0.00</strong></p>
+<small>Es la suma aproximada de los pagos y cargos durante todo el plazo.</small>
+</article>
+<article class="compare-result-card">
+<span>Intereses estimados</span>
+<p><small id="compareResultNameA3">Propuesta A</small><strong id="compareInterestA">B/. 0.00</strong></p>
+<p><small id="compareResultNameB3">Propuesta B</small><strong id="compareInterestB">B/. 0.00</strong></p>
+<small>Es el costo aproximado de financiar el capital durante el plazo.</small>
+</article>
+
+</div>
+<div class="compare-observations">
+<h3>¿Qué significan las diferencias?</h3>
+<article><strong id="compareObservationTitle1">Completa los datos importantes</strong><p id="compareObservationText1">La herramienta calculará automáticamente la cuota usando el monto, la tasa y el plazo.</p></article>
+<article><strong id="compareObservationTitle2">Revisa los costos adicionales</strong><p id="compareObservationText2">Agregar seguros y comisiones permite aproximarse mejor a las condiciones reales.</p></article>
+<article><strong>La herramienta no elige por ti</strong><p>Una cuota menor no siempre representa el menor costo total.</p></article>
+</div>
+<div class="compare-actions">
+<button class="button secondary" disabled="" id="compareExportPdf" type="button">Exportar comparación en PDF</button>
+<a class="button primary" href="calculadora.html">Continuar en la calculadora</a>
+</div>
+<div class="notice compare-notice">
+          Resultado educativo basado únicamente en los datos ingresados. Finance &amp; Risk Lab no recomienda bancos, no selecciona una propuesta y no sustituye la revisión de los documentos oficiales.
+        </div>
+</section>
+</div>
+</section>
+</main>
+<footer>
+<div class="container footer-wrap">
+<span>Finance &amp; Risk Lab</span>
+<span>Compara para comprender, no para delegar tu decisión.</span>
+</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
