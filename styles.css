@@ -1334,3 +1334,361 @@ footer {
     height: 64px;
   }
 }
+/* =====================================================
+   COMPARADOR DE PROPUESTAS BANCARIAS
+   Aislado mediante body[data-page="comparator"]
+   ===================================================== */
+
+body[data-page="comparator"] .comparison-tool {
+  padding-top: 40px;
+}
+
+body[data-page="comparator"] .compare-page {
+  display: grid;
+  gap: 24px;
+}
+
+body[data-page="comparator"] .compare-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  align-items: center;
+  gap: 32px;
+}
+
+body[data-page="comparator"] .compare-intro h2 {
+  margin: 8px 0 10px;
+  color: var(--brand-navy);
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.025em;
+}
+
+body[data-page="comparator"] .compare-intro p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+body[data-page="comparator"] .information-status {
+  padding: 20px;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  background: #eff6ff;
+}
+
+body[data-page="comparator"] .information-status > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+body[data-page="comparator"] .information-status strong {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 18px;
+}
+
+body[data-page="comparator"] .information-status p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+body[data-page="comparator"] .compare-general-section,
+body[data-page="comparator"] .compare-results-section {
+  display: grid;
+  gap: 26px;
+}
+
+body[data-page="comparator"] .compare-general-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px;
+}
+
+body[data-page="comparator"] .compare-proposals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+body[data-page="comparator"] .compare-proposal {
+  display: grid;
+  gap: 22px;
+}
+
+body[data-page="comparator"] .compare-proposal-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+body[data-page="comparator"] .compare-proposal-letter {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 14px;
+  background: var(--brand-navy);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+body[data-page="comparator"] .compare-proposal-heading h2 {
+  margin: 4px 0 0;
+  color: var(--brand-navy);
+  font-size: 24px;
+}
+
+body[data-page="comparator"] .compare-field {
+  display: block;
+}
+
+body[data-page="comparator"] .compare-field-title {
+  display: block;
+  margin-bottom: 6px;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+body[data-page="comparator"] .compare-required {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--brand-blue);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+body[data-page="comparator"] .compare-field-help {
+  display: block;
+  max-width: 54ch;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+body[data-page="comparator"] .compare-field .input-wrap,
+body[data-page="comparator"] .compare-field select,
+body[data-page="comparator"] .compare-simple-input {
+  width: 100%;
+  min-height: 50px;
+}
+
+body[data-page="comparator"] .compare-simple-input {
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--surface-main);
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+}
+
+body[data-page="comparator"] .compare-simple-input:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+body[data-page="comparator"] .compare-additional-details {
+  margin-top: 2px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+
+body[data-page="comparator"] .compare-additional-details summary {
+  padding: 17px 18px;
+  color: var(--brand-blue);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body[data-page="comparator"] .compare-additional-details[open] summary {
+  border-bottom: 1px solid var(--line);
+  background: #f8fbff;
+}
+
+body[data-page="comparator"] .compare-additional-grid {
+  display: grid;
+  gap: 22px;
+  padding: 20px 18px;
+}
+
+body[data-page="comparator"] .compare-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-page="comparator"] .compare-result-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-soft);
+}
+
+body[data-page="comparator"] .compare-result-card > span {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--brand-navy);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+body[data-page="comparator"] .compare-result-card p {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+body[data-page="comparator"] .compare-result-card p small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+body[data-page="comparator"] .compare-result-card p strong {
+  color: var(--brand-navy);
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+body[data-page="comparator"] .compare-result-card > small {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+body[data-page="comparator"] .compare-observations {
+  display: grid;
+  gap: 12px;
+}
+
+body[data-page="comparator"] .compare-observations h3 {
+  margin: 0 0 4px;
+  color: var(--brand-navy);
+  font-size: 20px;
+}
+
+body[data-page="comparator"] .compare-observations article {
+  padding: 16px 18px;
+  border-left: 4px solid var(--brand-blue);
+  border-radius: 10px;
+  background: var(--surface-soft);
+}
+
+body[data-page="comparator"] .compare-observations strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+
+body[data-page="comparator"] .compare-observations p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+body[data-page="comparator"] .compare-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+body[data-page="comparator"] .compare-actions button {
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+body[data-page="comparator"] .compare-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+body[data-page="comparator"] .compare-notice {
+  margin: 0;
+  font-size: 13px;
+}
+
+body[data-page="comparator"] .brand-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+@media (max-width: 980px) {
+  body[data-page="comparator"] .compare-intro,
+  body[data-page="comparator"] .compare-proposals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="comparator"] .compare-results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body[data-page="comparator"] .information-status {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="comparator"] .comparison-tool {
+    padding-top: 24px;
+  }
+
+  body[data-page="comparator"] .compare-general-grid,
+  body[data-page="comparator"] .compare-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="comparator"] .compare-intro,
+  body[data-page="comparator"] .compare-general-section,
+  body[data-page="comparator"] .compare-proposal,
+  body[data-page="comparator"] .compare-results-section {
+    padding: 20px;
+  }
+
+  body[data-page="comparator"] .compare-result-card p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  body[data-page="comparator"] .compare-actions {
+    flex-direction: column;
+  }
+
+  body[data-page="comparator"] .compare-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+}
