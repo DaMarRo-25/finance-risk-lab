@@ -133,4 +133,338 @@ function initCapacity(){
   const toggle=()=>{const gross=radios.find(r=>r.checked)?.value==='gross';document.getElementById('gross-income-fields').hidden=!gross;document.getElementById('net-income-fields').hidden=gross;update()};
   inputs.forEach(el=>el.addEventListener('input',update));radios.forEach(r=>r.addEventListener('change',toggle));toggle();
 }
-document.addEventListener('DOMContentLoaded',()=>{initCalculator();initCapacity()});
+function initComparator() {
+  const amount = document.getElementById("compareAmount");
+
+  if (!amount) return;
+
+  const fieldIds = [
+    "compareAmount",
+    "compareNameA",
+    "compareRateA",
+    "compareMonthsA",
+    "compareOpeningFeeA",
+    "compareInsuranceA",
+    "compareOtherMonthlyA",
+    "compareNameB",
+    "compareRateB",
+    "compareMonthsB",
+    "compareOpeningFeeB",
+    "compareInsuranceB",
+    "compareOtherMonthlyB"
+  ];
+
+  const fields = fieldIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const getName = proposal => {
+    const value = document
+      .getElementById(`compareName${proposal}`)
+      ?.value.trim();
+
+    return value || `Propuesta ${proposal}`;
+  };
+
+  const calculatePayment = (principal, annualRate, months) => {
+    if (principal <= 0 || months <= 0) return 0;
+
+    const monthlyRate = annualRate / 1200;
+
+    if (monthlyRate === 0) {
+      return principal / months;
+    }
+
+    const factor = Math.pow(1 + monthlyRate, months);
+
+    return (
+      principal *
+      monthlyRate *
+      factor /
+      (factor - 1)
+    );
+  };
+
+  const calculateProposal = proposal => {
+    const principal = num("compareAmount");
+    const annualRate = num(`compareRate${proposal}`);
+    const months = Math.floor(num(`compareMonths${proposal}`));
+
+    const openingFee = num(`compareOpeningFee${proposal}`);
+    const insurance = num(`compareInsurance${proposal}`);
+    const otherMonthly = num(`compareOtherMonthly${proposal}`);
+
+    const basePayment = calculatePayment(
+      principal,
+      annualRate,
+      months
+    );
+
+    const monthlyPayment =
+      basePayment +
+      insurance +
+      otherMonthly;
+
+    const financedTotal = basePayment * months;
+
+    const interest =
+      months > 0
+        ? Math.max(0, financedTotal - principal)
+        : 0;
+
+    const totalCost =
+      financedTotal +
+      openingFee +
+      (insurance + otherMonthly) * months;
+
+    return {
+      principal,
+      annualRate,
+      months,
+      openingFee,
+      insurance,
+      otherMonthly,
+      basePayment,
+      monthlyPayment,
+      interest,
+      totalCost
+    };
+  };
+
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.textContent = value;
+    }
+  };
+
+  const updateNames = (nameA, nameB) => {
+    [
+      "compareResultNameA1",
+      "compareResultNameA2",
+      "compareResultNameA3"
+    ].forEach(id => setText(id, nameA));
+
+    [
+      "compareResultNameB1",
+      "compareResultNameB2",
+      "compareResultNameB3"
+    ].forEach(id => setText(id, nameB));
+  };
+
+  const updateInformationStatus = (proposalA, proposalB) => {
+    const requiredComplete =
+      proposalA.principal > 0 &&
+      proposalA.months > 0 &&
+      proposalB.months > 0;
+
+    const additionalCosts =
+      proposalA.openingFee +
+      proposalA.insurance +
+      proposalA.otherMonthly +
+      proposalB.openingFee +
+      proposalB.insurance +
+      proposalB.otherMonthly;
+
+    if (!requiredComplete) {
+      setText(
+        "compareInformationStatusTitle",
+        "Información pendiente"
+      );
+
+      setText(
+        "compareInformationStatusText",
+        "Completa el monto y el plazo de ambas propuestas."
+      );
+
+      return;
+    }
+
+    if (additionalCosts > 0) {
+      setText(
+        "compareInformationStatusTitle",
+        "Comparación ampliada"
+      );
+
+      setText(
+        "compareInformationStatusText",
+        "La comparación incluye los costos adicionales registrados."
+      );
+
+      return;
+    }
+
+    setText(
+      "compareInformationStatusTitle",
+      "Comparación básica"
+    );
+
+    setText(
+      "compareInformationStatusText",
+      "El cálculo utiliza el monto, la tasa y el plazo. Agrega otros cargos cuando aparezcan en las propuestas."
+    );
+  };
+
+  const updateObservations = (
+    proposalA,
+    proposalB,
+    nameA,
+    nameB
+  ) => {
+    if (
+      proposalA.principal <= 0 ||
+      proposalA.months <= 0 ||
+      proposalB.months <= 0
+    ) {
+      setText(
+        "compareObservationTitle1",
+        "Completa los datos requeridos"
+      );
+
+      setText(
+        "compareObservationText1",
+        "Introduce el monto y el plazo de ambas propuestas para realizar la comparación."
+      );
+
+      setText(
+        "compareObservationTitle2",
+        "Agrega los costos que aparezcan en las propuestas"
+      );
+
+      setText(
+        "compareObservationText2",
+        "Los seguros, las comisiones y otros cargos pueden cambiar el resultado."
+      );
+
+      return;
+    }
+
+    const monthlyDifference = Math.abs(
+      proposalA.monthlyPayment -
+      proposalB.monthlyPayment
+    );
+
+    const totalDifference = Math.abs(
+      proposalA.totalCost -
+      proposalB.totalCost
+    );
+
+    if (monthlyDifference < 0.01) {
+      setText(
+        "compareObservationTitle1",
+        "Las cuotas mensuales son similares"
+      );
+
+      setText(
+        "compareObservationText1",
+        `La diferencia estimada entre ${nameA} y ${nameB} es menor de B/. 0.01 al mes.`
+      );
+    } else {
+      const lowerMonthly =
+        proposalA.monthlyPayment <
+        proposalB.monthlyPayment
+          ? nameA
+          : nameB;
+
+      setText(
+        "compareObservationTitle1",
+        `${lowerMonthly} tiene un menor pago mensual`
+      );
+
+      setText(
+        "compareObservationText1",
+        `La diferencia mensual estimada entre ambas propuestas es de ${money(monthlyDifference)}.`
+      );
+    }
+
+    if (totalDifference < 0.01) {
+      setText(
+        "compareObservationTitle2",
+        "Los costos totales son similares"
+      );
+
+      setText(
+        "compareObservationText2",
+        "Con los datos introducidos, ambas propuestas presentan un costo total estimado similar."
+      );
+    } else {
+      const lowerTotal =
+        proposalA.totalCost <
+        proposalB.totalCost
+          ? nameA
+          : nameB;
+
+      setText(
+        "compareObservationTitle2",
+        `${lowerTotal} presenta un menor costo total`
+      );
+
+      setText(
+        "compareObservationText2",
+        `La diferencia estimada en el costo total es de ${money(totalDifference)}.`
+      );
+    }
+  };
+
+  const update = () => {
+    const nameA = getName("A");
+    const nameB = getName("B");
+
+    const proposalA = calculateProposal("A");
+    const proposalB = calculateProposal("B");
+
+    updateNames(nameA, nameB);
+
+    setText(
+      "compareMonthlyA",
+      money(proposalA.monthlyPayment)
+    );
+
+    setText(
+      "compareMonthlyB",
+      money(proposalB.monthlyPayment)
+    );
+
+    setText(
+      "compareInterestA",
+      money(proposalA.interest)
+    );
+
+    setText(
+      "compareInterestB",
+      money(proposalB.interest)
+    );
+
+    setText(
+      "compareTotalCostA",
+      money(proposalA.totalCost)
+    );
+
+    setText(
+      "compareTotalCostB",
+      money(proposalB.totalCost)
+    );
+
+    updateInformationStatus(proposalA, proposalB);
+
+    updateObservations(
+      proposalA,
+      proposalB,
+      nameA,
+      nameB
+    );
+  };
+
+  fields.forEach(field => {
+    field.addEventListener("input", update);
+    field.addEventListener("change", update);
+  });
+
+  update();
+}
+document.addEventListener("DOMContentLoaded", () => {
+  initCalculator();
+  initCapacity();
+  initComparator();
+});
