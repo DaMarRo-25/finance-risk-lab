@@ -1231,8 +1231,30 @@ footer {
 }
 
 @media (max-width: 900px) {
+  .nav-wrap {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .nav-wrap nav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-wrap nav::-webkit-scrollbar {
     display: none;
+  }
+
+  .nav-wrap nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .hero-grid,
