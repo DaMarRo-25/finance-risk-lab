@@ -2358,11 +2358,185 @@ function initComparator() {
       "compareExportPdf"
     );
 
+  const normalizePdfText = value =>
+    String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[“”]/g, '"')
+      .replace(/[‘’]/g, "'")
+      .replace(/–|—/g, "-")
+      .replace(/[^\x20-\x7E\xA0-\xFF]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const pdfEscape = value =>
+    normalizePdfText(value)
+      .replace(/\\/g, "\\\\")
+      .replace(/\(/g, "\\(")
+      .replace(/\)/g, "\\)");
+
+  const latin1Bytes = value => {
+    const bytes = new Uint8Array(value.length);
+    for (let index = 0; index < value.length; index += 1) {
+      bytes[index] = value.charCodeAt(index) & 255;
+    }
+    return bytes;
+  };
+
+  const wrapPdfLine = (value, maxLength = 92) => {
+    const text = normalizePdfText(value);
+    if (!text) return [""];
+    const words = text.split(" ");
+    const lines = [];
+    let line = "";
+    words.forEach(word => {
+      const candidate = line ? `${line} ${word}` : word;
+      if (candidate.length > maxLength && line) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = candidate;
+      }
+    });
+    if (line) lines.push(line);
+    return lines;
+  };
+
+  const createComparatorPdf = lines => {
+    const pageWidth = 612;
+    const pageHeight = 792;
+    const left = 48;
+    const top = 742;
+    const lineHeight = 14;
+    const linesPerPage = 48;
+    const pages = [];
+    for (let start = 0; start < lines.length; start += linesPerPage) {
+      pages.push(lines.slice(start, start + linesPerPage));
+    }
+    if (!pages.length) pages.push(["Finance & Risk Lab"]);
+
+    const objects = [];
+    const addObject = value => {
+      objects.push(value);
+      return objects.length;
+    };
+    const catalogId = addObject("");
+    const pagesId = addObject("");
+    const fontId = addObject("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>");
+    const pageIds = [];
+
+    pages.forEach((pageLines, pageIndex) => {
+      const commands = ["BT"];
+      pageLines.forEach((line, lineIndex) => {
+        const y = top - lineIndex * lineHeight;
+        const size = pageIndex === 0 && lineIndex === 0 ? 18 :
+          pageIndex === 0 && lineIndex === 1 ? 11 : 9;
+        commands.push(`/F1 ${size} Tf`);
+        commands.push(`1 0 0 1 ${left} ${y} Tm`);
+        commands.push(`(${pdfEscape(line)}) Tj`);
+      });
+      commands.push("ET");
+      const stream = commands.join("\n");
+      const contentId = addObject(`<< /Length ${latin1Bytes(stream).length} >>\nstream\n${stream}\nendstream`);
+      const pageId = addObject(
+        `<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] ` +
+        `/Resources << /Font << /F1 ${fontId} 0 R >> >> /Contents ${contentId} 0 R >>`
+      );
+      pageIds.push(pageId);
+    });
+
+    objects[catalogId - 1] = `<< /Type /Catalog /Pages ${pagesId} 0 R >>`;
+    objects[pagesId - 1] = `<< /Type /Pages /Kids [${pageIds.map(id => `${id} 0 R`).join(" ")}] /Count ${pageIds.length} >>`;
+
+    let pdf = "%PDF-1.4\n%\xE2\xE3\xCF\xD3\n";
+    const offsets = [0];
+    objects.forEach((objectValue, index) => {
+      offsets.push(latin1Bytes(pdf).length);
+      pdf += `${index + 1} 0 obj\n${objectValue}\nendobj\n`;
+    });
+    const xrefOffset = latin1Bytes(pdf).length;
+    pdf += `xref\n0 ${objects.length + 1}\n`;
+    pdf += "0000000000 65535 f \n";
+    offsets.slice(1).forEach(offset => {
+      pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+    });
+    pdf += `trailer\n<< /Size ${objects.length + 1} /Root ${catalogId} 0 R >>\n`;
+    pdf += `startxref\n${xrefOffset}\n%%EOF`;
+    return new Blob([latin1Bytes(pdf)], { type: "application/pdf" });
+  };
+
+  const downloadComparatorPdf = () => {
+    const nameA = getName("A");
+    const nameB = getName("B");
+    const proposalA = calculateProposal("A");
+    const proposalB = calculateProposal("B");
+    const observation1 = document.getElementById("compareObservationText1")?.textContent || "";
+    const observation2 = document.getElementById("compareObservationText2")?.textContent || "";
+
+    const rawLines = [
+      "Finance & Risk Lab",
+      "Comparador de propuestas bancarias",
+      "",
+      `Monto solicitado: ${money(proposalA.principal)}`,
+      "",
+      `${nameA}`,
+      `Pago mensual estimado: ${money(proposalA.monthlyPayment)}`,
+      `Intereses estimados: ${money(proposalA.interest)}`,
+      `Costo total estimado: ${money(proposalA.totalCost)}`,
+      `Tasa anual: ${proposalA.annualRate.toFixed(2)}%`,
+      `Plazo: ${proposalA.months} meses`,
+      `Comision inicial: ${money(proposalA.openingFee)}`,
+      `Seguro mensual: ${money(proposalA.insurance)}`,
+      `Otros cargos mensuales: ${money(proposalA.otherMonthly)}`,
+      "",
+      `${nameB}`,
+      `Pago mensual estimado: ${money(proposalB.monthlyPayment)}`,
+      `Intereses estimados: ${money(proposalB.interest)}`,
+      `Costo total estimado: ${money(proposalB.totalCost)}`,
+      `Tasa anual: ${proposalB.annualRate.toFixed(2)}%`,
+      `Plazo: ${proposalB.months} meses`,
+      `Comision inicial: ${money(proposalB.openingFee)}`,
+      `Seguro mensual: ${money(proposalB.insurance)}`,
+      `Otros cargos mensuales: ${money(proposalB.otherMonthly)}`,
+      "",
+      "Explicacion de las diferencias",
+      observation1,
+      observation2,
+      "",
+      "Resultado educativo basado unicamente en los datos ingresados. Finance & Risk Lab no recomienda bancos, no selecciona una propuesta y no sustituye la revision de los documentos oficiales."
+    ];
+
+    const lines = [];
+    rawLines.forEach((line, index) => {
+      wrapPdfLine(line, index < 2 ? 70 : 92).forEach(part => lines.push(part));
+    });
+
+    if (exportButton) {
+      exportButton.disabled = true;
+      exportButton.textContent = "Preparando PDF…";
+    }
+
+    try {
+      const blob = createComparatorPdf(lines);
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "finance-risk-lab-comparador.pdf";
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 2000);
+    } finally {
+      if (exportButton) {
+        exportButton.disabled = false;
+        exportButton.textContent = "Exportar comparación en PDF";
+      }
+    }
+  };
+
   exportButton?.addEventListener(
     "click",
-    () => {
-      window.print();
-    }
+    downloadComparatorPdf
   );
 
   update();
