@@ -2265,17 +2265,295 @@ body[data-page="amortization"] .amortization-print-actions .button {
   }
 }
 
+/* =====================================================
+   AMPLIACIÓN — EVOLUCIÓN Y ABONOS DE AMORTIZACIÓN
+   ===================================================== */
+
+body[data-page="amortization"] .amortization-evolution,
+body[data-page="amortization"] .amortization-extra-explorer,
+body[data-page="amortization"] .amortization-scenario-results {
+  display: grid;
+  gap: 22px;
+}
+
+body[data-page="amortization"] .amortization-block-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+body[data-page="amortization"] .amortization-block-heading h3,
+body[data-page="amortization"] .amortization-extra-explorer h3 {
+  margin: 8px 0 10px;
+  color: var(--brand-navy);
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+body[data-page="amortization"] .amortization-block-heading p,
+body[data-page="amortization"] .amortization-extra-explorer > p {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+body[data-page="amortization"] .amortization-metrics-grid,
+body[data-page="amortization"] .amortization-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+body[data-page="amortization"] .amortization-comparison-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body[data-page="amortization"] .amortization-metric-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-soft);
+}
+
+body[data-page="amortization"] .amortization-metric-card span,
+body[data-page="amortization"] .amortization-metric-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+body[data-page="amortization"] .amortization-metric-card strong {
+  display: block;
+  margin: 8px 0;
+  color: var(--brand-navy);
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+
+body[data-page="amortization"] .amortization-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+body[data-page="amortization"] .amortization-table-wrap-full {
+  max-height: 560px;
+  overflow: auto;
+}
+
+body[data-page="amortization"] .amortization-schedule-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+body[data-page="amortization"] .amortization-schedule-table th,
+body[data-page="amortization"] .amortization-schedule-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+}
+
+body[data-page="amortization"] .amortization-schedule-table th:first-child,
+body[data-page="amortization"] .amortization-schedule-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  background: #ffffff;
+}
+
+body[data-page="amortization"] .amortization-schedule-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body[data-page="amortization"] .amortization-schedule-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+body[data-page="amortization"] .amortization-schedule-table .amortization-extra-row td {
+  background: #ecfdf5;
+}
+
+body[data-page="amortization"] .amortization-schedule-table .amortization-extra-row td:first-child {
+  background: #ecfdf5;
+  color: #047857;
+  font-weight: 800;
+}
+
+body[data-page="amortization"] .amortization-scenario-selector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-page="amortization"] .amortization-scenario-card {
+  display: grid;
+  gap: 10px;
+  min-height: 190px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+body[data-page="amortization"] .amortization-scenario-card:hover,
+body[data-page="amortization"] .amortization-scenario-card[aria-pressed="true"] {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+body[data-page="amortization"] .amortization-scenario-card[aria-pressed="true"] {
+  background: #eff6ff;
+}
+
+body[data-page="amortization"] .amortization-scenario-number {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--brand-navy);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+body[data-page="amortization"] .amortization-scenario-card strong {
+  color: var(--brand-navy);
+  font-size: 20px;
+}
+
+body[data-page="amortization"] .amortization-scenario-card small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+body[data-page="amortization"] .amortization-scenario-form {
+  padding: 22px;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  background: #f8fbff;
+}
+
+body[data-page="amortization"] .amortization-scenario-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-page="amortization"] .amortization-scenario-form .field {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+body[data-page="amortization"] .amortization-scenario-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+body[data-page="amortization"] .amortization-scenario-form input,
+body[data-page="amortization"] .amortization-scenario-form select {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 11px;
+  background: #ffffff;
+  font: inherit;
+}
+
+body[data-page="amortization"] .amortization-scenario-form small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+body[data-page="amortization"] .amortization-scenario-actions,
+body[data-page="amortization"] .amortization-schedule-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+body[data-page="amortization"] .amortization-contract-notice {
+  border-color: #fed7aa;
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+@media (max-width: 980px) {
+  body[data-page="amortization"] .amortization-metrics-grid,
+  body[data-page="amortization"] .amortization-comparison-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-page="amortization"] .amortization-scenario-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body[data-page="amortization"] .amortization-block-heading,
+  body[data-page="amortization"] .amortization-scenario-selector {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  body[data-page="amortization"] .amortization-block-heading .button-row,
+  body[data-page="amortization"] .amortization-block-heading > .button {
+    width: 100%;
+  }
+
+  body[data-page="amortization"] .amortization-scenario-fields,
+  body[data-page="amortization"] .amortization-metrics-grid,
+  body[data-page="amortization"] .amortization-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   IMPRESION - AMORTIZACION INTELIGENTE
+   Un unico sistema basado en los bloques ya visibles.
+   ===================================================== */
+
 @media print {
   @page {
     size: auto;
-    margin: 14mm;
+    margin: 12mm;
   }
 
   body[data-page="amortization"] {
-    margin: 0;
-    background: #ffffff;
-    color: #000000;
-    font-size: 10pt;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 9pt !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -2284,198 +2562,408 @@ body[data-page="amortization"] .amortization-print-actions .button {
   body[data-page="amortization"] footer,
   body[data-page="amortization"] main > section:not(#amortization-results-section),
   body[data-page="amortization"] #amortization-results-empty,
-  body[data-page="amortization"] .amortization-print-actions {
+  body[data-page="amortization"] .amortization-print-actions,
+  body[data-page="amortization"] .amortization-evolution-actions,
+  body[data-page="amortization"] .amortization-scenario-actions,
+  body[data-page="amortization"] .amortization-scenario-selector,
+  body[data-page="amortization"] #amortization-scenario-form,
+  body[data-page="amortization"] #amortization-toggle-full-schedule,
+  body[data-page="amortization"] .button,
+  body[data-page="amortization"] details {
     display: none !important;
   }
 
   body[data-page="amortization"] main,
   body[data-page="amortization"] #amortization-results-section,
-  body[data-page="amortization"] #amortization-results-section > .container {
-    display: block;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
-    border: 0;
-  }
-
-  body[data-page="amortization"] #amortization-results[hidden] {
-    display: none !important;
-  }
-
+  body[data-page="amortization"] #amortization-results-section > .container,
   body[data-page="amortization"] #amortization-results {
-    display: block;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: #ffffff !important;
   }
 
-  body[data-page="amortization"] #amortization-results-section .section-heading {
-    margin: 0 0 18px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid #0f172a;
+  body[data-page="amortization"] #amortization-results-section > .container > .section-heading {
+    margin: 0 0 14px !important;
+    padding: 0 0 10px !important;
+    border-bottom: 2px solid #0f172a !important;
   }
 
-  body[data-page="amortization"] #amortization-results-section .section-heading::before {
+  body[data-page="amortization"] #amortization-results-section > .container > .section-heading::before {
     content: "Finance & Risk Lab";
     display: block;
-    margin-bottom: 8px;
-    color: #0f172a;
-    font-size: 11pt;
+    margin-bottom: 5px;
+    font-size: 9pt;
     font-weight: 800;
   }
 
-  body[data-page="amortization"] #amortization-results-section .section-heading h2 {
-    margin: 4px 0 6px;
-    color: #000000;
-    font-size: 22pt;
+  body[data-page="amortization"] #amortization-results-section > .container > .section-heading h2 {
+    margin: 0 0 4px !important;
+    color: #0f172a !important;
+    font-size: 20pt !important;
   }
 
-  body[data-page="amortization"] #amortization-results-section .section-heading p {
-    margin: 0;
-    color: #334155;
-    font-size: 9.5pt;
-    line-height: 1.5;
+  body[data-page="amortization"] #amortization-results-section > .container > .section-heading p {
+    margin: 0 !important;
+    color: #475569 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.4 !important;
   }
 
-  body[data-page="amortization"] #amortization-results-section .eyebrow {
-    color: #334155;
-    font-size: 8pt;
-  }
-
-  body[data-page="amortization"] .panel {
-    border: 1px solid #cbd5e1;
-    box-shadow: none;
+  body[data-page="amortization"] .panel,
+  body[data-page="amortization"] .amortization-payment-summary,
+  body[data-page="amortization"] .amortization-component,
+  body[data-page="amortization"] .amortization-metric-card,
+  body[data-page="amortization"] .amortization-scenario-results,
+  body[data-page="amortization"] #amortization-explanation {
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
   }
 
   body[data-page="amortization"] .amortization-payment-summary {
-    margin-bottom: 14px;
-    padding: 18px;
-    border: 2px solid #0f172a;
-    background: #ffffff;
-    color: #000000;
-    box-shadow: none;
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  body[data-page="amortization"] .amortization-payment-summary > .eyebrow {
-    color: #334155;
-  }
-
-  body[data-page="amortization"] .amortization-payment-summary > p:not(.amortization-main-value) {
-    color: #334155;
-    font-size: 9pt;
+    margin-bottom: 10px !important;
+    padding: 14px !important;
+    border: 2px solid #0f172a !important;
   }
 
   body[data-page="amortization"] .amortization-main-value {
-    margin: 8px 0;
-    color: #000000;
-    font-size: 31pt;
+    margin: 5px 0 !important;
+    color: #0f172a !important;
+    font-size: 27pt !important;
   }
 
-  body[data-page="amortization"] .amortization-summary-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    margin-top: 14px;
+  body[data-page="amortization"] .amortization-summary-grid,
+  body[data-page="amortization"] .amortization-breakdown-grid,
+  body[data-page="amortization"] .amortization-metrics-grid {
+    display: grid !important;
+    gap: 7px !important;
   }
 
-  body[data-page="amortization"] .amortization-summary-item {
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-  }
-
-  body[data-page="amortization"] .amortization-summary-item span {
-    color: #475569;
-    font-size: 8pt;
-  }
-
-  body[data-page="amortization"] .amortization-summary-item strong {
-    margin-top: 5px;
-    color: #000000;
-    font-size: 12pt;
+  body[data-page="amortization"] .amortization-summary-grid,
+  body[data-page="amortization"] .amortization-metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
   body[data-page="amortization"] .amortization-breakdown-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-bottom: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  body[data-page="amortization"] .amortization-component {
-    padding: 14px;
-    border: 1px solid #cbd5e1;
-    box-shadow: none;
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  body[data-page="amortization"] .amortization-component-value {
-    margin-top: 7px;
-    color: #000000;
-    font-size: 16pt;
-  }
-
-  body[data-page="amortization"] .amortization-component-percent {
-    margin-top: 6px;
-    padding: 3px 7px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff !important;
-    color: #000000 !important;
-    font-size: 8pt;
-  }
-
-  body[data-page="amortization"] .amortization-component > p {
-    margin-top: 10px;
-    color: #334155;
-    font-size: 8.5pt;
-    line-height: 1.45;
+  body[data-page="amortization"] .amortization-summary-item,
+  body[data-page="amortization"] .amortization-component,
+  body[data-page="amortization"] .amortization-metric-card {
+    padding: 9px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 5px !important;
   }
 
   body[data-page="amortization"] .amortization-bar {
-    height: 8px;
-    margin-top: 10px;
-    border: 1px solid #cbd5e1;
-    background: #e2e8f0;
+    display: none !important;
   }
 
-  body[data-page="amortization"] #amortization-explanation {
-    margin-bottom: 14px;
-    padding: 16px;
-    border: 1px solid #94a3b8;
+  body[data-page="amortization"] .eyebrow,
+  body[data-page="amortization"] p,
+  body[data-page="amortization"] small,
+  body[data-page="amortization"] span {
+    color: #475569 !important;
+  }
+
+  body[data-page="amortization"] strong,
+  body[data-page="amortization"] h2,
+  body[data-page="amortization"] h3 {
+    color: #0f172a !important;
+  }
+
+  body[data-page="amortization"] .amortization-table-wrap {
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body[data-page="amortization"] .amortization-schedule-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: auto !important;
+    font-size: 6.7pt !important;
+  }
+
+  body[data-page="amortization"] .amortization-schedule-table th,
+  body[data-page="amortization"] .amortization-schedule-table td {
+    padding: 3px 2px !important;
+    border: 1px solid #cbd5e1 !important;
+    white-space: nowrap !important;
+  }
+
+  body[data-page="amortization"] .amortization-schedule-table thead {
+    display: table-header-group !important;
+  }
+
+  /* Por defecto no se imprime ningun bloque hasta activar una vista. */
+  body[data-page="amortization"] #amortization-results > * {
+    display: none !important;
+  }
+
+  /* Primera cuota. */
+  body[data-page="amortization"].amortization-print-inside .amortization-payment-summary,
+  body[data-page="amortization"].amortization-print-inside .amortization-breakdown-grid,
+  body[data-page="amortization"].amortization-print-inside #amortization-explanation,
+  body[data-page="amortization"].amortization-print-inside #amortization-results > .notice {
+    display: block !important;
+  }
+
+  body[data-page="amortization"].amortization-print-inside .amortization-breakdown-grid {
+    display: grid !important;
+  }
+
+  /* Evolucion natural de la obligacion. */
+  body[data-page="amortization"].amortization-print-evolution #amortization-evolution,
+  body[data-page="amortization"].amortization-print-evolution #amortization-results > .notice {
+    display: block !important;
+  }
+
+  /* Resumen del escenario. */
+  body[data-page="amortization"].amortization-print-scenario #amortization-scenario-results,
+  body[data-page="amortization"].amortization-print-scenario #amortization-results > .notice {
+    display: block !important;
+  }
+
+  body[data-page="amortization"].amortization-print-scenario #amortization-full-schedule {
+    display: none !important;
+  }
+
+  /* Escenario con cronograma completo. */
+  body[data-page="amortization"].amortization-print-full #amortization-scenario-results,
+  body[data-page="amortization"].amortization-print-full #amortization-full-schedule,
+  body[data-page="amortization"].amortization-print-full #amortization-results > .notice {
+    display: block !important;
+  }
+
+  body[data-page="amortization"].amortization-print-full
+    #amortization-scenario-results > .amortization-table-wrap {
+    display: none !important;
+  }
+
+}
+
+/* =====================================================
+   PÁGINA DEDICADA DE IMPRESIÓN DE AMORTIZACIÓN
+   ===================================================== */
+body[data-page="amortization-print"] {
+  background: #eef2f7;
+}
+
+body[data-page="amortization-print"] .print-page-shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 24px auto 48px;
+}
+
+body[data-page="amortization-print"] .print-screen-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+body[data-page="amortization-print"] .print-document {
+  padding: 32px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+body[data-page="amortization-print"] .print-header {
+  padding-bottom: 18px;
+  border-bottom: 2px solid #0f172a;
+}
+
+body[data-page="amortization-print"] .print-header > span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body[data-page="amortization-print"] .print-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+  color: #0f172a;
+}
+
+body[data-page="amortization-print"] .print-header p,
+body[data-page="amortization-print"] .print-note,
+body[data-page="amortization-print"] .print-message p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+body[data-page="amortization-print"] .print-highlight {
+  margin: 22px 0;
+  padding: 24px;
+  border-radius: 18px;
+  background: #0f172a;
+  color: #ffffff;
+}
+
+body[data-page="amortization-print"] .print-highlight span {
+  display: block;
+  color: #cbd5e1;
+}
+
+body[data-page="amortization-print"] .print-highlight strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 42px;
+}
+
+body[data-page="amortization-print"] .print-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+body[data-page="amortization-print"] .print-metric {
+  padding: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+body[data-page="amortization-print"] .print-metric span,
+body[data-page="amortization-print"] .print-metric small {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+}
+
+body[data-page="amortization-print"] .print-metric strong {
+  display: block;
+  margin: 7px 0;
+  color: #0f172a;
+  font-size: 20px;
+}
+
+body[data-page="amortization-print"] .print-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+body[data-page="amortization-print"] table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+body[data-page="amortization-print"] th,
+body[data-page="amortization-print"] td {
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+body[data-page="amortization-print"] th:first-child,
+body[data-page="amortization-print"] td:first-child {
+  text-align: left;
+}
+
+body[data-page="amortization-print"] th {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body[data-page="amortization-print"] .print-note {
+  margin-top: 22px;
+  padding: 14px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  body[data-page="amortization-print"] .print-metrics {
+    grid-template-columns: 1fr;
+  }
+  body[data-page="amortization-print"] .print-screen-actions {
+    flex-direction: column;
+  }
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  body[data-page="amortization-print"] {
+    margin: 0;
+    background: #ffffff;
+    color: #000000;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body[data-page="amortization-print"] .print-page-shell {
+    width: 100%;
+    margin: 0;
+  }
+
+  body[data-page="amortization-print"] .print-screen-actions {
+    display: none !important;
+  }
+
+  body[data-page="amortization-print"] .print-document {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  body[data-page="amortization-print"] .print-header h1 {
+    font-size: 22pt;
+  }
+
+  body[data-page="amortization-print"] .print-highlight {
+    padding: 14px;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #0f172a;
+  }
+
+  body[data-page="amortization-print"] .print-highlight strong {
+    font-size: 28pt;
+  }
+
+  body[data-page="amortization-print"] .print-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin: 14px 0;
+  }
+
+  body[data-page="amortization-print"] .print-metric {
+    padding: 8px;
     background: #ffffff;
     break-inside: avoid;
-    page-break-inside: avoid;
   }
 
-  body[data-page="amortization"] #amortization-explanation h3 {
-    margin: 6px 0 10px;
-    color: #000000;
-    font-size: 14pt;
+  body[data-page="amortization-print"] table {
+    font-size: 7.5pt;
   }
 
-  body[data-page="amortization"] #amortization-explanation p {
-    margin: 6px 0;
-    padding: 8px 10px;
-    border-left: 3px solid #475569;
-    background: #f8fafc;
-    color: #334155;
-    font-size: 8.5pt;
-    line-height: 1.45;
+  body[data-page="amortization-print"] th,
+  body[data-page="amortization-print"] td {
+    padding: 4px;
   }
 
-  body[data-page="amortization"] #amortization-results > .notice {
-    padding: 12px;
-    border: 1px solid #94a3b8;
-    background: #ffffff;
-    color: #334155;
-    font-size: 8.5pt;
-    line-height: 1.5;
+  body[data-page="amortization-print"] thead {
+    display: table-header-group;
+  }
+
+  body[data-page="amortization-print"] tr {
     break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  body[data-page="amortization"] #amortization-results > .notice strong {
-    color: #000000;
   }
 }

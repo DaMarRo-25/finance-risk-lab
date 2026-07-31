@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Vista educativa para revisar y descargar los resultados de amortización en PDF.">
+  <title>Imprimir amortización | Finance & Risk Lab</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --soft: #f8fafc;
+      --blue: #2563eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #eef2f7;
+    }
+
+    .print-page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 48px;
+    }
+
+    .print-screen-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .button.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .button.secondary { background: #fff; color: var(--ink); }
+
+    .print-document {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .print-header {
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .print-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .print-brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .print-brand span {
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .print-header > span {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .print-header h1 { margin: 8px 0; font-size: 30px; }
+    .print-header p, .print-note, .print-message p { color: var(--muted); line-height: 1.5; }
+
+    .print-highlight {
+      margin: 20px 0;
+      padding: 20px;
+      border: 2px solid var(--ink);
+    }
+
+    .print-highlight span { display: block; color: var(--muted); }
+    .print-highlight strong { display: block; margin-top: 8px; font-size: 38px; }
+
+    .print-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .print-metric {
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .print-metric span, .print-metric small { display: block; color: #64748b; font-size: 12px; }
+    .print-metric strong { display: block; margin: 7px 0; font-size: 19px; }
+
+    .print-table-wrap { width: 100%; overflow: visible; }
+    table { width: 100%; border-collapse: collapse; table-layout: auto; font-size: 11px; }
+    th, td { padding: 6px; border: 1px solid var(--line); text-align: right; white-space: normal; }
+    th:first-child, td:first-child { text-align: left; }
+    th { background: #e2e8f0; }
+
+    .print-note {
+      margin-top: 20px;
+      padding: 12px;
+      border: 1px solid #fed7aa;
+      background: #fff7ed;
+      font-size: 12px;
+    }
+
+    @media (max-width: 720px) {
+      .print-metrics { grid-template-columns: 1fr; }
+      .print-screen-actions { flex-direction: column; }
+      .button { width: 100%; }
+    }
+
+    @media print {
+      @page { size: landscape; margin: 10mm; }
+
+      body { background: #fff; color: #000; }
+      .print-screen-actions { display: none !important; }
+      .print-page-shell { width: 100%; margin: 0; }
+      .print-document { padding: 0; border: 0; }
+      .print-header h1 { font-size: 21pt; }
+      .print-highlight { padding: 12px; }
+      .print-highlight strong { font-size: 26pt; }
+      .print-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 12px 0; }
+      .print-metric { padding: 7px; background: #fff; }
+      table { font-size: 7pt; }
+      th, td { padding: 3px; }
+      thead { display: table-header-group; }
+    }
+  </style>
+</head>
+<body data-page="amortization-print">
+  <main class="print-page-shell">
+    <div class="print-screen-actions">
+      <button id="amortization-print-back" class="button secondary" type="button">Volver a Amortización</button>
+      <button id="amortization-print-now" class="button primary" type="button">Descargar PDF</button>
+    </div>
+    <article id="amortization-print-content" class="print-document" aria-live="polite">
+      <p>Preparando la estimación…</p>
+    </article>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
