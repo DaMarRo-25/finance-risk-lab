@@ -1,24 +1,475 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Metodología | Finance & Risk Lab</title><link rel="stylesheet" href="styles.css"></head><body>
-    <header class="site-header">
-  <div class="container nav-wrap">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Metodología de Finance & Risk Lab: cómo se estiman cuotas, costos, capacidad de pago, amortización y referencias de tasas.">
+  <title>Metodología | Finance & Risk Lab</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="methodology">
+
+<header class="site-header">
+  <div class="container nav-wrap">
     <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
-      <img
-        src="assets/brand/logo-symbol.svg"
-        alt=""
-        class="brand-logo"
-      >
+      <img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo">
       <span>Finance & Risk Lab</span>
     </a>
 
     <nav>
       <a href="index.html">Inicio</a>
+      <a href="comparador.html">Comparador</a>
       <a href="calculadora.html">Calculadora</a>
+      <a href="amortizacion.html">Amortización</a>
+      <a href="tasas.html">Referencias de Tasas</a>
       <a href="aprender.html">Aprender</a>
       <a class="active" href="metodologia.html">Metodología</a>
       <a href="sobre.html">Sobre</a>
     </nav>
-
   </div>
 </header>
-    <main><section class="tool-hero"><div class="container"><span class="eyebrow">Transparencia</span><h1>Cómo funcionan nuestros análisis.</h1><p>Explicamos los cálculos, supuestos y límites de cada herramienta.</p></div></section><section class="section"><div class="container method-grid"><article class="panel"><h2>Capacidad de Pago</h2><p>Se calcula a partir del ingreso disponible del hogar, los gastos familiares, las obligaciones financieras, los gastos adicionales mensualizados y la nueva cuota.</p><p><strong>Principio rector:</strong> la herramienta no aprueba ni rechaza una deuda; muestra cómo cambia el presupuesto.</p></article><article class="panel"><h2>Privacidad y neutralidad</h2><p>Los datos se procesan localmente en el navegador. No se almacenan ni se utilizan para recomendar bancos o productos.</p></article></div></section></main><footer><div class="container footer-wrap"><span>Finance & Risk Lab</span><span>Metodología abierta y comprensible.</span></div></footer></body></html>
+
+<main>
+
+  <section class="tool-hero">
+    <div class="container">
+      <span class="eyebrow">Transparencia</span>
+      <h1>Cómo funcionan nuestros análisis.</h1>
+      <p>
+        Finance & Risk Lab utiliza estimaciones matemáticas y los datos que tú ingresas.
+        Aquí explicamos qué calcula cada herramienta, qué supuestos utiliza y qué cosas no puede conocer.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Principio general</span>
+        <h2>Primero usamos tus datos. Después explicamos el resultado.</h2>
+        <p>
+          Las herramientas no intentan adivinar condiciones que no aparecen en una propuesta,
+          contrato o estado de cuenta. Mientras más información real agregues, más completa puede ser la estimación.
+        </p>
+      </div>
+
+      <div class="principles-grid">
+        <article>
+          <h3>Datos ingresados</h3>
+          <p>
+            Los resultados parten de los valores que introduces: monto, tasa, plazo,
+            seguros, comisiones, costos y otros datos disponibles.
+          </p>
+        </article>
+
+        <article>
+          <h3>Estimaciones, no promesas</h3>
+          <p>
+            Los cálculos buscan ayudarte a comprender un escenario. Una entidad puede utilizar
+            fechas, redondeos, seguros, métodos contractuales u otras condiciones diferentes.
+          </p>
+        </article>
+
+        <article>
+          <h3>Neutralidad</h3>
+          <p>
+            La plataforma muestra diferencias y consecuencias. No recomienda bancos,
+            no aprueba créditos y no decide cuál opción debes elegir.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section project-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Herramienta 01</span>
+        <h2>Comparador de propuestas bancarias</h2>
+        <p>
+          El Comparador busca mostrar cómo dos propuestas pueden cambiar aunque partan del mismo monto solicitado.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>¿Qué compara?</h3>
+          <p>
+            Utiliza el monto solicitado y, para cada propuesta, la tasa, el plazo y los costos que hayas informado.
+            Calcula una cuota financiera teórica y luego incorpora los cargos mensuales aplicables.
+          </p>
+          <p>
+            También diferencia entre <strong>monto solicitado</strong>, <strong>capital financiado</strong>,
+            <strong>dinero neto recibido</strong> y <strong>pago inicial</strong>.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>¿Cómo tratamos los costos?</h3>
+          <p>
+            Un costo pagado al inicio aumenta el dinero que debes aportar al comienzo.
+            Un costo descontado reduce el dinero neto que recibirías.
+            Un costo financiado se suma al capital utilizado para estimar la cuota.
+          </p>
+          <p>
+            Si un costo se financia, puede generar intereses porque pasa a formar parte del capital financiado.
+          </p>
+        </article>
+      </div>
+
+      <div class="neutral-note">
+        <strong>Importante:</strong> una menor cuota mensual no significa automáticamente un menor costo total.
+        El Comparador muestra las diferencias para ayudarte a comprenderlas, no para declarar una propuesta como ganadora.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Herramienta 02</span>
+        <h2>Calculadora de préstamos</h2>
+        <p>
+          La Calculadora responde una pregunta sencilla: ¿cómo podría verse esta obligación con los datos que tengo?
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>Cuota financiera</h3>
+          <p>
+            Para préstamos de cuota fija se utiliza un cálculo de amortización periódica basado en
+            el capital financiado, la tasa anual informada y el número de meses.
+          </p>
+          <p>
+            Para la estimación, la tasa anual se convierte en una tasa mensual dividiéndola entre 12.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Resultados</h3>
+          <p>
+            La herramienta estima cuota mensual, intereses, total pagado y la composición general del costo.
+            Si agregas costos financiados, estos pueden modificar tanto la cuota como los intereses.
+          </p>
+          <p>
+            Los cargos mensuales informados se agregan al pago mensual, pero no se tratan como reducción de capital.
+          </p>
+        </article>
+      </div>
+
+      <div class="neutral-note">
+        La Calculadora está diseñada actualmente para préstamos de cuota fija.
+        Las tarjetas de crédito requieren un motor diferente porque manejan saldos rotativos, pagos mínimos y nuevas compras.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section project-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Herramienta 04</span>
+        <h2>Capacidad de Pago</h2>
+        <p>
+          Esta herramienta no intenta decir cuánto deberías endeudarte. Muestra cómo una nueva cuota cambia tu presupuesto mensual.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>Ingreso disponible</h3>
+          <p>
+            Puedes ingresar directamente el dinero que recibes al mes o partir de un ingreso bruto
+            y restar los descuentos informados. Los otros ingresos recurrentes se suman al ingreso del hogar.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Antes y después</h3>
+          <p>
+            Del ingreso se restan gastos familiares, obligaciones financieras actuales,
+            gastos adicionales mensualizados y, finalmente, la nueva cuota.
+          </p>
+          <p>
+            El resultado muestra cuánto dinero quedaría disponible antes y después de incorporar la nueva obligación.
+          </p>
+        </article>
+      </div>
+
+      <div class="neutral-note">
+        Los porcentajes mostrados son descriptivos. Finance & Risk Lab no utiliza un porcentaje para aprobar,
+        rechazar o calificar automáticamente a una persona.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Herramienta 05</span>
+        <h2>Amortización inteligente</h2>
+        <p>
+          El amortizador toma una obligación de cuota fija y muestra cómo puede evolucionar el saldo durante el plazo.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>Capital e intereses</h3>
+          <p>
+            En cada período se estiman los intereses sobre el saldo pendiente.
+            La diferencia entre la cuota financiera y esos intereses se aplica a reducir capital.
+          </p>
+          <p>
+            Por eso, en un esquema de cuota fija, al inicio suele destinarse una parte mayor a intereses
+            y posteriormente una parte mayor a capital.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Seguros y otros cargos</h3>
+          <p>
+            Si informas un seguro fijo, un porcentaje sobre el saldo o un porcentaje sobre el monto original,
+            la herramienta lo incorpora según la opción seleccionada.
+          </p>
+          <p>
+            Los cargos mensuales se muestran como parte del pago, pero no reducen el saldo de capital.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Comisiones financiadas</h3>
+          <p>
+            Cuando un costo fue financiado, el amortizador utiliza el capital realmente financiado,
+            no solamente el monto que originalmente deseabas recibir.
+          </p>
+          <p>
+            Los costos pagados al inicio o descontados del desembolso se muestran como contexto,
+            pero no se agregan artificialmente al saldo amortizable.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Escenarios con abonos</h3>
+          <p>
+            Los escenarios de “pagar en menos tiempo” o “pagar una cuota menor” son simulaciones educativas.
+            Muestran cómo podrían cambiar intereses, plazo o cuota si un abono se aplicara directamente a capital.
+          </p>
+          <p>
+            La aplicación real depende del contrato y de las políticas de cada entidad.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section rates-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Herramienta 03</span>
+        <h2>Centro de Referencias de Tasas</h2>
+        <p>
+          Las tasas de referencia sirven para contexto histórico. No son cotizaciones, ofertas ni tasas garantizadas.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>Cómo construimos la referencia</h3>
+          <ol>
+            <li>Se revisan las tasas publicadas para cada producto o segmento.</li>
+            <li>Cuando existe un rango, se utiliza un punto representativo entre la tasa mínima y máxima informada.</li>
+            <li>Los productos y segmentos se mantienen separados para evitar mezclar perfiles distintos.</li>
+            <li>Los valores sin información no se interpretan como una tasa de 0%.</li>
+          </ol>
+        </article>
+
+        <article class="panel">
+          <h3>Fecha y vigencia</h3>
+          <p>
+            Cada página de referencias indica la fecha de consulta utilizada.
+            Una tasa histórica puede ser diferente de la que una entidad ofrezca hoy.
+          </p>
+          <p>
+            Para una decisión real, confirma siempre la tasa y las condiciones directamente con la entidad.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Supuestos y límites</span>
+        <h2>Lo que una simulación no puede conocer por sí sola.</h2>
+        <p>
+          Una herramienta puede reproducir un escenario matemático, pero no puede leer condiciones que no han sido informadas.
+        </p>
+      </div>
+
+      <div class="learning-grid">
+        <article class="learning-card">
+          <span>Fechas</span>
+          <h2>Días exactos de cálculo</h2>
+          <p>
+            Algunas entidades calculan intereses considerando fechas exactas, días transcurridos o calendarios contractuales.
+            Las herramientas utilizan períodos mensuales simplificados.
+          </p>
+        </article>
+
+        <article class="learning-card">
+          <span>Redondeos</span>
+          <h2>Diferencias pequeñas</h2>
+          <p>
+            Los sistemas bancarios pueden aplicar reglas de redondeo distintas.
+            Por eso pueden existir diferencias de centavos frente a una tabla oficial.
+          </p>
+        </article>
+
+        <article class="learning-card">
+          <span>Contratos</span>
+          <h2>Condiciones particulares</h2>
+          <p>
+            Tasas variables, períodos de gracia, penalizaciones, pagos extraordinarios,
+            seguros especiales u otras condiciones requieren revisar el contrato correspondiente.
+          </p>
+        </article>
+
+        <article class="learning-card">
+          <span>Información</span>
+          <h2>Costos no ingresados</h2>
+          <p>
+            Si un seguro, comisión u otro cargo existe pero no se introduce,
+            ese costo no aparecerá en la estimación.
+          </p>
+        </article>
+
+        <article class="learning-card">
+          <span>Decisión</span>
+          <h2>No sustituye una evaluación</h2>
+          <p>
+            La plataforma no conoce políticas internas de aprobación, historial crediticio,
+            capacidad regulatoria ni criterios particulares de una entidad.
+          </p>
+        </article>
+
+        <article class="learning-card">
+          <span>Tarjetas</span>
+          <h2>Un producto diferente</h2>
+          <p>
+            Las tarjetas de crédito requieren una metodología propia por sus saldos rotativos,
+            pagos mínimos, compras nuevas, cargos e intereses acumulados.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section project-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <span class="eyebrow">Privacidad y neutralidad</span>
+        <h2>Qué hace y qué no hace Finance & Risk Lab.</h2>
+      </div>
+
+      <div class="method-grid">
+        <article class="panel">
+          <h3>Privacidad</h3>
+          <p>
+            Las herramientas funcionan en el navegador y no requieren crear una cuenta.
+            Los datos utilizados para conectar temporalmente herramientas se mantienen en el almacenamiento local o de sesión del navegador.
+          </p>
+          <p>
+            Esto permite, por ejemplo, pasar una simulación de la Calculadora a Capacidad de Pago o Amortización sin volver a escribirla.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Neutralidad</h3>
+          <p>
+            Finance & Risk Lab no recomienda bancos, no vende productos financieros,
+            no recibe una comisión por mostrar una entidad y no clasifica una propuesta como aprobada o rechazada.
+          </p>
+          <p>
+            El objetivo es que puedas comprender mejor la información antes de tomar tu propia decisión.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="panel sources-panel">
+        <span class="eyebrow">Referencias de Panamá</span>
+        <h2>Fuentes para ampliar o confirmar información.</h2>
+        <p>
+          La Superintendencia de Bancos de Panamá mantiene información para consumidores bancarios,
+          orientación sobre productos financieros y publicaciones de tasas nominales.
+        </p>
+
+        <div class="sources">
+          <a class="source-link" href="https://www.superbancos.gob.pa/sac" target="_blank" rel="noopener noreferrer">
+            Atención al Cliente · SBP
+            <small>Orientación sobre productos, consultas y derechos del consumidor bancario.</small>
+          </a>
+
+          <a class="source-link" href="https://www.superbancos.gob.pa/sac/productos-bancarios/prestamo" target="_blank" rel="noopener noreferrer">
+            Préstamos · SBP
+            <small>Información general sobre préstamos, intereses y comisiones.</small>
+          </a>
+
+          <a class="source-link" href="https://www.superbancos.gob.pa/estadisticas-financieras/tarifario" target="_blank" rel="noopener noreferrer">
+            Tarifario de tasas · SBP
+            <small>Publicaciones oficiales de tasas nominales.</small>
+          </a>
+
+          <a class="source-link" href="aprender.html">
+            Aprender · Finance & Risk Lab
+            <small>Explicaciones sencillas de los conceptos utilizados en las herramientas.</small>
+          </a>
+        </div>
+
+        <div class="neutral-note">
+          <strong>Alcance:</strong> Finance & Risk Lab es una plataforma educativa independiente.
+          Las fuentes externas sirven para orientación y contexto; no implican afiliación, validación o respaldo institucional del proyecto.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-wrap">
+    <span>© 2026 Finance & Risk Lab</span>
+    <span>Metodología abierta y comprensible.</span>
+  </div>
+</footer>
+
+</body>
+</html>
