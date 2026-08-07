@@ -1,0 +1,952 @@
+/* Finance & Risk Lab - Etapa 1
+   Capa adicional. Se carga DESPUES de styles.css para no sustituir la identidad actual. */
+
+.information-status[data-level="basic"],
+.frl-information-status[data-level="basic"] {
+  border-color: #bfdbfe !important;
+  background: #eff6ff !important;
+}
+
+.information-status[data-level="expanded"],
+.frl-information-status[data-level="expanded"] {
+  border-color: #a7f3d0 !important;
+  background: #ecfdf5 !important;
+}
+
+.information-status[data-level="detailed"],
+.frl-information-status[data-level="detailed"] {
+  border-color: #c4b5fd !important;
+  background: #f5f3ff !important;
+}
+
+.information-status[data-level="pending"] {
+  border-color: #e5e7eb !important;
+  background: #f8fafc !important;
+}
+
+.frl-cost-builder {
+  display: grid;
+  gap: 14px;
+}
+
+.frl-cost-builder-intro {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.frl-cost-list {
+  display: grid;
+  gap: 12px;
+}
+
+.frl-cost-row {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.frl-cost-row-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(150px, .8fr) minmax(0, 1.2fr) auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.frl-cost-row label,
+.frl-recurring-grid label {
+  display: grid;
+  gap: 7px;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.frl-cost-row input,
+.frl-cost-row select,
+.frl-recurring-grid input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.frl-value-unit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 76px;
+  gap: 7px;
+}
+
+.frl-cost-remove {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.frl-cost-remove:hover {
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.frl-cost-impact {
+  display: block;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.frl-add-cost {
+  justify-self: start;
+}
+
+.frl-recurring-grid,
+.frl-proposal-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.frl-proposal-detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.frl-detail-card {
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+.frl-detail-card span,
+.frl-detail-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.frl-detail-card strong {
+  display: block;
+  margin: 6px 0;
+  color: var(--brand-navy);
+  font-size: 17px;
+}
+
+.frl-compare-transfer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.frl-information-status {
+  grid-column: 1 / -1;
+  padding: 15px 17px;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  background: #eff6ff;
+}
+
+.frl-information-status strong {
+  display: block;
+  color: var(--brand-navy);
+}
+
+.frl-information-status p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.frl-transfer-notice {
+  margin-bottom: 18px;
+  border-color: #a7f3d0 !important;
+  background: #ecfdf5 !important;
+}
+
+.frl-transfer-notice strong {
+  display: block;
+  color: #047857;
+}
+
+.frl-calculator-extra {
+  grid-column: 1 / -1;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.frl-calculator-extra summary {
+  color: var(--brand-blue);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.frl-calculator-extra-content {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.frl-calculator-breakdown {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.frl-card-unavailable {
+  grid-column: 1 / -1;
+  padding: 22px;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  background: #eff6ff;
+}
+
+.frl-card-unavailable h3 {
+  margin-top: 0;
+  color: var(--brand-navy);
+}
+
+.frl-card-unavailable p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .frl-cost-row-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .frl-cost-remove {
+    justify-self: start;
+  }
+
+  .frl-calculator-breakdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .frl-cost-row-grid,
+  .frl-recurring-grid,
+  .frl-proposal-detail-grid,
+  .frl-calculator-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .frl-cost-row {
+    padding: 12px;
+  }
+
+  .frl-add-cost,
+  .frl-compare-transfer .button {
+    width: 100%;
+  }
+
+  .frl-compare-transfer {
+    flex-direction: column;
+  }
+}
+
+/* Comparador: agrupa condiciones iguales para destacar diferencias útiles. */
+.frl-shared-conditions {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  background: #f8fbff;
+}
+.frl-shared-conditions > div > p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.frl-shared-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.frl-shared-conditions [hidden],
+.frl-proposal-detail-grid [hidden] { display: none !important; }
+@media (max-width: 640px) {
+  .frl-shared-values { grid-template-columns: 1fr; }
+}
+
+
+/* Etapa 1 v3: selector visible de costos por propuesta */
+body[data-page="comparator"] .frl-cost-chooser {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+body[data-page="comparator"] .frl-cost-chooser-heading strong,
+body[data-page="comparator"] .frl-cost-chooser-heading small {
+  display: block;
+}
+
+body[data-page="comparator"] .frl-cost-chooser-heading strong {
+  color: var(--brand-navy);
+  font-size: 15px;
+}
+
+body[data-page="comparator"] .frl-cost-chooser-heading small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+body[data-page="comparator"] .frl-cost-choice-group {
+  display: grid;
+  gap: 8px;
+}
+
+body[data-page="comparator"] .frl-cost-choice-title {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body[data-page="comparator"] .frl-cost-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  cursor: pointer;
+}
+
+body[data-page="comparator"] .frl-cost-choice:hover {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+}
+
+body[data-page="comparator"] .frl-cost-choice input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  flex: 0 0 auto;
+  accent-color: var(--brand-blue);
+}
+
+body[data-page="comparator"] .frl-cost-choice span,
+body[data-page="comparator"] .frl-cost-choice strong,
+body[data-page="comparator"] .frl-cost-choice small {
+  display: block;
+}
+
+body[data-page="comparator"] .frl-cost-choice strong {
+  color: #334155;
+  font-size: 13.5px;
+}
+
+body[data-page="comparator"] .frl-cost-choice small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+body[data-page="comparator"] .frl-selected-cost {
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  background: #f8fbff;
+}
+
+body[data-page="comparator"] .frl-locked-concept {
+  display: grid;
+  align-content: center;
+  min-height: 50px;
+}
+
+body[data-page="comparator"] .frl-locked-concept span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+body[data-page="comparator"] .frl-locked-concept strong {
+  margin-top: 4px;
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  body[data-page="comparator"] .frl-cost-chooser,
+  body[data-page="comparator"] .frl-selected-cost {
+    padding: 14px;
+  }
+
+  body[data-page="comparator"] .frl-cost-choice {
+    padding: 10px;
+  }
+}
+
+
+/* =====================================================
+   ETAPA 1 v4 - Costos en contexto y diferencias explicadas
+   ===================================================== */
+body[data-page="comparator"] .frl-cost-choice.is-active {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.06);
+}
+
+body[data-page="comparator"] .frl-inline-cost-slot:not(:empty),
+body[data-page="comparator"] .frl-cost-choice + .frl-selected-cost {
+  margin: -2px 0 8px 28px;
+}
+
+body[data-page="comparator"] .frl-inline-cost-slot .frl-cost-row {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+}
+
+body[data-page="comparator"] .frl-different-conditions {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+body[data-page="comparator"] .frl-different-heading p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+body[data-page="comparator"] .frl-difference-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body[data-page="comparator"] .frl-difference-card {
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  background: #f8fbff;
+}
+
+body[data-page="comparator"] .frl-difference-card > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--brand-navy);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+body[data-page="comparator"] .frl-difference-values {
+  display: grid;
+  gap: 7px;
+}
+
+body[data-page="comparator"] .frl-difference-values p {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+body[data-page="comparator"] .frl-difference-values small { color: var(--muted); }
+body[data-page="comparator"] .frl-difference-values strong { color: var(--brand-navy); font-size: 17px; }
+body[data-page="comparator"] .frl-difference-amount { margin: 11px 0 6px; color: var(--brand-blue); font-size: 12px; font-weight: 800; }
+body[data-page="comparator"] .frl-difference-explanation { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.5; }
+body[data-page="comparator"] .frl-difference-card[hidden] { display: none !important; }
+
+@media (max-width: 900px) {
+  body[data-page="comparator"] .frl-difference-cards { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  body[data-page="comparator"] .frl-inline-cost-slot:not(:empty),
+  body[data-page="comparator"] .frl-cost-choice + .frl-selected-cost { margin-left: 0; }
+  body[data-page="comparator"] .frl-difference-values p { align-items: flex-start; flex-direction: column; gap: 3px; }
+}
+
+/* =====================================================
+   APRENDER - PROPUESTAS Y COSTOS
+   ===================================================== */
+body[data-page="learning"] .learn-overview-section,
+body[data-page="learning"] .learn-results-section,
+body[data-page="learning"] .learn-panama-section {
+  background: var(--surface-main);
+}
+
+body[data-page="learning"] .learn-key-grid {
+  margin-bottom: 22px;
+}
+
+body[data-page="learning"] .learn-example-panel {
+  margin-top: 22px;
+}
+
+body[data-page="learning"] .learn-example-panel h3 {
+  margin: 8px 0 20px;
+  color: var(--brand-navy);
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+body[data-page="learning"] .learn-example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+body[data-page="learning"] .learn-example-grid article {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-soft);
+}
+
+body[data-page="learning"] .learn-example-grid strong {
+  display: block;
+  color: var(--brand-navy);
+}
+
+body[data-page="learning"] .learn-example-grid p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+body[data-page="learning"] .learn-terms-list {
+  display: grid;
+  gap: 12px;
+  max-width: 920px;
+}
+
+body[data-page="learning"] .learn-term {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-main);
+}
+
+body[data-page="learning"] .learn-term summary {
+  position: relative;
+  padding: 17px 52px 17px 18px;
+  color: var(--brand-navy);
+  font-weight: 750;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-page="learning"] .learn-term summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-page="learning"] .learn-term summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  font-size: 18px;
+}
+
+body[data-page="learning"] .learn-term[open] summary {
+  border-bottom: 1px solid var(--line);
+  background: #f8fbff;
+}
+
+body[data-page="learning"] .learn-term[open] summary::after {
+  content: "−";
+}
+
+body[data-page="learning"] .learn-term > div {
+  padding: 16px 18px 18px;
+}
+
+body[data-page="learning"] .learn-term p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+body[data-page="learning"] .learn-term p:last-child {
+  margin-bottom: 0;
+}
+
+body[data-page="learning"] .learn-term strong {
+  color: #334155;
+}
+
+body[data-page="learning"] .learn-reference-panel h2 {
+  margin: 8px 0 10px;
+  color: var(--brand-navy);
+}
+
+body[data-page="learning"] .learn-reference-panel > p {
+  max-width: 820px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+body[data-page="learning"] .learn-reference-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+@media (max-width: 900px) {
+  body[data-page="learning"] .learn-example-grid,
+  body[data-page="learning"] .learn-reference-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   ETAPA 2 - Calculadora coherente y visual
+   ===================================================== */
+body[data-page="calculator"] .frl-calculator-cost-chooser {
+  display: grid;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface-soft);
+}
+
+body[data-page="calculator"] .frl-calculator-cost-chooser .frl-cost-chooser-heading strong,
+body[data-page="calculator"] .frl-calculator-cost-chooser .frl-cost-chooser-heading small {
+  display: block;
+}
+
+body[data-page="calculator"] .frl-calculator-cost-chooser .frl-cost-chooser-heading strong {
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+
+body[data-page="calculator"] .frl-calculator-cost-chooser .frl-cost-chooser-heading small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+body[data-page="calculator"] .frl-cost-choice-group {
+  display: grid;
+  gap: 8px;
+}
+
+body[data-page="calculator"] .frl-cost-choice-title {
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+body[data-page="calculator"] .frl-cost-choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+body[data-page="calculator"] .frl-cost-choice input {
+  margin-top: 3px;
+}
+
+body[data-page="calculator"] .frl-cost-choice strong,
+body[data-page="calculator"] .frl-cost-choice small {
+  display: block;
+}
+
+body[data-page="calculator"] .frl-cost-choice strong {
+  color: var(--brand-navy);
+  font-size: 13px;
+}
+
+body[data-page="calculator"] .frl-cost-choice small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+body[data-page="calculator"] .frl-cost-choice.is-active {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.05);
+}
+
+body[data-page="calculator"] .frl-selected-cost,
+body[data-page="calculator"] .frl-inline-cost-slot:not(:empty) {
+  margin: -1px 0 7px 28px;
+  padding: 13px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #f8fbff;
+}
+
+body[data-page="calculator"] .frl-selected-cost label {
+  display: grid;
+  gap: 7px;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+body[data-page="calculator"] .frl-inline-cost-slot .frl-cost-row {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body[data-page="calculator"] .frl-inline-cost-slot .frl-cost-row-grid {
+  grid-template-columns: minmax(0, .8fr) minmax(145px, .7fr) minmax(0, 1.2fr);
+}
+
+body[data-page="calculator"] .frl-payment-visual {
+  grid-column: 1 / -1;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+body[data-page="calculator"] .frl-payment-visual-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+body[data-page="calculator"] .frl-payment-visual-heading h3 {
+  margin: 6px 0 0;
+  color: var(--brand-navy);
+  font-size: 19px;
+}
+
+body[data-page="calculator"] .frl-payment-visual-heading > strong {
+  color: var(--brand-navy);
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+body[data-page="calculator"] .frl-payment-composition {
+  display: flex;
+  width: 100%;
+  height: 22px;
+  margin: 18px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f5;
+}
+
+body[data-page="calculator"] .frl-visual-segment {
+  display: block;
+  height: 100%;
+  transition: width .3s ease;
+}
+
+body[data-page="calculator"] .frl-visual-segment.principal,
+body[data-page="calculator"] .frl-visual-dot.principal { background: var(--brand-teal); }
+body[data-page="calculator"] .frl-visual-segment.interest,
+body[data-page="calculator"] .frl-visual-dot.interest { background: var(--brand-blue); }
+body[data-page="calculator"] .frl-visual-segment.recurring,
+body[data-page="calculator"] .frl-visual-dot.recurring { background: #d97706; }
+body[data-page="calculator"] .frl-visual-segment.upfront,
+body[data-page="calculator"] .frl-visual-dot.upfront { background: #7c3aed; }
+
+body[data-page="calculator"] .frl-payment-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 18px;
+}
+
+body[data-page="calculator"] .frl-payment-legend > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+body[data-page="calculator"] .frl-payment-legend strong {
+  color: var(--brand-navy);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+body[data-page="calculator"] .frl-visual-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+body[data-page="calculator"] .frl-payment-visual > .helper {
+  margin: 15px 0 0;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 760px) {
+  body[data-page="calculator"] .frl-payment-legend {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="calculator"] .frl-inline-cost-slot .frl-cost-row-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="calculator"] .frl-selected-cost,
+  body[data-page="calculator"] .frl-inline-cost-slot:not(:empty) {
+    margin-left: 0;
+  }
+
+  body[data-page="calculator"] .frl-payment-visual {
+    padding: 16px;
+  }
+
+  body[data-page="calculator"] .frl-payment-visual-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+.frl-results-empty{grid-column:1/-1}.frl-results-empty p{margin-bottom:0;color:var(--muted);line-height:1.6}
+
+
+/* Etapa 3 v4: acciones conectadas y protección de logos en impresión */
+.frl-next-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.frl-next-actions .button { margin:0; }
+@media (max-width:640px) {
+  .frl-next-actions { flex-direction:column; }
+  .frl-next-actions .button { width:100%; }
+}
+@media print {
+  body[data-page="comparator"] .brand-logo,
+  body[data-page="calculator"] .brand-logo,
+  body[data-page="capacity"] .brand-logo {
+    width:42px !important;
+    height:42px !important;
+    max-width:42px !important;
+    max-height:42px !important;
+    object-fit:contain !important;
+  }
+}
+
+.frl-capacity-amortization-step { margin-top:0; }
+.frl-capacity-amortization-step .button { margin-top:12px; }
+
+
+/* Etapa 3 v5: equilibrio visual de la Calculadora en entrada directa */
+@media (min-width: 901px) {
+  body[data-page="calculator"] .calculator-grid > .frl-results-empty {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (max-width: 900px) {
+  body[data-page="calculator"] .calculator-grid > .frl-results-empty {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
+  }
+}
+
+/* Etapa 3 v6: layout estable de Calculadora en escritorio */
+@media (min-width: 901px) {
+  body[data-page="calculator"] .calculator-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-rows: auto;
+    align-items: start;
+    gap: 24px;
+  }
+
+  body[data-page="calculator"] .calculator-grid > .form-panel {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    align-self: start;
+  }
+
+  body[data-page="calculator"] .calculator-grid > #calculatorResultsEmpty,
+  body[data-page="calculator"] .calculator-grid > #calculatorLoanResults {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    min-width: 0;
+    width: 100%;
+    align-self: start;
+  }
+
+  body[data-page="calculator"] .calculator-grid > #calculatorLoanResults {
+    margin: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  body[data-page="calculator"] .calculator-grid > .form-panel,
+  body[data-page="calculator"] .calculator-grid > #calculatorResultsEmpty,
+  body[data-page="calculator"] .calculator-grid > #calculatorLoanResults {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    width: 100%;
+  }
+}

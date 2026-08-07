@@ -3,602 +3,352 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Herramienta educativa para comprender cómo se distribuye una cuota y cómo podrían cambiar una obligación financiera y sus intereses mediante abonos al capital.">
+  <meta name="description" content="Herramienta educativa para comprender cómo evoluciona un préstamo de cuota fija y explorar el efecto de abonos al capital.">
   <title>Amortización inteligente | Finance & Risk Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="etapa1.css">
+  <link rel="stylesheet" href="etapa3.css">
 </head>
 <body data-page="amortization">
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
-        <img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo">
-        <span>Finance & Risk Lab</span>
-      </a>
-      <nav>
-        <a href="index.html">Inicio</a>
-        <a href="calculadora.html">Calculadora</a>
-        <a class="active" href="amortizacion.html">Amortización</a>
-        <a href="aprender.html">Aprender</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
+      <img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo">
+      <span>Finance & Risk Lab</span>
+    </a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="comparador.html">Comparador</a>
+      <a href="calculadora.html">Calculadora</a>
+      <a class="active" href="amortizacion.html">Amortización</a>
+      <a href="tasas.html">Referencias de Tasas</a>
+      <a href="aprender.html">Aprender</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="tool-hero">
+    <div class="container">
+      <span class="eyebrow">Herramienta 05</span>
+      <h1>Amortización inteligente</h1>
+      <p>Comprende cómo cambia tu préstamo con el tiempo y explora qué podría ocurrir si haces abonos adicionales al capital.</p>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="tool-hero">
-      <div class="container">
-        <span class="eyebrow">Herramienta 05</span>
-        <h1>Amortización inteligente</h1>
-        <p>Comprende cómo se distribuye cada cuota y explora cómo los abonos al capital podrían modificar la cuota teórica, los intereses y el saldo de una obligación financiera.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="panel">
-          <strong>Esta herramienta no está diseñada para tarjetas de crédito.</strong>
-          <p>Las tarjetas manejan saldos rotativos, pagos mínimos, compras nuevas y otras condiciones que requieren un análisis diferente.</p>
+  <section class="section amortization-purpose-section">
+    <div class="container">
+      <div class="panel amortization-purpose-card">
+        <div>
+          <span class="eyebrow">¿Para qué sirve?</span>
+          <h2>Aquí no volvemos a calcular una propuesta: la seguimos a través del tiempo.</h2>
+          <p>La Calculadora responde cuánto podrías pagar. Este módulo explica cómo cada cuota va reduciendo el saldo, cuánto corresponde a intereses y qué efecto pueden tener los abonos.</p>
+        </div>
+        <div class="amortization-purpose-points">
+          <span>Ver cómo baja el saldo</span>
+          <span>Entender capital e intereses</span>
+          <span>Explorar abonos</span>
         </div>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Punto de partida</span>
-          <h2>¿Qué deseas analizar?</h2>
-          <p>Puedes evaluar una obligación nueva o trabajar con una obligación que ya tienes actualmente.</p>
-        </div>
-
-        <div class="tools-grid">
-          <article class="tool-card featured">
-            <div class="tool-icon">01</div>
-            <h3>Estoy evaluando una obligación nueva</h3>
-            <p>Estima cómo se distribuiría la cuota desde el inicio y analiza el posible efecto de futuros abonos al capital.</p>
-            <button class="button primary" type="button" data-amortization-mode="new" aria-pressed="false">Seleccionar</button>
-          </article>
-
-          <article class="tool-card featured-soft">
-            <div class="tool-icon">02</div>
-            <h3>Ya tengo una obligación financiera</h3>
-            <p>Utiliza tu saldo actual, tasa y plazo pendiente para estimar cómo podría cambiar tu obligación.</p>
-            <button class="button primary" type="button" data-amortization-mode="existing" aria-pressed="false">Seleccionar</button>
-          </article>
-        </div>
-
-        <div id="amortization-selection" class="panel" hidden>
-          <span class="eyebrow">Selección realizada</span>
-          <h2 id="amortization-selection-title">Tipo de obligación</h2>
-          <p id="amortization-selection-text"></p>
-        </div>
+      <div class="notice amortization-card-notice">
+        <strong>Tarjetas de crédito:</strong> esta herramienta está diseñada para préstamos de cuota fija. Las tarjetas tendrán un módulo separado porque utilizan saldos rotativos y pagos mínimos.
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="amortization-form-section" class="section" hidden>
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Datos de la obligación</span>
-          <h2 id="amortization-form-title">Completa la información</h2>
-          <p id="amortization-form-intro">Utiliza los datos de tu propuesta, contrato o estado de cuenta.</p>
-        </div>
-
-        <div class="panel">
-          <div id="amortization-calculator-option" hidden>
-            <div class="notice">
-              <strong>Puedes usar una simulación de la Calculadora.</strong>
-              <p>Esta opción solo aparecerá cuando hayas realizado una simulación propia. Los valores predeterminados no se utilizarán automáticamente.</p>
-              <div class="button-row">
-                <button id="amortization-use-calculator" class="button primary" type="button">Usar mi simulación</button>
-                <button id="amortization-use-manual" class="button secondary" type="button">Ingresar otros datos</button>
-              </div>
-            </div>
-          </div>
-
-          <form id="amortization-form" novalidate>
-            <div class="form-grid">
-              <div class="field" data-field-mode="new">
-                <label for="amortization-amount">Monto solicitado</label>
-                <input id="amortization-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 15000">
-                <small>Es el monto que deseas solicitar antes de intereses, seguros y otros cargos.</small>
-                <details class="field-help"><summary>¿Qué significa este monto?</summary><p>Es el capital inicial que recibirías o que sería financiado. No incluye los intereses que pagarías durante el plazo.</p><p>Si alguna comisión se suma al préstamo, el monto realmente financiado podría ser mayor.</p></details>
-              </div>
-
-              <div class="field" data-field-mode="existing">
-                <label for="amortization-balance">Saldo actual</label>
-                <input id="amortization-balance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 12500">
-                <small>Es el capital que todavía tienes pendiente por pagar. No utilices el monto original del préstamo.</small>
-                <details class="field-help"><summary>¿Qué saldo debo utilizar?</summary><p>Utiliza el saldo de capital pendiente indicado en tu estado de cuenta más reciente.</p><p>No utilices el monto original del préstamo ni la suma de todas las cuotas pendientes.</p></details>
-              </div>
-
-              <div class="field">
-                <label for="amortization-product">Tipo de obligación</label>
-                <select id="amortization-product">
-                  <option value="personal">Préstamo personal</option>
-                  <option value="auto">Préstamo de auto</option>
-                  <option value="mortgage">Préstamo hipotecario</option>
-                  <option value="other">Otro préstamo de cuota fija</option>
-                </select>
-                <small>Esta herramienta está diseñada para préstamos de cuota fija. No aplica para tarjetas de crédito.</small>
-              </div>
-
-              <div class="field">
-                <label for="amortization-rate">Tasa anual</label>
-                <input id="amortization-rate" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 8.50">
-                <small>Es el porcentaje anual utilizado para calcular los intereses de la obligación.</small>
-                <details class="field-help"><summary>¿Cómo se utiliza la tasa anual?</summary><p>Para esta estimación, la tasa anual se convierte en una tasa mensual dividiéndola entre 12.</p><p>Los intereses de cada período se calculan sobre el saldo pendiente de capital.</p><p>Esta tasa no incluye automáticamente seguros, comisiones ni otros cargos.</p></details>
-              </div>
-
-              <div class="field" data-field-mode="new">
-                <label for="amortization-months">Plazo en meses</label>
-                <input id="amortization-months" type="number" min="1" step="1" inputmode="numeric" placeholder="Ejemplo: 60">
-                <small>Es la cantidad total de pagos mensuales previstos para cancelar la obligación.</small>
-                <details class="field-help"><summary>¿Cómo influye el plazo?</summary><p>Un plazo más largo suele reducir la cuota mensual, pero puede aumentar el total de intereses pagados.</p><p>Un plazo más corto suele aumentar la cuota mensual, pero puede reducir el costo total de intereses.</p></details>
-              </div>
-
-              <div class="field" data-field-mode="existing">
-                <label for="amortization-remaining-months">Plazo pendiente en meses</label>
-                <input id="amortization-remaining-months" type="number" min="1" step="1" inputmode="numeric" placeholder="Ejemplo: 42">
-                <small>Es la cantidad de pagos mensuales que todavía faltan según tu estado de cuenta.</small>
-                <details class="field-help"><summary>¿Qué debo ingresar aquí?</summary><p>Ingresa la cantidad de meses o cuotas que aún faltan para terminar de pagar la obligación.</p><p>No utilices el plazo original si ya has realizado pagos.</p></details>
-              </div>
-
-              <div class="field" data-field-mode="existing">
-                <label for="amortization-current-payment">Cuota actual</label>
-                <input id="amortization-current-payment" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 325.50">
-                <small>Es el pago mensual que realizas actualmente, incluyendo los componentes que aparecen en tu cuota.</small>
-                <details class="field-help"><summary>¿Qué debe incluir la cuota actual?</summary><p>Ingresa el monto mensual que normalmente pagas según tu estado de cuenta.</p><p>Puede incluir capital, intereses, seguros y otros cargos recurrentes.</p></details>
-              </div>
-
-
-              <div
-                class="field"
-                data-field-mode="existing"
-              >
-                <label for="amortization-current-installment">
-                  Número de la última cuota pagada
-                </label>
-
-                <input
-                  id="amortization-current-installment"
-                  type="number"
-                  min="0"
-                  step="1"
-                  inputmode="numeric"
-                  placeholder="Ejemplo: 18"
-                >
-
-                <small>
-                  Este dato es opcional. Permite mostrar el número contractual
-                  estimado de las próximas cuotas.
-                </small>
-              </div>
-
-              <div
-                id="amortization-original-amount-field"
-                class="field"
-                data-field-mode="existing"
-                hidden
-              >
-                <label for="amortization-original-amount">
-                  Monto original de la obligación
-                </label>
-
-                <input
-                  id="amortization-original-amount"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  inputmode="decimal"
-                  placeholder="Ejemplo: 18000"
-                >
-
-                <small>
-                  Solo se utiliza cuando el seguro se calcula como porcentaje
-                  sobre el monto original.
-                </small>
-              </div>
-
-              <div class="field">
-                <label for="amortization-insurance-type">¿Cómo se calcula el seguro?</label>
-                <select id="amortization-insurance-type">
-                  <option value="none">No aplica</option>
-                  <option value="fixed">Monto fijo mensual</option>
-                  <option value="balance-rate">Porcentaje sobre el saldo pendiente</option>
-                  <option value="original-rate">Porcentaje sobre el monto original</option>
-                  <option value="unknown">No lo sé</option>
-                </select>
-                <small>Selecciona la forma de cálculo indicada en tu propuesta, contrato o estado de cuenta.</small>
-                <details class="field-help"><summary>¿Por qué importa el tipo de seguro?</summary><p>Algunos seguros mantienen un monto fijo durante todo el plazo.</p><p>Otros seguros se calculan sobre el saldo pendiente o sobre el monto original de la obligación.</p><p>Si no conoces la forma de cálculo, selecciona “No lo sé”. La herramienta no inventará un valor.</p></details>
-              </div>
-
-              <div id="amortization-insurance-amount-field" class="field" hidden>
-                <label for="amortization-insurance-amount">Seguro mensual</label>
-                <input id="amortization-insurance-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 18.50">
-                <small>Es el monto fijo de seguro cobrado cada mes.</small>
-              </div>
-
-              <div id="amortization-insurance-rate-field" class="field" hidden>
-                <label for="amortization-insurance-rate">Tasa mensual del seguro</label>
-                <input id="amortization-insurance-rate" type="number" min="0" step="0.001" inputmode="decimal" placeholder="Ejemplo: 0.10">
-                <small>Ingresa el porcentaje mensual indicado por la entidad. Por ejemplo, escribe 0.10 para representar 0.10%.</small>
-              </div>
-
-              <div class="field">
-                <label for="amortization-other-charges">Otros cargos mensuales fijos</label>
-                <input id="amortization-other-charges" type="number" min="0" step="0.01" inputmode="decimal" value="0">
-                <small>Incluye únicamente cargos que se repiten todos los meses y cuyo monto conoces. No incluyas comisiones únicas ni cargos variables.</small>
-                <details class="field-help"><summary>¿Qué puedo incluir aquí?</summary><p>Puedes incluir cargos administrativos mensuales u otros cobros fijos que aparezcan regularmente en tu cuota.</p><p>No incluyas comisiones de apertura, gastos legales, avalúos ni otros pagos únicos.</p></details>
-              </div>
-            </div>
-
-            <div id="amortization-update-status" class="notice" role="status" aria-live="polite" hidden>Resultados actualizados con la información más reciente.</div>
-          </form>
-        </div>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Punto de partida</span>
+        <h2>¿Qué deseas analizar?</h2>
+        <p>Puedes trabajar con una obligación nueva o con un préstamo que ya estás pagando.</p>
       </div>
-    </section>
+      <div class="tools-grid">
+        <article class="tool-card featured">
+          <div class="tool-icon">01</div>
+          <h3>Estoy evaluando una obligación nueva</h3>
+          <p>Observa cómo podría evolucionar desde la primera cuota y explora futuros abonos.</p>
+          <button class="button primary" type="button" data-amortization-mode="new" aria-pressed="false">Seleccionar</button>
+        </article>
+        <article class="tool-card featured-soft">
+          <div class="tool-icon">02</div>
+          <h3>Ya tengo una obligación financiera</h3>
+          <p>Parte de tu saldo actual, tasa y plazo pendiente para analizar lo que queda por pagar.</p>
+          <button class="button primary" type="button" data-amortization-mode="existing" aria-pressed="false">Seleccionar</button>
+        </article>
+      </div>
+      <div id="amortization-selection" class="panel" hidden>
+        <span class="eyebrow">Selección realizada</span>
+        <h2 id="amortization-selection-title">Tipo de obligación</h2>
+        <p id="amortization-selection-text"></p>
+      </div>
+    </div>
+  </section>
 
-    <section id="amortization-results-section" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Estimación educativa</span>
-          <h2>Tu cuota por dentro</h2>
-          <p>Observa cómo se distribuiría el primer pago mensual entre capital, intereses, seguro y otros cargos informados.</p>
-        </div>
-
-        <div id="amortization-results-empty" class="panel">
-          <strong>Completa los datos de la obligación para ver la estimación.</strong>
-          <p>Los resultados se actualizarán automáticamente a medida que ingreses o modifiques la información.</p>
-        </div>
-
-        <div id="amortization-results" hidden>
-          <div class="panel amortization-payment-summary">
-            <span class="eyebrow">Cuota mensual estimada</span>
-            <p id="amortization-total-payment" class="amortization-main-value">B/. 0.00</p>
-            <p>Esta cifra incluye la cuota financiera teórica, el seguro estimado y los otros cargos mensuales que hayas informado.</p>
-            <div class="amortization-summary-grid">
-              <div class="amortization-summary-item"><span>Cuota financiera teórica</span><strong id="amortization-financial-payment">B/. 0.00</strong></div>
-              <div class="amortization-summary-item"><span>Seguro estimado</span><strong id="amortization-insurance-payment">B/. 0.00</strong></div>
-              <div class="amortization-summary-item"><span>Otros cargos mensuales</span><strong id="amortization-other-payment">B/. 0.00</strong></div>
-            </div>
-          </div>
-
-          <div class="amortization-breakdown-grid">
-            <article class="panel amortization-component"><span class="eyebrow">Capital</span><strong id="amortization-capital-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-capital-percent" class="amortization-component-percent">0%</span><div class="amortization-bar" aria-hidden="true"><span id="amortization-capital-bar" style="width:0%"></span></div><p>Es la parte del primer pago que reduce directamente el saldo pendiente de la obligación.</p></article>
-            <article class="panel amortization-component"><span class="eyebrow">Intereses</span><strong id="amortization-interest-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-interest-percent" class="amortization-component-percent">0%</span><div class="amortization-bar" aria-hidden="true"><span id="amortization-interest-bar" style="width:0%"></span></div><p>Es el costo financiero estimado del primer período, calculado sobre el saldo pendiente.</p></article>
-            <article class="panel amortization-component"><span class="eyebrow">Seguro</span><strong id="amortization-insurance-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-insurance-percent" class="amortization-component-percent">0%</span><div class="amortization-bar" aria-hidden="true"><span id="amortization-insurance-bar" style="width:0%"></span></div><p>El seguro forma parte del pago mensual, pero no reduce el saldo de capital.</p></article>
-            <article class="panel amortization-component"><span class="eyebrow">Otros cargos</span><strong id="amortization-other-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-other-percent" class="amortization-component-percent">0%</span><div class="amortization-bar" aria-hidden="true"><span id="amortization-other-bar" style="width:0%"></span></div><p>Son los cargos mensuales adicionales que hayas informado. Tampoco reducen el capital.</p></article>
-          </div>
-
-          <div id="amortization-explanation" class="panel">
-            <span class="eyebrow">¿Qué significa esta distribución?</span>
-            <h3>Una parte de la cuota reduce la deuda y otra cubre costos.</h3>
-            <p id="amortization-capital-explanation">De tu cuota mensual estimada, aproximadamente B/. 0.00 se aplicarían directamente a reducir el saldo de capital durante el primer período.</p>
-            <p id="amortization-interest-explanation">Aproximadamente B/. 0.00 corresponderían a intereses del primer período.</p>
-            <p id="amortization-costs-explanation">Los seguros y otros cargos informados forman parte del pago mensual, pero no reducen el capital de la obligación.</p>
-          </div>
-
-
-          <section
-            id="amortization-evolution"
-            class="panel amortization-evolution"
-          >
-            <div class="amortization-block-heading">
-              <div>
-                <span class="eyebrow">
-                  Evolución estimada
-                </span>
-
-                <h3>
-                  Cómo cambia tu cuota durante el plazo
-                </h3>
-
-                <p>
-                  La cuota financiera puede mantenerse similar, pero la parte
-                  destinada a intereses suele disminuir y la parte aplicada al
-                  capital suele aumentar conforme baja el saldo.
-                </p>
-              </div>
-
-              <button
-                id="amortization-print-evolution"
-                class="button secondary"
-                type="button"
-              >
-                Ver distribución de cuotas
-              </button>
-            </div>
-
-            <div
-              id="amortization-base-summary"
-              class="amortization-metrics-grid"
-            ></div>
-
-            <div class="amortization-table-wrap">
-              <table class="amortization-schedule-table">
-                <thead>
-                  <tr>
-                    <th>Cuota</th>
-                    <th>Saldo inicial</th>
-                    <th>Interés</th>
-                    <th>Capital</th>
-                    <th>Seguro</th>
-                    <th>Otros cargos</th>
-                    <th>Pago total</th>
-                    <th>Saldo final</th>
-                  </tr>
-                </thead>
-
-                <tbody id="amortization-representative-body"></tbody>
-              </table>
-            </div>
-          </section>
-
-          <section
-            id="amortization-extra-explorer"
-            class="panel amortization-extra-explorer"
-          >
-            <span class="eyebrow">
-              Escenarios educativos
-            </span>
-
-            <h3>
-              ¿Quieres explorar cómo pagar antes o cómo pagar menos?
-            </h3>
-
-            <p>
-              Selecciona una alternativa para observar cómo podrían cambiar el
-              plazo, los intereses o la cuota financiera. La herramienta no
-              elige una opción por ti.
-            </p>
-
-            <div class="amortization-scenario-selector">
-              <button
-                class="amortization-scenario-card"
-                type="button"
-                data-amortization-scenario="shorter"
-                aria-pressed="false"
-              >
-                <span class="amortization-scenario-number">01</span>
-                <strong>Pagar en menos tiempo</strong>
-                <small>
-                  Mantén la cuota financiera y agrega abonos al capital para
-                  explorar una posible reducción del plazo.
-                </small>
-              </button>
-
-              <button
-                class="amortization-scenario-card"
-                type="button"
-                data-amortization-scenario="lower"
-                aria-pressed="false"
-              >
-                <span class="amortization-scenario-number">02</span>
-                <strong>Pagar una cuota menor</strong>
-                <small>
-                  Realiza un abono al capital y estima una nueva cuota
-                  financiera manteniendo el plazo pendiente.
-                </small>
-              </button>
-            </div>
-
-            <div
-              id="amortization-scenario-form"
-              class="amortization-scenario-form"
-              hidden
-            >
-              <div class="amortization-scenario-fields">
-                <div class="field">
-                  <label for="amortization-extra-amount">
-                    Abono adicional al capital
-                  </label>
-
-                  <input
-                    id="amortization-extra-amount"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    inputmode="decimal"
-                    placeholder="Ejemplo: 20.00"
-                  >
-
-                  <small>
-                    Es un pago adicional separado de la cuota contractual.
-                  </small>
-                </div>
-
-                <div class="field">
-                  <label for="amortization-extra-start">
-                    Cuota desde la que se aplicaría
-                  </label>
-
-                  <input
-                    id="amortization-extra-start"
-                    type="number"
-                    min="1"
-                    step="1"
-                    inputmode="numeric"
-                    value="2"
-                  >
-
-                  <small id="amortization-extra-start-help">
-                    En una obligación nueva, puedes comenzar desde la cuota 1.
-                  </small>
-                </div>
-
-                <div
-                  id="amortization-extra-frequency-field"
-                  class="field"
-                >
-                  <label for="amortization-extra-frequency">
-                    Frecuencia del abono
-                  </label>
-
-                  <select id="amortization-extra-frequency">
-                    <option value="once">Una sola vez</option>
-                    <option value="monthly" selected>Todos los meses</option>
-                    <option value="quarterly">Cada 3 meses</option>
-                    <option value="semiannual">Cada 6 meses</option>
-                    <option value="annual">Cada 12 meses</option>
-                  </select>
-
-                  <small>
-                    La frecuencia se utiliza en el escenario para pagar en
-                    menos tiempo.
-                  </small>
-                </div>
-              </div>
-
-              <div class="button-row amortization-scenario-actions">
-                <button
-                  id="amortization-reset-scenario"
-                  class="button secondary"
-                  type="button"
-                >
-                  Volver al escenario original
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <section
-            id="amortization-scenario-results"
-            class="panel amortization-scenario-results"
-            hidden
-          >
-            <div class="amortization-block-heading">
-              <div>
-                <span class="eyebrow">
-                  Comparación estimada
-                </span>
-
-                <h3 id="amortization-scenario-result-title">
-                  Resultado del escenario
-                </h3>
-
-                <p id="amortization-scenario-result-text"></p>
-              </div>
-
-              <div class="button-row">
-                <button
-                  id="amortization-print-scenario"
-                  class="button secondary"
-                  type="button"
-                >
-                  Imprimir resumen del escenario
-                </button>
-
-                <button
-                  id="amortization-print-full"
-                  class="button secondary"
-                  type="button"
-                >
-                  Imprimir con todas las cuotas
-                </button>
-              </div>
-            </div>
-
-            <div
-              id="amortization-scenario-summary"
-              class="amortization-comparison-grid"
-            ></div>
-
-            <div class="amortization-table-wrap">
-              <table class="amortization-schedule-table">
-                <thead>
-                  <tr>
-                    <th>Cuota</th>
-                    <th>Saldo inicial</th>
-                    <th>Interés</th>
-                    <th>Capital ordinario</th>
-                    <th>Abono adicional</th>
-                    <th>Seguro</th>
-                    <th>Pago total</th>
-                    <th>Saldo final</th>
-                  </tr>
-                </thead>
-
-                <tbody id="amortization-scenario-representative-body"></tbody>
-              </table>
-            </div>
-
-            <div class="button-row amortization-schedule-actions">
-              <button
-                id="amortization-toggle-full-schedule"
-                class="button secondary"
-                type="button"
-                aria-expanded="false"
-              >
-                Ver todas las cuotas
-              </button>
-            </div>
-
-            <div
-              id="amortization-full-schedule"
-              class="amortization-full-schedule"
-              hidden
-            >
-              <div class="amortization-table-wrap amortization-table-wrap-full">
-                <table class="amortization-schedule-table">
-                  <thead>
-                    <tr>
-                      <th>Cuota</th>
-                      <th>Saldo inicial</th>
-                      <th>Cuota financiera</th>
-                      <th>Interés</th>
-                      <th>Capital ordinario</th>
-                      <th>Abono adicional</th>
-                      <th>Seguro</th>
-                      <th>Otros cargos</th>
-                      <th>Pago total</th>
-                      <th>Saldo final</th>
-                    </tr>
-                  </thead>
-
-                  <tbody id="amortization-full-schedule-body"></tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="notice amortization-contract-notice">
-              <strong>Importante:</strong>
-              La aplicación real de un abono puede depender del contrato y de
-              las políticas de la entidad financiera. Algunas entidades reducen
-              el plazo, otras recalculan la cuota y otras requieren una solicitud
-              expresa.
-            </div>
-          </section>
-
+  <section id="amortization-form-section" class="section" hidden>
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Datos de la obligación</span>
+        <h2 id="amortization-form-title">Completa la información</h2>
+        <p id="amortization-form-intro">Utiliza los datos de tu propuesta, contrato o estado de cuenta.</p>
+      </div>
+      <div class="panel">
+        <div id="amortization-calculator-option" hidden>
           <div class="notice">
-            <strong>
-              Importante:
-            </strong>
-            Esta es una estimación teórica y educativa. La distribución real puede variar por fechas de pago, método de cálculo, redondeos, seguros, comisiones y condiciones contractuales de cada entidad financiera.
-          </div>
-
-          <div id="amortization-print-actions" class="button-row amortization-print-actions">
-            <button
-              id="amortization-print-results"
-              class="button secondary"
-              type="button"
-            >
-              Imprimir cuota por dentro
-            </button>
+            <strong>Puedes continuar una simulación de la Calculadora.</strong>
+            <p>Si la simulación incluye costos financiados, la tabla utilizará el capital realmente financiado. Los costos pagados o descontados se mostrarán como contexto, pero no se amortizarán.</p>
+            <div class="button-row">
+              <button id="amortization-use-calculator" class="button primary" type="button">Usar mi simulación</button>
+              <button id="amortization-use-manual" class="button secondary" type="button">Ingresar otros datos</button>
+            </div>
           </div>
         </div>
+
+        <div id="amortization-import-summary" class="frl-amortization-import" hidden aria-live="polite"></div>
+
+        <form id="amortization-form" novalidate>
+          <div class="form-grid">
+            <div class="field" data-field-mode="new">
+              <label for="amortization-requested-amount">Monto solicitado</label>
+              <input id="amortization-requested-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 15000">
+              <input id="amortization-amount" type="hidden" value="">
+              <small>Escribe el monto del préstamo antes de sumar costos financiados. La herramienta calculará el capital que realmente se amortiza.</small>
+              <details class="field-help"><summary>¿Por qué puede ser distinto al monto solicitado?</summary><p>Si una comisión u otro costo se suma al préstamo, también forma parte del saldo sobre el que se calculan las cuotas e intereses.</p></details>
+            </div>
+            <div class="field" data-field-mode="existing">
+              <label for="amortization-balance">Saldo actual</label>
+              <input id="amortization-balance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 12500">
+              <small>Utiliza el capital pendiente indicado en tu estado de cuenta.</small>
+            </div>
+            <div class="field">
+              <label for="amortization-product">Tipo de obligación</label>
+              <select id="amortization-product">
+                <option value="personal">Préstamo personal</option>
+                <option value="auto">Préstamo de auto</option>
+                <option value="mortgage">Préstamo hipotecario</option>
+                <option value="other">Otro préstamo de cuota fija</option>
+              </select>
+              <small>No aplica para tarjetas de crédito.</small>
+            </div>
+            <div class="field">
+              <label for="amortization-rate">Tasa anual</label>
+              <input id="amortization-rate" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 8.50">
+              <small>Porcentaje anual utilizado para estimar los intereses.</small>
+            </div>
+            <div class="field" data-field-mode="new">
+              <label for="amortization-months">Plazo en meses</label>
+              <input id="amortization-months" type="number" min="1" step="1" inputmode="numeric" placeholder="Ejemplo: 60">
+              <small>Cantidad total de pagos mensuales previstos.</small>
+            </div>
+            <div class="field" data-field-mode="existing">
+              <label for="amortization-remaining-months">Plazo pendiente en meses</label>
+              <input id="amortization-remaining-months" type="number" min="1" step="1" inputmode="numeric" placeholder="Ejemplo: 42">
+              <small>Cantidad de meses o cuotas que todavía faltan.</small>
+            </div>
+            <div class="field" data-field-mode="existing">
+              <label for="amortization-current-payment">Cuota actual</label>
+              <input id="amortization-current-payment" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 325.50">
+              <small>Pago mensual que realizas actualmente, incluyendo los componentes que aparecen en tu cuota.</small>
+            </div>
+            <div class="field" data-field-mode="existing">
+              <label for="amortization-current-installment">Número de la última cuota pagada</label>
+              <input id="amortization-current-installment" type="number" min="0" step="1" inputmode="numeric" placeholder="Ejemplo: 18">
+              <small>Opcional. Ayuda a mostrar el número estimado de las próximas cuotas.</small>
+            </div>
+            <div id="amortization-original-amount-field" class="field" data-field-mode="existing" hidden>
+              <label for="amortization-original-amount">Monto original de la obligación</label>
+              <input id="amortization-original-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 18000">
+              <small>Solo se utiliza si el seguro se calcula sobre el monto original.</small>
+            </div>
+            <div class="frl-cost-chooser frl-amortization-cost-chooser" data-field-mode="new">
+              <div class="frl-cost-chooser-heading">
+                <strong>¿Qué costos aparecen en tu propuesta?</strong>
+                <small>Selecciona solo los que reconozcas. Si no conoces ninguno, puedes continuar con una estimación básica.</small>
+              </div>
+
+              <div class="frl-cost-choice-group">
+                <span class="frl-cost-choice-title">Cargos que pueden repetirse</span>
+
+                <label class="frl-cost-choice">
+                  <input id="amortization-insurance-toggle" type="checkbox">
+                  <span><strong>Seguro</strong><small>Si aparece como un cobro periódico asociado al préstamo.</small></span>
+                </label>
+                <div id="amortization-insurance-panel" class="frl-selected-cost" hidden>
+                  <div class="field">
+                    <label for="amortization-insurance-type">¿Cómo se calcula el seguro?</label>
+                    <select id="amortization-insurance-type">
+                      <option value="none">No aplica</option>
+                      <option value="fixed">Monto fijo mensual</option>
+                      <option value="balance-rate">Porcentaje sobre el saldo pendiente</option>
+                      <option value="original-rate">Porcentaje sobre el monto original</option>
+                      <option value="unknown">No lo sé</option>
+                    </select>
+                    <small>Selecciona la forma indicada en tu propuesta o contrato. Si no la conoces, la herramienta no inventará un valor.</small>
+                  </div>
+                  <div id="amortization-insurance-amount-field" class="field" hidden>
+                    <label for="amortization-insurance-amount">Seguro mensual</label>
+                    <input id="amortization-insurance-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 18.50">
+                    <small>Monto fijo de seguro cobrado cada mes.</small>
+                  </div>
+                  <div id="amortization-insurance-rate-field" class="field" hidden>
+                    <label for="amortization-insurance-rate">Tasa mensual del seguro</label>
+                    <input id="amortization-insurance-rate" type="number" min="0" step="0.001" inputmode="decimal" placeholder="Ejemplo: 0.10">
+                    <small>Escribe 0.10 para representar 0.10% mensual.</small>
+                  </div>
+                </div>
+
+                <label class="frl-cost-choice">
+                  <input id="amortization-other-toggle" type="checkbox">
+                  <span><strong>Otro cargo mensual</strong><small>Manejo u otro cobro fijo que se repita cada mes.</small></span>
+                </label>
+                <div id="amortization-other-panel" class="frl-selected-cost" hidden>
+                  <div class="field">
+                    <label for="amortization-other-charges">Otro cargo mensual</label>
+                    <input id="amortization-other-charges" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 5.00">
+                    <small>Incluye únicamente un cargo fijo que se repita todos los meses.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="frl-cost-choice-group">
+                <span class="frl-cost-choice-title">Costos que pueden cobrarse al inicio</span>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="closing_fee"><span><strong>Comisión de cierre</strong><small>Comisión indicada por la entidad al formalizar el préstamo.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="closing_fee"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="closing_costs"><span><strong>Gastos de cierre</strong><small>Otros gastos asociados con la formalización.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="closing_costs"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="legal"><span><strong>Gastos legales</strong><small>Costos de documentación, trámites o formalización legal.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="legal"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="appraisal"><span><strong>Avalúo</strong><small>Puede aparecer en financiamientos con bienes como garantía.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="appraisal"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="initial_insurance"><span><strong>Seguro inicial</strong><small>Prima o cargo de seguro cobrado al inicio.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="initial_insurance"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-amort-cost-toggle="other"><span><strong>Otro costo</strong><small>Para un cargo de la propuesta que no aparece en esta lista.</small></span></label>
+                <div class="frl-inline-cost-slot" data-amort-cost-slot="other"></div>
+              </div>
+            </div>
+          </div>
+          <div id="amortization-update-status" class="notice" role="status" aria-live="polite" hidden>Resultados actualizados con la información más reciente.</div>
+        </form>
       </div>
-    </section>
-  </main>
-
-
-  <footer>
-    <div class="container footer-wrap">
-      <span>© 2026 Finance & Risk Lab</span>
-      <span>Herramienta educativa. No constituye asesoría financiera.</span>
     </div>
-  </footer>
-  <script src="script.js"></script>
+  </section>
+
+  <section id="amortization-results-section" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Estimación educativa</span>
+        <h2>Tu préstamo a través del tiempo</h2>
+        <p>Primero observa la cuota por dentro y luego cómo cambian capital, intereses y saldo a medida que avanzan los pagos.</p>
+      </div>
+      <div id="amortization-results-empty" class="panel">
+        <strong>Completa los datos de la obligación para ver la estimación.</strong>
+        <p>Los resultados se actualizarán automáticamente.</p>
+      </div>
+      <div id="amortization-results" hidden>
+        <div class="panel amortization-payment-summary">
+          <span class="eyebrow">Primera cuota estimada</span>
+          <p id="amortization-total-payment" class="amortization-main-value">B/. 0.00</p>
+          <p>Incluye la cuota financiera teórica, el seguro estimado y los otros cargos mensuales informados. Si una comisión fue financiada, ya forma parte del capital financiado.</p>
+          <div class="amortization-summary-grid">
+            <div class="amortization-summary-item"><span>Cuota financiera teórica</span><strong id="amortization-financial-payment">B/. 0.00</strong></div>
+            <div class="amortization-summary-item"><span>Seguro estimado</span><strong id="amortization-insurance-payment">B/. 0.00</strong></div>
+            <div class="amortization-summary-item"><span>Otros cargos mensuales</span><strong id="amortization-other-payment">B/. 0.00</strong></div>
+          </div>
+        </div>
+
+        <div class="amortization-breakdown-grid">
+          <article class="panel amortization-component"><span class="eyebrow">Capital</span><strong id="amortization-capital-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-capital-percent" class="amortization-component-percent">0%</span><div class="amortization-bar"><span id="amortization-capital-bar"></span></div><p>Parte del primer pago que reduce directamente el saldo.</p></article>
+          <article class="panel amortization-component"><span class="eyebrow">Intereses</span><strong id="amortization-interest-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-interest-percent" class="amortization-component-percent">0%</span><div class="amortization-bar"><span id="amortization-interest-bar"></span></div><p>Costo financiero estimado del primer período.</p></article>
+          <article class="panel amortization-component"><span class="eyebrow">Seguro</span><strong id="amortization-insurance-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-insurance-percent" class="amortization-component-percent">0%</span><div class="amortization-bar"><span id="amortization-insurance-bar"></span></div><p>Forma parte del pago, pero no reduce el capital.</p></article>
+          <article class="panel amortization-component"><span class="eyebrow">Otros cargos</span><strong id="amortization-other-value" class="amortization-component-value">B/. 0.00</strong><span id="amortization-other-percent" class="amortization-component-percent">0%</span><div class="amortization-bar"><span id="amortization-other-bar"></span></div><p>Otros cobros mensuales informados.</p></article>
+        </div>
+
+        <div id="amortization-explanation" class="panel">
+          <span class="eyebrow">¿Qué significa esta distribución?</span>
+          <h3>Una parte de la cuota reduce la deuda y otra cubre costos.</h3>
+          <p id="amortization-capital-explanation"></p>
+          <p id="amortization-interest-explanation"></p>
+          <p id="amortization-costs-explanation"></p>
+        </div>
+
+        <section id="amortization-visual-evolution" class="panel frl-amortization-visual">
+          <div class="amortization-block-heading">
+            <div>
+              <span class="eyebrow">Vista visual</span>
+              <h3>Cómo cambia la composición de tus cuotas</h3>
+              <p>Al inicio suele pesar más el interés. Conforme baja el saldo, una mayor parte de la cuota financiera puede ir al capital.</p>
+            </div>
+          </div>
+          <div class="frl-evolution-legend" aria-label="Leyenda del gráfico">
+            <span><i class="frl-legend-capital"></i>Capital</span>
+            <span><i class="frl-legend-interest"></i>Interés</span>
+            <span><i class="frl-legend-costs"></i>Seguro y cargos</span>
+          </div>
+          <div id="amortization-evolution-chart" class="frl-evolution-chart" aria-live="polite"></div>
+          <p id="amortization-evolution-insight" class="helper"></p>
+        </section>
+
+        <section id="amortization-evolution" class="panel amortization-evolution">
+          <div class="amortization-block-heading">
+            <div>
+              <span class="eyebrow">Evolución estimada</span>
+              <h3>Cuotas representativas durante el plazo</h3>
+              <p>Estas cuotas ayudan a observar cómo cambia la distribución sin obligarte a revisar toda la tabla.</p>
+            </div>
+            <button id="amortization-print-evolution" class="button secondary" type="button">Ver distribución de cuotas</button>
+          </div>
+          <div id="amortization-base-summary" class="amortization-metrics-grid"></div>
+          <div class="amortization-table-wrap">
+            <table class="amortization-schedule-table">
+              <thead><tr><th>Cuota</th><th>Saldo inicial</th><th>Interés</th><th>Capital</th><th>Seguro</th><th>Otros cargos</th><th>Pago total</th><th>Saldo final</th></tr></thead>
+              <tbody id="amortization-representative-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="amortization-extra-explorer" class="panel amortization-extra-explorer">
+          <span class="eyebrow">Escenarios educativos</span>
+          <h3>¿Quieres explorar cómo pagar antes o cómo pagar menos?</h3>
+          <p>Selecciona una alternativa para observar cómo podrían cambiar el plazo, los intereses o la cuota financiera. La herramienta no elige una opción por ti.</p>
+          <div class="amortization-scenario-selector">
+            <button class="amortization-scenario-card" type="button" data-amortization-scenario="shorter" aria-pressed="false"><span class="amortization-scenario-number">01</span><strong>Pagar en menos tiempo</strong><small>Mantén la cuota financiera y agrega abonos al capital para explorar una posible reducción del plazo.</small></button>
+            <button class="amortization-scenario-card" type="button" data-amortization-scenario="lower" aria-pressed="false"><span class="amortization-scenario-number">02</span><strong>Pagar una cuota menor</strong><small>Realiza un abono al capital y estima una nueva cuota financiera manteniendo el plazo pendiente.</small></button>
+          </div>
+          <div id="amortization-scenario-form" class="amortization-scenario-form" hidden>
+            <div class="amortization-scenario-fields">
+              <div class="field"><label for="amortization-extra-amount">Abono adicional al capital</label><input id="amortization-extra-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ejemplo: 20.00"><small>Pago adicional separado de la cuota contractual.</small></div>
+              <div class="field"><label for="amortization-extra-start">Cuota desde la que se aplicaría</label><input id="amortization-extra-start" type="number" min="1" step="1" inputmode="numeric" value="2"><small id="amortization-extra-start-help">En una obligación nueva, puedes comenzar desde la cuota 1.</small></div>
+              <div id="amortization-extra-frequency-field" class="field"><label for="amortization-extra-frequency">Frecuencia del abono</label><select id="amortization-extra-frequency"><option value="once">Una sola vez</option><option value="monthly" selected>Todos los meses</option><option value="quarterly">Cada 3 meses</option><option value="semiannual">Cada 6 meses</option><option value="annual">Cada 12 meses</option></select><small>Se utiliza en el escenario para pagar en menos tiempo.</small></div>
+            </div>
+            <div class="button-row amortization-scenario-actions"><button id="amortization-reset-scenario" class="button secondary" type="button">Volver al escenario original</button></div>
+          </div>
+        </section>
+
+        <section id="amortization-scenario-results" class="panel amortization-scenario-results" hidden>
+          <div class="amortization-block-heading">
+            <div><span class="eyebrow">Comparación estimada</span><h3 id="amortization-scenario-result-title">Resultado del escenario</h3><p id="amortization-scenario-result-text"></p></div>
+            <div class="button-row"><button id="amortization-print-scenario" class="button secondary" type="button">Imprimir resumen del escenario</button><button id="amortization-print-full" class="button secondary" type="button">Imprimir con todas las cuotas</button></div>
+          </div>
+          <div id="amortization-scenario-summary" class="amortization-comparison-grid"></div>
+          <div class="amortization-table-wrap"><table class="amortization-schedule-table"><thead><tr><th>Cuota</th><th>Saldo inicial</th><th>Interés</th><th>Capital ordinario</th><th>Abono adicional</th><th>Seguro</th><th>Pago total</th><th>Saldo final</th></tr></thead><tbody id="amortization-scenario-representative-body"></tbody></table></div>
+          <div class="button-row amortization-schedule-actions"><button id="amortization-toggle-full-schedule" class="button secondary" type="button" aria-expanded="false">Ver todas las cuotas</button></div>
+          <div id="amortization-full-schedule" class="amortization-full-schedule" hidden><div class="amortization-table-wrap amortization-table-wrap-full"><table class="amortization-schedule-table"><thead><tr><th>Cuota</th><th>Saldo inicial</th><th>Cuota financiera</th><th>Interés</th><th>Capital ordinario</th><th>Abono adicional</th><th>Seguro</th><th>Otros cargos</th><th>Pago total</th><th>Saldo final</th></tr></thead><tbody id="amortization-full-schedule-body"></tbody></table></div></div>
+          <div class="notice amortization-contract-notice"><strong>Importante:</strong> la aplicación real de un abono depende del contrato y de las políticas de la entidad financiera.</div>
+        </section>
+
+        <div class="notice"><strong>Importante:</strong> esta es una estimación teórica y educativa. La distribución real puede variar por fechas de pago, redondeos, seguros, comisiones y condiciones contractuales.</div>
+        <div id="amortization-print-actions" class="button-row amortization-print-actions"><button id="amortization-print-results" class="button secondary" type="button">Imprimir cuota por dentro</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container footer-wrap"><span>© 2026 Finance & Risk Lab</span><span>Herramienta educativa. No constituye asesoría financiera.</span></div></footer>
+<script src="script.js"></script>
+<script src="finance-engine.js"></script>
+<script src="amortizacion-etapa3.js"></script>
 </body>
 </html>

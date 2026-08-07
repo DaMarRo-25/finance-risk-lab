@@ -1,0 +1,157 @@
+/* Etapa 3 - Amortización inteligente */
+body[data-page="amortization"] .amortization-purpose-section {
+  padding-top: 34px;
+  padding-bottom: 18px;
+}
+body[data-page="amortization"] .amortization-purpose-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr);
+  gap: 28px;
+  align-items: center;
+}
+body[data-page="amortization"] .amortization-purpose-card h2 {
+  margin: 8px 0 10px;
+  color: var(--brand-navy);
+  font-size: clamp(24px, 3vw, 34px);
+}
+body[data-page="amortization"] .amortization-purpose-card p { margin: 0; color: var(--muted); line-height: 1.7; }
+body[data-page="amortization"] .amortization-purpose-points { display: grid; gap: 10px; }
+body[data-page="amortization"] .amortization-purpose-points span {
+  padding: 12px 14px; border: 1px solid #dbeafe; border-radius: 12px; background: #f8fbff; color: #334155; font-size: 13px; font-weight: 700;
+}
+body[data-page="amortization"] .amortization-card-notice { margin-top: 14px; background: #fff7ed; border-color: #fed7aa; }
+
+.frl-amortization-import {
+  margin-bottom: 24px; padding: 20px; border: 1px solid #a7f3d0; border-radius: 18px; background: #ecfdf5;
+}
+.frl-import-heading strong { display: block; margin-top: 6px; color: var(--brand-navy); font-size: 18px; }
+.frl-import-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin-top: 16px; }
+.frl-import-metrics div { padding: 13px; border: 1px solid rgba(16,185,129,.22); border-radius: 12px; background: #fff; }
+.frl-import-metrics span { display: block; color: var(--muted); font-size: 11px; }
+.frl-import-metrics strong { display: block; margin-top: 6px; color: var(--brand-navy); font-size: 17px; }
+.frl-amortization-import p { margin: 14px 0 0; color: #475569; font-size: 13px; line-height: 1.6; }
+
+body[data-page="amortization"] .frl-amortization-visual { display: grid; gap: 18px; }
+.frl-evolution-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; color: var(--muted); font-size: 12px; }
+.frl-evolution-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 3px; vertical-align: -1px; }
+.frl-legend-capital, .frl-evolution-capital { background: var(--brand-teal); }
+.frl-legend-interest, .frl-evolution-interest { background: var(--brand-blue); }
+.frl-legend-costs, .frl-evolution-costs { background: #d97706; }
+.frl-evolution-chart { display: grid; gap: 18px; }
+.frl-evolution-row { display: grid; gap: 8px; }
+.frl-evolution-row-heading { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; }
+.frl-evolution-row-heading strong { color: var(--brand-navy); }
+.frl-evolution-row-heading span { color: var(--muted); }
+.frl-evolution-track { display: flex; height: 18px; overflow: hidden; border-radius: 999px; background: #e2e8f0; }
+.frl-evolution-track span { display: block; height: 100%; transition: width .3s ease; }
+.frl-evolution-values { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 11px; }
+
+.frl-print-import-context { margin-bottom: 16px; padding: 12px 14px; border: 1px solid #a7f3d0; background: #ecfdf5; color: #334155; font-size: 12px; line-height: 1.55; }
+
+@media (max-width: 760px) {
+  body[data-page="amortization"] .amortization-purpose-card { grid-template-columns: 1fr; padding: 20px; }
+  .frl-import-metrics { grid-template-columns: 1fr; }
+  .frl-evolution-track { height: 16px; }
+}
+@media print {
+  body[data-page="amortization"] #amortization-visual-evolution { display: none !important; }
+  .frl-print-import-context { break-inside: avoid; }
+}
+
+/* Etapa 3.1 - continuidad de datos y estados vacios */
+.frl-results-empty{grid-column:1/-1}.frl-results-empty p{margin-bottom:0;color:var(--muted);line-height:1.6}
+body[data-page="amortization"] .frl-cost-selector-intro{grid-column:1/-1;background:#f8fafc}
+body[data-page="amortization"] .frl-cost-selector-intro strong,body[data-page="amortization"] .frl-cost-selector-intro small{display:block}
+body[data-page="amortization"] .frl-cost-selector-intro small{margin-top:6px;color:var(--muted)}
+body[data-page="amortization"] .frl-amortization-cost-panel,body[data-page="amortization"] .frl-amortization-initial-costs{grid-column:1/-1}
+body[data-page="amortization"] .frl-amortization-initial-costs{display:grid;gap:10px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface-soft)}
+body[data-page="amortization"] #amortization-initial-cost-options{display:grid;gap:10px}
+body[data-page="amortization"] .frl-amort-cost-detail{padding:12px 0 6px 30px}
+body[data-page="amortization"] .frl-cost-entry-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:10px}
+body[data-page="amortization"] .frl-cost-entry-grid input,body[data-page="amortization"] .frl-cost-entry-grid select{width:100%;height:48px;padding:0 12px;border:1px solid var(--border-strong);border-radius:11px;background:#fff;font:inherit}
+@media(max-width:640px){body[data-page="amortization"] .frl-cost-entry-grid{grid-template-columns:1fr}body[data-page="amortization"] .frl-amort-cost-detail{padding-left:0}}
+body[data-page="amortization"] .frl-import-cost-list{display:grid;gap:6px;margin-top:14px;padding:12px;border-radius:12px;background:#fff}
+body[data-page="amortization"] .frl-import-cost-list span{color:var(--muted);font-size:13px}
+
+
+/* Etapa 3.2 - mismo lenguaje visual de costos que Comparador y Calculadora */
+body[data-page="amortization"] .frl-amortization-cost-chooser {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+body[data-page="amortization"] .frl-cost-chooser-heading strong,
+body[data-page="amortization"] .frl-cost-chooser-heading small { display:block; }
+body[data-page="amortization"] .frl-cost-chooser-heading strong { color:var(--brand-navy); font-size:15px; }
+body[data-page="amortization"] .frl-cost-chooser-heading small { margin-top:5px; color:var(--muted); font-size:12.5px; line-height:1.5; }
+body[data-page="amortization"] .frl-cost-choice-group { display:grid; gap:8px; }
+body[data-page="amortization"] .frl-cost-choice-title { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+body[data-page="amortization"] .frl-cost-choice { display:flex; align-items:flex-start; gap:10px; padding:11px 12px; border:1px solid var(--line); border-radius:12px; background:var(--surface-soft); cursor:pointer; }
+body[data-page="amortization"] .frl-cost-choice:hover { border-color:#bfdbfe; background:#f8fbff; }
+body[data-page="amortization"] .frl-cost-choice.is-active { border-color:#93c5fd; background:#eff6ff; box-shadow:0 0 0 2px rgba(37,99,235,.06); }
+body[data-page="amortization"] .frl-cost-choice input { width:18px; height:18px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--brand-blue); }
+body[data-page="amortization"] .frl-cost-choice span,
+body[data-page="amortization"] .frl-cost-choice strong,
+body[data-page="amortization"] .frl-cost-choice small { display:block; }
+body[data-page="amortization"] .frl-cost-choice strong { color:#334155; font-size:13.5px; }
+body[data-page="amortization"] .frl-cost-choice small { margin-top:3px; color:var(--muted); font-size:11.5px; line-height:1.4; }
+body[data-page="amortization"] .frl-selected-cost { margin:-2px 0 8px 28px; padding:16px; border:1px solid #bfdbfe; border-radius:14px; background:#f8fbff; }
+body[data-page="amortization"] .frl-selected-cost .field { background:#fff; }
+body[data-page="amortization"] .frl-inline-cost-slot:not(:empty) { margin:-2px 0 8px 28px; }
+body[data-page="amortization"] .frl-inline-cost-slot .frl-cost-row { border-color:#bfdbfe; background:#f8fbff; }
+body[data-page="amortization"] .frl-locked-concept { display:grid; align-content:center; min-height:50px; }
+body[data-page="amortization"] .frl-locked-concept span { color:var(--muted); font-size:11px; }
+body[data-page="amortization"] .frl-locked-concept strong { margin-top:4px; color:var(--brand-navy); font-size:14px; }
+body[data-page="amortization"] .frl-cost-row { padding:16px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+body[data-page="amortization"] .frl-cost-row-grid { display:grid; grid-template-columns:minmax(130px,.8fr) minmax(170px,1fr) minmax(210px,1.15fr); gap:12px; align-items:end; }
+body[data-page="amortization"] .frl-cost-row label { display:grid; gap:7px; color:#334155; font-size:12px; font-weight:700; }
+body[data-page="amortization"] .frl-value-unit { display:grid; grid-template-columns:minmax(0,1fr) 82px; gap:8px; }
+body[data-page="amortization"] .frl-cost-row input,
+body[data-page="amortization"] .frl-cost-row select { width:100%; min-height:46px; padding:0 12px; border:1px solid var(--border-strong); border-radius:11px; background:#fff; font:inherit; }
+body[data-page="amortization"] .frl-cost-impact { display:block; margin-top:10px; color:var(--muted); font-size:11.5px; line-height:1.45; }
+body[data-page="amortization"] #amortization-evolution-chart:empty::before { content:"Completa los datos para ver la evolución visual."; color:var(--muted); font-size:13px; }
+@media(max-width:760px){
+  body[data-page="amortization"] .frl-cost-row-grid { grid-template-columns:1fr; }
+  body[data-page="amortization"] .frl-inline-cost-slot:not(:empty),
+  body[data-page="amortization"] .frl-selected-cost { margin-left:0; }
+}
+@media(max-width:640px){ body[data-page="amortization"] .frl-amortization-cost-chooser,body[data-page="amortization"] .frl-selected-cost{padding:14px;} body[data-page="amortization"] .frl-cost-choice{padding:10px;} }
+
+
+/* Etapa 3 v4: el logo nunca debe dominar las vistas de impresión */
+body[data-page="amortization-print"] .print-brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+body[data-page="amortization-print"] .print-brand img,
+body[data-page="amortization-print"] .print-header img {
+  display:block;
+  width:48px !important;
+  height:48px !important;
+  max-width:48px !important;
+  max-height:48px !important;
+  object-fit:contain !important;
+  flex:0 0 48px;
+}
+body[data-page="amortization-print"] .print-brand span {
+  color:#0f172a;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+@media print {
+  body[data-page="amortization-print"] .print-brand img,
+  body[data-page="amortization-print"] .print-header img {
+    width:36px !important;
+    height:36px !important;
+    max-width:36px !important;
+    max-height:36px !important;
+    flex-basis:36px;
+  }
+}

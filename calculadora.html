@@ -1,40 +1,165 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calculadora de préstamos | Finance & Risk Lab</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body data-page="calculator">
-    
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculadora de préstamos | Finance & Risk Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="etapa1.css">
+</head>
+<body data-page="calculator">
 <header class="site-header">
   <div class="container nav-wrap">
-
-    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
-      <img
-        src="assets/brand/logo-symbol.svg"
-        alt=""
-        class="brand-logo"
-      >
-      <span>Finance & Risk Lab</span>
-    </a>
-
-   <nav>
-  <a href="index.html">Inicio</a>
-  <a href="comparador.html">Comparador</a>
-  <a class="active" href="calculadora.html">Calculadora</a>
-  <a href="amortizacion.html">
-    Amortización
-  </a>
-  <a href="tasas.html">Referencias de Tasas</a>
-  <a href="aprender.html">Aprender</a>
-  <a href="metodologia.html">Metodología</a>
-  <a href="sobre.html">Sobre</a>
-</nav>
-
+    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio"><img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo"><span>Finance & Risk Lab</span></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="comparador.html">Comparador</a>
+      <a class="active" href="calculadora.html">Calculadora</a>
+      <a href="amortizacion.html">Amortización</a>
+      <a href="tasas.html">Referencias de Tasas</a>
+      <a href="aprender.html">Aprender</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
   </div>
 </header>
-<main><section class="tool-hero"><div class="container"><span class="eyebrow">Herramienta 02</span><h1>Calculadora de préstamos</h1><p>Selecciona el tipo de producto, utiliza una tasa histórica de referencia y analiza cómo la cuota encajaría dentro de tu presupuesto familiar.</p></div></section>
-<section class="section"><div class="container calculator-grid"><div class="panel form-panel">
-<label>Tipo de producto<select id="product"><optgroup label="Préstamos personales"><option value="personal_privado">Personal privado</option><option value="personal_publico">Personal público o gobierno</option><option value="personal_jubilados">Jubilados / CSS</option></optgroup><optgroup label="Hipotecas"><option value="hipoteca_preferencial">Primera vivienda · interés preferencial</option><option value="hipoteca_no_preferencial">Hipoteca regular · no preferencial</option></optgroup><optgroup label="Otros productos"><option value="auto">Préstamo de auto</option><option value="tdc">Tarjeta de crédito</option></optgroup></select></label>
-<div id="product-context" class="product-context" hidden></div>
-<label>Monto solicitado<div class="input-wrap"><span>B/.</span><input id="amount" type="number" min="0" step="100" value="600"></div></label>
-<label>Tasa anual<div class="input-wrap"><input id="rate" type="number" min="0" step="0.01" value="0"><span>%</span></div></label>
-<label>Plazo<div class="input-wrap"><input id="months" type="number" min="1" step="1" value="24"><span>meses</span></div></label>
-<button id="use-reference" class="reference-button" type="button">Usar tasa de referencia: <strong id="reference-button-rate">10.75%</strong></button>
-<p class="helper">Referencia histórica consultada el 30 de Junio de 2026. Puedes sustituirla por una tasa que hayas confirmado directamente.</p></div>
-<div class="panel results-panel"><div class="result emphasis"><span>Cuota mensual estimada</span><strong id="monthly">B/. 0.00</strong></div><div class="result"><span>Total aproximado</span><strong id="total">B/. 0.00</strong></div><div class="result"><span>Intereses estimados</span><strong id="interest">B/. 0.00</strong></div><div class="comparison"><span>Comparación neutral</span><p id="comparison-text">Tu tasa coincide con la referencia seleccionada.</p><small>Esta comparación es matemática. No recomienda, califica ni favorece a ninguna entidad financiera.</small></div><div class="next-step"><h3>¿Cómo impactaría esta cuota tu presupuesto?</h3><p>Transfiere la cuota automáticamente al análisis de Capacidad de Pago.</p><button id="to-capacity" class="button primary">Analizar mi capacidad de pago</button></div><div class="notice">Estimación educativa. No incluye seguros, comisiones, gastos legales ni condiciones contractuales.</div></div></div></section></main>
-<footer><div class="container footer-wrap"><span>Finance & Risk Lab</span><a href="metodologia.html">Cómo calculamos</a></div></footer><script src="script.js"></script></body></html>
+<main>
+  <section class="tool-hero"><div class="container"><span class="eyebrow">Herramienta 02</span><h1>Calculadora de préstamos</h1><p>Simula una obligación de forma rápida y agrega costos solo cuando los conozcas.</p></div></section>
+  <section class="section"><div class="container calculator-grid">
+    <div class="panel form-panel">
+      <div id="calculatorTransferNotice" class="notice frl-transfer-notice" hidden><strong>Propuesta cargada desde el Comparador</strong><p>Puedes modificar cualquier valor antes de continuar.</p></div>
+
+      <label>Tipo de producto
+        <select id="product">
+          <optgroup label="Préstamos personales">
+            <option value="personal_privado">Personal privado</option>
+            <option value="personal_publico">Personal público o gobierno</option>
+            <option value="personal_jubilados">Jubilados / CSS</option>
+          </optgroup>
+          <optgroup label="Hipotecas">
+            <option value="hipoteca_preferencial">Primera vivienda · interés preferencial</option>
+            <option value="hipoteca_no_preferencial">Hipoteca regular · no preferencial</option>
+          </optgroup>
+          <optgroup label="Otros productos">
+            <option value="auto">Préstamo de auto</option>
+            <option value="tdc">Tarjeta de crédito</option>
+          </optgroup>
+        </select>
+      </label>
+      <div id="product-context" class="product-context" hidden></div>
+
+      <div id="calculatorLoanFields">
+        <label>Monto solicitado<div class="input-wrap"><span>B/.</span><input id="amount" type="number" min="0" step="100" placeholder="Ejemplo: 10000"></div></label>
+        <label>Tasa anual<div class="input-wrap"><input id="rate" type="number" min="0" step="0.01" placeholder="Ejemplo: 8.50"><span>%</span></div></label>
+        <label>Plazo<div class="input-wrap"><input id="months" type="number" min="1" step="1" placeholder="Ejemplo: 60"><span>meses</span></div></label>
+        <button id="use-reference" class="reference-button" type="button">Usar tasa de referencia: <strong id="reference-button-rate">10.75%</strong></button>
+        <p class="helper">Referencia histórica consultada el 30 de Junio de 2026. Puedes sustituirla por una tasa que hayas confirmado directamente.</p>
+
+        <details class="frl-calculator-extra">
+          <summary>Agregar costos de la propuesta</summary>
+          <div class="frl-calculator-extra-content">
+            <div class="frl-cost-chooser frl-calculator-cost-chooser">
+              <div class="frl-cost-chooser-heading">
+                <strong>¿Qué costos aparecen en tu propuesta?</strong>
+                <small>Selecciona solo los que reconozcas. Si no conoces ninguno, puedes mantener una estimación básica.</small>
+              </div>
+
+              <div class="frl-cost-choice-group">
+                <span class="frl-cost-choice-title">Cargos que pueden repetirse</span>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="insurance_monthly"><span><strong>Seguro</strong><small>Si aparece como un cobro periódico asociado al préstamo.</small></span></label>
+                <div id="calculatorInsurancePanel" class="frl-selected-cost" hidden>
+                  <label><span>Seguro mensual</span><small class="helper">Ingresa el monto fijo mensual indicado en la propuesta.</small><div class="input-wrap"><span>B/.</span><input id="calculatorInsurance" min="0" step="0.01" type="number" value="0"></div></label>
+                </div>
+
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="other_monthly"><span><strong>Otro cargo mensual</strong><small>Manejo u otro cobro fijo que se repita cada mes.</small></span></label>
+                <div id="calculatorOtherMonthlyPanel" class="frl-selected-cost" hidden>
+                  <label><span>Otro cargo mensual</span><small class="helper">Incluye únicamente un cargo fijo que se repita todos los meses.</small><div class="input-wrap"><span>B/.</span><input id="calculatorOtherMonthly" min="0" step="0.01" type="number" value="0"></div></label>
+                </div>
+              </div>
+
+              <div class="frl-cost-choice-group">
+                <span class="frl-cost-choice-title">Costos que pueden cobrarse al inicio</span>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="closing_fee"><span><strong>Comisión de cierre</strong><small>Comisión indicada por la entidad al formalizar el préstamo.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="closing_fee"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="closing_costs"><span><strong>Gastos de cierre</strong><small>Otros gastos asociados con la formalización.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="closing_costs"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="legal"><span><strong>Gastos legales</strong><small>Costos de documentación, trámites o formalización legal.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="legal"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="appraisal"><span><strong>Avalúo</strong><small>Puede aparecer en financiamientos con bienes como garantía.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="appraisal"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="initial_insurance"><span><strong>Seguro inicial</strong><small>Prima o cargo de seguro cobrado al inicio.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="initial_insurance"></div>
+                <label class="frl-cost-choice"><input type="checkbox" data-calculator-cost-toggle="other"><span><strong>Otro costo</strong><small>Para un cargo de la propuesta que no aparece en esta lista.</small></span></label>
+                <div class="frl-inline-cost-slot" data-calculator-cost-slot="other"></div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div id="calculatorCardUnavailable" class="frl-card-unavailable" hidden>
+        <h3>Las tarjetas necesitan un cálculo diferente.</h3>
+        <p>Una tarjeta de crédito maneja saldo rotativo, pagos mínimos, compras nuevas y reglas que pueden variar por producto. Para evitar mostrar una cuota de préstamo como si fuera un pago mínimo, esta calculadora no simula tarjetas por ahora.</p>
+        <p class="helper">Puedes seguir consultando la referencia histórica de tasas. El simulador específico de tarjetas está contemplado como una herramienta separada.</p>
+      </div>
+    </div>
+
+    <div id="calculatorResultsEmpty" class="panel frl-results-empty"><strong>Completa monto, tasa y plazo para ver tu estimación.</strong><p>Los ejemplos en gris son solo una guía y no forman parte del cálculo.</p></div>
+
+    <div id="calculatorLoanResults" class="panel results-panel" hidden>
+      <div id="calculatorInformationStatus" class="frl-information-status" data-level="basic"><strong>Estimación básica</strong><p>No incluye costos adicionales.</p></div>
+      <div class="result emphasis"><span>Pago mensual estimado</span><strong id="monthly">B/. 0.00</strong></div>
+      <div class="result"><span>Total estimado pagado</span><strong id="total">B/. 0.00</strong></div>
+      <div class="result"><span>Intereses estimados</span><strong id="interest">B/. 0.00</strong></div>
+      <div class="comparison"><span>Comparación neutral</span><p id="comparison-text">Tu tasa coincide con la referencia seleccionada.</p><small>Esta comparación es matemática. No recomienda, califica ni favorece a ninguna entidad financiera.</small></div>
+
+      <section class="frl-payment-visual" aria-labelledby="calculatorVisualTitle">
+        <div class="frl-payment-visual-heading">
+          <div>
+            <span class="eyebrow">Vista rápida</span>
+            <h3 id="calculatorVisualTitle">¿Cómo se compone lo que pagarías?</h3>
+          </div>
+          <strong id="calculatorVisualTotal">B/. 0.00</strong>
+        </div>
+        <div class="frl-payment-composition" role="img" aria-label="Distribución estimada entre capital financiado, intereses y otros costos">
+          <span id="calculatorVisualPrincipal" class="frl-visual-segment principal" style="width:0%"></span>
+          <span id="calculatorVisualInterest" class="frl-visual-segment interest" style="width:0%"></span>
+          <span id="calculatorVisualRecurring" class="frl-visual-segment recurring" style="width:0%"></span>
+          <span id="calculatorVisualUpfront" class="frl-visual-segment upfront" style="width:0%"></span>
+        </div>
+        <div class="frl-payment-legend">
+          <div><i class="frl-visual-dot principal"></i><span>Capital financiado</span><strong id="calculatorVisualPrincipalValue">B/. 0.00</strong></div>
+          <div><i class="frl-visual-dot interest"></i><span>Intereses</span><strong id="calculatorVisualInterestValue">B/. 0.00</strong></div>
+          <div><i class="frl-visual-dot recurring"></i><span>Seguro y cargos mensuales</span><strong id="calculatorVisualRecurringValue">B/. 0.00</strong></div>
+          <div><i class="frl-visual-dot upfront"></i><span>Costos pagados al inicio</span><strong id="calculatorVisualUpfrontValue">B/. 0.00</strong></div>
+        </div>
+        <p id="calculatorVisualExplanation" class="helper">Agrega un monto y un plazo para visualizar la composición estimada.</p>
+      </section>
+
+      <div class="frl-calculator-breakdown">
+        <article class="frl-detail-card"><span>Cuota financiera</span><strong id="calculatorFinancialPayment">B/. 0.00</strong><small>Antes de seguro y cargos mensuales.</small></article>
+        <article class="frl-detail-card"><span>Capital financiado</span><strong id="calculatorFinancedPrincipal">B/. 0.00</strong><small>Incluye costos capitalizados.</small></article>
+        <article class="frl-detail-card"><span>Dinero neto recibido</span><strong id="calculatorNetProceeds">B/. 0.00</strong><small>Después de costos descontados.</small></article>
+        <article class="frl-detail-card"><span>Pago inicial</span><strong id="calculatorUpfront">B/. 0.00</strong><small>Costos pagados por separado.</small></article>
+      </div>
+
+      <div class="next-step frl-calculator-next-step">
+        <h3>¿Qué quieres analizar ahora?</h3>
+        <p>Puedes revisar cómo esta cuota impactaría tu presupuesto o explorar cómo se distribuirían tus letras y cómo los abonos podrían cambiar los intereses, el plazo o la cuota.</p>
+        <div class="frl-next-actions">
+          <button id="to-capacity" class="button primary" type="button">Analizar mi capacidad de pago</button>
+          <button id="to-amortization" class="button secondary" type="button">Explorar mi tabla de pagos</button>
+        </div>
+      </div>
+      <div class="notice">Estimación educativa. El resultado depende de los datos ingresados y puede variar por seguros, comisiones, fechas, redondeos y condiciones contractuales.</div>
+    </div>
+  </div></section>
+</main>
+<footer><div class="container footer-wrap"><span>Finance & Risk Lab</span><a href="metodologia.html">Cómo calculamos</a></div></footer>
+<script src="script.js"></script>
+<script src="finance-engine.js"></script>
+</body>
+</html>
