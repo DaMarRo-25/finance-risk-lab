@@ -36,6 +36,7 @@
       <span class="eyebrow">Herramienta 01</span>
       <h1>Comparador de propuestas bancarias</h1>
       <p>Organiza dos propuestas y comprende cómo cambian la cuota, los intereses, el dinero que recibirías y el costo total.</p>
+      <details class="comparison-switcher"><summary>Cambiar tipo de comparación</summary><div class="comparison-switcher-body"><a href="comparador.html" class="comparison-switcher-active">Préstamos e hipotecas</a><a href="comparador-tarjetas.html">Tarjetas de crédito</a></div></details>
     </div>
   </section>
 
@@ -205,28 +206,19 @@
         <div class="frl-shared-conditions" id="compareSharedConditions">
           <div>
             <span class="eyebrow">Condiciones iguales en ambas propuestas</span>
-            <p id="compareSharedConditionsText">Cuando el capital financiado, el dinero recibido o el pago inicial sean iguales, los mostraremos una sola vez para concentrar la comparación en lo que realmente cambia.</p>
+            <p id="compareSharedConditionsText">Estas condiciones no cambian entre las propuestas. Las mostramos una sola vez para reducir ruido y concentrarte en las diferencias.</p>
           </div>
-          <div class="frl-shared-values">
-            <article class="frl-detail-card" id="compareFinancedSharedCard"><span>Capital financiado</span><strong id="compareFinancedShared">B/. 0.00</strong><small>Incluye costos capitalizados.</small></article>
-            <article class="frl-detail-card" id="compareNetSharedCard"><span>Dinero neto recibido</span><strong id="compareNetShared">B/. 0.00</strong><small>Después de costos descontados.</small></article>
-            <article class="frl-detail-card" id="compareUpfrontSharedCard"><span>Pago inicial</span><strong id="compareUpfrontShared">B/. 0.00</strong><small>Costos pagados por separado.</small></article>
-          </div>
+          <div class="frl-shared-values" id="compareSharedValues"></div>
         </div>
-
-        <div class="frl-different-conditions" id="compareDifferentConditions" hidden>
-          <div class="frl-different-heading">
-            <span class="eyebrow">Condiciones que cambian entre las propuestas</span>
-            <p>Estas condiciones no son iguales. Cada tarjeta reúne ambas propuestas para que puedas ver la diferencia y entender qué la provoca.</p>
+          <div class="frl-different-conditions" id="compareDifferentConditions" hidden>
+            <div class="frl-different-heading">
+              <span class="eyebrow">Condiciones que cambian entre las propuestas</span>
+              <p>Estas condiciones no son iguales. Cada bloque identifica las dos propuestas, muestra la diferencia y explica qué significa sin convertirla en una recomendación.</p>
+            </div>
+            <div class="frl-difference-cards" id="compareDifferenceCards"></div>
           </div>
-          <div class="frl-difference-cards">
-            <article class="frl-difference-card" id="compareFinancedDifferenceCard" hidden><span>Capital financiado</span><div class="frl-difference-values"><p><small id="compareFinancedNameA">Propuesta A</small><strong id="compareFinancedA">B/. 0.00</strong></p><p><small id="compareFinancedNameB">Propuesta B</small><strong id="compareFinancedB">B/. 0.00</strong></p></div><p class="frl-difference-amount" id="compareFinancedDifference"></p><small class="frl-difference-explanation" id="compareFinancedExplanation"></small></article>
-            <article class="frl-difference-card" id="compareNetDifferenceCard" hidden><span>Dinero neto recibido</span><div class="frl-difference-values"><p><small id="compareNetNameA">Propuesta A</small><strong id="compareNetA">B/. 0.00</strong></p><p><small id="compareNetNameB">Propuesta B</small><strong id="compareNetB">B/. 0.00</strong></p></div><p class="frl-difference-amount" id="compareNetDifference"></p><small class="frl-difference-explanation" id="compareNetExplanation"></small></article>
-            <article class="frl-difference-card" id="compareUpfrontDifferenceCard" hidden><span>Pago inicial</span><div class="frl-difference-values"><p><small id="compareUpfrontNameA">Propuesta A</small><strong id="compareUpfrontA">B/. 0.00</strong></p><p><small id="compareUpfrontNameB">Propuesta B</small><strong id="compareUpfrontB">B/. 0.00</strong></p></div><p class="frl-difference-amount" id="compareUpfrontDifference"></p><small class="frl-difference-explanation" id="compareUpfrontExplanation"></small></article>
-          </div>
-        </div>
 
-        <div class="compare-observations">
+          <div class="compare-observations">
           <h3>¿Qué significan las diferencias?</h3>
           <article><strong id="compareObservationTitle1">Completa los datos importantes</strong><p id="compareObservationText1">La herramienta calculará automáticamente la cuota usando el monto, la tasa y el plazo.</p></article>
           <article><strong id="compareObservationTitle2">Revisa los costos adicionales</strong><p id="compareObservationText2">Agregar seguros y costos permite aproximarse mejor a las condiciones informadas.</p></article>

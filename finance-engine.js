@@ -422,43 +422,64 @@
       renderDetails('B', b);
 
       const detailItems = [
-        { key: 'Financed', a: a.financedPrincipal, b: b.financedPrincipal },
-        { key: 'Net', a: a.netProceeds, b: b.netProceeds },
-        { key: 'Upfront', a: a.upfrontCosts, b: b.upfrontCosts }
+        { key: 'Financed', label: 'Capital financiado', a: a.financedPrincipal, b: b.financedPrincipal, format: money,
+          explain: (higher, difference) => `${higher} financia ${money(difference)} más. Esto puede ocurrir cuando incorpora más costos al préstamo en lugar de pagarlos por separado o descontarlos.` },
+        { key: 'Net', label: 'Dinero neto recibido', a: a.netProceeds, b: b.netProceeds, format: money,
+          explain: (higher, difference) => `${higher} entrega ${money(difference)} más de dinero neto. Una propuesta puede entregar menos cuando algunos costos se descuentan antes del desembolso.` },
+        { key: 'Upfront', label: 'Pago inicial', a: a.upfrontCosts, b: b.upfrontCosts, format: money,
+          explain: (higher, difference) => `${higher} requiere ${money(difference)} más al inicio. Esto ocurre cuando una mayor parte de los costos se paga por separado.` },
+        { key: 'Monthly', label: 'Pago mensual estimado', a: a.monthlyPayment, b: b.monthlyPayment, format: money,
+          explain: (higher, difference) => `${higher} muestra un pago mensual estimado ${money(difference)} mayor. La diferencia puede venir de la tasa, el plazo, el capital financiado o cargos mensuales.` },
+        { key: 'Interest', label: 'Intereses estimados', a: a.interest, b: b.interest, format: money,
+          explain: (higher, difference) => `${higher} acumula aproximadamente ${money(difference)} más de intereses en el escenario. La tasa, el capital financiado y el plazo ayudan a explicar esta diferencia.` },
+        { key: 'Total', label: 'Total estimado pagado', a: a.totalPaid, b: b.totalPaid, format: money,
+          explain: (higher, difference) => `${higher} muestra un total estimado ${money(difference)} mayor. El total reúne los pagos y costos considerados durante el escenario.` },
+        { key: 'Rate', label: 'Tasa de interés anual', a: a.annualRate, b: b.annualRate, format: v => `${Number(v).toFixed(2)}%`,
+          explain: (higher, difference) => `${higher} usa una tasa ${Number(difference).toFixed(2)} puntos porcentuales mayor. Si las demás condiciones fueran iguales, una tasa mayor normalmente eleva el costo financiero.` },
+        { key: 'Months', label: 'Plazo', a: a.months, b: b.months, format: v => `${Math.round(Number(v))} meses`,
+          explain: (higher, difference) => `${higher} presenta ${Math.round(Number(difference))} meses de diferencia. Un plazo más largo suele repartir la obligación en más pagos, pero puede aumentar los intereses totales.` },
+        { key: 'Insurance', label: 'Seguro mensual', a: a.insuranceMonthly, b: b.insuranceMonthly, format: money,
+          explain: (higher, difference) => `${higher} registra ${money(difference)} más de seguro mensual. Al repetirse, este cargo también aumenta el desembolso mensual y el costo acumulado.` },
+        { key: 'OtherMonthly', label: 'Otros cargos mensuales', a: a.otherMonthly, b: b.otherMonthly, format: money,
+          explain: (higher, difference) => `${higher} registra ${money(difference)} más de otros cargos mensuales. Aunque el cargo sea pequeño, su efecto se repite durante el plazo.` }
       ];
-      const sharedItems = detailItems.filter(item => Math.abs(item.a - item.b) < 0.01);
-      const differentItems = detailItems.filter(item => Math.abs(item.a - item.b) >= 0.01);
+      const differentItems = detailItems.filter(item => Math.abs(Number(item.a || 0) - Number(item.b || 0)) >= 0.01);
       const sharedBlock = document.getElementById('compareSharedConditions');
       const differentBlock = document.getElementById('compareDifferentConditions');
+      const differenceCards = document.getElementById('compareDifferenceCards');
 
-      const explanations = {
-        Financed: (higher, lower, difference) => `${higher} financia ${money(difference)} más. Esto ocurre cuando una propuesta incorpora más costos al préstamo en lugar de pagarlos por separado o descontarlos.`,
-        Net: (higher, lower, difference) => `${higher} entrega ${money(difference)} más de dinero neto. Una propuesta puede entregar menos cuando algunos costos se descuentan antes del desembolso.`,
-        Upfront: (higher, lower, difference) => `${higher} requiere ${money(difference)} más al inicio. Esto ocurre cuando una mayor parte de los costos se paga por separado al formalizar la operación.`
-      };
-
-      detailItems.forEach(item => {
-        const isShared = Math.abs(item.a - item.b) < 0.01;
-        document.getElementById(`compare${item.key}SharedCard`)?.toggleAttribute('hidden', !isShared);
-        if (isShared) setText(`compare${item.key}Shared`, money(item.a));
-
-        const differenceCard = document.getElementById(`compare${item.key}DifferenceCard`);
-        differenceCard?.toggleAttribute('hidden', isShared);
-        if (!isShared) {
-          setText(`compare${item.key}NameA`, nameA);
-          setText(`compare${item.key}NameB`, nameB);
-          const difference = Math.abs(item.a - item.b);
-          const higher = item.a > item.b ? nameA : nameB;
-          const lower = item.a > item.b ? nameB : nameA;
-          setText(`compare${item.key}Difference`, `Diferencia: ${money(difference)}`);
-          setText(`compare${item.key}Explanation`, explanations[item.key](higher, lower, difference));
-        }
-      });
-      sharedBlock?.toggleAttribute('hidden', sharedItems.length === 0);
+      const sharedItems = detailItems.filter(item => Math.abs(Number(item.a || 0) - Number(item.b || 0)) < 0.01);
+      const sharedCount = sharedItems.length;
+      sharedBlock?.toggleAttribute('hidden', sharedCount === 0);
       differentBlock?.toggleAttribute('hidden', differentItems.length === 0);
-      setText('compareSharedConditionsText', sharedItems.length === 3
-        ? 'Estos valores no cambian entre las propuestas. Los mostramos una sola vez para que puedas concentrarte en las diferencias que sí afectan la comparación.'
-        : 'Estos valores son iguales en ambas propuestas. Los mostramos una sola vez; debajo verás por separado las condiciones que sí cambian.');
+      const sharedValues = document.getElementById('compareSharedValues');
+      if (sharedValues) {
+        sharedValues.innerHTML = sharedItems.map(item => `<article class="frl-detail-card"><span>${escapeHtml(item.label)}</span><strong>${item.format(item.a)}</strong><small>Igual en ambas propuestas; no explica una diferencia.</small></article>`).join('');
+      }
+      setText('compareSharedConditionsText', sharedCount === detailItems.length
+        ? 'Estas condiciones son iguales en ambas propuestas. Las mostramos una sola vez para concentrarte en lo que realmente cambia.'
+        : 'Estas condiciones son iguales en ambas propuestas. Las mostramos una sola vez; debajo verás las condiciones que sí cambian.');
+
+      if (differenceCards) {
+        differenceCards.innerHTML = differentItems.map(item => {
+          const diff = Math.abs(Number(item.a || 0) - Number(item.b || 0));
+          const higher = Number(item.a || 0) > Number(item.b || 0) ? nameA : nameB;
+          const directional = item.key === 'Rate'
+            ? `${higher} usa ${Number(diff).toFixed(2)} puntos porcentuales más.`
+            : item.key === 'Months'
+              ? `${higher} presenta ${Math.round(diff)} meses de diferencia.`
+              : `Diferencia estimada: ${money(diff)}.`;
+          return `<article class="frl-difference-card">
+            <span>${escapeHtml(item.label)}</span>
+            <div class="frl-difference-values">
+              <p><small>${escapeHtml(nameA)}</small><strong>${item.format(item.a)}</strong></p>
+              <p><small>${escapeHtml(nameB)}</small><strong>${item.format(item.b)}</strong></p>
+            </div>
+            <p class="frl-difference-amount">${escapeHtml(directional)}</p>
+            <small class="frl-difference-explanation">${escapeHtml(item.explain(higher, diff))}</small>
+          </article>`;
+        }).join('');
+      }
 
       const complete = a.requestedAmount > 0 && a.months > 0 && b.months > 0;
       const hasRecurring = a.insuranceMonthly + a.otherMonthly + b.insuranceMonthly + b.otherMonthly > 0;
@@ -544,6 +565,8 @@
       field.addEventListener('input', update);
       field.addEventListener('change', update);
     });
+
+    const escapeHtml = value => String(value ?? '').replace(/[&<>\"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]));
 
     const normalizePdfText = value => String(value || '')
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -909,13 +932,26 @@
     document.getElementById('use-reference')?.addEventListener('click', () => { v2Interacted = true; setTimeout(() => calculate(true), 0); });
     document.getElementById('to-capacity')?.addEventListener('click', () => {
       const result = model();
+      const payment = Number(result.monthlyPayment) || 0;
+      sessionStorage.setItem('frl-capacity-handoff-v1', JSON.stringify({
+        version: 1,
+        source: 'calculator',
+        sourceLabel: calculatorOrigin.name || 'Calculadora',
+        data: {
+          payment,
+          financialPayment: Number(result.financialPayment) || 0,
+          insuranceMonthly: Number(result.insuranceMonthly) || 0,
+          otherMonthly: Number(result.otherMonthly) || 0
+        }
+      }));
       localStorage.setItem('frl-new-payment-context', JSON.stringify({
         source: 'calculator',
-        payment: result.monthlyPayment,
-        financialPayment: result.financialPayment,
-        insuranceMonthly: result.insuranceMonthly,
-        otherMonthly: result.otherMonthly
+        payment,
+        financialPayment: Number(result.financialPayment) || 0,
+        insuranceMonthly: Number(result.insuranceMonthly) || 0,
+        otherMonthly: Number(result.otherMonthly) || 0
       }));
+      window.location.href = 'capacidad-pago.html?from=calculator';
     });
 
     document.getElementById('to-amortization')?.addEventListener('click', () => {
@@ -938,7 +974,8 @@
       };
       localStorage.setItem('frl-calculator-simulation', JSON.stringify(simulation));
       localStorage.setItem('frl-calculator-interacted', 'true');
-      window.location.href = 'amortizacion.html';
+      sessionStorage.setItem('frl-amortization-handoff-v1', JSON.stringify({ version: 1, source: 'calculator', createdAt: Date.now() }));
+      window.location.href = 'amortizacion.html?from=calculator';
     });
 
     applyTransfer();

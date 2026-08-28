@@ -25,8 +25,8 @@
       <a href="index.html">Inicio</a>
       <a href="comparador.html">Comparador</a>
       <a href="calculadora.html">Calculadora</a>
-      <a href="amortizacion.html">Amortización</a>
-      <a href="tasas.html">Referencias de Tasas</a>
+      <a href="tarjetas.html">Tarjetas</a>
+      <a href="capacidad-pago.html">Capacidad de Pago</a>
       <a href="aprender.html">Aprender</a>
       <a class="active" href="metodologia.html">Metodología</a>
       <a href="sobre.html">Sobre</a>
@@ -88,230 +88,108 @@
     </div>
   </section>
 
-  <section class="section project-section">
+
+  <section class="section methodology-tools" id="metodologia-herramientas">
     <div class="container">
-
       <div class="section-heading">
-        <span class="eyebrow">Herramienta 01</span>
-        <h2>Comparador de propuestas bancarias</h2>
-        <p>
-          El Comparador busca mostrar cómo dos propuestas pueden cambiar aunque partan del mismo monto solicitado.
-        </p>
+        <span class="eyebrow">Metodología por herramienta</span>
+        <h2>Conoce cómo trabaja cada parte del laboratorio.</h2>
+        <p>Abre solo la herramienta que quieras entender. La metodología mantiene el mismo principio: usamos los datos que realmente ingresas, mostramos estimaciones y hacemos explícito cuándo una información pasa de una herramienta a otra.</p>
       </div>
 
-      <div class="method-grid">
-        <article class="panel">
-          <h3>¿Qué compara?</h3>
-          <p>
-            Utiliza el monto solicitado y, para cada propuesta, la tasa, el plazo y los costos que hayas informado.
-            Calcula una cuota financiera teórica y luego incorpora los cargos mensuales aplicables.
-          </p>
-          <p>
-            También diferencia entre <strong>monto solicitado</strong>, <strong>capital financiado</strong>,
-            <strong>dinero neto recibido</strong> y <strong>pago inicial</strong>.
-          </p>
-        </article>
+      <div class="methodology-accordions">
 
-        <article class="panel">
-          <h3>¿Cómo tratamos los costos?</h3>
-          <p>
-            Un costo pagado al inicio aumenta el dinero que debes aportar al comienzo.
-            Un costo descontado reduce el dinero neto que recibirías.
-            Un costo financiado se suma al capital utilizado para estimar la cuota.
-          </p>
-          <p>
-            Si un costo se financia, puede generar intereses porque pasa a formar parte del capital financiado.
-          </p>
-        </article>
+        <details class="methodology-tool" open>
+          <summary><span class="methodology-index">01</span><span><strong>Comparador de propuestas</strong><small>Préstamos e hipotecas · comparación de dos propuestas</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact">
+              <span class="eyebrow">Herramienta 01</span>
+              <h2>Comparador de propuestas bancarias</h2>
+              <p>El Comparador busca mostrar cómo dos propuestas pueden cambiar aunque partan del mismo monto solicitado.</p>
+            </div>
+            <div class="method-grid">
+              <article class="panel"><h3>¿Qué compara?</h3><p>Utiliza el monto solicitado y, para cada propuesta, la tasa, el plazo y los costos que hayas informado. Calcula una cuota financiera teórica y luego incorpora los cargos mensuales aplicables.</p><p>También diferencia entre <strong>monto solicitado</strong>, <strong>capital financiado</strong>, <strong>dinero neto recibido</strong> y <strong>pago inicial</strong>.</p></article>
+              <article class="panel"><h3>¿Cómo tratamos los costos?</h3><p>Un costo pagado al inicio aumenta el dinero que debes aportar al comienzo. Un costo descontado reduce el dinero neto que recibirías. Un costo financiado se suma al capital utilizado para estimar la cuota.</p><p>Si un costo se financia, puede generar intereses porque pasa a formar parte del capital financiado.</p></article>
+            </div>
+            <div class="neutral-note"><strong>Importante:</strong> una menor cuota mensual no significa automáticamente un menor costo total. El Comparador muestra las diferencias para ayudarte a comprenderlas, no para declarar una propuesta como ganadora.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">02</span><span><strong>Calculadora</strong><small>Cuota fija · intereses · costos mensuales</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 02</span><h2>Calculadora de préstamos</h2><p>La Calculadora responde una pregunta sencilla: ¿cómo podría verse esta obligación con los datos que tengo?</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Cuota financiera</h3><p>Para préstamos de cuota fija se utiliza un cálculo de amortización periódica basado en el capital financiado, la tasa anual informada y el número de meses.</p><p>Para la estimación, la tasa anual se convierte en una tasa mensual dividiéndola entre 12.</p></article>
+              <article class="panel"><h3>Resultados y siguiente paso</h3><p>La herramienta estima cuota mensual, intereses, total pagado y la composición general del costo. Si agregas costos financiados, estos pueden modificar tanto la cuota como los intereses.</p><p>Los cargos mensuales informados se agregan al pago mensual, pero no se tratan como reducción de capital. Desde aquí puedes enviar explícitamente la simulación a Amortización o la nueva obligación a Capacidad de Pago.</p></article>
+            </div>
+            <div class="neutral-note">La Calculadora está diseñada para préstamos de cuota fija. Las tarjetas de crédito utilizan un motor diferente porque manejan saldos rotativos, pagos mínimos y nuevas compras.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">03</span><span><strong>Comparador de tarjetas</strong><small>Propuestas de tarjeta · costos · beneficios · condiciones</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 03</span><h2>Comparador de tarjetas</h2><p>Compara dos propuestas de tarjeta sin tratarlas como si fueran préstamos. La comparación se centra en las condiciones que realmente describen una tarjeta.</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Datos que importan</h3><p>El comparador solicita el <strong>límite de crédito</strong>, la <strong>anualidad</strong>, la información de <strong>pago mínimo</strong>, la tasa o cargo de interés aplicable y los beneficios que la propuesta realmente ofrece.</p><p>El nombre del banco o de la tarjeta no se utiliza para calcular el resultado, por lo que no se pide como dato necesario.</p></article>
+              <article class="panel"><h3>Cómo se muestran las diferencias</h3><p>Las condiciones que cambian se presentan por propuesta y se acompañan de una explicación educativa. Una diferencia no convierte automáticamente una tarjeta en mejor: depende de cómo la persona utilizaría el producto.</p><p>El usuario puede elegir una propuesta y llevar sus datos explícitamente al módulo de Tarjetas para continuar el análisis.</p></article>
+            </div>
+            <div class="neutral-note"><strong>Importante:</strong> la anualidad no se trata como interés. Es un costo propio de la tarjeta y puede cobrarse con una periodicidad distinta según la propuesta. Los beneficios tampoco se convierten en un valor monetario inventado si la propuesta no permite conocerlo.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">04</span><span><strong>Tarjetas de crédito</strong><small>Saldo · pagos · compras · corte · beneficios</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 04</span><h2>Tarjetas de crédito</h2><p>La tarjeta trabaja de forma distinta a un préstamo: parte de un saldo que puede cambiar con compras y pagos y no supone un plazo fijo universal.</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Datos disponibles</h3><p>Usamos solo los datos que la persona conoce o decide ingresar. Puede empezar con información básica y agregar más datos para hacer la simulación más completa. Si falta una condición, explicamos qué podría cambiar el resultado.</p><p>El usuario puede usar sus propios datos o solicitar un ejemplo; ambos escenarios permanecen separados.</p></article>
+              <article class="panel"><h3>Pago y nuevas compras</h3><p>El pago mensual que la persona quiere probar se trata como una obligación. Las compras nuevas se mantienen como consumo y pueden incorporarse al presupuesto cuando corresponda.</p><p>El saldo de la tarjeta no se convierte automáticamente en un gasto mensual, para evitar duplicar información en Capacidad de Pago.</p></article>
+              <article class="panel"><h3>Uso inteligente</h3><p>El módulo también explica cómo interpretar pago mínimo, anualidad, intereses, corte y beneficios. Los consejos buscan ayudar a aprovechar la tarjeta sin presentar una recompensa como razón para gastar más.</p></article>
+            </div>
+            <div class="neutral-note">La simulación de una tarjeta es aproximada. Las condiciones reales dependen del estado de cuenta, fechas, cargos, movimientos y reglas contractuales de la entidad.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">05</span><span><strong>Capacidad de Pago</strong><small>Presupuesto · obligaciones · impacto de una nueva deuda</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 05</span><h2>Capacidad de Pago</h2><p>Esta herramienta no intenta decir cuánto deberías endeudarte. Muestra cómo una nueva obligación cambia tu presupuesto mensual.</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Puede funcionar sola</h3><p>Si entras directamente, empieza sin datos de otras herramientas. Puedes elegir usar tus datos o probar un ejemplo. Un escenario guardado en otro módulo no se importa automáticamente.</p></article>
+              <article class="panel"><h3>Cuando recibe información</h3><p>Calculadora puede enviar explícitamente una nueva cuota. Tarjetas puede enviar explícitamente el pago mensual propuesto y las compras nuevas cuando corresponda. Los ingresos, gastos y obligaciones del hogar siguen bajo control del usuario.</p></article>
+              <article class="panel"><h3>Antes y después</h3><p>Del ingreso se restan gastos familiares, obligaciones financieras actuales, gastos adicionales mensualizados y la nueva obligación. El resultado muestra el margen disponible antes y después.</p></article>
+            </div>
+            <div class="neutral-note">Los datos recibidos desde otra herramienta se identifican como información transferida. No reemplazan automáticamente lo que la persona ya conoce ni se reutilizan desde una sesión anterior sin una acción explícita.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">06</span><span><strong>Amortización</strong><small>Saldo · capital · intereses · escenarios de abono</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 06</span><h2>Amortización inteligente</h2><p>El amortizador toma una obligación de cuota fija y muestra cómo puede evolucionar el saldo durante el plazo.</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Capital e intereses</h3><p>En cada período se estiman los intereses sobre el saldo pendiente. La diferencia entre la cuota financiera y esos intereses se aplica a reducir capital. Por eso, en un esquema de cuota fija, al inicio suele destinarse una parte mayor a intereses y posteriormente una parte mayor a capital.</p></article>
+              <article class="panel"><h3>Seguros, cargos y comisiones</h3><p>Los cargos mensuales se muestran como parte del pago, pero no reducen el saldo de capital. Cuando un costo fue financiado, el amortizador utiliza el capital realmente financiado.</p></article>
+              <article class="panel"><h3>Escenarios con abonos</h3><p>Los escenarios de pagar en menos tiempo o pagar una cuota menor son simulaciones educativas. La aplicación real depende del contrato y de las políticas de cada entidad.</p></article>
+            </div>
+            <div class="neutral-note">Amortización no rescata automáticamente una simulación anterior. Solo utiliza una simulación cuando otra herramienta la entrega explícitamente para continuarla.</div>
+          </div>
+        </details>
+
+        <details class="methodology-tool">
+          <summary><span class="methodology-index">07</span><span><strong>Centro de Referencias de Tasas</strong><small>Contexto · referencias · fecha de consulta</small></span><span class="methodology-chevron">+</span></summary>
+          <div class="methodology-tool-body">
+            <div class="section-heading compact"><span class="eyebrow">Herramienta 07</span><h2>Centro de Referencias de Tasas</h2><p>Las tasas de referencia sirven para contexto. No son cotizaciones, ofertas ni tasas garantizadas.</p></div>
+            <div class="method-grid">
+              <article class="panel"><h3>Cómo construimos la referencia</h3><ol><li>Se revisan las tasas publicadas para cada producto o segmento.</li><li>Cuando existe un rango, se utiliza un punto representativo entre la tasa mínima y máxima informada.</li><li>Los productos y segmentos se mantienen separados para evitar mezclar perfiles distintos.</li><li>Los valores sin información no se interpretan como una tasa de 0%.</li></ol></article>
+              <article class="panel"><h3>Fecha y vigencia</h3><p>Cada página de referencias indica la fecha de consulta utilizada. Una tasa histórica puede ser diferente de la que una entidad ofrezca hoy.</p><p>Para una decisión real, confirma siempre la tasa y las condiciones directamente con la entidad.</p></article>
+            </div>
+          </div>
+        </details>
+
       </div>
-
-      <div class="neutral-note">
-        <strong>Importante:</strong> una menor cuota mensual no significa automáticamente un menor costo total.
-        El Comparador muestra las diferencias para ayudarte a comprenderlas, no para declarar una propuesta como ganadora.
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="section-heading">
-        <span class="eyebrow">Herramienta 02</span>
-        <h2>Calculadora de préstamos</h2>
-        <p>
-          La Calculadora responde una pregunta sencilla: ¿cómo podría verse esta obligación con los datos que tengo?
-        </p>
-      </div>
-
-      <div class="method-grid">
-        <article class="panel">
-          <h3>Cuota financiera</h3>
-          <p>
-            Para préstamos de cuota fija se utiliza un cálculo de amortización periódica basado en
-            el capital financiado, la tasa anual informada y el número de meses.
-          </p>
-          <p>
-            Para la estimación, la tasa anual se convierte en una tasa mensual dividiéndola entre 12.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Resultados</h3>
-          <p>
-            La herramienta estima cuota mensual, intereses, total pagado y la composición general del costo.
-            Si agregas costos financiados, estos pueden modificar tanto la cuota como los intereses.
-          </p>
-          <p>
-            Los cargos mensuales informados se agregan al pago mensual, pero no se tratan como reducción de capital.
-          </p>
-        </article>
-      </div>
-
-      <div class="neutral-note">
-        La Calculadora está diseñada actualmente para préstamos de cuota fija.
-        Las tarjetas de crédito requieren un motor diferente porque manejan saldos rotativos, pagos mínimos y nuevas compras.
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section project-section">
-    <div class="container">
-
-      <div class="section-heading">
-        <span class="eyebrow">Herramienta 04</span>
-        <h2>Capacidad de Pago</h2>
-        <p>
-          Esta herramienta no intenta decir cuánto deberías endeudarte. Muestra cómo una nueva cuota cambia tu presupuesto mensual.
-        </p>
-      </div>
-
-      <div class="method-grid">
-        <article class="panel">
-          <h3>Ingreso disponible</h3>
-          <p>
-            Puedes ingresar directamente el dinero que recibes al mes o partir de un ingreso bruto
-            y restar los descuentos informados. Los otros ingresos recurrentes se suman al ingreso del hogar.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Antes y después</h3>
-          <p>
-            Del ingreso se restan gastos familiares, obligaciones financieras actuales,
-            gastos adicionales mensualizados y, finalmente, la nueva cuota.
-          </p>
-          <p>
-            El resultado muestra cuánto dinero quedaría disponible antes y después de incorporar la nueva obligación.
-          </p>
-        </article>
-      </div>
-
-      <div class="neutral-note">
-        Los porcentajes mostrados son descriptivos. Finance & Risk Lab no utiliza un porcentaje para aprobar,
-        rechazar o calificar automáticamente a una persona.
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="section-heading">
-        <span class="eyebrow">Herramienta 05</span>
-        <h2>Amortización inteligente</h2>
-        <p>
-          El amortizador toma una obligación de cuota fija y muestra cómo puede evolucionar el saldo durante el plazo.
-        </p>
-      </div>
-
-      <div class="method-grid">
-        <article class="panel">
-          <h3>Capital e intereses</h3>
-          <p>
-            En cada período se estiman los intereses sobre el saldo pendiente.
-            La diferencia entre la cuota financiera y esos intereses se aplica a reducir capital.
-          </p>
-          <p>
-            Por eso, en un esquema de cuota fija, al inicio suele destinarse una parte mayor a intereses
-            y posteriormente una parte mayor a capital.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Seguros y otros cargos</h3>
-          <p>
-            Si informas un seguro fijo, un porcentaje sobre el saldo o un porcentaje sobre el monto original,
-            la herramienta lo incorpora según la opción seleccionada.
-          </p>
-          <p>
-            Los cargos mensuales se muestran como parte del pago, pero no reducen el saldo de capital.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Comisiones financiadas</h3>
-          <p>
-            Cuando un costo fue financiado, el amortizador utiliza el capital realmente financiado,
-            no solamente el monto que originalmente deseabas recibir.
-          </p>
-          <p>
-            Los costos pagados al inicio o descontados del desembolso se muestran como contexto,
-            pero no se agregan artificialmente al saldo amortizable.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Escenarios con abonos</h3>
-          <p>
-            Los escenarios de “pagar en menos tiempo” o “pagar una cuota menor” son simulaciones educativas.
-            Muestran cómo podrían cambiar intereses, plazo o cuota si un abono se aplicara directamente a capital.
-          </p>
-          <p>
-            La aplicación real depende del contrato y de las políticas de cada entidad.
-          </p>
-        </article>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section rates-section">
-    <div class="container">
-
-      <div class="section-heading">
-        <span class="eyebrow">Herramienta 03</span>
-        <h2>Centro de Referencias de Tasas</h2>
-        <p>
-          Las tasas de referencia sirven para contexto histórico. No son cotizaciones, ofertas ni tasas garantizadas.
-        </p>
-      </div>
-
-      <div class="method-grid">
-        <article class="panel">
-          <h3>Cómo construimos la referencia</h3>
-          <ol>
-            <li>Se revisan las tasas publicadas para cada producto o segmento.</li>
-            <li>Cuando existe un rango, se utiliza un punto representativo entre la tasa mínima y máxima informada.</li>
-            <li>Los productos y segmentos se mantienen separados para evitar mezclar perfiles distintos.</li>
-            <li>Los valores sin información no se interpretan como una tasa de 0%.</li>
-          </ol>
-        </article>
-
-        <article class="panel">
-          <h3>Fecha y vigencia</h3>
-          <p>
-            Cada página de referencias indica la fecha de consulta utilizada.
-            Una tasa histórica puede ser diferente de la que una entidad ofrezca hoy.
-          </p>
-          <p>
-            Para una decisión real, confirma siempre la tasa y las condiciones directamente con la entidad.
-          </p>
-        </article>
-      </div>
-
     </div>
   </section>
 

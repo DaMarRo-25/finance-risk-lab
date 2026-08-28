@@ -1,0 +1,237 @@
+/mnt/data/frl/audit36/frl-scenario.js:3: * pero puede recibir un escenario cuando el usuario viene de otra herramienta.
+/mnt/data/frl/audit36/frl-scenario.js:6:  const KEY = 'frl-financial-scenario';
+/mnt/data/frl/audit36/frl-scenario.js:14:    return safeParse(sessionStorage.getItem(KEY)) || safeParse(localStorage.getItem(KEY));
+/mnt/data/frl/audit36/frl-scenario.js:18:    return safeParse(sessionStorage.getItem('frl-card-comparator-state'));
+/mnt/data/frl/audit36/frl-scenario.js:21:  function write(scenario, { persist = false } = {}) {
+/mnt/data/frl/audit36/frl-scenario.js:22:    const payload = { version: 1, ...scenario, updatedAt: new Date().toISOString() };
+/mnt/data/frl/audit36/frl-scenario.js:23:    sessionStorage.setItem(KEY, JSON.stringify(payload));
+/mnt/data/frl/audit36/frl-scenario.js:24:    if (persist) localStorage.setItem(KEY, JSON.stringify(payload));
+/mnt/data/frl/audit36/frl-scenario.js:29:    sessionStorage.removeItem(KEY);
+/mnt/data/frl/audit36/frl-scenario.js:30:    localStorage.removeItem(KEY);
+/mnt/data/frl/audit36/frl-scenario.js:34:    const legacy = safeParse(localStorage.getItem(LEGACY_PAYMENT_KEY));
+/mnt/data/frl/audit36/frl-scenario.js:43:  window.FRLScenario = { KEY, read, write, clear, fromLegacyPayment, readCardComparator };
+/mnt/data/frl/audit36/script.js:135:    localStorage.setItem(
+/mnt/data/frl/audit36/script.js:140:    localStorage.setItem(
+/mnt/data/frl/audit36/script.js:248:        "<strong>Nota sobre tarjetas:</strong> " +
+/mnt/data/frl/audit36/script.js:306:      sessionStorage.setItem(
+/mnt/data/frl/audit36/script.js:335:  const exampleButton = $('capacityUseExample');
+/mnt/data/frl/audit36/script.js:336:  const clearButton = $('capacityClearScenario');
+/mnt/data/frl/audit36/script.js:362:      sessionStorage.setItem(CAPACITY_STATE_KEY, JSON.stringify(state));
+/mnt/data/frl/audit36/script.js:368:      const raw = sessionStorage.getItem(CAPACITY_STATE_KEY);
+/mnt/data/frl/audit36/script.js:383:    sessionStorage.setItem(EXAMPLE_STATE_KEY, '1');
+/mnt/data/frl/audit36/script.js:384:    sessionStorage.removeItem(CAPACITY_STATE_KEY);
+/mnt/data/frl/audit36/script.js:391:  function clearScenarioAndStart() {
+/mnt/data/frl/audit36/script.js:392:    // If another tool explicitly transferred a scenario, "Usar mis datos"
+/mnt/data/frl/audit36/script.js:394:    if (sourceScenario) {
+/mnt/data/frl/audit36/script.js:395:      sessionStorage.removeItem(EXAMPLE_STATE_KEY);
+/mnt/data/frl/audit36/script.js:401:    window.FRLScenario?.clear?.();
+/mnt/data/frl/audit36/script.js:402:    localStorage.removeItem('frl-new-payment');
+/mnt/data/frl/audit36/script.js:403:    localStorage.removeItem('frl-new-payment-context');
+/mnt/data/frl/audit36/script.js:404:    sessionStorage.removeItem('frl-capacity-card-initialized');
+/mnt/data/frl/audit36/script.js:405:    sessionStorage.removeItem(EXAMPLE_STATE_KEY);
+/mnt/data/frl/audit36/script.js:424:  function renderSourceContext(scenario, sourceType) {
+/mnt/data/frl/audit36/script.js:426:    if (!scenario) { capacityCardContext.hidden = true; return; }
+/mnt/data/frl/audit36/script.js:427:    const d = scenario.data || {};
+/mnt/data/frl/audit36/script.js:429:    const label = d.proposalLabel || scenario.sourceLabel || (sourceType === 'loan' ? 'la propuesta calculada' : 'la propuesta seleccionada');
+/mnt/data/frl/audit36/script.js:431:    const sourceName = sourceType === 'card' ? 'Tarjetas' : 'Calculadora';
+/mnt/data/frl/audit36/script.js:436:      capacityCardContext.innerHTML = `<strong>Información recibida desde Tarjetas</strong><p>Trajimos la información que elegiste transferir de <b>${esc(label)}</b>.</p><div class="capacity-import-summary"><span><small>Saldo de tarjeta</small><b>${balance > 0 ? money(balance) : 'No indicado'}</b></span><span><small>Pago mensual propuesto</small><b>${payment > 0 ? money(payment) : 'No indicado'}</b></span><span><small>Compras nuevas</small><b>${newSpend > 0 ? money(newSpend) : 'No indicadas'}</b></span></div>${newSpend > 0 ? `<label class="capacity-import-check"><input type="checkbox" id="includeImportedCardSpend" checked><span>Considerar las compras nuevas como gasto adicional de este escenario.</span></label><p class="field-help">Si esas compras ya están incluidas en tus gastos familiares, desmarca la opción para no contarlas dos veces.</p>` : ''}`;
+/mnt/data/frl/audit36/script.js:446:  let sourceScenario = null;
+/mnt/data/frl/audit36/script.js:449:    const rawHandoff = sessionStorage.getItem('frl-capacity-handoff-v1');
+/mnt/data/frl/audit36/script.js:452:      sourceScenario = {
+/mnt/data/frl/audit36/script.js:455:        sourceLabel: handoff.sourceLabel || (handoff.source === 'credit-card' ? 'Tarjetas' : 'Calculadora'),
+/mnt/data/frl/audit36/script.js:463:  if (sourceScenario) {
+/mnt/data/frl/audit36/script.js:464:    const d = sourceScenario.data || {};
+/mnt/data/frl/audit36/script.js:467:    // An explicit handoff starts a fresh capacity scenario. Never merge it
+/mnt/data/frl/audit36/script.js:475:    renderSourceContext(sourceScenario, sourceType);
+/mnt/data/frl/audit36/script.js:476:    sessionStorage.removeItem('frl-capacity-handoff-v1');
+/mnt/data/frl/audit36/script.js:495:    const additional = (sourceType === 'card' && sourceScenario && !importedSpendIncluded) ? 0 : num('additionalAmount') / Math.max(1, num('additionalFrequency'));
+/mnt/data/frl/audit36/script.js:519:      ? `De cada B/. 100 que ingresan al hogar, aproximadamente B/. ${pct(family).toFixed(0)} se destinan a gastos familiares, B/. ${pct(obligations).toFixed(0)} a obligaciones actuales, B/. ${pct(payment).toFixed(0)} a la nueva obligación y B/. ${availablePct.toFixed(0)} quedan disponibles.`
+/mnt/data/frl/audit36/script.js:522:      ? `La nueva obligación hará que tu dinero disponible al mes se reduzca a ${money(after)}.`
+/mnt/data/frl/audit36/script.js:523:      : `Sin una nueva obligación, tu dinero disponible al mes es de ${money(before)}.`;
+/mnt/data/frl/audit36/script.js:526:      capacityStartChoice.classList.toggle('has-scenario', Boolean(sourceScenario));
+/mnt/data/frl/audit36/script.js:540:  clearButton?.addEventListener('click', () => { clearScenarioAndStart(); });
+/mnt/data/frl/audit36/script.js:544:    if (sourceScenario?.source === 'calculator') {
+/mnt/data/frl/audit36/script.js:545:      sessionStorage.setItem('frl-amortization-handoff-v1', JSON.stringify({ version: 1, source: 'calculator' }));
+/mnt/data/frl/audit36/script.js:547:      sessionStorage.removeItem('frl-amortization-handoff-v1');
+/mnt/data/frl/audit36/script.js:561:  const scenarioButtons = $$('[data-amortization-scenario]');
+/mnt/data/frl/audit36/script.js:616:  const scenarioForm = $('#amortization-scenario-form');
+/mnt/data/frl/audit36/script.js:622:  const resetScenarioButton = $('#amortization-reset-scenario');
+/mnt/data/frl/audit36/script.js:623:  const scenarioResults = $('#amortization-scenario-results');
+/mnt/data/frl/audit36/script.js:624:  const scenarioResultTitle = $('#amortization-scenario-result-title');
+/mnt/data/frl/audit36/script.js:625:  const scenarioResultText = $('#amortization-scenario-result-text');
+/mnt/data/frl/audit36/script.js:626:  const scenarioSummary = $('#amortization-scenario-summary');
+/mnt/data/frl/audit36/script.js:627:  const scenarioRepresentativeBody = $('#amortization-scenario-representative-body');
+/mnt/data/frl/audit36/script.js:634:  const printScenarioButton = $('#amortization-print-scenario');
+/mnt/data/frl/audit36/script.js:640:  let selectedScenario = '';
+/mnt/data/frl/audit36/script.js:643:  let activeScenarioSchedule = [];
+/mnt/data/frl/audit36/script.js:648:      text: 'Podrás ingresar los datos de una nueva obligación o utilizar una simulación que hayas realizado previamente en la Calculadora.',
+/mnt/data/frl/audit36/script.js:649:      formTitle: 'Datos de la nueva obligación'
+/mnt/data/frl/audit36/script.js:933:  const renderScenario = () => {
+/mnt/data/frl/audit36/script.js:934:    if (!selectedScenario || !baseSchedule.length) {
+/mnt/data/frl/audit36/script.js:935:      if (scenarioResults) scenarioResults.hidden = true;
+/mnt/data/frl/audit36/script.js:942:      if (scenarioResults) scenarioResults.hidden = true;
+/mnt/data/frl/audit36/script.js:953:    activeScenarioSchedule = generateSchedule({
+/mnt/data/frl/audit36/script.js:962:      extraFrequencyValue: selectedScenario === 'lower' ? 'once' : (extraFrequency?.value || 'monthly'),
+/mnt/data/frl/audit36/script.js:963:      strategy: selectedScenario
+/mnt/data/frl/audit36/script.js:967:    const scenario = summarizeSchedule(activeScenarioSchedule);
+/mnt/data/frl/audit36/script.js:968:    const interestSavings = Math.max(0, base.totalInterest - scenario.totalInterest);
+/mnt/data/frl/audit36/script.js:969:    const installmentReduction = Math.max(0, base.installments - scenario.installments);
+/mnt/data/frl/audit36/script.js:971:    const afterExtraRow = activeScenarioSchedule[Math.min(extraStart, activeScenarioSchedule.length - 1)];
+/mnt/data/frl/audit36/script.js:972:    const newPayment = selectedScenario === 'lower'
+/mnt/data/frl/audit36/script.js:973:      ? (afterExtraRow?.financialPayment || activeScenarioSchedule.at(-1)?.financialPayment || 0)
+/mnt/data/frl/audit36/script.js:976:    if (selectedScenario === 'shorter') {
+/mnt/data/frl/audit36/script.js:977:      setText(scenarioResultTitle, 'Escenario: pagar en menos tiempo');
+/mnt/data/frl/audit36/script.js:979:        scenarioResultText,
+/mnt/data/frl/audit36/script.js:980:        `Con un abono adicional de ${money(extraAmount)} desde la cuota ${extraStart}, la obligación podría finalizar aproximadamente en ${scenario.installments} cuotas. Esto representa ${installmentReduction} cuotas menos y un ahorro estimado de ${money(interestSavings)} en intereses.`
+/mnt/data/frl/audit36/script.js:983:      setText(scenarioResultTitle, 'Escenario: pagar una cuota menor');
+/mnt/data/frl/audit36/script.js:985:        scenarioResultText,
+/mnt/data/frl/audit36/script.js:990:    if (scenarioSummary) {
+/mnt/data/frl/audit36/script.js:991:      scenarioSummary.innerHTML = [
+/mnt/data/frl/audit36/script.js:993:        renderMetric('Intereses con el escenario', money(scenario.totalInterest)),
+/mnt/data/frl/audit36/script.js:996:        renderMetric('Plazo con el escenario', scenario.installments + ' cuotas'),
+/mnt/data/frl/audit36/script.js:998:          selectedScenario === 'shorter' ? 'Cuotas reducidas' : 'Nueva cuota financiera',
+/mnt/data/frl/audit36/script.js:999:          selectedScenario === 'shorter' ? String(installmentReduction) : money(newPayment)
+/mnt/data/frl/audit36/script.js:1004:    renderRows(scenarioRepresentativeBody, representativeRows(activeScenarioSchedule), true, false);
+/mnt/data/frl/audit36/script.js:1006:      renderRows(fullScheduleBody, activeScenarioSchedule, true, true);
+/mnt/data/frl/audit36/script.js:1008:    if (scenarioResults) scenarioResults.hidden = false;
+/mnt/data/frl/audit36/script.js:1025:          ? 'Ingresa el monto solicitado, la tasa anual y el plazo de la nueva obligación.'
+/mnt/data/frl/audit36/script.js:1110:    renderScenario();
+/mnt/data/frl/audit36/script.js:1131:    // The user must explicitly arrive at Amortización through the calculator.
+/mnt/data/frl/audit36/script.js:1132:    const handoff = sessionStorage.getItem('frl-amortization-handoff-v1');
+/mnt/data/frl/audit36/script.js:1137:      const stored = localStorage.getItem('frl-calculator-simulation');
+/mnt/data/frl/audit36/script.js:1179:  const selectScenario = scenario => {
+/mnt/data/frl/audit36/script.js:1180:    selectedScenario = scenario;
+/mnt/data/frl/audit36/script.js:1181:    scenarioButtons.forEach(button => {
+/mnt/data/frl/audit36/script.js:1182:      button.setAttribute('aria-pressed', String(button.dataset.amortizationScenario === scenario));
+/mnt/data/frl/audit36/script.js:1184:    if (scenarioForm) scenarioForm.hidden = false;
+/mnt/data/frl/audit36/script.js:1185:    if (extraFrequencyField) extraFrequencyField.hidden = scenario === 'lower';
+/mnt/data/frl/audit36/script.js:1187:      extraStartHelp.textContent = scenario === 'lower'
+/mnt/data/frl/audit36/script.js:1191:    renderScenario();
+/mnt/data/frl/audit36/script.js:1194:  const resetScenario = () => {
+/mnt/data/frl/audit36/script.js:1195:    selectedScenario = '';
+/mnt/data/frl/audit36/script.js:1196:    activeScenarioSchedule = [];
+/mnt/data/frl/audit36/script.js:1197:    scenarioButtons.forEach(button => button.setAttribute('aria-pressed', 'false'));
+/mnt/data/frl/audit36/script.js:1198:    if (scenarioForm) scenarioForm.hidden = true;
+/mnt/data/frl/audit36/script.js:1199:    if (scenarioResults) scenarioResults.hidden = true;
+/mnt/data/frl/audit36/script.js:1212:      selectedScenario,
+/mnt/data/frl/audit36/script.js:1216:    $$(`#amortization-form input, #amortization-form select, #amortization-scenario-form input, #amortization-scenario-form select`).forEach(field => {
+/mnt/data/frl/audit36/script.js:1220:    sessionStorage.setItem('frl-amortization-state', JSON.stringify(state));
+/mnt/data/frl/audit36/script.js:1224:    const stored = sessionStorage.getItem('frl-amortization-state');
+/mnt/data/frl/audit36/script.js:1240:      if (state.selectedScenario) {
+/mnt/data/frl/audit36/script.js:1241:        selectScenario(state.selectedScenario);
+/mnt/data/frl/audit36/script.js:1242:        renderScenario();
+/mnt/data/frl/audit36/script.js:1245:      sessionStorage.removeItem('frl-amortization-state');
+/mnt/data/frl/audit36/script.js:1252:    if ((type === 'scenario' || type === 'full') &&
+/mnt/data/frl/audit36/script.js:1253:        (!selectedScenario || !activeScenarioSchedule.length || scenarioResults?.hidden)) {
+/mnt/data/frl/audit36/script.js:1254:      showUpdateStatus('Primero selecciona y completa un escenario de abono para imprimirlo.');
+/mnt/data/frl/audit36/script.js:1274:      scenario: selectedScenario,
+/mnt/data/frl/audit36/script.js:1302:      resetScenario();
+/mnt/data/frl/audit36/script.js:1308:  scenarioButtons.forEach(button => {
+/mnt/data/frl/audit36/script.js:1309:    button.addEventListener('click', () => selectScenario(button.dataset.amortizationScenario));
+/mnt/data/frl/audit36/script.js:1312:  useCalculatorButton?.addEventListener('click', () => { importCalculatorSimulation(); sessionStorage.removeItem('frl-amortization-handoff-v1'); });
+/mnt/data/frl/audit36/script.js:1314:  resetScenarioButton?.addEventListener('click', resetScenario);
+/mnt/data/frl/audit36/script.js:1334:    field.addEventListener('input', renderScenario);
+/mnt/data/frl/audit36/script.js:1335:    field.addEventListener('change', renderScenario);
+/mnt/data/frl/audit36/script.js:1343:      renderRows(fullScheduleBody, activeScenarioSchedule, true, true);
+/mnt/data/frl/audit36/script.js:1354:  printScenarioButton?.addEventListener('click', () => openPrintPage('scenario'));
+/mnt/data/frl/audit36/script.js:1398:  const scenario = params.get('scenario') || '';
+/mnt/data/frl/audit36/script.js:1540:    content.innerHTML = '<div class="print-message"><h1>No fue posible generar la simulación.</h1><p>Regresa a Amortización inteligente y revisa los datos ingresados.</p></div>';
+/mnt/data/frl/audit36/script.js:1546:  const scenarioSchedule = scenario ? generateSchedule({ strategy: scenario }) : [];
+/mnt/data/frl/audit36/script.js:1547:  const scenarioSummary = scenarioSchedule.length ? summarize(scenarioSchedule) : null;
+/mnt/data/frl/audit36/script.js:1551:    scenario: 'Resumen del escenario con abonos',
+/mnt/data/frl/audit36/script.js:1552:    full: 'Cronograma completo del escenario'
+/mnt/data/frl/audit36/script.js:1553:  }[view] || 'Amortización inteligente';
+/mnt/data/frl/audit36/script.js:1561:      <span>Amortización inteligente</span>
+/mnt/data/frl/audit36/script.js:1592:    if (!scenarioSchedule.length || !scenarioSummary) {
+/mnt/data/frl/audit36/script.js:1593:      body += '<div class="print-message"><h2>No hay un escenario completo.</h2><p>Regresa y completa el monto y el inicio del abono.</p></div>';
+/mnt/data/frl/audit36/script.js:1595:      const savings = Math.max(0, base.interest - scenarioSummary.interest);
+/mnt/data/frl/audit36/script.js:1596:      const reduced = Math.max(0, base.installments - scenarioSummary.installments);
+/mnt/data/frl/audit36/script.js:1597:      const after = scenarioSchedule[Math.min(extraStart, scenarioSchedule.length - 1)];
+/mnt/data/frl/audit36/script.js:1598:      const newPayment = scenario === 'lower' ? (after?.financialPayment || 0) : first.financialPayment;
+/mnt/data/frl/audit36/script.js:1602:          ${metric('Intereses con el escenario', money(scenarioSummary.interest))}
+/mnt/data/frl/audit36/script.js:1605:          ${metric('Plazo con el escenario', scenarioSummary.installments + ' cuotas')}
+/mnt/data/frl/audit36/script.js:1606:          ${metric(scenario === 'shorter' ? 'Cuotas reducidas' : 'Nueva cuota financiera', scenario === 'shorter' ? String(reduced) : money(newPayment))}
+/mnt/data/frl/audit36/script.js:1611:          : '<th>Cuota</th><th>Saldo inicial</th><th>Interés</th><th>Capital</th><th>Abono</th><th>Seguro</th><th>Pago total</th><th>Saldo final</th>'}</tr></thead><tbody>${rows(view === 'full' ? scenarioSchedule : representatives(scenarioSchedule), view === 'full')}</tbody></table></div>`;
+/mnt/data/frl/audit36/script.js:1856:    const safeView = ['inside', 'evolution', 'scenario', 'full'].includes(view) ? view : 'amortizacion';
+/mnt/data/frl/audit36/tarjetas.js:12:  let scenarioReceived = false;
+/mnt/data/frl/audit36/tarjetas.js:24:  function getScenario() {
+/mnt/data/frl/audit36/tarjetas.js:25:    const shared = window.FRLScenario?.read?.() || window.FRLScenario?.fromLegacyPayment?.() || null;
+/mnt/data/frl/audit36/tarjetas.js:28:      const raw = sessionStorage.getItem('frl-card-comparator-transfer');
+/mnt/data/frl/audit36/tarjetas.js:31:      sessionStorage.removeItem('frl-card-comparator-transfer');
+/mnt/data/frl/audit36/tarjetas.js:47:  function applyScenario(scenario) {
+/mnt/data/frl/audit36/tarjetas.js:48:    if (!scenario?.data) return false;
+/mnt/data/frl/audit36/tarjetas.js:49:    const d = scenario.data;
+/mnt/data/frl/audit36/tarjetas.js:51:    // Datos que pertenecen al comparador de tarjetas pero que no son necesarios para iniciar la simulación.
+/mnt/data/frl/audit36/tarjetas.js:56:      dataSource = 'imported'; scenarioReceived = true; loadedProposalLabel = d.proposalLabel || 'propuesta seleccionada'; saveCurrentState(); saveLoadedState();
+/mnt/data/frl/audit36/tarjetas.js:57:      $('cardScenarioContext').hidden = false;
+/mnt/data/frl/audit36/tarjetas.js:58:      $('cardScenarioContext').innerHTML = `<strong>Información cargada desde otra herramienta</strong><p>Trajimos los datos disponibles de <b>${d.proposalLabel || 'la propuesta seleccionada'}</b>. Revísalos antes de continuar; los campos que no llegaron quedan disponibles para que los completes si los conoces.</p><div class="scenario-actions"><button type="button" class="text-button" id="reviewCardData">Revisar datos</button><button type="button" class="scenario-clear" id="clearCardScenario">Usar esta herramienta por separado</button></div>`;
+/mnt/data/frl/audit36/tarjetas.js:59:      $('clearCardScenario')?.addEventListener('click', () => { window.FRLScenario?.clear?.(); $('cardScenarioContext').hidden = true; dataSource = 'user'; scenarioReceived = false; loadedProposalLabel = ''; renderModeNotice(); run('quitaste la información importada'); });
+/mnt/data/frl/audit36/tarjetas.js:88:    const missingText = missing.length ? `Todavía no tenemos ${missing.join(', ')}.` : 'Tenemos todos los datos que esta simulación utiliza para este escenario.';
+/mnt/data/frl/audit36/tarjetas.js:90:    el.innerHTML = `<span class="data-level-label">${scenarioReceived ? 'Información recibida + tus datos' : 'Tus datos'} · ${level}</span><p>${warning}</p>`;
+/mnt/data/frl/audit36/tarjetas.js:114:    else if (canShowSnapshot && model.hasRate && model.ending < model.initial) { title = 'El saldo está bajando'; text = model.hasMonths ? `Con este escenario, el saldo termina ${money(model.initial - model.ending)} por debajo del saldo inicial. Prueba otro pago o agrega compras para ver cómo cambia.` : `Con este primer periodo estimado, el saldo baja ${money(model.initial - model.ending)}. Agrega meses para observar cómo evoluciona.`; }
+/mnt/data/frl/audit36/tarjetas.js:116:    if (model.hasSpend && model.newSpend > 0) text += ' Las compras nuevas forman parte del escenario de tarjeta; no se agregan automáticamente como gasto en tu presupuesto.';
+/mnt/data/frl/audit36/tarjetas.js:141:  function saveCurrentState(){try{sessionStorage.setItem(USER_STATE_KEY,JSON.stringify(snapshot()));}catch{}}
+/mnt/data/frl/audit36/tarjetas.js:142:  function saveLoadedState(){try{sessionStorage.setItem(PRE_EXAMPLE_KEY,JSON.stringify(snapshot()));if(loadedProposalLabel)sessionStorage.setItem(LOADED_META_KEY,loadedProposalLabel);}catch{}}
+/mnt/data/frl/audit36/tarjetas.js:143:  function readSaved(key){try{return JSON.parse(sessionStorage.getItem(key)||'null');}catch{return null;}}
+/mnt/data/frl/audit36/tarjetas.js:147:      notice.innerHTML='<strong>Estás viendo un ejemplo</strong><p>Estos valores son solo para experimentar. Tu información anterior queda guardada mientras pruebas el ejemplo.</p><div class="card-data-actions"><button type="button" class="button secondary small-button" id="cardExampleButton">Repetir ejemplo</button><button type="button" class="text-button" id="cardClearData">Volver a mis datos</button></div>';
+/mnt/data/frl/audit36/tarjetas.js:148:    } else if(scenarioReceived){
+/mnt/data/frl/audit36/tarjetas.js:164:    dataSource=scenarioReceived?'imported':'user';
+/mnt/data/frl/audit36/tarjetas.js:169:      dataSource='user'; scenarioReceived=false; loadedProposalLabel='';
+/mnt/data/frl/audit36/tarjetas.js:188:  ['cardLimit','cardBalance','cardRate','cardMinimum','minimumPercent','minimumFees','cardNewSpend','cardPayment','cardMonths','cardCutDay','cardDueDay'].forEach(id => $(id)?.addEventListener('input', () => { clearTimeout(updateTimer); updateTimer = setTimeout(() => { if(dataSource !== 'example') { saveCurrentState(); if(scenarioReceived) saveLoadedState(); } run('cambiaste un dato'); }, 80); }));
+/mnt/data/frl/audit36/tarjetas.js:193:    const cardScenario = { type: 'credit-card', source: 'credit-card', sourceLabel: 'Tarjetas de crédito', data: { proposalLabel: loadedProposalLabel || null, limit: model.limit, balance: model.initial, annualRate: model.annualRate, minimum: model.minimum, payment: model.plannedPayment, newSpend: model.hasSpend ? model.newSpend : null, months: model.hasMonths ? model.months : null, cutDay: num('cardCutDay'), dueDay: num('cardDueDay'), impact: { paymentRole: 'financial-obligation', newSpendRole: 'budget-expense-candidate' } } };
+/mnt/data/frl/audit36/tarjetas.js:194:    window.FRLScenario?.write?.(cardScenario);
+/mnt/data/frl/audit36/tarjetas.js:195:    sessionStorage.setItem('frl-capacity-handoff-v1', JSON.stringify({ version: 1, source: 'credit-card', sourceLabel: cardScenario.sourceLabel, data: cardScenario.data }));
+/mnt/data/frl/audit36/tarjetas.js:196:    sessionStorage.setItem('frl-card-capacity-context', JSON.stringify({ source: 'credit-card', payment: model.plannedPayment, newSpend: model.hasSpend ? model.newSpend : null, newSpendTreatment: 'ask-if-already-budgeted' }));
+/mnt/data/frl/audit36/tarjetas.js:200:  const scenario = getScenario();
+/mnt/data/frl/audit36/tarjetas.js:201:  applyScenario(scenario);
+/mnt/data/frl/audit36/tarjetas.js:203:  run(scenario ? 'cargaste información de otra herramienta' : 'abriste el simulador');
+/mnt/data/frl/audit36/comparador-tarjetas.js:37:    try{sessionStorage.setItem(KEY,JSON.stringify(state));}catch{}
+/mnt/data/frl/audit36/comparador-tarjetas.js:41:      const state=JSON.parse(sessionStorage.getItem(KEY)||'null');
+/mnt/data/frl/audit36/comparador-tarjetas.js:116:    window.FRLScenario?.write?.({type:'credit-card',source:'card-comparator',sourceLabel:'Comparador de tarjetas',data:payload});
+/mnt/data/frl/audit36/comparador-tarjetas.js:117:    sessionStorage.setItem('frl-card-comparator-transfer',JSON.stringify(payload));
+/mnt/data/frl/audit36/comparador-tarjetas.js:118:    location.href='tarjetas.html';
+/mnt/data/frl/audit36/comparador-tarjetas.js:143:    const raw=['Finance & Risk Lab','Comparador de tarjetas de crédito','',`${d.A.name}`,`Límite: ${money(d.A.limit)}`,`Tasa anual: ${pct(d.A.rate)}`,`Anualidad: ${d.A.annualFee==null?'—':money(d.A.annualFee)+' '+(d.A.annualFeeFrequency==='monthly'?'al mes':'al año')}`,`Pago mínimo indicado: ${money(d.A.minimum)}`,'',`${d.B.name}`,`Límite: ${money(d.B.limit)}`,`Tasa anual: ${pct(d.B.rate)}`,`Anualidad: ${d.B.annualFee==null?'—':money(d.B.annualFee)+' '+(d.B.annualFeeFrequency==='monthly'?'al mes':'al año')}`,`Pago mínimo indicado: ${money(d.B.minimum)}`,'','Condiciones que cambian entre las propuestas'];
+/mnt/data/frl/audit36/comparador-tarjetas.js:148:    try{const blob=createPdf(lines),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='finance-risk-lab-comparador-tarjetas.pdf';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}finally{if(button){button.disabled=false;button.textContent='Exportar comparación en PDF';}}
+/mnt/data/frl/audit36/amortizacion-etapa3.js:21:      const raw = localStorage.getItem(SIM_KEY);
+/mnt/data/frl/audit36/amortizacion-etapa3.js:88:    sessionStorage.setItem(IMPORT_KEY, JSON.stringify(context));
+/mnt/data/frl/audit36/amortizacion-etapa3.js:109:      ${hasDifference ? `<p>Los costos financiados forman parte del saldo y por eso aparecen en la amortización. Una comisión financiada no se suma otra vez a cada cuota: ya está incluida dentro del capital financiado y puede generar intereses. Los costos pagados al inicio o descontados afectan tu desembolso, pero no se convierten en capital dentro de esta tabla.</p>` : `<p>En esta simulación el monto solicitado y el capital financiado coinciden.</p>`}
+/mnt/data/frl/audit36/amortizacion-etapa3.js:331:      sessionStorage.removeItem(IMPORT_KEY);
+/mnt/data/frl/audit36/amortizacion-etapa3.js:347:      const context = JSON.parse(sessionStorage.getItem(IMPORT_KEY) || 'null');
+/mnt/data/frl/audit36/amortizacion-etapa3.js:354:      target.innerHTML = `<strong>Contexto de la simulación:</strong> monto solicitado ${money(context.requestedAmount)}, capital financiado ${money(context.financedPrincipal)} y dinero neto estimado ${money(context.netProceeds)}. Los costos iniciales no financiados no forman parte de la tabla de amortización.`;
+/mnt/data/frl/audit36/capacidad-pago.html:24:      <a href="amortizacion.html">Amortización</a>
+/mnt/data/frl/audit36/capacidad-pago.html:35:    <div><span class="eyebrow">Herramienta 04</span><h1>Capacidad de Pago</h1><p>Descubre cómo una nueva obligación puede impactar tu presupuesto familiar.</p></div>
+/mnt/data/frl/audit36/capacidad-pago.html:51:      <h3>Quiero usar mis datos</h3>
+/mnt/data/frl/audit36/capacidad-pago.html:53:      <button type="button" class="button primary" id="capacityClearScenario">Usar mis datos</button>
+/mnt/data/frl/audit36/capacidad-pago.html:58:      <p>Usa un escenario de referencia para ver cómo funciona el análisis antes de introducir tus datos.</p>
+/mnt/data/frl/audit36/capacidad-pago.html:59:      <button type="button" class="button primary" id="capacityUseExample">Probar un ejemplo</button>
+/mnt/data/frl/audit36/capacidad-pago.html:75:    <div id="capacityCardContext" class="scenario-context capacity-scenario-context" hidden aria-live="polite"></div>
+/mnt/data/frl/audit36/capacidad-pago.html:76:    <div class="two-col"><label>Obligaciones financieras actuales<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="obligations" type="number" value="" placeholder="Ej.: 260" min="0"></div><small>Préstamos, tarjetas, auto u otras cuotas.</small></label><label>Nueva obligación mensual<div class="input-wrap"><span>B/.</span><input class="capacity-input" id="newPayment" type="number" value="" placeholder="Ej.: 180" min="0"></div><small>Puede llegar automáticamente desde la Calculadora o Tarjetas. También puedes escribirla tú.</small></label></div>
+/mnt/data/frl/audit36/capacidad-pago.html:86:  <div class="chart-card before-after"><h3>Impacto en tu dinero disponible</h3><div><span>Antes del préstamo</span><strong id="beforeAvailable">B/. 0</strong><div class="thin-bar"><i id="beforeBar"></i></div></div><div><span>Después de la nueva obligación</span><strong id="afterAvailable">B/. 0</strong><div class="thin-bar"><i id="afterBar"></i></div></div><p class="helper">Es el dinero que te queda después de cubrir los gastos del hogar, tus obligaciones financieras actuales y la nueva obligación calculada o ingresada manualmente.</p></div>
+/mnt/data/frl/audit36/capacidad-pago.html:87:  <div class="observations"><h3>Observaciones del análisis</h3><article><strong>Así se distribuye tu ingreso</strong><p id="obsDistribution"></p></article><article><strong>Tu dinero disponible disminuirá</strong><p id="obsImpact"></p></article><article><strong>¿Qué significa esto?</strong><p>La herramienta no busca decirte cuánto puedes endeudarte. Su objetivo es mostrar cómo una nueva obligación modifica el equilibrio de tu presupuesto.</p><a href="aprender.html#capacidad">Aprender sobre capacidad de pago →</a></article></div>
+/mnt/data/frl/audit36/capacidad-pago.html:88:  <div class="next-step frl-capacity-amortization-step"><h3>¿Quieres seguir explorando tu escenario?</h3><p>Puedes continuar hacia las herramientas que correspondan a tu escenario. Si vienes de otra herramienta, conservaremos la información que hayas transferido.</p><a class="button secondary" href="amortizacion.html">Explorar mi tabla de pagos</a></div>
+/mnt/data/frl/audit36/tarjetas.html:6:  <title>Tarjetas de crédito | Finance & Risk Lab</title>
+/mnt/data/frl/audit36/tarjetas.html:12:  <link rel="stylesheet" href="tarjetas.css">
+/mnt/data/frl/audit36/tarjetas.html:20:      <a href="comparador-tarjetas.html">Comparador</a>
+/mnt/data/frl/audit36/tarjetas.html:21:      <a class="active" href="tarjetas.html">Tarjetas</a>
+/mnt/data/frl/audit36/tarjetas.html:33:      <h1>Tarjetas de crédito</h1>
+/mnt/data/frl/audit36/tarjetas.html:35:      <div id="cardScenarioContext" class="scenario-context" hidden aria-live="polite"></div>
+/mnt/data/frl/audit36/tarjetas.html:68:            <div class="card-data-actions"><button type="button" class="button secondary small-button" id="cardExampleButton">Ver un ejemplo</button><button type="button" class="text-button" id="cardClearData">Usar mis datos</button></div>
+/mnt/data/frl/audit36/tarjetas.html:81:            <label>Pago mínimo que aparece en tu estado de cuenta <span class="optional-label">Opcional</span><div class="input-wrap"><span>B/.</span><input id="cardMinimum" type="number" min="0" step="1" placeholder="Ej.: 60"></div><small class="field-help">Si lo tienes, usamos ese valor. No asumimos que todas las tarjetas calculan el mínimo de la misma forma.</small></label>
+/mnt/data/frl/audit36/tarjetas.html:87:            <label>Compras nuevas cada mes <span class="optional-label">Opcional</span><div class="input-wrap"><span>B/.</span><input id="cardNewSpend" type="number" min="0" step="10" placeholder="Ej.: 300"></div><small class="field-help">Son compras nuevas que agregas al escenario; no las contamos como gasto de tu presupuesto aquí.</small></label>
+/mnt/data/frl/audit36/tarjetas.html:99:          <div class="result"><span>Pagos que probaste</span><strong id="cardPaidTotal">—</strong><small>La suma de los pagos que el escenario aplica durante los periodos simulados.</small></div>
+/mnt/data/frl/audit36/tarjetas.html:100:          <div class="result"><span>Compras nuevas del escenario</span><strong id="cardSpendTotal">—</strong><small>Lo que agregaste como nuevas compras. No significa automáticamente un gasto adicional en tu presupuesto.</small></div>
+/mnt/data/frl/audit36/tarjetas.html:125:                <article class="panel benefit-card"><span class="segment-tag">Cashback</span><h3>Dinero de vuelta por compras elegibles</h3><p>El beneficio puede depender de la tasa de devolución, categorías, topes y condiciones del programa.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Qué revisar</strong><p>Busca la tasa de devolución, las categorías que aplican, los topes y cuándo se acredita. Dos tarjetas con cashback pueden funcionar de manera muy distinta.</p></div></details></article>
+/mnt/data/frl/audit36/tarjetas.html:168:<script src="frl-scenario.js"></script>
+/mnt/data/frl/audit36/tarjetas.html:170:<script src="tarjetas.js"></script>
+/mnt/data/frl/audit36/calculadora.html:21:      <a href="amortizacion.html">Amortización</a>
+/mnt/data/frl/audit36/calculadora.html:104:        <h3>Las tarjetas necesitan un cálculo diferente.</h3>
+/mnt/data/frl/audit36/calculadora.html:105:        <p>Una tarjeta de crédito maneja saldo rotativo, pagos mínimos, compras nuevas y reglas que pueden variar por producto. Para evitar mostrar una cuota de préstamo como si fuera un pago mínimo, esta calculadora no simula tarjetas por ahora.</p>
+/mnt/data/frl/audit36/calculadora.html:106:        <p class="helper">Puedes seguir consultando la referencia histórica de tasas. El simulador específico de tarjetas está contemplado como una herramienta separada.</p>
+/mnt/data/frl/audit36/comparador.html:25:      <a href="amortizacion.html">Amortización</a>
+/mnt/data/frl/audit36/comparador.html:39:      <details class="comparison-switcher"><summary>Cambiar tipo de comparación</summary><div class="comparison-switcher-body"><a href="comparador.html" class="comparison-switcher-active">Préstamos e hipotecas</a><a href="comparador-tarjetas.html">Tarjetas de crédito</a></div></details>
+/mnt/data/frl/audit36/index.html:11:    content="Herramientas educativas para comparar propuestas, calcular préstamos, analizar capacidad de pago, consultar tasas y comprender tablas de amortización."
+/mnt/data/frl/audit36/index.html:157:            <h3>Comparar tarjetas de crédito</h3>
+/mnt/data/frl/audit36/index.html:158:            <p>Compara dos tarjetas, entiende sus condiciones y lleva la propuesta que elijas a un análisis para aprender a administrarla y ver su impacto en tu presupuesto.</p>
+/mnt/data/frl/audit36/index.html:160:              <a class="tool-link" href="comparador-tarjetas.html">Comparar tarjetas →</a>
+/mnt/data/frl/audit36/index.html:161:              <a class="tool-link secondary-link" href="tarjetas.html">Entender mi tarjeta →</a>
+/mnt/data/frl/audit36/index.html:218:            <h3>Amortización inteligente</h3>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Compara dos tarjetas de crédito y comprende sus condiciones, costos y beneficios.">
+  <title>Comparador de tarjetas | Finance & Risk Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="etapa1.css">
+  <link rel="stylesheet" href="comparador-tarjetas.css">
+</head>
+<body data-page="comparator" class="card-comparator-page">
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio"><img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo"><span>Finance & Risk Lab</span></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a class="active" href="comparador-tarjetas.html">Comparador</a>
+      <a href="tarjetas.html">Tarjetas</a>
+      <a href="tasas.html">Referencias de Tasas</a>
+      <a href="aprender.html">Aprender</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="tool-hero">
+  <div class="container">
+    <span class="eyebrow">Herramienta de comparación</span>
+    <h1>Comparador de tarjetas de crédito</h1>
+    <p>Compara dos propuestas con la información que tengas y observa qué cambia entre ellas.</p>
+    <details class="comparison-switcher">
+      <summary>Cambiar tipo de comparación</summary>
+      <div class="comparison-switcher-body">
+        <a href="comparador.html">Préstamos e hipotecas</a>
+        <a href="comparador-tarjetas.html" class="comparison-switcher-active">Tarjetas de crédito</a>
+      </div>
+    </details>
+  </div>
+</section>
+<section class="section comparison-tool">
+<div class="container">
+  <div class="panel compare-intro">
+    <div><span class="eyebrow">Antes de comenzar</span><h2>Compara con la información que realmente tienes.</h2><p>El límite, la tasa, la anualidad y el pago mínimo son los datos principales de la comparación. Los valores que aparecen al abrir esta herramienta son solo un ejemplo editable; puedes sustituirlos por los de tus propuestas.</p></div>
+    <div class="information-status" id="cardCompareStatus" data-level="basic"><span>Nivel de información</span><strong id="cardCompareStatusTitle">Comparación básica</strong><p id="cardCompareStatusText">Empieza con los datos que conozcas. No necesitas completar todo.</p></div>
+  </div>
+
+  <div class="compare-proposals-grid card-compare-proposals">
+    <section class="panel compare-proposal" aria-labelledby="cardTitleA">
+      <div class="compare-proposal-heading"><span class="compare-proposal-letter">A</span><div><span class="eyebrow">Primera propuesta</span><h2 id="cardTitleA">Propuesta A</h2></div></div>
+      <label class="compare-field"><span class="compare-field-title">Nombre de la propuesta</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Usa un nombre corto para identificar esta propuesta. Este nombre aparecerá en los resultados y al pasarla al módulo de Tarjetas.</small><input class="compare-simple-input" id="cardProposalNameA" maxlength="60" type="text" value="Propuesta A"></label>
+      <label class="compare-field"><span class="compare-field-title">Límite de crédito</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el máximo de crédito que la entidad asigna. No es dinero que tengas en efectivo.</small><div class="input-wrap"><span>B/.</span><input id="cardLimitA" type="number" min="0" step="50" value="2000" placeholder="Ej.: 3,000"></div></label>
+      <label class="compare-field"><span class="compare-field-title">Tasa de interés anual</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Puede utilizarse para calcular intereses cuando mantienes un saldo sujeto a financiamiento. No es la anualidad.</small><div class="input-wrap"><input id="cardRateA" type="number" min="0" step="0.01" value="20" placeholder="Ej.: 20"><span>%</span></div></label>
+      <label class="compare-field"><span class="compare-field-title">Anualidad</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el costo por tener la tarjeta según sus condiciones. Puede cobrarse al año o mediante cargos periódicos.</small><div class="input-wrap"><span>B/.</span><input id="cardAnnualFeeA" type="number" min="0" step="0.01" value="75" placeholder="Ej.: 75"></div><select id="cardAnnualFeeFreqA" aria-label="Frecuencia de la anualidad"><option value="annual">Al año</option><option value="monthly">Al mes</option></select></label>
+      <label class="compare-field"><span class="compare-field-title">Pago mínimo indicado</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el monto que aparece en el estado de cuenta para ese periodo. Puede cambiar con el saldo y las condiciones de la tarjeta.</small><div class="input-wrap"><span>B/.</span><input id="cardMinimumA" type="number" min="0" step="0.01" value="60" placeholder="Ej.: 60"></div></label>
+      <details class="compare-additional-details card-benefit-details"><summary>Agregar beneficios u otras condiciones</summary>
+        <div class="compare-additional-grid card-optional-body">
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="cashback" data-side="A"><span><strong>Cashback</strong><small>Porcentaje de devolución y condiciones que conozcas.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-cashback-A" hidden><div class="input-wrap"><input id="cardCashbackA" type="number" min="0" step="0.01" placeholder="Ej.: 2"><span>%</span></div></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="points" data-side="A"><span><strong>Puntos</strong><small>Cómo se acumulan, si aparece en tu propuesta.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-points-A" hidden><input id="cardPointsA" class="compare-simple-input" type="text" placeholder="Ej.: 1 punto por B/.1"></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="miles" data-side="A"><span><strong>Millas</strong><small>Cómo se acumulan, si aparece en tu propuesta.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-miles-A" hidden><input id="cardMilesA" class="compare-simple-input" type="text" placeholder="Ej.: 1 milla por B/.1"></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="other" data-side="A"><span><strong>Otra condición</strong><small>Solo si hay algo más que realmente quieras comparar.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-other-A" hidden><input id="cardOtherA" class="compare-simple-input" type="text" maxlength="120" placeholder="Ej.: cargo por retiro de efectivo"></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel compare-proposal" aria-labelledby="cardTitleB">
+      <div class="compare-proposal-heading"><span class="compare-proposal-letter">B</span><div><span class="eyebrow">Segunda propuesta</span><h2 id="cardTitleB">Propuesta B</h2></div></div>
+      <label class="compare-field"><span class="compare-field-title">Nombre de la propuesta</span><span class="compare-field-meta opcional">Opcional</span><small class="compare-field-help">Usa un nombre corto para identificar esta propuesta. Este nombre aparecerá en los resultados y al pasarla al módulo de Tarjetas.</small><input class="compare-simple-input" id="cardProposalNameB" maxlength="60" type="text" value="Propuesta B"></label>
+      <label class="compare-field"><span class="compare-field-title">Límite de crédito</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el máximo de crédito que la entidad asigna. No es dinero que tengas en efectivo.</small><div class="input-wrap"><span>B/.</span><input id="cardLimitB" type="number" min="0" step="50" value="3000" placeholder="Ej.: 3,000"></div></label>
+      <label class="compare-field"><span class="compare-field-title">Tasa de interés anual</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Puede utilizarse para calcular intereses cuando mantienes un saldo sujeto a financiamiento. No es la anualidad.</small><div class="input-wrap"><input id="cardRateB" type="number" min="0" step="0.01" value="22" placeholder="Ej.: 20"><span>%</span></div></label>
+      <label class="compare-field"><span class="compare-field-title">Anualidad</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el costo por tener la tarjeta según sus condiciones. Puede cobrarse al año o mediante cargos periódicos.</small><div class="input-wrap"><span>B/.</span><input id="cardAnnualFeeB" type="number" min="0" step="0.01" value="0" placeholder="Ej.: 75"></div><select id="cardAnnualFeeFreqB" aria-label="Frecuencia de la anualidad"><option value="annual">Al año</option><option value="monthly">Al mes</option></select></label>
+      <label class="compare-field"><span class="compare-field-title">Pago mínimo indicado</span><span class="compare-field-meta importante">Importante</span><small class="compare-field-help">Es el monto que aparece en el estado de cuenta para ese periodo. Puede cambiar con el saldo y las condiciones de la tarjeta.</small><div class="input-wrap"><span>B/.</span><input id="cardMinimumB" type="number" min="0" step="0.01" value="80" placeholder="Ej.: 60"></div></label>
+      <details class="compare-additional-details card-benefit-details"><summary>Agregar beneficios u otras condiciones</summary>
+        <div class="compare-additional-grid card-optional-body">
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="cashback" data-side="B"><span><strong>Cashback</strong><small>Porcentaje de devolución y condiciones que conozcas.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-cashback-B" hidden><div class="input-wrap"><input id="cardCashbackB" type="number" min="0" step="0.01" placeholder="Ej.: 2"><span>%</span></div></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="points" data-side="B"><span><strong>Puntos</strong><small>Cómo se acumulan, si aparece en tu propuesta.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-points-B" hidden><input id="cardPointsB" class="compare-simple-input" type="text" placeholder="Ej.: 1 punto por B/.1"></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="miles" data-side="B"><span><strong>Millas</strong><small>Cómo se acumulan, si aparece en tu propuesta.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-miles-B" hidden><input id="cardMilesB" class="compare-simple-input" type="text" placeholder="Ej.: 1 milla por B/.1"></div>
+          <label class="frl-cost-choice"><input type="checkbox" data-opt="other" data-side="B"><span><strong>Otra condición</strong><small>Solo si hay algo más que realmente quieras comparar.</small></span></label><div class="frl-inline-cost-slot optional-slot" id="slot-other-B" hidden><input id="cardOtherB" class="compare-simple-input" type="text" maxlength="120" placeholder="Ej.: cargo por retiro de efectivo"></div>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <section aria-live="polite" class="panel compare-results-section card-compare-results">
+    <div class="form-heading"><span>02</span><div><h2>Comparación explicada</h2><p>Observa las diferencias sin convertirlas en una recomendación.</p></div></div>
+    <div class="compare-results-grid card-summary-grid">
+      <article class="compare-result-card"><span>Límite de crédito</span><p><small id="resultLimitNameA">Propuesta A</small><strong id="resultLimitA">—</strong></p><p><small id="resultLimitNameB">Propuesta B</small><strong id="resultLimitB">—</strong></p><small>El límite indica el crédito disponible, no el dinero que tienes en efectivo.</small></article>
+      <article class="compare-result-card"><span>Tasa de interés anual</span><p><small id="resultRateNameA">Propuesta A</small><strong id="resultRateA">—</strong></p><p><small id="resultRateNameB">Propuesta B</small><strong id="resultRateB">—</strong></p><small>La tasa puede influir en el costo de mantener un saldo financiado.</small></article>
+      <article class="compare-result-card"><span>Anualidad</span><p><small id="resultFeeNameA">Propuesta A</small><strong id="resultFeeA">—</strong></p><p><small id="resultFeeNameB">Propuesta B</small><strong id="resultFeeB">—</strong></p><small>Se muestra según la frecuencia indicada y se compara de forma equivalente.</small></article>
+      <article class="compare-result-card"><span>Pago mínimo indicado</span><p><small id="resultMinNameA">Propuesta A</small><strong id="resultMinA">—</strong></p><p><small id="resultMinNameB">Propuesta B</small><strong id="resultMinB">—</strong></p><small>Es el mínimo indicado para ese periodo; no significa que sea el costo total de la deuda.</small></article>
+    </div>
+
+    <div class="frl-shared-conditions" id="cardSharedConditions">
+      <div><span class="eyebrow">Condiciones iguales en ambas propuestas</span><p id="cardSharedConditionsText">Cuando una condición sea igual, la mostramos una sola vez para que puedas concentrarte en lo que realmente cambia.</p></div>
+      <div class="frl-shared-values" id="cardSharedValues"></div>
+    </div>
+
+    <div class="frl-different-conditions" id="cardDifferentConditions" hidden>
+      <div class="frl-different-heading"><span class="eyebrow">Condiciones que cambian entre las propuestas</span><p>Estas condiciones no son iguales. Las mostramos juntas para que puedas ver la diferencia sin decirte cuál debes elegir.</p></div>
+      <div class="frl-difference-cards" id="cardDifferenceCards"></div>
+    </div>
+
+    <div class="compare-observations">
+      <h3>¿Qué significan las diferencias?</h3>
+      <article><strong id="cardObservationTitle1">Completa los datos que conozcas</strong><p id="cardObservationText1">Mientras más información real agregues, más completa será la comparación. No necesitas llenar todos los campos para comenzar.</p></article>
+      <article><strong id="cardObservationTitle2">Una condición no cuenta toda la historia</strong><p id="cardObservationText2">Una tarjeta puede destacar en una condición y ser menos útil en otra. Mira las cifras según la forma en que realmente utilizarías y pagarías la tarjeta.</p></article>
+      <article><strong>La herramienta no elige por ti</strong><p>La comparación organiza la información para ayudarte a comprenderla. La decisión sigue siendo tuya.</p></article>
+    </div>
+
+    <div class="frl-compare-transfer">
+      <button class="button secondary" id="cardComparePdf" type="button">Exportar comparación en PDF</button>
+      <button class="button primary" id="analyzeCardA" type="button">Analizar Propuesta A</button>
+      <button class="button primary" id="analyzeCardB" type="button">Analizar Propuesta B</button>
+    </div>
+    <div class="notice compare-notice">Simulación educativa basada en la información que introduces. Los resultados son aproximados y pueden variar según las condiciones específicas de cada tarjeta, sus movimientos y la información de la entidad. Finance & Risk Lab no recomienda una propuesta por ti.</div>
+  </section>
+</div>
+</section>
+</main>
+<footer><div class="container footer-wrap"><span>Finance & Risk Lab</span><span>Compara para comprender, no para delegar tu decisión.</span></div></footer>
+<script src="frl-scenario.js"></script>
+<script src="comparador-tarjetas.js"></script>
+</body>
+</html>

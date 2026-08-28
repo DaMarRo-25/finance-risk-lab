@@ -18,6 +18,12 @@
 
   const readSimulation = () => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('from') !== 'calculator') return null;
+      const handoff = sessionStorage.getItem('frl-amortization-handoff-v1');
+      if (!handoff) return null;
+      const request = JSON.parse(handoff);
+      if (request?.source !== 'calculator') return null;
       const raw = localStorage.getItem(SIM_KEY);
       if (!raw) return null;
       const simulation = JSON.parse(raw);
@@ -325,6 +331,7 @@
       event.preventDefault();
       event.stopImmediatePropagation();
       importAdvancedSimulation(current);
+      sessionStorage.removeItem('frl-amortization-handoff-v1');
     }, true);
 
     document.getElementById('amortization-use-manual')?.addEventListener('click', () => {

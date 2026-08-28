@@ -1,0 +1,32 @@
+.compare-card-intro{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;margin-bottom:24px}.compare-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card-proposal{display:flex;flex-direction:column;gap:18px}.card-proposal-heading{display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--border,#e5e7eb);padding-bottom:14px}.card-proposal-heading h2{margin:2px 0 0}.card-compare-field{display:block}.card-compare-field .field-title{display:inline-block;font-weight:700}.field-meta{margin-left:8px;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border-radius:999px}.field-meta.importante{background:#eef4ff;color:#315a9b}.card-compare-field small{display:block;color:var(--muted,#667085);line-height:1.45;margin:6px 0 8px}.card-compare-field .input-wrap{margin-bottom:8px}.card-compare-field select{width:100%;padding:11px;border:1px solid #d9dee7;border-radius:10px;background:#fff}.card-optional-details{border-top:1px solid var(--border,#e5e7eb);padding-top:14px}.card-optional-details summary{cursor:pointer;font-weight:700;color:#244e80}.card-optional-body{display:grid;gap:10px;margin-top:12px}.optional-choice{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #e5e7eb;border-radius:10px}.optional-choice input{margin-top:4px}.optional-choice strong,.optional-choice small{display:block}.optional-choice small{color:#667085;margin-top:3px}.optional-slot{padding-left:30px}.optional-slot input{width:100%;padding:10px;border:1px solid #d9dee7;border-radius:9px}.card-compare-result{margin-top:24px}.card-result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.card-result-item{border:1px solid #e5e7eb;border-radius:12px;padding:16px;background:#fff}.card-result-item.wide{grid-column:1/-1}.card-result-item>span{font-weight:700;color:#344054}.card-result-item>div{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.card-result-item>div strong{font-size:1.15rem}.card-result-item p{margin:0;color:#667085;line-height:1.45}.benefit-summary{display:block!important}.benefit-summary p{padding:7px 0;border-bottom:1px solid #eef0f3}.card-compare-observation{margin-top:18px;padding:16px;border-left:3px solid #5478a7;background:#f7f9fc}.card-compare-observation p{margin:6px 0 0;color:#475467}.card-transfer-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:20px}.secondary-link{display:block;margin-top:6px}.tool-card-actions{display:flex;flex-direction:column;align-items:flex-start}.compare-card-intro .information-status{height:max-content}@media(max-width:800px){.compare-card-intro,.compare-card-grid{grid-template-columns:1fr}.card-result-grid{grid-template-columns:1fr}.card-result-item.wide{grid-column:auto}.card-transfer-actions{justify-content:flex-start}.site-header nav{overflow-x:auto;white-space:nowrap}}
+@media print{.site-header,footer,.tool-hero,.card-transfer-actions,.notice,.card-optional-details{display:none!important}.section{padding:0}.container{max-width:none}.compare-card-grid{gap:12px}.card-proposal,.card-compare-result{break-inside:avoid}.card-compare-field small{color:#333}.card-result-item{box-shadow:none}}
+
+
+/* Card-specific polish only; shared comparator styling lives in styles.css. */
+.card-comparator-page .card-compare-proposals { margin-top: 24px; }
+.card-comparator-page .card-benefit-details { margin-top: 2px; }
+.card-comparator-page .card-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card-comparator-page .card-compare-results .frl-difference-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card-comparator-page .card-compare-results .frl-shared-values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media(max-width:800px){.card-comparator-page .card-summary-grid,.card-comparator-page .card-compare-results .frl-shared-values{grid-template-columns:1fr}}
+@media print{.comparison-switcher{display:none!important}}
+
+/* Diferencias: tarjetas compactas y adaptables, no una sola fila completa. */
+.card-comparator-page .card-compare-results .frl-difference-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.card-comparator-page .card-compare-results .frl-difference-card {
+  min-width: 0;
+}
+
+/* Diferencias: tarjetas compactas y adaptables, no una sola fila completa. */
+.card-comparator-page .card-compare-results .frl-difference-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.card-comparator-page .card-compare-results .frl-difference-card { min-width: 0; }

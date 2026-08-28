@@ -1,13 +1,21 @@
-# Finance & Risk Lab — Plataforma v0.8
+# Finance & Risk Lab — Publicación v4.0
 
-Versión multipágina con:
+Plataforma educativa de herramientas financieras para comprender propuestas, simular escenarios y observar su impacto presupuestario.
 
-- Calculadora de préstamos con tasas de referencia por segmento.
-- Centro de Referencias de Tasas completo, incluyendo rangos observados, bancos con información, fecha de consulta y notas educativas.
-- Páginas oficiales de los bancos consultados.
-- Capacidad de Pago con análisis visual.
-- Aprender, Metodología, Sobre y hoja de ruta.
+## Estructura
 
-## Publicación en GitHub Pages
+- Herramientas HTML en la raíz.
+- `assets/` para identidad visual.
+- `data/` para datos estructurados.
+- `docs/` para metodología, arquitectura y auditorías.
+- CSS global y hojas específicas por etapa/módulo.
 
-Sube el contenido de esta carpeta directamente a la raíz del repositorio. `index.html`, `calculadora.html`, `tasas.html`, `styles.css` y `script.js` deben quedar visibles en el nivel principal.
+## Regla de datos
+
+Los ejemplos son solo ejemplos. Los datos reales solo se incorporan cuando la persona los introduce o elige explícitamente transferir una simulación desde otra herramienta.
+
+## Publicación
+
+La carpeta puede publicarse como sitio estático (por ejemplo, GitHub Pages o Netlify) conservando la estructura de archivos.
+
+Consulta `docs/RELEASE_AUDIT_v4.0.md` para el mapa de conexiones y la auditoría previa a publicación.

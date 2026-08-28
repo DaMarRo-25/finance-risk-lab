@@ -1,314 +1,532 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Conceptos de educación financiera en lenguaje claro para comprender préstamos, propuestas bancarias, comisiones, seguros, amortización y otros costos.">
-  <title>Aprender | Finance & Risk Lab</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="etapa1.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Aprende a interpretar los resultados de las herramientas de Finance &amp; Risk Lab: comparador, calculadora, amortización, tarjetas, capacidad de pago y tasas." name="description"/>
+<title>
+   Aprender | Finance &amp; Risk Lab
+  </title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="etapa1.css" rel="stylesheet"/>
 </head>
 <body data-page="learning">
 <header class="site-header">
-  <div class="container nav-wrap">
-    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio">
-      <img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo">
-      <span>Finance & Risk Lab</span>
-    </a>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="comparador.html">Comparador</a>
-      <a href="calculadora.html">Calculadora</a>
-      <a href="amortizacion.html">Amortización</a>
-      <a href="tasas.html">Referencias de Tasas</a>
-      <a class="active" href="aprender.html">Aprender</a>
-      <a href="metodologia.html">Metodología</a>
-      <a href="sobre.html">Sobre</a>
-    </nav>
-  </div>
+<div class="container nav-wrap">
+<a aria-label="Finance &amp; Risk Lab - Inicio" class="brand" href="index.html">
+<img alt="" class="brand-logo" src="assets/brand/logo-symbol.svg"/>
+<span>
+      Finance &amp; Risk Lab
+     </span>
+</a>
+<nav>
+<a href="index.html">
+      Inicio
+     </a>
+<a href="comparador.html">
+      Comparador
+     </a>
+<a href="calculadora.html">
+      Calculadora
+     </a>
+<a href="amortizacion.html">
+      Amortización
+     </a>
+<a href="tasas.html">
+      Referencias de Tasas
+     </a>
+<a class="active" href="aprender.html">
+      Aprender
+     </a>
+<a href="metodologia.html">
+      Metodología
+     </a>
+<a href="sobre.html">
+      Sobre
+     </a>
+</nav>
+</div>
 </header>
-
 <main>
-  <section class="tool-hero">
-    <div class="container">
-      <span class="eyebrow">Aprender</span>
-      <h1>Conceptos financieros en lenguaje claro.</h1>
-      <p>Consulta solo lo que necesites. La idea es ayudarte a reconocer los términos que aparecen en una propuesta bancaria y entender cómo pueden afectar lo que recibes, financias o pagas.</p>
-    </div>
-  </section>
 
-  <section class="section learn-overview-section">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Propuestas bancarias</span>
-        <h2>Primero, entiende las tres cifras que pueden cambiar.</h2>
-        <p>Dos propuestas pueden pedir el mismo monto y aun así entregar, financiar o exigir cantidades diferentes por la forma en que aplican sus costos.</p>
-      </div>
-
-      <div class="learning-grid learn-key-grid">
-        <article class="learning-card" id="monto-solicitado">
-          <span>Base</span>
-          <h2>Monto solicitado</h2>
-          <p>Es la cantidad de dinero que deseas pedir. Sirve como punto de partida, pero no siempre coincide con el monto que terminará financiándose.</p>
-        </article>
-        <article class="learning-card" id="capital-financiado">
-          <span>Financiamiento</span>
-          <h2>Capital financiado</h2>
-          <p>Es el monto sobre el que se calcula la cuota financiera. Puede ser mayor que el monto solicitado si algunos costos se agregan al préstamo.</p>
-        </article>
-        <article class="learning-card" id="dinero-neto">
-          <span>Desembolso</span>
-          <h2>Dinero neto recibido</h2>
-          <p>Es el dinero que realmente podrías recibir después de restar los costos que la entidad descuente antes del desembolso.</p>
-        </article>
-      </div>
-
-      <div class="panel learn-example-panel">
-        <span class="eyebrow">Ejemplo sencillo</span>
-        <h3>Solicitas B/. 10,000, pero una comisión puede aplicarse de distintas formas.</h3>
-        <div class="learn-example-grid">
-          <article>
-            <strong>Se paga al inicio</strong>
-            <p>El préstamo puede seguir financiando B/. 10,000, pero necesitas dinero adicional para cubrir ese costo.</p>
-          </article>
-          <article>
-            <strong>Se descuenta</strong>
-            <p>El préstamo puede registrar B/. 10,000, pero recibes menos efectivo porque el costo se resta antes de entregarte el dinero.</p>
-          </article>
-          <article>
-            <strong>Se financia</strong>
-            <p>El costo se suma al préstamo. Recibes el monto solicitado, pero la cuota se calcula sobre un capital mayor.</p>
-          </article>
-        </div>
-        <p class="helper">El efecto real depende de cómo aparezca el cargo en tu propuesta o contrato. La herramienta no asume una forma de cobro si tú no la indicas.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section learn-costs-section" id="costos-propuesta">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Costos adicionales</span>
-        <h2>¿Qué significan los conceptos del Comparador?</h2>
-        <p>No todos aparecen en todos los productos. Selecciona en el Comparador únicamente los que veas en tu propuesta.</p>
-      </div>
-
-      <div class="learn-terms-list">
-        <details class="learn-term" open>
-          <summary>Seguro</summary>
-          <div>
-            <p>Es una cobertura asociada al préstamo. Dependiendo del producto puede proteger el saldo, la vida del deudor, el vehículo, la propiedad u otros riesgos.</p>
-            <p><strong>¿Por qué importa?</strong> Si se cobra cada mes, aumenta el pago mensual aunque no reduzca directamente el capital.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Comisión</summary>
-          <div>
-            <p>Es un cargo relacionado con un servicio o condición del producto financiero. El nombre y la forma de cobro pueden cambiar entre entidades.</p>
-            <p><strong>¿Por qué importa?</strong> Puede pagarse por separado, descontarse del desembolso o formar parte del monto financiado.</p>
-            <p><strong>Si se financia:</strong> la comisión pasa a formar parte del capital sobre el que se calcula la cuota y, por eso, también puede generar intereses durante el plazo.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Gastos de cierre</summary>
-          <div>
-            <p>Es una forma general de agrupar algunos costos relacionados con formalizar o completar una operación. Su composición puede variar según el producto y la entidad.</p>
-            <p><strong>Consejo:</strong> revisa qué conceptos específicos incluye tu documento para no contar un mismo costo dos veces.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Gastos legales</summary>
-          <div>
-            <p>Son costos relacionados con documentos, formalización, trámites legales o servicios de terceros que pueden existir en determinadas operaciones.</p>
-            <p><strong>¿Dónde suelen importar más?</strong> Pueden ser especialmente relevantes en operaciones que requieren contratos, garantías, notarización o registros.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Avalúo</summary>
-          <div>
-            <p>Es una valoración del bien que sirve como referencia para conocer su valor. Es frecuente en productos donde existe una garantía, como algunas hipotecas o financiamientos de bienes.</p>
-            <p><strong>Importante:</strong> el costo y la necesidad de un avalúo dependen de las condiciones de la operación.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Otros cargos mensuales</summary>
-          <div>
-            <p>Son cobros que se repiten durante el préstamo y que no corresponden a capital, intereses o al seguro que ya hayas identificado.</p>
-            <p><strong>¿Por qué importan?</strong> Aunque sean pequeños, al repetirse durante muchos meses pueden aumentar el pago total de la obligación.</p>
-          </div>
-        </details>
-
-        <details class="learn-term">
-          <summary>Otro costo</summary>
-          <div>
-            <p>Úsalo cuando tu propuesta tenga un concepto que no aparezca en la lista. Escribe el nombre tal como aparece en el documento y selecciona cómo se aplica.</p>
-            <p>Finance & Risk Lab no intenta adivinar el significado de un cargo que no conoces. Si tienes dudas, revisa el documento o consulta a la entidad.</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section learn-results-section">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Resultados</span>
-        <h2>Las cifras no responden la misma pregunta.</h2>
-        <p>Entender la diferencia entre cuota, intereses, pago inicial y dinero recibido ayuda a comparar una propuesta completa, no solo su tasa.</p>
-      </div>
-
-      <div class="learning-grid">
-        <article class="learning-card">
-          <span>Mensual</span>
-          <h2>Pago mensual estimado</h2>
-          <p>Es la salida mensual aproximada considerada por la herramienta. Puede incluir la cuota financiera y los cargos mensuales que hayas informado.</p>
-        </article>
-        <article class="learning-card">
-          <span>Costo financiero</span>
-          <h2>Intereses estimados</h2>
-          <p>Es el costo aproximado de financiar el capital durante el plazo utilizado en la simulación. Si aumenta el capital financiado, también pueden aumentar los intereses.</p>
-        </article>
-        <article class="learning-card">
-          <span>Inicio</span>
-          <h2>Pago inicial</h2>
-          <p>Es el dinero que tendrías que aportar al inicio por los costos que no se descuentan ni se incorporan al préstamo.</p>
-        </article>
-        <article class="learning-card">
-          <span>Total</span>
-          <h2>Total estimado pagado</h2>
-          <p>Suma los pagos considerados durante el plazo y los costos iniciales registrados. Sirve para mirar más allá de la cuota mensual.</p>
-        </article>
-        <article class="learning-card">
-          <span>Tasa</span>
-          <h2>¿Por qué importa comparar tasas?</h2>
-          <p>Una tasa diferente puede cambiar la cuota y los intereses, pero una tasa menor no garantiza por sí sola un menor costo total si las propuestas tienen cargos distintos.</p>
-        </article>
-        <article class="learning-card">
-          <span>Neutralidad</span>
-          <h2>¿Cuál propuesta es mejor?</h2>
-          <p>La herramienta no responde esa pregunta por ti. Una persona puede valorar más una cuota baja, otra un menor pago inicial y otra un menor costo total.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="entender-amortizacion">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Amortización</span>
-        <h2>Una cuota puede ser parecida cada mes, pero por dentro va cambiando.</h2>
-        <p>En muchos préstamos de cuota fija, al inicio una parte mayor del pago puede corresponder a intereses. A medida que baja el saldo, normalmente aumenta la parte que reduce capital.</p>
-      </div>
-
-      <div class="learning-grid">
-        <article class="learning-card">
-          <span>Capital</span>
-          <h2>¿Qué parte reduce la deuda?</h2>
-          <p>Es la porción de la cuota que realmente disminuye el saldo pendiente. Al inicio puede ser menor y crecer a medida que avanzan los pagos.</p>
-        </article>
-        <article class="learning-card">
-          <span>Interés</span>
-          <h2>¿Por qué cambia con el tiempo?</h2>
-          <p>El interés suele calcularse sobre el saldo pendiente. Si el saldo baja, el interés de los períodos siguientes también puede disminuir.</p>
-        </article>
-        <article class="learning-card">
-          <span>Saldo</span>
-          <h2>¿Qué muestra una tabla de pagos?</h2>
-          <p>Permite observar cuánto debes antes de cada cuota, cuánto se aplica a capital e interés y cuál sería el saldo después del pago.</p>
-        </article>
-      </div>
-
-      <div class="panel learn-example-panel">
-        <span class="eyebrow">Abonos al capital</span>
-        <h3>Pagar más de la cuota puede cambiar el recorrido del préstamo.</h3>
-        <div class="learn-example-grid">
-          <article>
-            <strong>Reducir el plazo</strong>
-            <p>Si mantienes una cuota similar y aplicas abonos al capital, podrías terminar antes y pagar menos intereses, dependiendo de las condiciones del contrato.</p>
-          </article>
-          <article>
-            <strong>Reducir la cuota</strong>
-            <p>Algunas entidades pueden recalcular la cuota después de un abono, manteniendo un plazo pendiente similar. Esto depende de las reglas del préstamo.</p>
-          </article>
-          <article>
-            <strong>Confirmar con la entidad</strong>
-            <p>No todos los bancos aplican los abonos de la misma forma. Antes de hacerlo, conviene confirmar si reduce plazo, cuota o requiere una solicitud específica.</p>
-          </article>
-        </div>
-        <p class="helper">La herramienta de Amortización muestra escenarios educativos. El resultado contractual real depende de la entidad, las fechas, redondeos y condiciones específicas del préstamo.</p>
-        <a class="button secondary" href="amortizacion.html">Explorar mi tabla de pagos</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section learn-existing-section">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Otros conceptos</span>
-        <h2>Continúa aprendiendo.</h2>
-      </div>
-      <div class="learning-grid">
-        <article id="capacidad" class="learning-card">
-          <span>Presupuesto</span>
-          <h2>¿Qué es la capacidad de pago?</h2>
-          <p>Es la posibilidad de cubrir una nueva obligación manteniendo margen para los gastos del hogar y otros compromisos.</p>
-          <a href="capacidad-pago.html">Pruébalo en el analizador →</a>
-        </article>
-        <article class="learning-card">
-          <span>Préstamos</span>
-          <h2>¿Qué es el endeudamiento?</h2>
-          <p>Es la parte de tus ingresos que ya está comprometida en pagos de deudas.</p>
-        </article>
-        <article class="learning-card">
-          <span>Tasas</span>
-          <h2>¿Qué es una tasa nominal?</h2>
-          <p>Es una tasa expresada para un período y no necesariamente incorpora por sí sola todos los costos de una obligación.</p>
-        </article>
-        <article class="learning-card">
-          <span>Préstamos</span>
-          <h2>¿Qué es la amortización?</h2>
-          <p>Es la forma en que cada pago se distribuye entre intereses, reducción del capital y otros componentes informados.</p>
-          <a href="#entender-amortizacion">Entender cómo funciona →</a>
-        </article>
-        <article class="learning-card">
-          <span>Riesgo</span>
-          <h2>¿Qué es el sobreendeudamiento?</h2>
-          <p>Ocurre cuando las obligaciones consumen una parte tan alta del ingreso que reducen demasiado el margen para gastos esenciales e imprevistos.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section learn-panama-section">
-    <div class="container">
-      <div class="panel learn-reference-panel">
-        <span class="eyebrow">Contexto de Panamá</span>
-        <h2>¿Dónde puedes ampliar la información?</h2>
-        <p>La Superintendencia de Bancos de Panamá mantiene material para consumidores sobre préstamos, productos bancarios, transparencia y términos financieros. Finance & Risk Lab utiliza estas referencias como apoyo educativo, pero cada propuesta debe revisarse según su propio contrato y documentación.</p>
-        <div class="learn-reference-links">
-          <a class="source-link" href="https://www.superbancos.gob.pa/sac/productos-bancarios/prestamo" target="_blank" rel="noopener noreferrer">Préstamos · SBP<small>Conceptos básicos y preguntas frecuentes.</small></a>
-          <a class="source-link" href="https://www.superbancos.gob.pa/sac/glosario" target="_blank" rel="noopener noreferrer">Glosario · SBP<small>Definiciones de términos bancarios.</small></a>
-          <a class="source-link" href="https://www.superbancos.gob.pa/sac" target="_blank" rel="noopener noreferrer">Atención al cliente · SBP<small>Orientación, consultas y material para consumidores.</small></a>
-        </div>
-        <div class="neutral-note"><strong>Recuerda:</strong> un mismo concepto puede tener condiciones distintas entre productos o entidades. Utiliza en las herramientas los datos que realmente aparecen en tu propuesta.</div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer-wrap">
-    <span>Finance & Risk Lab</span>
-    <span>Aprender haciendo.</span>
+<section class="tool-hero learn-hero">
+  <div class="container">
+    <span class="eyebrow">Aprender</span>
+    <h1>Conceptos financieros en lenguaje claro.</h1>
+    <p>Consulta solo lo que necesites. La idea es ayudarte a reconocer los términos que aparecen en una propuesta bancaria y entender cómo pueden afectar lo que recibes, financias o pagas.</p>
   </div>
+</section>
+
+<div aria-label="Explora por tema" class="container learn-topic-nav">
+<span class="learn-topic-label">
+     Explora por tema
+    </span>
+
+
+
+
+
+
+
+<a class="learn-topic-link" data-open-section="comparador-aprender" href="#comparador-aprender">Comparador de propuestas</a><a class="learn-topic-link" data-open-section="calculadora-aprender" href="#calculadora-aprender">Calculadora y amortización</a><a class="learn-topic-link" data-open-section="tarjetas" href="#tarjetas">Tarjetas de crédito</a><a class="learn-topic-link" data-open-section="capacidad-aprender" href="#capacidad-aprender">Capacidad de pago</a><a class="learn-topic-link" data-open-section="tasas-aprender" href="#tasas-aprender">Tasas y referencias</a><a class="learn-topic-link" data-open-section="referencias-panama" href="#referencias-panama">Contexto de Panamá</a></div>
+
+
+
+
+
+
+
+
+<p class="container learn-topic-hint">Explora por herramienta. Abre solo lo que quieras entender y vuelve a la herramienta cuando quieras probarlo.</p><section class="section learn-collapsible-section learn-tool-section" id="comparador-aprender"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">01</span><span class="learn-section-summary-text"><small>Comparador de propuestas</small><strong>Aprende a interpretar lo que acabas de comparar</strong></span></summary><div class="learn-section-content"><p class="learn-tool-teaser">Profundiza en las cifras, costos y resultados que aparecen en el Comparador. La herramienta organiza la información; aquí puedes entender qué significa antes de tomar una decisión.</p><details class="learn-subgroup-accordion" id="aprende-propuestas"><summary><span class="learn-subgroup-label">01 · Propuestas bancarias</span><strong>¿Qué significan las cifras que estás comparando?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Antes de mirar cuál propuesta parece mejor, entiende qué representa cada monto y por qué dos ofertas pueden manejar el mismo dinero de forma distinta.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Base
+          </span>
+<strong>¿Cuánto dinero estás pidiendo realmente?</strong>
+<span class="learn-topic-teaser">Es el punto de partida de la propuesta, pero no siempre es lo mismo que terminarás financiando.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es la cantidad de dinero que deseas pedir. Sirve como punto de partida, pero no siempre coincide con el monto que terminará financiándose.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Financiamiento
+          </span>
+<strong>¿Por qué podrías terminar financiando más de lo que pediste?</strong>
+<span class="learn-topic-teaser">Algunos costos pueden sumarse al préstamo y cambiar la cuota que pagarás.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el monto sobre el que se calcula la cuota financiera. Puede ser mayor que el monto solicitado si algunos costos se agregan al préstamo.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Desembolso
+          </span>
+<strong>¿Cuánto dinero llega realmente a tus manos?</strong>
+<span class="learn-topic-teaser">Mira qué pasa cuando un costo se descuenta antes de entregarte el dinero.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el dinero que realmente podrías recibir después de restar los costos que la entidad descuente antes del desembolso.
+          </p>
+</div>
+</details></div><details class="learn-example-details"><summary>Ver ejemplo</summary><h3>Solicitas B/. 10,000, pero una comisión puede aplicarse de distintas formas.</h3><p>Puede pagarse al inicio, descontarse del dinero que recibes o incorporarse al financiamiento. La forma de cobro cambia qué cifra debes mirar.</p></details></div></details><details class="learn-subgroup-accordion" id="costos-propuesta"><summary><span class="learn-subgroup-label">02 · Costos y cargos</span><strong>¿Qué puede cambiar el costo de una propuesta?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">No todos los cargos aparecen en todos los productos. El objetivo es reconocer qué significa cada uno y cómo puede afectar el desembolso, la cuota o el costo total.</p><div class="learning-grid"><details class="learn-term">
+<summary>
+          Seguro
+         </summary>
+<div>
+<p>
+           Es una cobertura asociada al préstamo. Dependiendo del producto puede proteger el saldo, la vida del deudor, el vehículo, la propiedad u otros riesgos.
+          </p>
+<p>
+<strong>
+            ¿Por qué importa?
+           </strong>
+           Si se cobra cada mes, aumenta el pago mensual aunque no reduzca directamente el capital.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Comisión
+         </summary>
+<div>
+<p>
+           Es un cargo relacionado con un servicio o condición del producto financiero. El nombre y la forma de cobro pueden cambiar entre entidades.
+          </p>
+<p>
+<strong>
+            ¿Por qué importa?
+           </strong>
+           Puede pagarse por separado, descontarse del desembolso o formar parte del monto financiado.
+          </p>
+<p>
+<strong>
+            Si se financia:
+           </strong>
+           la comisión pasa a formar parte del capital sobre el que se calcula la cuota y, por eso, también puede generar intereses durante el plazo.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Gastos de cierre
+         </summary>
+<div>
+<p>
+           Es una forma general de agrupar algunos costos relacionados con formalizar o completar una operación. Su composición puede variar según el producto y la entidad.
+          </p>
+<p>
+<strong>
+            Consejo:
+           </strong>
+           revisa qué conceptos específicos incluye tu documento para no contar un mismo costo dos veces.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Gastos legales
+         </summary>
+<div>
+<p>
+           Son costos relacionados con documentos, formalización, trámites legales o servicios de terceros que pueden existir en determinadas operaciones.
+          </p>
+<p>
+<strong>
+            ¿Dónde suelen importar más?
+           </strong>
+           Pueden ser especialmente relevantes en operaciones que requieren contratos, garantías, notarización o registros.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Avalúo
+         </summary>
+<div>
+<p>
+           Es una valoración del bien que sirve como referencia para conocer su valor. Es frecuente en productos donde existe una garantía, como algunas hipotecas o financiamientos de bienes.
+          </p>
+<p>
+<strong>
+            Importante:
+           </strong>
+           el costo y la necesidad de un avalúo dependen de las condiciones de la operación.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Otros cargos mensuales
+         </summary>
+<div>
+<p>
+           Son cobros que se repiten durante el préstamo y que no corresponden a capital, intereses o al seguro que ya hayas identificado.
+          </p>
+<p>
+<strong>
+            ¿Por qué importan?
+           </strong>
+           Aunque sean pequeños, al repetirse durante muchos meses pueden aumentar el pago total de la obligación.
+          </p>
+</div>
+</details><details class="learn-term">
+<summary>
+          Otro costo
+         </summary>
+<div>
+<p>
+           Úsalo cuando tu propuesta tenga un concepto que no aparezca en la lista. Escribe el nombre tal como aparece en el documento y selecciona cómo se aplica.
+          </p>
+<p>
+           Finance &amp; Risk Lab no intenta adivinar el significado de un cargo que no conoces. Si tienes dudas, revisa el documento o consulta a la entidad.
+          </p>
+</div>
+</details></div></div></details><details class="learn-subgroup-accordion" id="aprende-resultados"><summary><span class="learn-subgroup-label">03 · Resultados</span><strong>¿Cómo interpretar lo que te muestra el Comparador?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Las cifras del resultado responden preguntas diferentes. Aprender a leerlas ayuda a no decidir únicamente por la cuota o por una sola condición.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Mensual
+          </span>
+<strong>¿Qué tan pesada será esta cuota para tu presupuesto?</strong>
+<span class="learn-topic-teaser">La cifra mensual ayuda a ver cuánto dinero sale de tu bolsillo cada periodo.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es la salida mensual aproximada considerada por la herramienta. Puede incluir la cuota financiera y los cargos mensuales que hayas informado.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Costo financiero
+          </span>
+<strong>¿Cuánto puede costarte financiar ese dinero?</strong>
+<span class="learn-topic-teaser">No mires solo la cuota: los intereses muestran una parte importante del costo de financiar.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el costo aproximado de financiar el capital durante el plazo utilizado en la simulación. Si aumenta el capital financiado, también pueden aumentar los intereses.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Inicio
+          </span>
+<strong>¿Cuánto necesitas tener disponible antes de empezar?</strong>
+<span class="learn-topic-teaser">Algunos costos se pagan al inicio y no forman parte de la cuota mensual.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el dinero que tendrías que aportar al inicio por los costos que no se descuentan ni se incorporan al préstamo.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Total
+          </span>
+<strong>¿Cuánto terminarías pagando en todo el recorrido?</strong>
+<span class="learn-topic-teaser">Comparar el total ayuda a ver diferencias que una cuota mensual puede esconder.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Suma los pagos considerados durante el plazo y los costos iniciales registrados. Sirve para mirar más allá de la cuota mensual.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Tasa
+          </span>
+<strong>¿Una tasa menor siempre significa que pagarás menos?</strong>
+<span class="learn-topic-teaser">La tasa importa, pero los cargos y la forma de financiar también pueden cambiar el costo.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Una tasa diferente puede cambiar la cuota y los intereses, pero una tasa menor no garantiza por sí sola un menor costo total si las propuestas tienen cargos distintos.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Neutralidad
+          </span>
+<strong>¿Cómo saber qué propuesta te conviene más?</strong>
+<span class="learn-topic-teaser">Una cuota, un pago inicial o un costo total menor pueden responder necesidades diferentes.</span></summary>
+<div class="learn-topic-content">
+<p>
+           La herramienta no responde esa pregunta por ti. Una persona puede valorar más una cuota baja, otra un menor pago inicial y otra un menor costo total.
+          </p>
+</div>
+</details></div></div></details><details class="learn-tip-details"><summary>Tip para comparar mejor</summary><p>Cuando una propuesta parece mejor en una cifra, busca qué ocurre en las demás. Una cuota menor, un menor desembolso o un menor costo total no responden necesariamente a la misma necesidad.</p></details></div></details></div></section><section class="section learn-collapsible-section learn-tool-section" id="calculadora-aprender"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">02</span><span class="learn-section-summary-text"><small>Calculadora y amortización</small><strong>Experimenta con una cuota y entiende lo que ocurre después</strong></span></summary><div class="learn-section-content"><p class="learn-tool-teaser">Primero puedes probar cómo cambian los resultados; después puedes abrir la tabla para ver cómo se distribuyen los pagos a lo largo del tiempo.</p><details class="learn-subgroup-accordion" id="aprender-calculadora"><summary><span class="learn-subgroup-label">01 · Calculadora</span><strong>¿Qué estás cambiando cuando ajustas una simulación?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">La Calculadora permite experimentar con monto, plazo, tasa y otros datos para observar cómo cambian los resultados.</p><div class="learning-grid"><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Monto</span><strong>¿Qué cambia si pides más dinero?</strong><span class="learn-topic-teaser">A mayor capital, normalmente hay más dinero que financiar y puede cambiar la cuota y el costo total.</span></summary><div class="learn-topic-content"><p>El monto es el punto de partida de la simulación. Si los demás datos se mantienen, aumentar el capital suele aumentar la cuota y los intereses estimados.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Plazo</span><strong>¿Por qué una cuota puede bajar al alargar el plazo?</strong><span class="learn-topic-teaser">Distribuir el capital en más pagos puede reducir la salida mensual, pero no significa necesariamente pagar menos en total.</span></summary><div class="learn-topic-content"><p>El plazo determina durante cuánto tiempo se financia el saldo. Un plazo más largo puede hacer más manejable la cuota mensual y, al mismo tiempo, aumentar el tiempo durante el que se generan intereses.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Tasa</span><strong>¿Qué cambia cuando cambia la tasa?</strong><span class="learn-topic-teaser">La tasa influye en el costo de financiar, pero no cuenta toda la historia si existen otros cargos.</span></summary><div class="learn-topic-content"><p>La simulación utiliza la tasa que ingreses para estimar la cuota y los intereses. El resultado real puede variar según las condiciones del contrato y la forma en que la entidad calcule los cargos.</p></div></details></div></div></details><details class="learn-subgroup-accordion" id="entender-amortizacion"><summary><span class="learn-subgroup-label">02 · Amortización</span><strong>¿Qué ocurre dentro de cada pago?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">La tabla de amortización convierte una cuota en un recorrido: muestra cómo evoluciona el saldo y cuánto se aplica a cada componente.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Capital
+          </span>
+<strong>¿Por qué una cuota no reduce toda la deuda?</strong>
+<span class="learn-topic-teaser">Cada pago puede repartirse entre intereses y capital; esa proporción cambia con el saldo.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es la porción de la cuota que realmente disminuye el saldo pendiente. Al inicio puede ser menor y crecer a medida que avanzan los pagos.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Interés
+          </span>
+<strong>¿Por qué los intereses pueden ir cambiando?</strong>
+<span class="learn-topic-teaser">Cuando el saldo pendiente baja, la parte de interés de los pagos siguientes puede disminuir.</span></summary>
+<div class="learn-topic-content">
+<p>
+           El interés suele calcularse sobre el saldo pendiente. Si el saldo baja, el interés de los períodos siguientes también puede disminuir.
+          </p>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Saldo
+          </span>
+<strong>¿Qué puedes descubrir mirando una tabla de amortización?</strong>
+<span class="learn-topic-teaser">Puedes ver cómo evoluciona el saldo y cuánto de cada pago se aplica a capital e intereses.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Permite observar cuánto debes antes de cada cuota, cuánto se aplica a capital e interés y cuál sería el saldo después del pago.
+          </p>
+</div>
+</details></div><details class="learn-example-details"><summary>Ver ejemplo</summary><h3>Pagar más de la cuota puede cambiar el recorrido del préstamo.</h3><p>Si mantienes una cuota similar y aplicas abonos al capital, podrías terminar antes y pagar menos intereses, dependiendo de las condiciones del contrato. Algunas entidades pueden recalcular la cuota después de un abono; confirma si reduce plazo, cuota o requiere una solicitud específica.</p></details></div></details><details class="learn-tip-details"><summary>Tip para leer una simulación</summary><p>Los resultados son aproximados y dependen de los datos ingresados. Cambiar una sola condición puede cambiar el recorrido completo del préstamo.</p></details></div></details></div></section><section class="section learn-collapsible-section learn-tool-section" id="tarjetas"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">03</span><span class="learn-section-summary-text"><small>Tarjetas de crédito</small><strong>Aprende con lo que acabas de ver en tu tarjeta</strong></span></summary><div class="learn-section-content"><p class="learn-tool-teaser">Profundiza en límite, saldo, pagos, fechas, costos y beneficios. La idea es que entiendas la tarjeta antes de decidir cómo usarla.</p><details class="learn-subgroup-accordion" id="tarjeta-conoce"><summary><span class="learn-subgroup-label">01 · Conoce tu tarjeta</span><strong>¿Qué significan las cifras que ves en una tarjeta?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Antes de analizar pagos o beneficios, identifica qué representa cada número. Esto te ayuda a saber qué puedes usar, qué debes y qué está cambiando.</p><div class="learning-grid"><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Límite</span><strong>¿Cuánto puedes utilizar sin confundirlo con dinero disponible?</strong><span class="learn-topic-teaser">El límite es el máximo de crédito establecido; el disponible cambia a medida que utilizas y pagas la tarjeta.</span></summary><div class="learn-topic-content"><p>El límite no es dinero que debas gastar. Es el marco de crédito disponible según las condiciones de tu tarjeta.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Saldo</span><strong>¿Qué significa lo que debes y lo que todavía puedes usar?</strong><span class="learn-topic-teaser">Saldo y disponible responden preguntas distintas y pueden cambiar con compras, pagos y movimientos pendientes.</span></summary><div class="learn-topic-content"><p>El saldo refleja una obligación o movimiento registrado según el momento de consulta; el disponible muestra cuánto crédito queda utilizable. Los tiempos de registro pueden variar.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Compras</span><strong>¿Por qué una compra nueva cambia tu escenario?</strong><span class="learn-topic-teaser">Una compra aumenta el uso del crédito y puede afectar el saldo y el disponible; además, puede convertirse en un gasto mensual si forma parte de tu presupuesto.</span></summary><div class="learn-topic-content"><p>En Finance &amp; Risk Lab una compra nueva no debe contarse dos veces: el pago de la tarjeta y el gasto asociado deben representar conceptos distintos dentro del análisis.</p></div></details></div></div></details><details class="learn-subgroup-accordion" id="tarjeta-pagos"><summary><span class="learn-subgroup-label">02 · Pagos y fechas</span><strong>¿Qué pasa cuando llega el momento de pagar?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">El pago mínimo, el pago total, la fecha de corte y la fecha límite cumplen funciones diferentes.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learning-number learn-topic-kicker">
+           01
+          </span>
+<strong>¿Qué ocurre si pagas solo el mínimo?</strong>
+<span class="learn-topic-teaser">Puede mantener parte del saldo pendiente y cambiar cuánto tiempo tardas en pagar.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el monto que aparece en tu estado de cuenta para ese periodo. Puede cambiar y no significa que la deuda esté resuelta.
+          </p>
+<details>
+<summary>
+            Quiero saber más
+           </summary>
+<p>
+            La parte del saldo que no cubras puede permanecer financiada y generar costos según las condiciones de tu tarjeta.
+           </p>
+</details>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learning-number learn-topic-kicker">
+           03
+          </span>
+<strong>¿Qué cambia entre la fecha de corte y la fecha de pago?</strong>
+<span class="learn-topic-teaser">Entender ambas fechas ayuda a saber qué movimientos entran en el estado de cuenta y cuándo debes pagar.</span></summary>
+<div class="learn-topic-content">
+<p>
+           El corte cierra un periodo de movimientos; la fecha límite indica cuándo debes realizar el pago requerido.
+          </p>
+<details>
+<summary>
+            Ver un ejemplo
+           </summary>
+<p>
+            Una compra registrada después del corte puede aparecer en el siguiente estado de cuenta. El tratamiento real depende de cuándo se registre el movimiento.
+           </p>
+</details>
+</div>
+</details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Pago total</span><strong>¿Qué cambia si pagas el saldo completo?</strong><span class="learn-topic-teaser">Cubrir el saldo indicado para ese periodo puede evitar que parte de ese saldo quede financiada, según las condiciones de la tarjeta.</span></summary><div class="learn-topic-content"><p>Pagar el total requerido para evitar financiamiento y pagar más del mínimo no son necesariamente la misma decisión. Revisa qué monto indica tu estado de cuenta y qué condiciones aplican a tu tarjeta.</p></div></details></div></div></details><details class="learn-subgroup-accordion" id="tarjeta-costos"><summary><span class="learn-subgroup-label">03 · Costos</span><strong>¿Cuánto puede costarte mantener y usar la tarjeta?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Separar anualidad, intereses y otros cargos evita confundir costos que aparecen en momentos distintos.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learning-number learn-topic-kicker">
+           02
+          </span>
+<strong>¿Cuánto pagas solo por tener la tarjeta?</strong>
+<span class="learn-topic-teaser">La anualidad es un costo distinto de los intereses que pueden aplicarse a compras financiadas.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es el costo por tener la tarjeta según sus condiciones. No es lo mismo que la tasa de interés que puede aplicarse al saldo financiado.
+          </p>
+<details>
+<summary>
+            Quiero saber más
+           </summary>
+<p>
+            Algunas tarjetas pueden cobrarla de forma anual o mediante cargos periódicos. Revisa cómo aparece en tu propuesta.
+           </p>
+</details>
+</div>
+</details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Interés</span><strong>¿La tasa de tu tarjeta es lo mismo que la anualidad?</strong><span class="learn-topic-teaser">No. Son conceptos distintos: la anualidad es un cargo por la tarjeta y el interés puede aplicarse al saldo financiado según sus condiciones.</span></summary><div class="learn-topic-content"><p>La tasa de interés describe el costo de financiar un saldo; la anualidad es un cargo por mantener la tarjeta. Una tarjeta puede tener ambos, uno de ellos o condiciones diferentes.</p></div></details></div></div></details><details class="learn-subgroup-accordion" id="tarjeta-beneficios"><summary><span class="learn-subgroup-label">04 · Beneficios</span><strong>¿Cómo saber si los beneficios realmente te sirven?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Los beneficios pueden ser útiles, pero deben leerse junto con sus condiciones y con tu forma real de usar la tarjeta.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learning-number learn-topic-kicker">
+           04
+          </span>
+<strong>¿Puntos, millas o cashback realmente te benefician?</strong>
+<span class="learn-topic-teaser">El valor depende de cómo usas la tarjeta, sus condiciones y lo que de todas formas pensabas comprar.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Cashback, puntos y millas pueden tener valor, pero conviene entender las condiciones antes de usarlos para decidir cuánto gastar.
+          </p>
+<details>
+<summary>
+            Quiero saber más
+           </summary>
+<p>
+            Una recompensa no convierte una compra que no necesitas en ahorro. Compara categorías, topes y condiciones del programa.
+           </p>
+</details>
+</div>
+</details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Condiciones</span><strong>¿Cuándo un beneficio realmente te ayuda?</strong><span class="learn-topic-teaser">Puntos, millas o cashback tienen valor solo si las condiciones y tus hábitos hacen que puedas aprovecharlos.</span></summary><div class="learn-topic-content"><p>Mira categorías, topes, fechas de vencimiento, equivalencias y restricciones. Un beneficio no debería ser la razón para gastar más de lo que habías previsto.</p></div></details></div></div></details><details class="learn-tip-details"><summary>Tip para usar mejor una tarjeta</summary><p>Una tarjeta puede ser una herramienta útil si entiendes cuánto debes, cuándo debes pagar y qué costo tiene financiar un saldo. Los beneficios deben acompañar una compra que ya tenía sentido, no crearla.</p></details></div></details></div></section><section class="section learn-collapsible-section learn-tool-section" id="capacidad-aprender"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">04</span><span class="learn-section-summary-text"><small>Capacidad de pago</small><strong>Aprende a leer el impacto en tu presupuesto</strong></span></summary><div class="learn-section-content"><p class="learn-tool-teaser">Aquí la pregunta cambia: no es solo cuánto cuesta el producto, sino qué espacio deja en tu vida financiera después de asumirlo.</p><details class="learn-subgroup-accordion" id="capacidad-conoce"><summary><span class="learn-subgroup-label">01 · Capacidad de pago</span><strong>¿Cuánto espacio queda antes de asumir otra obligación?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">La capacidad de pago ayuda a mirar una nueva cuota dentro de tu realidad financiera, no de forma aislada.</p><div class="learning-grid"><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Presupuesto
+          </span>
+<strong>¿Cuánto espacio queda en tu presupuesto para una nueva obligación?</strong>
+<span class="learn-topic-teaser">No se trata solo de poder pagar hoy: importa cuánto margen queda después de tus compromisos.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es la posibilidad de cubrir una nueva obligación manteniendo margen para los gastos del hogar y otros compromisos.
+          </p>
+<a href="capacidad-pago.html">
+           Pruébalo en el analizador →
+          </a>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Préstamos
+          </span>
+<strong>¿Cómo se va reduciendo una deuda con cada pago?</strong>
+<span class="learn-topic-teaser">La amortización muestra cómo cada pago se distribuye entre intereses, capital y otros componentes.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Es la forma en que cada pago se distribuye entre intereses, reducción del capital y otros componentes informados.
+          </p>
+<a href="#entender-amortizacion">
+           Entender cómo funciona →
+          </a>
+</div>
+</details><details class="learn-topic-card">
+<summary>
+<span class="learn-topic-kicker">
+           Riesgo
+          </span>
+<strong>¿Cuándo una nueva deuda empieza a quitarte demasiado margen?</strong>
+<span class="learn-topic-teaser">El problema aparece cuando las obligaciones dejan poco espacio para gastos esenciales e imprevistos.</span></summary>
+<div class="learn-topic-content">
+<p>
+           Ocurre cuando las obligaciones consumen una parte tan alta del ingreso que reducen demasiado el margen para gastos esenciales e imprevistos.
+          </p>
+</div>
+</details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Nueva tarjeta</span><strong>¿Qué cambia en tu presupuesto cuando agregas una tarjeta?</strong><span class="learn-topic-teaser">No basta con mirar el pago mínimo: también importa el gasto que esperas realizar y el margen que queda después de tus compromisos.</span></summary><div class="learn-topic-content"><p>En una simulación, el pago de la tarjeta y las compras nuevas deben mantenerse identificados para evitar contar el mismo dinero dos veces.</p></div></details></div></div></details><details class="learn-subgroup-accordion" id="capacidad-riesgo"><summary><span class="learn-subgroup-label">02 · Riesgo</span><strong>¿Cuándo una nueva obligación empieza a quitarte demasiado margen?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">La señal importante no es solo si puedes pagar, sino cuánto margen queda para gastos esenciales e imprevistos.</p><div class="learning-grid"><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Margen</span><strong>¿Por qué importa lo que queda después de pagar?</strong><span class="learn-topic-teaser">El dinero que permanece disponible después de obligaciones y gastos es parte de tu capacidad para absorber cambios.</span></summary><div class="learn-topic-content"><p>Un escenario puede ser pagable y aun así dejar poco margen. Por eso la herramienta muestra el impacto aproximado en tu presupuesto.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Decisión</span><strong>¿Qué debería mirar antes de aceptar?</strong><span class="learn-topic-teaser">Mira la nueva obligación junto con tus gastos y compromisos actuales.</span></summary><div class="learn-topic-content"><p>Finance &amp; Risk Lab no decide por ti: organiza el escenario para que puedas evaluar si el cambio cabe en tu realidad.</p></div></details></div></div></details><details class="learn-tip-details"><summary>Tip para decidir</summary><p>Si un escenario depende de que todo salga perfecto cada mes, vale la pena mirar también qué margen quedaría ante un gasto inesperado.</p></details></div></details></div></section><section class="section learn-collapsible-section learn-tool-section" id="tasas-aprender"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">05</span><span class="learn-section-summary-text"><small>Tasas y referencias</small><strong>Entiende la tasa antes de usarla para comparar</strong></span></summary><div class="learn-section-content"><p class="learn-tool-teaser">Las tasas son una pieza de la decisión, no la decisión completa. Aprende qué representan y cuándo una referencia sirve solo como contexto.</p><details class="learn-subgroup-accordion" id="tasas-conoce"><summary><span class="learn-subgroup-label">01 · Entender tasas</span><strong>¿Cómo leer una tasa sin confundirla con el costo total?</strong></summary><div class="learn-subgroup-content"><p class="learn-subgroup-intro">Aprender qué significa la tasa ayuda a comparar mejor, pero siempre debe leerse junto con otros cargos y condiciones.</p><div class="learning-grid"><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Nominal</span><strong>¿Qué te está diciendo una tasa nominal?</strong><span class="learn-topic-teaser">Es una forma de expresar una tasa para un periodo, pero no necesariamente resume todos los costos.</span></summary><div class="learn-topic-content"><p>Para comparar tasas necesitas comprobar que estén expresadas bajo una base comparable y revisar qué otros costos acompañan la operación.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Efectiva</span><strong>¿Por qué puede ser diferente de una tasa nominal?</strong><span class="learn-topic-teaser">La forma de expresar y aplicar una tasa puede cambiar el resultado que observas.</span></summary><div class="learn-topic-content"><p>La tasa efectiva incorpora el efecto de la periodicidad de capitalización bajo una metodología determinada. Revisa siempre qué indicador está presentando la entidad.</p></div></details><details class="learn-topic-card"><summary><span class="learn-topic-kicker">Referencia</span><strong>¿Una tasa de referencia es la tasa que te ofrecerán?</strong><span class="learn-topic-teaser">No necesariamente. Una referencia sirve para contextualizar, mientras que tu propuesta depende de sus propias condiciones.</span></summary><div class="learn-topic-content"><p>Usa el Centro de Tasas como referencia educativa y luego revisa la tasa y demás costos que realmente aparecen en tu documento.</p></div></details></div></div></details><details class="learn-tip-details"><summary>Tip para comparar</summary><p>No compares únicamente el número más pequeño. Comprueba qué representa la tasa, el periodo, la forma de cálculo y qué otros costos aparecen en la propuesta.</p></details></div></details></div></section><section class="section learn-collapsible-section learn-tool-section" id="referencias-panama"><div class="container"><details class="learn-section-accordion"><summary><span class="learn-section-number">06</span><span class="learn-section-summary-text"><small>Contexto de Panamá</small><strong>¿Dónde ampliar la información?</strong></span></summary><div class="learn-section-content"><div class="panel learn-reference-panel">
+<span class="eyebrow">
+       Contexto de Panamá
+      </span>
+<h2>
+       ¿Dónde puedes ampliar la información?
+      </h2>
+<p>
+       La Superintendencia de Bancos de Panamá mantiene material para consumidores sobre préstamos, productos bancarios, transparencia y términos financieros. Finance &amp; Risk Lab utiliza estas referencias como apoyo educativo, pero cada propuesta debe revisarse según su propio contrato y documentación.
+      </p>
+<div class="learn-reference-links">
+<a class="source-link" href="https://www.superbancos.gob.pa/sac/productos-bancarios/prestamo" rel="noopener noreferrer" target="_blank">
+        Préstamos · SBP
+        <small>
+         Conceptos básicos y preguntas frecuentes.
+        </small>
+</a>
+<a class="source-link" href="https://www.superbancos.gob.pa/sac/glosario" rel="noopener noreferrer" target="_blank">
+        Glosario · SBP
+        <small>
+         Definiciones de términos bancarios.
+        </small>
+</a>
+<a class="source-link" href="https://www.superbancos.gob.pa/sac" rel="noopener noreferrer" target="_blank">
+        Atención al cliente · SBP
+        <small>
+         Orientación, consultas y material para consumidores.
+        </small>
+</a>
+</div>
+<div class="neutral-note">
+<strong>
+        Recuerda:
+       </strong>
+       un mismo concepto puede tener condiciones distintas entre productos o entidades. Utiliza en las herramientas los datos que realmente aparecen en tu propuesta.
+      </div>
+</div></div></details></div></section></main>
+<footer>
+<div class="container footer-wrap">
+<span>
+     Finance &amp; Risk Lab
+    </span>
+<span>
+     Aprender haciendo.
+    </span>
+</div>
 </footer>
+<script>document.addEventListener("DOMContentLoaded", function () {
+  const openTarget = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const sectionDetails = target.matches("details.learn-section-accordion") ? target : target.querySelector("details.learn-section-accordion");
+    if (sectionDetails) sectionDetails.open = true;
+    const parentSection = target.closest("section.learn-tool-section");
+    if (parentSection) {
+      const parentDetails = parentSection.querySelector(":scope > .container > details.learn-section-accordion");
+      if (parentDetails) parentDetails.open = true;
+    }
+    const nested = target.matches("details.learn-subgroup-accordion") ? target : target.querySelector("details.learn-subgroup-accordion");
+    if (nested) nested.open = true;
+    setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "start" }), 40);
+  };
+  document.querySelectorAll("[data-open-section]").forEach(link => {
+    link.addEventListener("click", function (event) {
+      const id = this.getAttribute("data-open-section");
+      if (!id) return;
+      event.preventDefault();
+      history.replaceState(null, "", "#" + id);
+      openTarget(id);
+    });
+  });
+  if (location.hash) openTarget(location.hash.slice(1));
+});</script>
 </body>
 </html>

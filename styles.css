@@ -1594,24 +1594,31 @@ body[data-page="comparator"] .compare-result-card > span {
 }
 
 body[data-page="comparator"] .compare-result-card p {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(145px, auto);
+  align-items: center;
+  gap: 14px;
   margin: 10px 0;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
 }
 
 body[data-page="comparator"] .compare-result-card p small {
+  min-width: 0;
   color: var(--muted);
   font-size: 12px;
+  overflow-wrap: anywhere;
 }
 
 body[data-page="comparator"] .compare-result-card p strong {
+  min-width: 0;
   color: var(--brand-navy);
-  font-size: 18px;
-  white-space: nowrap;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.25;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-align: right;
 }
 
 body[data-page="comparator"] .compare-result-card > small {
@@ -1717,9 +1724,13 @@ body[data-page="comparator"] .brand-logo {
   }
 
   body[data-page="comparator"] .compare-result-card p {
+    grid-template-columns: 1fr;
     align-items: flex-start;
-    flex-direction: column;
     gap: 4px;
+  }
+
+  body[data-page="comparator"] .compare-result-card p strong {
+    text-align: left;
   }
 
   body[data-page="comparator"] .compare-actions {
@@ -2965,5 +2976,386 @@ body[data-page="amortization-print"] .print-note {
 
   body[data-page="amortization-print"] tr {
     break-inside: avoid;
+  }
+}
+
+
+/* Shared comparison switcher — same visual language across proposal comparators */
+.comparison-switcher {
+  margin-top: 18px;
+  width: min(100%, 520px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+.comparison-switcher summary {
+  list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 48px;
+  padding: 0 16px;
+  color: var(--brand-blue);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+.comparison-switcher summary::-webkit-details-marker { display: none; }
+.comparison-switcher summary::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .18s ease;
+}
+.comparison-switcher[open] summary::after {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+.comparison-switcher summary:hover { background: #f8fbff; }
+.comparison-switcher summary:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, .16);
+  outline-offset: -3px;
+}
+.comparison-switcher-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-main);
+}
+.comparison-switcher-body a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--surface-main);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color .18s ease, background .18s ease, color .18s ease, transform .18s ease;
+}
+.comparison-switcher-body a:hover {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  background: #f8fbff;
+  transform: translateY(-1px);
+}
+.comparison-switcher-body a.comparison-switcher-active {
+  border-color: var(--brand-blue);
+  color: var(--white);
+  background: var(--brand-blue);
+}
+@media (max-width: 620px) {
+  .comparison-switcher-body { grid-template-columns: 1fr; }
+}
+
+/* Field status labels — shared by proposal comparators */
+body[data-page="comparator"] .compare-field-meta {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+body[data-page="comparator"] .compare-field-meta.importante {
+  color: var(--brand-blue);
+  background: #eef5ff;
+  border: 1px solid #cfe0ff;
+}
+body[data-page="comparator"] .compare-field-meta.opcional {
+  color: var(--muted);
+  background: #f5f7fa;
+  border: 1px solid var(--line);
+}
+
+/* Card comparator: preserve the original comparator rhythm while adapting only the financial content. */
+body.card-comparator-page .card-compare-proposals .compare-field-help {
+  max-width: 54ch;
+}
+body.card-comparator-page .card-benefit-details .compare-additional-grid {
+  gap: 14px;
+}
+body.card-comparator-page .card-benefit-details .frl-cost-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-main);
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+body.card-comparator-page .card-benefit-details .frl-cost-choice:hover {
+  border-color: #bfd2ef;
+  background: #fbfdff;
+}
+body.card-comparator-page .card-benefit-details .frl-cost-choice input {
+  margin-top: 4px;
+  accent-color: var(--brand-blue);
+}
+body.card-comparator-page .card-benefit-details .frl-cost-choice strong {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+body.card-comparator-page .card-benefit-details .frl-cost-choice small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+body.card-comparator-page .card-benefit-details .optional-slot {
+  margin: -5px 0 3px;
+  padding-left: 30px;
+}
+body.card-comparator-page .card-benefit-details .optional-slot .input-wrap,
+body.card-comparator-page .card-benefit-details .optional-slot input {
+  width: 100%;
+}
+body.card-comparator-page .card-compare-results .frl-shared-conditions,
+body.card-comparator-page .card-compare-results .frl-different-conditions {
+  margin-top: 4px;
+}
+body.card-comparator-page .card-compare-results .frl-shared-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+body.card-comparator-page .card-compare-results .frl-detail-card,
+body.card-comparator-page .card-compare-results .frl-difference-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+body.card-comparator-page .card-compare-results .frl-detail-card span,
+body.card-comparator-page .card-compare-results .frl-difference-card > span {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 13px;
+  font-weight: 800;
+}
+body.card-comparator-page .card-compare-results .frl-detail-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--brand-navy);
+  font-size: 20px;
+}
+body.card-comparator-page .card-compare-results .frl-detail-card small,
+body.card-comparator-page .card-compare-results .frl-difference-explanation {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+body.card-comparator-page .card-compare-results .frl-difference-card {
+  background: var(--surface-main);
+}
+body.card-comparator-page .card-compare-results .frl-difference-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+body.card-comparator-page .card-compare-results .frl-difference-values p {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+}
+body.card-comparator-page .card-compare-results .frl-difference-values small,
+body.card-comparator-page .card-compare-results .frl-difference-values strong {
+  display: block;
+}
+body.card-comparator-page .card-compare-results .frl-difference-values small {
+  color: var(--muted);
+  font-size: 11px;
+}
+body.card-comparator-page .card-compare-results .frl-difference-values strong {
+  margin-top: 4px;
+  color: var(--brand-navy);
+  font-size: 17px;
+}
+body.card-comparator-page .card-compare-results .frl-difference-amount {
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+body.card-comparator-page .card-compare-results .frl-different-heading p,
+body.card-comparator-page .card-compare-results .frl-shared-conditions p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+body.card-comparator-page .card-transfer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+@media (max-width: 800px) {
+  body.card-comparator-page .card-compare-results .frl-shared-values,
+  body.card-comparator-page .card-compare-results .frl-difference-values {
+    grid-template-columns: 1fr;
+  }
+  body.card-comparator-page .card-transfer-actions {
+    justify-content: flex-start;
+  }
+}
+
+
+/* =====================================================
+   METODOLOGÍA — ACORDEONES POR HERRAMIENTA
+   Mantiene la escala del sistema y permite profundizar
+   sin convertir la página en una lista larga abierta.
+   ===================================================== */
+body[data-page="methodology"] .methodology-tools {
+  padding-top: 2.5rem;
+}
+
+body[data-page="methodology"] .methodology-accordions {
+  display: grid;
+  gap: 12px;
+}
+
+body[data-page="methodology"] .methodology-tool {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-main);
+  overflow: hidden;
+}
+
+body[data-page="methodology"] .methodology-tool > summary {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 14px;
+  min-height: 72px;
+  padding: 12px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-page="methodology"] .methodology-tool > summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-page="methodology"] .methodology-tool > summary:hover {
+  background: var(--surface-soft);
+}
+
+body[data-page="methodology"] .methodology-index {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--brand-blue);
+  background: var(--surface-soft);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+body[data-page="methodology"] .methodology-tool > summary strong {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+body[data-page="methodology"] .methodology-tool > summary small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+body[data-page="methodology"] .methodology-chevron {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  font-size: 18px;
+  font-weight: 500;
+  transition: transform .18s ease;
+}
+
+body[data-page="methodology"] .methodology-tool[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+body[data-page="methodology"] .methodology-tool[open] .methodology-chevron {
+  transform: rotate(45deg);
+}
+
+body[data-page="methodology"] .methodology-tool-body {
+  display: grid;
+  gap: 20px;
+  padding: 22px;
+}
+
+body[data-page="methodology"] .methodology-tool-body .section-heading {
+  margin-bottom: 0;
+}
+
+body[data-page="methodology"] .methodology-tool-body .section-heading.compact h2 {
+  margin-bottom: 8px;
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+body[data-page="methodology"] .methodology-tool-body .section-heading.compact p {
+  max-width: 760px;
+}
+
+body[data-page="methodology"] .methodology-tool-body .method-grid {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  body[data-page="methodology"] .methodology-tool > summary {
+    grid-template-columns: 38px minmax(0, 1fr) 30px;
+    gap: 10px;
+    min-height: 66px;
+    padding: 10px 12px;
+  }
+
+  body[data-page="methodology"] .methodology-index {
+    width: 38px;
+    height: 38px;
+  }
+
+  body[data-page="methodology"] .methodology-tool-body {
+    padding: 18px;
   }
 }

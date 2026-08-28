@@ -121,7 +121,7 @@
 }
 
 .frl-proposal-detail-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-top: 14px;
 }
 
@@ -284,7 +284,7 @@
 }
 .frl-shared-values {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 12px;
 }
 .frl-shared-conditions [hidden],
@@ -948,5 +948,779 @@ body[data-page="calculator"] .frl-payment-visual > .helper {
     grid-column: 1 !important;
     grid-row: auto !important;
     width: 100%;
+  }
+}
+
+
+/* Contextual comparison switcher — shared interaction language */
+.comparison-switcher{margin-top:18px;max-width:420px;border:1px solid var(--border,#d9dee7);border-radius:12px;background:#fff;overflow:hidden}
+.comparison-switcher summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;color:#244e80;display:flex;align-items:center;justify-content:space-between}
+.comparison-switcher summary::-webkit-details-marker{display:none}
+.comparison-switcher summary::after{content:'⌄';font-size:1rem;line-height:1}
+.comparison-switcher[open] summary{border-bottom:1px solid var(--border,#d9dee7)}
+.comparison-switcher-body{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
+.comparison-switcher-body a{display:block;padding:10px 12px;border:1px solid #d9dee7;border-radius:9px;text-decoration:none;color:#344054;background:#fff}
+.comparison-switcher-body a:hover{border-color:#5478a7;background:#f7f9fc}
+.comparison-switcher-body a.comparison-switcher-active{border-color:#315a9b;background:#eef4ff;color:#244e80;font-weight:700}
+@media(max-width:600px){.comparison-switcher-body{grid-template-columns:1fr}}
+
+/* Capacidad de Pago — inicio explícito: datos propios, ejemplo o escenario recibido */
+.capacity-start-choice {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.25rem;
+  margin:0 0 1.25rem;
+  padding:1rem 1.1rem;
+  border:1px solid var(--line, #d9dfe7);
+  border-radius:14px;
+  background:var(--surface, #fff);
+}
+.capacity-start-choice p { margin:.3rem 0 0; }
+.capacity-start-actions { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; justify-content:flex-end; }
+@media (max-width:760px){
+  .capacity-start-choice { align-items:flex-start; flex-direction:column; }
+  .capacity-start-actions { justify-content:flex-start; width:100%; }
+}
+
+/* Capacidad de Pago — mismo patrón visual que los puntos de partida de otras herramientas */
+body[data-page="capacity"] .capacity-start-heading { margin-bottom: 18px; }
+body[data-page="capacity"] .capacity-start-options { margin-bottom: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+body[data-page="capacity"] .capacity-start-options .tool-card { min-height: 0; padding: 18px 20px; display:grid; grid-template-columns:auto 1fr auto; grid-template-areas:"icon indicator ." "title title title" "text text text" "button button button"; align-items:center; border-radius:14px; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+body[data-page="capacity"] .capacity-start-options .tool-card .tool-icon { grid-area:icon; }
+body[data-page="capacity"] .capacity-start-options .tool-card .start-choice-indicator { grid-area:indicator; justify-self:end; width:16px; height:16px; border:2px solid var(--line,#d9dfe7); border-radius:50%; position:relative; }
+body[data-page="capacity"] .capacity-start-options .tool-card.is-selected { border-color: var(--brand,#315a9b); box-shadow: 0 0 0 3px rgba(49,90,155,.10); }
+body[data-page="capacity"] .capacity-start-options .tool-card.is-selected .start-choice-indicator { border-color: var(--brand,#315a9b); }
+body[data-page="capacity"] .capacity-start-options .tool-card.is-selected .start-choice-indicator::after { content:""; position:absolute; inset:3px; border-radius:50%; background:var(--brand,#315a9b); }
+body[data-page="capacity"] .capacity-start-options .tool-card h3 { grid-area:title; margin: 12px 0 4px; }
+body[data-page="capacity"] .capacity-start-options .tool-card p { grid-area:text; margin:0 0 14px; }
+body[data-page="capacity"] .capacity-start-options .tool-card .button { grid-area:button; margin-top:0; width:fit-content; }
+.capacity-import-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:12px 0; }
+.capacity-import-summary span { padding:10px 12px; border:1px solid var(--line,#d9dfe7); border-radius:10px; background:rgba(255,255,255,.65); }
+.capacity-import-summary small,.capacity-import-summary b { display:block; }
+.capacity-import-summary small { color:var(--muted,#667085); margin-bottom:3px; }
+.capacity-import-check { display:flex; gap:8px; align-items:flex-start; font-size:.92rem; margin:8px 0 2px; }
+.capacity-import-check input { margin-top:3px; }
+@media(max-width:760px){ body[data-page="capacity"] .capacity-start-options { grid-template-columns:1fr; } .capacity-import-summary { grid-template-columns:1fr; } }
+
+/* =====================================================
+   APRENDER - NAVEGACION Y ACORDEONES POR TEMA
+   ===================================================== */
+body[data-page="learning"] .learn-topic-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 18px;
+  padding-bottom: 0;
+}
+
+body[data-page="learning"] .learn-topic-label {
+  margin-right: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+body[data-page="learning"] .learn-topic-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-main);
+  color: var(--brand-navy);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body[data-page="learning"] .learn-topic-link:hover {
+  border-color: var(--brand-blue);
+  background: #f8fbff;
+}
+
+body[data-page="learning"] .learn-topic-hint {
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+body[data-page="learning"] .learn-collapsible-section {
+  scroll-margin-top: 76px;
+}
+
+body[data-page="learning"] .learn-section-accordion {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-main);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, .035);
+}
+
+body[data-page="learning"] .learn-section-accordion > summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 70px;
+  padding: 13px 52px 13px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-page="learning"] .learn-section-accordion > summary::-webkit-details-marker,
+body[data-page="learning"] .learn-topic-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-page="learning"] .learn-section-accordion > summary::after,
+body[data-page="learning"] .learn-topic-card > summary::after {
+  content: "+";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 9px;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+body[data-page="learning"] .learn-section-accordion[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: #f8fbff;
+}
+
+body[data-page="learning"] .learn-section-accordion[open] > summary::after,
+body[data-page="learning"] .learn-topic-card[open] > summary::after {
+  content: "−";
+}
+
+body[data-page="learning"] .learn-section-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  color: var(--brand-blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+body[data-page="learning"] .learn-section-summary-text {
+  display: grid;
+  gap: 2px;
+}
+
+body[data-page="learning"] .learn-section-summary-text small {
+  color: var(--brand-blue);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+body[data-page="learning"] .learn-section-summary-text strong {
+  color: var(--brand-navy);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.25;
+}
+
+body[data-page="learning"] .learn-section-content {
+  padding: 20px;
+}
+
+body[data-page="learning"] .learn-section-content > .section-heading {
+  margin-bottom: 16px;
+}
+
+body[data-page="learning"] .learn-section-content > .section-heading p {
+  max-width: 820px;
+  margin: 0;
+}
+
+body[data-page="learning"] .learn-section-content .learning-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+body[data-page="learning"] .learn-topic-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-main);
+}
+
+body[data-page="learning"] .learn-topic-card > summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(100px, 150px) 1fr;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 12px 50px 12px 15px;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-page="learning"] .learn-topic-card > summary strong {
+  color: var(--brand-navy);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+body[data-page="learning"] .learn-topic-kicker {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+body[data-page="learning"] .learn-topic-card[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: #fafcff;
+}
+
+body[data-page="learning"] .learn-topic-content {
+  padding: 14px 15px 16px;
+}
+
+body[data-page="learning"] .learn-topic-content p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+body[data-page="learning"] .learn-topic-content p:last-child {
+  margin-bottom: 0;
+}
+
+body[data-page="learning"] .learn-topic-content a {
+  display: inline-flex;
+  margin-top: 4px;
+}
+
+/* Existing cost accordions use the same visual language as the new topic accordions. */
+body[data-page="learning"] .learn-terms-list {
+  max-width: none;
+}
+
+@media (max-width: 640px) {
+  body[data-page="learning"] .learn-topic-nav {
+    gap: 6px;
+  }
+
+  body[data-page="learning"] .learn-topic-link {
+    min-height: 32px;
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  body[data-page="learning"] .learn-section-content {
+    padding: 14px;
+  }
+
+  body[data-page="learning"] .learn-section-accordion > summary {
+    min-height: 64px;
+    padding-left: 12px;
+  }
+
+  body[data-page="learning"] .learn-topic-card > summary {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding-right: 46px;
+  }
+}
+
+/* =====================================================
+   APRENDER v3.13 — mismo lenguaje visual, más compacto
+   Mantiene la escala de las tarjetas originales y añade
+   preguntas/teasers sin convertir cada concepto en un bloque alto.
+   ===================================================== */
+body[data-page="learning"] .learn-section-accordion {
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+body[data-page="learning"] .learn-section-accordion > summary {
+  min-height: 62px;
+  padding: 11px 48px 11px 15px;
+}
+
+body[data-page="learning"] .learn-section-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  font-size: 10px;
+}
+
+body[data-page="learning"] .learn-section-summary-text strong {
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+body[data-page="learning"] .learn-section-summary-text small {
+  font-size: 9.5px;
+}
+
+body[data-page="learning"] .learn-section-content {
+  padding: 18px;
+}
+
+body[data-page="learning"] .learn-section-content > .section-heading {
+  margin-bottom: 14px;
+}
+
+body[data-page="learning"] .learn-section-content .learning-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body[data-page="learning"] .learn-topic-card {
+  min-width: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+body[data-page="learning"] .learn-topic-card:hover {
+  transform: translateY(-1px);
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 16px rgba(15,23,42,.05);
+}
+
+body[data-page="learning"] .learn-topic-card > summary {
+  grid-template-columns: 30px minmax(0,1fr) 26px;
+  align-items: start;
+  min-height: 78px;
+  gap: 10px;
+  padding: 12px 40px 12px 13px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary .learning-number,
+body[data-page="learning"] .learn-topic-card > summary .learn-topic-kicker {
+  min-width: 0;
+  margin-top: 1px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.32;
+}
+
+body[data-page="learning"] .learn-topic-teaser {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+body[data-page="learning"] .learn-topic-card > summary::after {
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  font-size: 16px;
+  border: 0;
+}
+
+body[data-page="learning"] .learn-topic-card[open] > summary {
+  background: #f8fbff;
+}
+
+body[data-page="learning"] .learn-topic-card[open] > summary strong {
+  color: var(--brand-navy);
+}
+
+body[data-page="learning"] .learn-topic-content {
+  padding: 13px 14px 15px;
+  border-top: 1px solid var(--line);
+}
+
+body[data-page="learning"] .learn-topic-content > p:first-child {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.62;
+}
+
+body[data-page="learning"] .learn-topic-content details {
+  margin-top: 11px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+}
+
+body[data-page="learning"] .learn-topic-content details > summary {
+  color: var(--brand-blue);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
+  list-style: none;
+}
+
+body[data-page="learning"] .learn-topic-content details > summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-page="learning"] .learn-topic-content details > summary::after {
+  content: "+";
+  margin-left: 6px;
+  font-weight: 800;
+}
+
+body[data-page="learning"] .learn-topic-content details[open] > summary::after {
+  content: "−";
+}
+
+body[data-page="learning"] .learn-example-details {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 11px;
+}
+
+body[data-page="learning"] .learn-example-details > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand-blue);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
+  list-style: none;
+}
+
+body[data-page="learning"] .learn-example-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-page="learning"] .learn-example-details > summary::after {
+  content: "+";
+  font-weight: 800;
+}
+
+body[data-page="learning"] .learn-example-details[open] > summary::after {
+  content: "−";
+}
+
+body[data-page="learning"] .learn-example-details > h3 {
+  margin-top: 14px;
+}
+
+body[data-page="learning"] .learn-example-details > .learn-example-grid {
+  margin-top: 12px;
+}
+
+@media (max-width: 980px) {
+  body[data-page="learning"] .learn-section-content .learning-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="learning"] .learn-topic-nav {
+    gap: 6px;
+  }
+
+  body[data-page="learning"] .learn-topic-link {
+    min-height: 32px;
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  body[data-page="learning"] .learn-section-content {
+    padding: 14px;
+  }
+
+  body[data-page="learning"] .learn-section-accordion > summary {
+    min-height: 58px;
+    padding-left: 12px;
+  }
+
+  body[data-page="learning"] .learn-section-content .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="learning"] .learn-topic-card > summary {
+    grid-template-columns: 30px minmax(0,1fr) 25px;
+    min-height: 72px;
+    padding-right: 39px;
+  }
+
+  body[data-page="learning"] .learn-topic-content {
+    padding-left: 14px;
+  }
+}
+
+
+/* =====================================================
+   APRENDER v3.14 — corrección de composición compacta
+   Referencia: escala visual del Aprender original.
+   El teaser pertenece al bloque de contenido, no a una
+   tercera columna independiente.
+   ===================================================== */
+
+body[data-page="learning"] .learn-section-content .learning-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+  min-height: 0;
+  padding: 13px 42px 13px 13px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary .learn-topic-kicker {
+  grid-column: 1;
+  grid-row: 1;
+  margin-top: 2px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary strong {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+body[data-page="learning"] .learn-topic-card > summary .learn-topic-teaser {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 4px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+body[data-page="learning"] .learn-topic-content {
+  padding: 13px 14px 15px;
+}
+
+body[data-page="learning"] .learn-topic-content > p:first-child {
+  margin-top: 0;
+  font-size: 13px;
+  line-height: 1.62;
+}
+
+@media (max-width: 980px) {
+  body[data-page="learning"] .learn-section-content .learning-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="learning"] .learn-section-content .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="learning"] .learn-topic-card > summary {
+    grid-template-columns: 26px minmax(0, 1fr);
+  }
+}
+
+/* APRENDER v3.15 — jerarquía vertical del encabezado de cada concepto
+   Evita que el identificador del tema compita con el título. */
+body[data-page="learning"] .learn-topic-card > summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 4px;
+  min-height: 0;
+  padding: 13px 42px 13px 13px;
+}
+
+body[data-page="learning"] .learn-topic-card > summary .learn-topic-kicker {
+  grid-column: 1;
+  grid-row: auto;
+  display: block;
+  margin: 0 0 1px;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+body[data-page="learning"] .learn-topic-card > summary strong {
+  grid-column: 1;
+  grid-row: auto;
+  display: block;
+  margin: 0;
+  max-width: 42ch;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+body[data-page="learning"] .learn-topic-card > summary .learn-topic-teaser {
+  grid-column: 1;
+  grid-row: auto;
+  display: block;
+  margin-top: 3px;
+  min-width: 0;
+  max-width: 58ch;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  body[data-page="learning"] .learn-topic-card > summary {
+    padding-right: 40px;
+  }
+}
+
+
+/* APRENDER v3.16 — segmentación por herramienta
+   La página funciona como capa educativa de cada herramienta.
+   Mantiene la escala compacta y permite abrir solo el nivel de interés. */
+body[data-page="learning"] .learn-tool-section { scroll-margin-top: 78px; }
+body[data-page="learning"] .learn-tool-teaser {
+  max-width: 820px; margin: 0 0 16px; color: var(--muted); font-size: 13px; line-height: 1.65;
+}
+body[data-page="learning"] .learn-section-content > .learn-subgroup-accordion {
+  margin-top: 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-main); overflow: hidden;
+}
+body[data-page="learning"] .learn-subgroup-accordion > summary {
+  position: relative; display: grid; grid-template-columns: 150px minmax(0,1fr); align-items:center; gap: 12px;
+  min-height: 50px; padding: 10px 42px 10px 13px; cursor:pointer; list-style:none;
+}
+body[data-page="learning"] .learn-subgroup-accordion > summary::-webkit-details-marker { display:none; }
+body[data-page="learning"] .learn-subgroup-accordion > summary::after {
+  content:"+"; position:absolute; right:12px; top:50%; transform:translateY(-50%); display:grid; place-items:center;
+  width:24px; height:24px; border-radius:8px; background:#eff6ff; color:var(--brand-blue); font-size:15px; font-weight:700;
+}
+body[data-page="learning"] .learn-subgroup-accordion[open] > summary { border-bottom:1px solid var(--line); background:#fafcff; }
+body[data-page="learning"] .learn-subgroup-accordion[open] > summary::after { content:"−"; }
+body[data-page="learning"] .learn-subgroup-label { color:var(--brand-blue); font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+body[data-page="learning"] .learn-subgroup-accordion > summary strong { color:var(--brand-navy); font-size:14px; line-height:1.35; }
+body[data-page="learning"] .learn-subgroup-content { padding: 13px 14px 15px; }
+body[data-page="learning"] .learn-subgroup-intro { margin:0 0 12px; max-width:780px; color:var(--muted); font-size:12.5px; line-height:1.6; }
+body[data-page="learning"] .learn-subgroup-content .learning-grid { margin:0; }
+body[data-page="learning"] .learn-tip-details { margin-top:14px; padding-top:10px; border-top:1px solid var(--line); }
+body[data-page="learning"] .learn-tip-details > summary { list-style:none; cursor:pointer; color:var(--brand-blue); font-size:12px; font-weight:750; }
+body[data-page="learning"] .learn-tip-details > summary::-webkit-details-marker { display:none; }
+body[data-page="learning"] .learn-tip-details > summary::after { content:"+"; margin-left:6px; font-weight:800; }
+body[data-page="learning"] .learn-tip-details[open] > summary::after { content:"−"; }
+body[data-page="learning"] .learn-tip-details > p { margin:8px 0 0; max-width:780px; color:var(--muted); font-size:12.5px; line-height:1.6; }
+body[data-page="learning"] .learn-reference-panel { margin-top:0; }
+@media (max-width:640px) {
+  body[data-page="learning"] .learn-subgroup-accordion > summary { grid-template-columns:1fr; gap:3px; min-height:54px; }
+}
+
+/* APRENDER v3.17 — jerarquía de lectura
+   Recupera el encabezado original y establece niveles claros:
+   herramienta > grupo > concepto. Los desplegables siguen compactos. */
+body[data-page="learning"] .learn-hero {
+  padding: 5.5rem 0 2rem;
+}
+body[data-page="learning"] .learn-hero h1 {
+  margin: .45rem 0 .8rem;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+body[data-page="learning"] .learn-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Nivel 1: herramienta */
+body[data-page="learning"] .learn-section-accordion > summary {
+  min-height: 66px;
+  padding: 12px 48px 12px 15px;
+}
+body[data-page="learning"] .learn-section-summary-text small {
+  font-size: 9.5px;
+}
+body[data-page="learning"] .learn-section-summary-text strong {
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+/* Nivel 2: grupo de aprendizaje */
+body[data-page="learning"] .learn-subgroup-accordion {
+  margin-top: 11px;
+  border-radius: 13px;
+  background: #fbfdff;
+}
+body[data-page="learning"] .learn-subgroup-accordion > summary {
+  min-height: 54px;
+  grid-template-columns: minmax(0, 165px) minmax(0, 1fr);
+  gap: 14px;
+  padding: 10px 42px 10px 14px;
+}
+body[data-page="learning"] .learn-subgroup-label {
+  font-size: 9.5px;
+  letter-spacing: .055em;
+}
+body[data-page="learning"] .learn-subgroup-accordion > summary strong {
+  font-size: 15px;
+  line-height: 1.3;
+}
+body[data-page="learning"] .learn-subgroup-content {
+  padding: 12px 14px 14px;
+  background: var(--surface-main);
+}
+body[data-page="learning"] .learn-subgroup-intro {
+  margin-bottom: 11px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* Nivel 3: concepto */
+body[data-page="learning"] .learn-topic-card > summary {
+  min-height: 74px;
+  padding: 11px 40px 11px 13px;
+}
+body[data-page="learning"] .learn-topic-kicker {
+  font-size: 9px;
+}
+body[data-page="learning"] .learn-topic-card > summary strong {
+  font-size: 13.5px;
+  line-height: 1.3;
+}
+body[data-page="learning"] .learn-topic-teaser {
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* El ejemplo es un cuarto nivel: solo aparece cuando se pide. */
+body[data-page="learning"] .learn-example-details,
+body[data-page="learning"] .learn-tip-details {
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  body[data-page="learning"] .learn-hero {
+    padding-top: 4.5rem;
+  }
+  body[data-page="learning"] .learn-subgroup-accordion > summary {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 }

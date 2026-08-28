@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tarjetas de crédito | Finance & Risk Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="etapa1.css">
+  <link rel="stylesheet" href="tarjetas.css">
+</head>
+<body data-page="cards">
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand" aria-label="Finance & Risk Lab - Inicio"><img src="assets/brand/logo-symbol.svg" alt="" class="brand-logo"><span>Finance & Risk Lab</span></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="comparador-tarjetas.html">Comparador</a>
+      <a class="active" href="tarjetas.html">Tarjetas</a>
+      <a href="tasas.html">Referencias de Tasas</a>
+      <a href="aprender.html">Aprender</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="tool-hero card-hero">
+    <div class="container">
+      <span class="eyebrow">Herramienta 06</span>
+      <h1>Tarjetas de crédito</h1>
+      <p>Entiende cómo cambia tu obligación cuando compras, llega el corte y eliges cuánto pagar.</p>
+      <div id="cardScenarioContext" class="scenario-context" hidden aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="entender" class="section">
+    <div class="container">
+      <details class="section-disclosure">
+        <summary class="section-disclosure-summary">
+          <div><span class="eyebrow">01 · Entender</span><h2>Una tarjeta no se comporta como un préstamo tradicional</h2><p>Una tarjeta es una línea de crédito que puede cambiar con cada compra y cada pago. Abre esta sección si quieres entender qué está pasando.</p></div>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="section-disclosure-content">
+          <div class="card-learning-grid learning-inside-disclosure">
+            <article class="panel learning-card"><span class="learning-number">01</span><h3>Límite y disponible</h3><p>El <strong>límite</strong> es el máximo de crédito que el banco te asigna. El <strong>disponible</strong> es lo que todavía puedes utilizar.</p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="example-strip"><span>Límite B/. 3,000</span><strong>− compra B/. 800</strong><span>≈ disponible B/. 2,200</span></div></details><p class="micro-note">El disponible puede cambiar por pagos, consumos pendientes u otros movimientos.</p></article>
+            <article class="panel learning-card"><span class="learning-number">02</span><h3>Fecha de corte</h3><p>Es el momento en que se cierra el periodo que aparecerá en tu estado de cuenta.</p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="timeline-mini"><span>Compras del periodo</span><b>→</b><span>Fecha de corte</span><b>→</b><span>Estado de cuenta</span></div></details><p class="micro-note">Las compras que se registren después pueden aparecer en el siguiente estado de cuenta.</p></article>
+            <article class="panel learning-card"><span class="learning-number">03</span><h3>Pago mínimo</h3><p>Es el monto mínimo que aparece en tu estado de cuenta según las condiciones de tu tarjeta.</p><p>Puede incluir distintos componentes y <strong>puede cambiar de un periodo a otro</strong>. Pagarlo a tiempo puede mantener la cuenta al día, pero la parte que no pagues puede seguir generando costos financieros.</p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="example-strip"><span>Debes B/. 1,000</span><strong>pago mínimo B/. 60</strong><span>quedan B/. 940 antes de otros movimientos</span></div><p class="micro-note">El ejemplo es ilustrativo: el pago mínimo real depende de las condiciones de tu tarjeta.</p></details></article>
+            <article class="panel learning-card"><span class="learning-number">04</span><h3>Pago total</h3><p>Es cubrir el saldo que corresponde al estado de cuenta que estás analizando.</p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="example-strip"><span>Saldo B/. 1,000</span><strong>→ pagas B/. 1,000</strong><span>→ saldo analizado B/. 0</span></div></details><p class="micro-note">En una cuenta real, revisa siempre el monto que aparece en tu estado de cuenta.</p></article>
+            <article class="panel learning-card"><span class="learning-number">05</span><h3>Mora</h3><p>La fecha importante es la <strong>fecha límite de pago</strong>. Si no realizas el pago requerido dentro del plazo, puede producirse mora y aplicarse los cargos que correspondan.</p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="example-strip"><span>Fecha límite: 20</span><strong>no realizas el pago requerido</strong><span>→ puede generarse mora según las condiciones aplicables</span></div></details><p class="micro-note">No asumimos un número universal de días: las condiciones de la tarjeta y la normativa aplicable importan.</p></article>
+            <article class="panel learning-card"><span class="learning-number">06</span><h3>Sobregiro</h3><p>Ocurre cuando el saldo supera el límite disponible. <strong>No es lo mismo que estar en mora.</strong></p><details class="example-disclosure"><summary>Ver ejemplo</summary><div class="example-strip"><span>Límite B/. 1,000</span><strong>saldo B/. 1,050</strong><span>→ B/. 50 por encima del límite</span></div></details><p class="micro-note">Puede generar un cargo si las condiciones del producto lo contemplan; el tratamiento exacto depende de la tarjeta.</p></article>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="simulador" class="section section-soft">
+    <div class="container">
+      <div class="section-heading"><span class="eyebrow">02 · Simular pagos</span><h2>Prueba una decisión y mira cómo cambia la deuda</h2><p>Prueba cuánto cambia tu saldo según el pago que elijas. La simulación se actualiza mientras cambias los datos para que puedas experimentar sin tener que pulsar otro botón.</p></div>
+      <div class="calculator-grid card-simulator-grid">
+        <div class="panel form-panel">
+          <div class="notice card-data-mode" id="cardDataModeNotice">
+            <strong>Trabaja con los datos que tengas</strong>
+            <p>No necesitas completar todo. Puedes empezar con el saldo, el pago o cualquier dato que conozcas. La simulación te dirá qué información está usando y qué podría cambiar el resultado.</p>
+            <div class="card-data-actions"><button type="button" class="button secondary small-button" id="cardExampleButton">Ver un ejemplo</button><button type="button" class="text-button" id="cardClearData">Usar mis datos</button></div>
+          </div>
+          <div class="card-data-status" id="cardDataStatus" aria-live="polite"></div>
+
+          <div class="card-form-section"><h3>Datos de tu tarjeta</h3>
+            <p class="section-helper">Agrega solo lo que conozcas. Los campos vacíos no se inventan ni se completan con el ejemplo.</p>
+            <label>Límite de crédito <span class="optional-label">Opcional</span><div class="input-wrap"><span>B/.</span><input id="cardLimit" type="number" min="0" step="50" placeholder="Ej.: 3,000"></div></label>
+            <label>Saldo que debes ahora <span class="important-label">Clave</span><div class="input-wrap"><span>B/.</span><input id="cardBalance" type="number" min="0" step="10" placeholder="Ej.: 1,200"></div><small class="field-help">Si solo conoces un dato, este es un buen punto para empezar.</small></label>
+            <label>Tasa de interés anual <span class="optional-label">Opcional</span><div class="input-wrap"><input id="cardRate" type="number" min="0" step="0.01" placeholder="Ej.: 20"><span>%</span></div></label>
+            <div class="two-col card-cycle-fields"><label>Fecha de corte <span class="optional-label">Opcional</span><div class="input-wrap"><input id="cardCutDay" type="number" min="1" max="31" step="1" placeholder="15"><span>día</span></div></label><label>Fecha límite de pago <span class="optional-label">Opcional</span><div class="input-wrap"><input id="cardDueDay" type="number" min="1" max="31" step="1" placeholder="5"><span>día</span></div></label></div>
+          </div>
+
+          <div class="card-form-section"><h3>Datos del estado de cuenta</h3>
+            <label>Pago mínimo que aparece en tu estado de cuenta <span class="optional-label">Opcional</span><div class="input-wrap"><span>B/.</span><input id="cardMinimum" type="number" min="0" step="1" placeholder="Ej.: 60"></div><small class="field-help">Si lo tienes, usamos ese valor. No asumimos que todas las tarjetas calculan el mínimo de la misma forma.</small></label>
+            <label class="check-row"><input id="useMinimumFormula" type="checkbox"><span>Quiero crear un pago mínimo estimado</span></label>
+            <div id="minimumFormulaPanel" class="nested-panel" hidden><label>Porcentaje de saldo<div class="input-wrap"><input id="minimumPercent" type="number" min="0" step="0.1" placeholder="Ej.: 5"><span>%</span></div></label><label>Otros cargos del periodo<div class="input-wrap"><span>B/.</span><input id="minimumFees" type="number" min="0" step="0.01" placeholder="0"></div></label><p class="field-help">Este porcentaje es solo para experimentar. El pago mínimo real debe venir de las condiciones de tu tarjeta o de tu estado de cuenta.</p></div>
+          </div>
+
+          <div class="card-form-section"><h3>Prueba una decisión</h3>
+            <label>Compras nuevas cada mes <span class="optional-label">Opcional</span><div class="input-wrap"><span>B/.</span><input id="cardNewSpend" type="number" min="0" step="10" placeholder="Ej.: 300"></div><small class="field-help">Son compras nuevas que agregas al escenario; no las contamos como gasto de tu presupuesto aquí.</small></label>
+            <label>Pago que harás cada mes <span class="important-label">Clave</span><div class="input-wrap"><span>B/.</span><input id="cardPayment" type="number" min="0" step="10" placeholder="Ej.: 150"></div></label>
+            <div class="quick-payments" role="group" aria-label="Opciones de pago"><button type="button" data-payment="minimum">Usar mínimo</button><button type="button" data-payment="100">B/. 100</button><button type="button" data-payment="200">B/. 200</button><button type="button" data-payment="full">Saldo completo</button></div>
+            <label>Durante cuántos meses <span class="optional-label">Opcional</span><div class="input-wrap"><input id="cardMonths" type="number" min="1" max="60" step="1" placeholder="24"><span>meses</span></div>
+          </div>
+          <div class="live-update-note" id="liveUpdateNote" aria-live="polite"><span class="live-dot"></span><strong>Se actualiza automáticamente</strong><span id="liveUpdateText">cuando cambias un dato.</span></div>
+        </div>
+        <div class="panel results-panel card-results-panel">
+          <div id="cardStatus" class="frl-information-status" data-level="basic"><strong>Simulación aproximada</strong><p>El resultado se basa en los datos que proporcionas. Si falta información, algunas partes no se pueden estimar o pueden cambiar al compararlas con tu banco.</p></div>
+          <div id="cardCycleSummary" class="card-cycle-summary" aria-live="polite"></div><div class="simulation-disclaimer"><strong>Una simulación, no un estado de cuenta</strong><p>Los resultados son aproximados y dependen de la información que agregues y de las condiciones de tu tarjeta. Tu banco puede mostrar un resultado diferente.</p></div>
+          <div class="result emphasis"><span>Saldo que todavía debes al final</span><strong id="cardEndingBalance">—</strong><small>Lo que queda pendiente al terminar el periodo que simulaste.</small></div>
+          <div class="result"><span>Intereses estimados</span><strong id="cardInterestTotal">—</strong><small>Costo financiero estimado con la tasa y el método disponibles. Si falta la tasa, no lo inventamos.</small></div>
+          <div class="result"><span>Pagos que probaste</span><strong id="cardPaidTotal">—</strong><small>La suma de los pagos que el escenario aplica durante los periodos simulados.</small></div>
+          <div class="result"><span>Compras nuevas del escenario</span><strong id="cardSpendTotal">—</strong><small>Lo que agregaste como nuevas compras. No significa automáticamente un gasto adicional en tu presupuesto.</small></div>
+          <div class="card-visual" aria-live="polite"><div class="card-meter"><span id="cardBalanceMeter"></span></div><div class="card-meter-labels"><span>Saldo inicial</span><strong id="cardMeterValue">B/. 0.00</strong><span>saldo que queda</span></div></div>
+          <div class="card-insight" id="cardInsight"><strong>Empieza por una decisión.</strong><p>La simulación te mostrará qué parte de tus pagos reduce saldo y qué parte se destina a intereses.</p></div>
+          <div class="table-guide"><strong>Cómo leer la tabla</strong><p>Cada mes empieza con el saldo anterior. El <strong>interés</strong> es el costo estimado de financiar ese saldo; no significa que la tasa haya subido. Luego se agregan las compras nuevas y finalmente se aplica tu pago. Por eso el saldo final puede bajar poco, bajar mucho o incluso subir.</p></div>
+          <div class="card-cycle-guide panel"><strong>Cómo leer el ciclo</strong><p>Partimos del saldo que traes. Durante el período pueden aparecer compras e intereses. Luego se aplica el pago que estás probando. Lo que queda pasa al siguiente período.</p><div class="cycle-flow" aria-label="Saldo inicial más compras e intereses, menos pago, igual a saldo final"><span>Saldo que traes</span><b>+</b><span>Compras e intereses</span><b>−</b><span>Pago</span><b>=</b><strong>Lo que queda</strong></div></div>
+          <div class="table-wrap"><table class="card-amortization-table"><thead><tr><th>Mes</th><th>Saldo inicial</th><th>Interés del mes</th><th>Compras nuevas</th><th>Tu pago</th><th>Saldo al final</th></tr></thead><tbody id="cardSchedule"></tbody></table></div>
+          <div class="next-step"><h3>¿Quieres ver cómo esta obligación afecta tu presupuesto?</h3><p>Si quieres continuar, el pago que estás probando puede pasar a Capacidad de Pago. Si no, puedes seguir usando esta herramienta de forma independiente.</p><div class="frl-next-actions"><button id="cardToCapacity" class="button secondary" type="button">Analizar en Capacidad de Pago</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="segmentos" class="section">
+    <div class="container">
+      <details class="section-disclosure">
+        <summary class="section-disclosure-summary">
+          <div><span class="eyebrow">03 · Conoce tu tarjeta</span><h2>Entiende qué tienes y cómo aprovecharlo</h2><p>Primero conoce tu tarjeta. Después puedes explorar cómo aprovechar sus beneficios y evitar errores comunes.</p></div>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="section-disclosure-content card-knowledge-content">
+          <details class="knowledge-group" open>
+            <summary><span class="knowledge-icon fib-mark fib-card" aria-hidden="true"><i></i></span><span><strong>Conoce tu tarjeta</strong><small>Identifica el nivel, la red y el tipo de beneficios que tienes.</small></span><span class="knowledge-plus" aria-hidden="true">+</span></summary>
+            <div class="knowledge-group-body">
+              <div class="segment-grid segment-grid-rich">
+                <article class="panel benefit-card"><span class="segment-tag">Nivel</span><h3>Classic, Gold, Platinum, Signature, Infinite…</h3><p>Los niveles suelen agrupar servicios y beneficios. El nombre del nivel, por sí solo, no te dice cuánto pagarás de intereses.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Úsalo así</strong><p>Compara los beneficios que realmente utilizarías y revisa las condiciones de la tarjeta completa. El nivel es una pista sobre servicios y beneficios, no una medida directa del costo de financiar una deuda.</p></div></details></article>
+                <article class="panel benefit-card"><span class="segment-tag">Cashback</span><h3>Dinero de vuelta por compras elegibles</h3><p>El beneficio puede depender de la tasa de devolución, categorías, topes y condiciones del programa.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Qué revisar</strong><p>Busca la tasa de devolución, las categorías que aplican, los topes y cuándo se acredita. Dos tarjetas con cashback pueden funcionar de manera muy distinta.</p></div></details></article>
+                <article class="panel benefit-card"><span class="segment-tag">Puntos y millas</span><h3>La recompensa vale según cómo la uses</h3><p>Los puntos o millas se acumulan según las reglas del programa y no necesariamente tienen el mismo valor al canjearlos.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Compara el valor</strong><p>Antes de canjear, compara cuánto obtienes por tus puntos o millas. En viajes, considera también impuestos, cargos y restricciones del canje.</p></div></details></article>
+              </div>
+              <div class="network-card panel network-card-expanded">
+                <span class="segment-tag">Visa y Mastercard</span><h3>La red y el banco cumplen funciones diferentes</h3>
+                <p>Visa y Mastercard son redes de pago. El banco ofrece la tarjeta concreta y define sus condiciones, costos y programa de beneficios.</p>
+                <div class="network-compare"><div><strong>Visa</strong><span>Classic · Gold · Platinum · Signature · Infinite</span></div><div><strong>Mastercard</strong><span>Standard · Gold · Platinum · World · World Elite</span></div></div>
+                <details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Una forma sencilla de verlo</strong><p>La red es parte de la infraestructura y puede aportar beneficios asociados al nivel. El banco decide las condiciones de la tarjeta que tú contratas. Por eso, compara el producto completo y no solo la palabra “Platinum”, “Infinite” o “World”.</p></div></details>
+              </div>
+            </div>
+          </details>
+
+          <details class="knowledge-group">
+            <summary><span class="knowledge-icon fib-mark fib-growth" aria-hidden="true"><i></i></span><span><strong>Sácale provecho</strong><small>Ideas prácticas para aprovechar recompensas y manejar mejor tus fechas.</small></span><span class="knowledge-plus" aria-hidden="true">+</span></summary>
+            <div class="knowledge-group-body">
+              <div class="tip-grid">
+                <article class="tip-card"><span class="segment-tag">Cashback</span><h3>Haz que la recompensa acompañe tus compras normales</h3><p>Si ya necesitas hacer una compra, revisa si tu tarjeta la recompensa.</p><details class="learn-more"><summary>Ver el consejo</summary><div class="learn-more-body"><strong>No compres para ganar cashback</strong><p>Una recompensa solo tiene sentido si el beneficio no te lleva a gastar más de lo que habías planeado. Revisa también topes y categorías.</p></div></details></article>
+                <article class="tip-card"><span class="segment-tag">Puntos</span><h3>Busca el mejor uso, no solo más puntos</h3><p>La cantidad de puntos no cuenta toda la historia.</p><details class="learn-more"><summary>Ver el consejo</summary><div class="learn-more-body"><strong>Compara antes de canjear</strong><p>Calcula cuánto valor obtienes por tus puntos en cada opción de canje. Si existen categorías bonificadas, conoce sus condiciones antes de comprar.</p></div></details></article>
+                <article class="tip-card"><span class="segment-tag">Millas</span><h3>Haz que tus millas tengan un propósito</h3><p>Una misma cantidad de millas puede producir valores diferentes según el canje.</p><details class="learn-more"><summary>Ver el consejo</summary><div class="learn-more-body"><strong>Compara dinero vs. millas</strong><p>Antes de reservar, compara el precio en dinero con las millas requeridas y los impuestos o cargos. Así puedes estimar cuánto valor estás obteniendo.</p></div></details></article>
+                <article class="tip-card"><span class="segment-tag">Fechas</span><h3>Aprende a usar tu fecha de corte</h3><p>La fecha de corte y la fecha límite de pago no son lo mismo.</p><details class="learn-more"><summary>Ver el consejo</summary><div class="learn-more-body"><strong>Prueba el ciclo</strong><p>Una compra registrada después del corte normalmente pertenece al siguiente periodo. Eso puede cambiar cuándo aparecerá en tu estado de cuenta y cuándo llegará su fecha límite.</p></div></details></article>
+                <article class="tip-card"><span class="segment-tag">Pago</span><h3>Usar la tarjeta y financiar una deuda son cosas distintas</h3><p>Puedes usar la tarjeta y luego decidir cuánto del saldo cubrirás.</p><details class="learn-more"><summary>Ver el consejo</summary><div class="learn-more-body"><strong>Mira el costo de mantener saldo</strong><p>Si tienes capacidad para cubrir el saldo, compara en el simulador qué ocurre cuando pagas el total frente a mantener parte de la deuda.</p></div></details></article>
+              </div>
+            </div>
+          </details>
+
+          <details class="knowledge-group">
+            <summary><span class="knowledge-icon fib-mark fib-balance" aria-hidden="true"><i></i></span><span><strong>Evita errores comunes</strong><small>Pequeñas confusiones pueden cambiar mucho el resultado de una tarjeta.</small></span><span class="knowledge-plus" aria-hidden="true">+</span></summary>
+            <div class="knowledge-group-body">
+              <div class="tip-grid">
+                <article class="tip-card caution-card"><span class="segment-tag">Disponible</span><h3>Disponible no significa dinero tuyo</h3><p>Es crédito que todavía puedes utilizar, no efectivo que ya tienes.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Piensa en él como capacidad de crédito</strong><p>Cada compra reduce el disponible y aumenta una obligación que tendrás que pagar.</p></div></details></article>
+                <article class="tip-card caution-card"><span class="segment-tag">Pago mínimo</span><h3>El mínimo no es el objetivo</h3><p>Es el mínimo exigido para ese periodo, no una señal de que la deuda ya está resuelta.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Prueba otro monto</strong><p>Usa el simulador para comparar cómo cambia el saldo y el costo financiero cuando pagas más que el mínimo.</p></div></details></article>
+                <article class="tip-card caution-card"><span class="segment-tag">Recompensas</span><h3>No persigas puntos, millas o cashback</h3><p>Una recompensa no convierte una compra innecesaria en una buena decisión.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Primero la compra, después la recompensa</strong><p>Evalúa si la compra tiene sentido para tu presupuesto. Luego revisa si tu tarjeta puede darte un beneficio por ella.</p></div></details></article>
+                <article class="tip-card caution-card"><span class="segment-tag">Saldo</span><h3>Pagar y volver a usar cambia el resultado</h3><p>Una deuda puede bajar con tu pago y volver a subir con nuevas compras.</p><details class="learn-more"><summary>Quiero saber más</summary><div class="learn-more-body"><strong>Mira el ciclo completo</strong><p>En el simulador puedes agregar compras nuevas para ver cómo una obligación puede mantenerse o crecer aunque estés realizando pagos.</p></div></details></article>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+    </div>
+  </section>
+
+</main>
+<footer><div class="container footer-wrap"><span>Finance & Risk Lab</span><a href="metodologia.html">Cómo calculamos</a></div></footer>
+<script src="frl-scenario.js"></script>
+<script src="card-engine.js"></script>
+<script src="tarjetas.js"></script>
+</body>
+</html>
