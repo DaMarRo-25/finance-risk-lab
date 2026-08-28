@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<rect width="1200" height="760" fill="#11100f"/>
+<g stroke="#c9a067" fill="none" stroke-width="5">
+  <path d="M155 150 Q40 380 155 610"/>
+  <path d="M1045 150 Q1160 380 1045 610"/>
+  <path d="M205 380 H995" stroke-dasharray="10 12" opacity=".35"/>
+  <path d="M155 210 Q250 380 155 550" opacity=".45"/>
+  <path d="M1045 210 Q950 380 1045 550" opacity=".45"/>
+  <path d="M285 380 H420"/>
+  <path d="M780 380 H915"/>
+  <path d="M420 350 H520 V410 H420 Z"/>
+  <path d="M680 350 H780 V410 H680 Z"/>
+  <path d="M520 380 H680" stroke="#69bd45"/>
+  <path d="M300 380 L380 330"/>
+  <path d="M300 380 L380 430"/>
+  <path d="M900 380 L820 330"/>
+  <path d="M900 380 L820 430"/>
+</g>
+<g fill="#e8dfd4" font-family="Arial, Helvetica, sans-serif">
+  <text x="600" y="70" text-anchor="middle" font-size="34" letter-spacing="5" fill="#ffc400">ILLUSION TRANSMITTER</text>
+  <text x="600" y="112" text-anchor="middle" font-size="18" letter-spacing="2" fill="#bdb4ab">VALERIE L. THOMAS · U.S. PATENT 4,229,761 · 1980</text>
+  <text x="115" y="665" text-anchor="middle" font-size="20">TRANSMIT</text>
+  <text x="1085" y="665" text-anchor="middle" font-size="20">RECEIVE</text>
+  <text x="600" y="335" text-anchor="middle" font-size="18" fill="#69bd45">IMAGE / VIDEO SIGNAL</text>
+  <text x="470" y="455" text-anchor="middle" font-size="18">PROCESSOR</text>
+  <text x="730" y="455" text-anchor="middle" font-size="18">TRANSCEIVER</text>
+  <text x="155" y="705" text-anchor="middle" font-size="15" fill="#aaa">concave mirror</text>
+  <text x="1045" y="705" text-anchor="middle" font-size="15" fill="#aaa">concave mirror</text>
+</g>
+<g fill="#ffc400">
+  <circle cx="600" cy="380" r="7"/>
+  <circle cx="155" cy="380" r="7"/>
+  <circle cx="1045" cy="380" r="7"/>
+</g>
+</svg>

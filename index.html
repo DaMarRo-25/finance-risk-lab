@@ -1,306 +1,550 @@
 <!DOCTYPE html>
-<html lang="es">
+
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-  <meta
-    name="description"
-    content="Herramientas educativas para comparar propuestas, calcular préstamos, analizar capacidad de pago, consultar tasas y comprender tablas de amortización."
-  >
-  <title>Finance & Risk Lab</title>
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-  <link
-    rel="stylesheet"
-    href="styles.css"
-  >
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="RAÍCES FINAL · V49" name="version"/><title>RAÍCES · BNA Digital Museum · V49</title>
+<style>
+:root{--black:#090909;--panel:#121212;--cream:#fff3df;--yellow:#ffc400;--red:#e31b23;--green:#69bd45;--teal:#00a7a7;--line:#6e6255;--muted:#c9c0b7}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:var(--black);color:var(--cream);font-family:Arial,Helvetica,sans-serif}button{font:inherit}body{overflow:hidden}#app{width:100%;height:100%;position:relative;background:#090909}.scene{position:absolute;inset:0;display:none;overflow:hidden}.scene.active{display:block}.scroll{position:absolute;inset:0;overflow:auto;scrollbar-width:thin}.bna{position:fixed;z-index:100;top:14px;left:16px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #ffffff25;border-radius:28px;padding:6px 10px;box-shadow:0 10px 30px #0008}.bna img{width:32px;height:32px;object-fit:contain}.bna strong{font-size:12px;letter-spacing:.08em;color:#111}.bna small{display:block;color:#333;font-size:6px;letter-spacing:.06em;margin-top:2px}.topnav{position:fixed;z-index:90;top:18px;right:20px;display:flex;gap:8px;align-items:center}.topnav button{background:#0a0a0ad9;border:1px solid #ffffff28;color:#eee;padding:8px 11px;border-radius:4px;font-size:8px;letter-spacing:.12em;cursor:pointer}.topnav button:hover{border-color:var(--yellow);color:var(--yellow)}
+/* entrance / approved museum vibe */
+.home-mode .topnav{display:none!important}.hero{height:100%;position:relative;display:grid;place-items:center;background:linear-gradient(180deg,#0008,#000b),url('./assets/lobby-bg.jpg') center/cover no-repeat}.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,transparent 0 18%,#0008 70%),linear-gradient(180deg,#0002,#000b)}.heroInner{position:relative;z-index:2;text-align:center;width:min(760px,92vw)}.tree{width:min(220px,35vw);max-height:210px;object-fit:contain;filter:drop-shadow(0 0 25px #ffc40066);animation:float 4s ease-in-out infinite}.brand{font:700 clamp(62px,10vw,120px) Georgia,serif;letter-spacing:.07em;margin:0;color:#fff;text-shadow:0 5px 40px #000}.tagline{max-width:620px;margin:8px auto 20px;font-size:13px;line-height:1.6;letter-spacing:.12em;text-transform:uppercase;color:#eee}.tagline b{color:var(--yellow)}.cta{display:inline-flex;gap:10px;justify-content:center;flex-wrap:wrap}.cta button,.gold{border:1px solid var(--yellow);background:var(--yellow);color:#111;padding:13px 22px;font-weight:700;font-size:10px;letter-spacing:.12em;cursor:pointer;border-radius:4px}.cta .dark{background:#090909dd;color:#fff;border-color:#fff6}.cta button:hover{transform:translateY(-2px)}
+/* lobby */
+.lobby{height:100%;position:relative;background:#070707}.lobbyBg{position:absolute;inset:0;background:linear-gradient(90deg,#050505e6,#05050548,#050505e6),url('./assets/lobby-bg.jpg') center/cover no-repeat};filter:saturate(1.05)}.lobbyBg:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,#ffc40018,transparent 35%),linear-gradient(180deg,#0002,#000c)}.lobbyContent{position:absolute;inset:0;overflow:auto;padding:90px 5vw 35px}.lobbyHead{max-width:900px;margin:0 auto 26px;text-align:center}.lobbyHead .ey{font-size:9px;letter-spacing:.22em;color:var(--yellow)}.lobbyHead h2{font:400 clamp(35px,5vw,60px) Georgia,serif;margin:6px 0}.lobbyHead p{margin:0;color:#ddd;font-size:11px;letter-spacing:.08em}.doors{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:stretch}.door{min-height:230px;border:1px solid #ffffff38;border-radius:10px;padding:18px;position:relative;overflow:hidden;cursor:pointer;background:#101010d9;box-shadow:0 20px 55px #0009;transition:.3s;display:flex;flex-direction:column;justify-content:flex-end}.door:before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--accent),transparent 55%);opacity:.18}.door:hover{transform:translateY(-7px);border-color:var(--accent);box-shadow:0 25px 70px #000}.door>*{position:relative;z-index:2}.door .num{font-size:9px;letter-spacing:.2em;color:var(--accent);margin-bottom:auto}.door h3{font:400 27px Georgia,serif;margin:0 0 5px}.door p{font-size:10px;color:#d1c8c0;line-height:1.4;margin:0}.door.fact{--accent:var(--red)}.door.science{--accent:var(--yellow)}.door.music{--accent:var(--teal)}.door.art{--accent:var(--green)}.door .miniIcon{font-size:36px;position:absolute;right:15px;top:15px;opacity:.55}.lobbyBottom{max-width:1100px;margin:13px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}.bottomCard{border:1px solid #ffffff2c;border-radius:9px;background:#090909df;padding:15px;cursor:pointer}.bottomCard:hover{border-color:var(--yellow)}.bottomCard strong{display:block;color:var(--yellow);font-size:9px;letter-spacing:.15em}.bottomCard span{display:block;margin-top:5px;font:400 20px Georgia,serif}.hint{text-align:center;color:#aaa;font-size:8px;letter-spacing:.15em;margin:18px 0}
+/* general room */
+.roomBg{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#0008,#000b),url('./assets/lobby-bg.jpg') center/cover no-repeat}.roomBg:before,.roomBg:after{content:"";position:absolute;border-radius:50%;filter:blur(10px);opacity:.7}.scienceBg{background:radial-gradient(circle at 25% 25%,#ffc4002b,transparent 22%),radial-gradient(circle at 80% 70%,#e31b2325,transparent 24%),linear-gradient(135deg,#16130db0,#09090980 62%,#111b)}.scienceBg:before{width:55vw;height:55vw;left:-15vw;top:10vh;border:1px solid #ffc40033}.scienceBg:after{width:65vw;height:65vw;right:-30vw;bottom:-25vw;border:1px solid #e31b2333}.musicBg{background:radial-gradient(circle at 20% 30%,#00a7a733,transparent 25%),linear-gradient(135deg,#0b1010b5,#0a090a88 55%,#160b0cb5),url('./assets/lobby-bg.jpg') center/cover no-repeat}.musicBg:before{width:120vw;height:2px;left:-10vw;top:50%;background:linear-gradient(90deg,transparent,var(--yellow),var(--red),var(--teal),transparent);box-shadow:0 -55px 0 #ffc40018,0 55px 0 #e31b2318;animation:wave 5s linear infinite}.artBg{background:radial-gradient(circle at 70% 25%,#69bd4530,transparent 25%),radial-gradient(circle at 25% 75%,#e31b2322,transparent 25%),linear-gradient(135deg,#11130db0,#09090988),url('./assets/lobby-bg.jpg') center/cover no-repeat}.artBg:before{width:50vw;height:50vw;left:-10vw;bottom:-15vw;border:35px solid #ffc40012;transform:rotate(18deg)}
+.roomScroll{position:absolute;inset:0;overflow:auto;padding:90px 5vw 80px}.roomHead{max-width:1000px;margin:0 auto 25px;display:flex;justify-content:space-between;gap:25px;align-items:end}.roomHead .ey{color:var(--yellow);font-size:9px;letter-spacing:.2em}.roomHead h2{font:400 clamp(38px,5vw,64px) Georgia,serif;margin:5px 0}.roomHead p{max-width:600px;color:#d1c8c0;font-size:11px;line-height:1.6;margin:0}.back{position:fixed;z-index:50;bottom:18px;left:18px;border:1px solid #fff4;background:#090909e8;color:#fff;padding:11px 15px;border-radius:4px;font-size:9px;letter-spacing:.12em;cursor:pointer}.back:hover{border-color:var(--yellow);color:var(--yellow)}
+/* science */
+.scienceGrid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.personCard{position:relative;min-height:280px;border:1px solid #ffffff30;background:#101010e8;border-radius:8px;overflow:hidden;cursor:pointer;display:grid;grid-template-columns:42% 58%;transition:.3s}.personCard:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 20px 60px #000}.personPhoto{background:#1a1a1a center/cover no-repeat;min-height:100%}.personCopy{padding:20px}.personCopy small{font-size:8px;letter-spacing:.17em;color:var(--accent)}.personCopy h3{font:400 28px Georgia,serif;margin:7px 0}.personCopy .hook{font-size:11px;line-height:1.5;color:#f1e9df;margin:0 0 12px}.personCopy .microfact{border-left:2px solid var(--accent);padding-left:9px;font-size:9px;line-height:1.5;color:#c8c0b8}.personCard.patricia{--accent:var(--yellow)}.personCard.elijah{--accent:var(--green)}.personCard.frederick{--accent:var(--teal)}.personCard.west{--accent:var(--red)}.scienceNote{max-width:1000px;margin:15px auto 0;border:1px solid #ffffff24;padding:15px;background:#090909c9;text-align:center}.scienceNote strong{color:var(--yellow);font-size:9px;letter-spacing:.15em}.scienceNote p{margin:6px 0 0;color:#c9c0b7;font-size:10px}
+/* facts */
+.factsRoom{background:radial-gradient(circle at 50% 25%,#ffc4002b,transparent 30%),linear-gradient(135deg,#100f0cb0,#09090988),url('./assets/lobby-bg.jpg') center/cover no-repeat}.factsScroll{position:absolute;inset:0;overflow:auto;padding:90px 5vw 60px}.factsHead{text-align:center;margin-bottom:24px}.factsHead h2{font:400 clamp(38px,5vw,54px) Georgia,serif;margin:0}.factsHead p{color:#c8c0b8;font-size:14px;line-height:1.55;max-width:760px;margin:10px auto 0}.factGrid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.factCard{background:#121212e8;border:1px solid #ffffff26;border-radius:8px;overflow:hidden;min-height:310px;transition:.25s}.factCard:hover{transform:translateY(-5px);border-color:var(--accent)}.factImage{height:145px;background:#181818 center/cover no-repeat}.factCard .copy{padding:16px}.factCard small{font-size:9px;letter-spacing:.12em;color:var(--accent)}.factCard h3{font:400 23px Georgia,serif;margin:7px 0 9px}.factCard p{font-size:13px;line-height:1.6;color:#cfc7bf;margin:0}.factMore{text-align:center;margin:17px}.factMore button{background:#111;border:1px solid var(--yellow);color:var(--yellow);padding:10px 16px;font-size:8px;letter-spacing:.14em;cursor:pointer}
+/* music */
+.musicScroll{position:absolute;inset:0;overflow:auto;padding:90px 5vw 70px}.musicHead{max-width:1000px;margin:auto;text-align:left}.musicHead .ey{color:var(--yellow);font-size:9px;letter-spacing:.2em}.musicHead h2{font:400 clamp(40px,6vw,70px) Georgia,serif;margin:5px 0}.musicHead p{max-width:780px;color:#d1c8c0;font-size:11px;line-height:1.6}.genreGrid{max-width:1000px;margin:28px auto 0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.genre{min-height:330px;border:1px solid #ffffff28;background:#0d0d0de8;border-radius:7px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:end;cursor:pointer;transition:.3s}.genre:hover{transform:translateY(-7px);border-color:var(--c)}.genreVisual{position:absolute;inset:0 0 auto;height:160px;background:var(--bg);display:grid;place-items:center}.genreVisual span{font:400 24px Georgia,serif;color:#fff;text-shadow:0 3px 20px #000}.genreBody{position:relative;padding:15px;background:linear-gradient(transparent,#090909 18%)}.genreBody small{color:var(--c);font-size:7px;letter-spacing:.14em}.genreBody h3{font:400 19px Georgia,serif;margin:6px 0}.genreBody p{font-size:9px;line-height:1.45;color:#c9c0b8;margin:0}.genreBody b{display:block;color:#fff;font-size:7px;letter-spacing:.12em;margin-top:10px}.g1{--c:#ffc400;--bg:linear-gradient(135deg,#4b351f,#111)}.g2{--c:#00a7a7;--bg:linear-gradient(135deg,#182f31,#111)}.g3{--c:#e31b23;--bg:linear-gradient(135deg,#3a1515,#111)}.g4{--c:#ff7d38;--bg:linear-gradient(135deg,#4a2414,#111)}.g5{--c:#69bd45;--bg:linear-gradient(135deg,#1d3a1c,#111)}.g6{--c:#9b7cff;--bg:linear-gradient(135deg,#271d3e,#111)}.musicQuote{max-width:1000px;margin:15px auto 0;border-left:3px solid var(--yellow);padding:10px 14px;background:#0b0b0bba;font:400 19px Georgia,serif}.musicQuote span{display:block;font:9px Arial;color:#aaa;margin-top:6px;letter-spacing:.12em}
+/* art */
+.artGrid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.artCard{min-height:330px;border:1px solid #ffffff25;background:#101010e8;border-radius:8px;overflow:hidden}.artImage{height:175px;display:grid;place-items:center;background:var(--bg)}.artImage span{font:400 28px Georgia,serif}.artText{padding:17px}.artText small{color:var(--green);font-size:8px;letter-spacing:.16em}.artText h3{font:400 25px Georgia,serif;margin:7px 0}.artText p{font-size:10px;line-height:1.55;color:#c8c0b8}
+/* feedback */
+.feedbackRoom{background:radial-gradient(circle at 50% 20%,#ffc4002b,transparent 30%),linear-gradient(135deg,#111b,#09090988),url('./assets/lobby-bg.jpg') center/cover no-repeat}.feedbackScroll{position:absolute;inset:0;overflow:auto;padding:95px 5vw 70px}.feedbackWrap{max-width:1000px;margin:auto}.feedbackHead .ey{color:var(--yellow);font-size:9px;letter-spacing:.2em}.feedbackHead h2{font:400 clamp(38px,5vw,60px) Georgia,serif;margin:6px 0}.feedbackHead p{color:#c9c0b8;font-size:11px}.feedbackGrid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:25px}.formBox,.wall{border:1px solid #ffffff25;border-radius:8px;background:#111111e8;padding:18px}.formBox label{display:block;font-size:8px;letter-spacing:.13em;color:var(--yellow);margin:0 0 6px}.formBox input,.formBox textarea{width:100%;border:1px solid #ffffff2d;background:#080808;color:#fff;padding:11px;margin-bottom:14px;border-radius:4px;outline:none}.formBox textarea{min-height:150px;resize:vertical}.formBox button{border:1px solid var(--yellow);background:var(--yellow);color:#111;padding:10px 13px;font-weight:700;font-size:8px;letter-spacing:.1em;cursor:pointer}.wall h3{font:400 26px Georgia,serif;margin:0 0 15px}.comment{padding:12px;border-left:2px solid var(--green);background:#0a0a0a;margin:8px 0}.comment strong{font-size:9px}.comment p{font-size:9px;line-height:1.5;color:#d2c8bf;margin:5px 0 0}
+/* person modal */
+.modal{position:fixed;z-index:200;inset:0;display:none;background:#050505ee;backdrop-filter:blur(7px);padding:20px}.modal.open{display:flex;align-items:center;justify-content:center}.modalCard{width:min(1040px,96vw);max-height:94vh;overflow:auto;background:#111;border:1px solid #ffffff32;border-radius:10px;box-shadow:0 35px 100px #000;padding:22px;position:relative}.close{position:absolute;right:12px;top:10px;border:0;background:none;color:#fff;font-size:28px;cursor:pointer}.personHero{display:grid;grid-template-columns:35% 65%;gap:22px}.modalPhoto{min-height:360px;border:1px solid #ffffff24;background:#181818 center/cover no-repeat}.modalKicker{font-size:8px;letter-spacing:.18em;color:var(--yellow)}.modalCard h2{font:400 clamp(40px,6vw,68px) Georgia,serif;margin:7px 0}.modalCard .lead{font-size:13px;line-height:1.65;color:#e7ded4}.emotion{margin:16px 0;padding:14px;border-left:4px solid var(--yellow);background:#19150e}.emotion strong{display:block;color:var(--yellow);font-size:8px;letter-spacing:.16em}.emotion p{font:400 20px Georgia,serif;line-height:1.35;margin:6px 0 0}.facts2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}.fact2{border:1px solid #ffffff24;padding:12px;background:#0c0c0c}.fact2 b{color:var(--yellow);font-size:9px;letter-spacing:.1em}.fact2 h4{font:400 17px Georgia,serif;margin:6px 0}.fact2 p{font-size:9px;line-height:1.5;color:#c8c0b8;margin:0}.invBox{display:grid;grid-template-columns:35% 65%;gap:22px;border:1px solid #ffffff28;padding:14px;background:#0a0a0a;align-items:stretch}.invBox img{width:100%;height:360px;min-height:360px;object-fit:contain;background:#161616;border:1px solid #ffffff18;border-radius:4px}.invBox h3{font:400 24px Georgia,serif;margin:5px 0}.invBox p{font-size:10px;line-height:1.5;color:#c8c0b8}.invBox h3{font:400 24px Georgia,serif;margin:5px 0}.invBox p{font-size:10px;line-height:1.5;color:#c8c0b8}.detailTitle{font-size:8px;letter-spacing:.17em;color:var(--teal);margin-top:20px}.detailGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:9px}.detail{border:1px solid #ffffff20;padding:0;background:#0b0b0b;cursor:pointer;text-align:left;color:#fff}.detail img{width:100%;height:120px;object-fit:contain;background:#151515;display:block}.detail span{display:block;padding:8px;font-size:8px;line-height:1.35}.impact{margin-top:15px;padding:14px;border:1px solid #ffc40044;background:linear-gradient(135deg,#1b160d,#0d0d0d)}.impact b{font-size:8px;letter-spacing:.15em;color:var(--yellow)}.impact p{font:400 19px Georgia,serif;line-height:1.4;margin:7px 0 0}.source{font-size:7px;color:#8f8f8f;margin-top:9px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes wave{0%{transform:translateX(-5%)}100%{transform:translateX(5%)}}
+@media(max-width:900px){.doors{grid-template-columns:repeat(2,1fr)}.factGrid{grid-template-columns:repeat(2,1fr)}.genreGrid{grid-template-columns:repeat(3,1fr)}.scienceGrid{grid-template-columns:1fr}.personCard{min-height:250px}.artGrid{grid-template-columns:1fr}.personHero{grid-template-columns:1fr}.modalPhoto{min-height:280px;max-height:38vh}.detailGrid{grid-template-columns:1fr 1fr}.feedbackGrid{grid-template-columns:1fr}}
+@media(max-width:600px){.topnav{top:16px;right:10px}.topnav button:nth-child(n+3){display:none}.bna{top:10px;left:10px}.bna img{width:28px;height:28px}.bna strong{font-size:10px}.heroInner{padding-top:35px}.tree{width:145px}.brand{font-size:60px}.tagline{font-size:9px}.lobbyContent,.roomScroll,.factsScroll,.musicScroll,.feedbackScroll{padding:78px 15px 75px}.lobbyHead h2{font-size:34px}.doors{grid-template-columns:1fr 1fr;gap:8px}.door{min-height:210px;padding:14px}.door h3{font-size:20px}.door p{font-size:8px}.door .miniIcon{font-size:27px}.lobbyBottom{grid-template-columns:1fr}.roomHead{display:block}.roomHead h2{font-size:39px}.roomHead p{font-size:10px}.personCard{grid-template-columns:38% 62%;min-height:220px}.personCopy{padding:13px}.personCopy h3{font-size:21px}.personCopy .hook{font-size:9px}.personCopy .microfact{font-size:8px}.factGrid{grid-template-columns:1fr}.factCard{min-height:280px}.factImage{height:160px}.genreGrid{grid-template-columns:1fr 1fr;gap:8px}.genre{min-height:285px}.genreVisual{height:125px}.genreBody h3{font-size:17px}.genreBody p{font-size:8px}.musicQuote{font-size:16px}.facts2{grid-template-columns:1fr}.invBox{grid-template-columns:1fr;gap:12px}.invBox img{width:100%;height:270px;min-height:270px}.detailGrid{grid-template-columns:1fr}.detail img{height:140px}.modal{padding:8px}.modalCard{padding:15px}.modalCard .lead{font-size:11px}.emotion p{font-size:17px}.back{bottom:10px;left:10px}}
+
+/* V32 fixes */
+.factImage{height:205px;background:#17120f;overflow:hidden}.factImage img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}.factImage img.contain{object-fit:contain;padding:10px}
+.factsScroll{padding-bottom:115px}
+.factCard{min-height:340px}
+.artGrid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.artCard{min-height:410px;border:1px solid #ffffff25;background:#101010e8;border-radius:10px;overflow:hidden;transition:.3s}
+.artCard:hover{transform:translateY(-5px);border-color:#ffc400;box-shadow:0 20px 60px #0008}
+.artImage{height:230px;display:block;position:relative;background:#17120f;overflow:hidden}
+.artImage img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(.92) contrast(1.03)}
+.artImage:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#090909aa 100%);pointer-events:none}
+.artText{padding:18px}
+.artText small{font-size:8px;letter-spacing:.16em;color:var(--accent,#69bd45)}
+.artText h3{font:400 27px Georgia,serif;margin:7px 0}
+.artText p{font-size:10px;line-height:1.6;color:#c8c0b8;margin:0 0 10px}
+.artImpact{border-left:3px solid var(--accent,#ffc400);padding-left:10px;font-size:9px;line-height:1.5;color:#eee}
+.artImpact b{display:block;color:var(--accent,#ffc400);font-size:8px;letter-spacing:.12em;margin-bottom:3px}
+.artIntro{max-width:1100px;margin:0 auto 18px;border:1px solid #ffc40044;background:linear-gradient(135deg,#1d170d,#0d0d0d);padding:16px 18px}
+.artIntro strong{display:block;color:#ffc400;font-size:9px;letter-spacing:.15em;margin-bottom:6px}
+.artIntro p{margin:0;color:#ddd;font-size:10px;line-height:1.6}
+.artInnovation{max-width:1100px;margin:16px auto 0;border:1px solid #00a7a744;background:linear-gradient(135deg,#0b2424,#0d0d0d);padding:18px}
+.artInnovation h3{font:400 25px Georgia,serif;margin:0 0 7px;color:#fff3df}
+.artInnovation p{font-size:10px;line-height:1.6;color:#c8c0b8;margin:0}
+.scienceNote strong{font-size:10px}
+@media(max-width:900px){.artGrid{grid-template-columns:1fr}.artCard{min-height:390px}.artImage{height:220px}.factImage{height:185px}.factCard{min-height:350px}}
+@media(max-width:600px){.factsHead h2{font-size:40px}.factsHead p{font-size:13px}.factImage{height:190px}.factCard{min-height:355px}.artGrid{grid-template-columns:1fr}.artImage{height:205px}.artText h3{font-size:23px}.artText p{font-size:9px}.artImpact{font-size:8px}.artIntro,.artInnovation{padding:14px}.factsScroll{padding-bottom:125px}}
+
+.roomScroll{padding-bottom:125px!important}
+
+/* V34 refinements */
+.wideBottom{grid-column:1/-1}
+.innovationIntro{margin:0 0 16px;padding:14px 16px;border:1px solid #ffc40055;background:linear-gradient(135deg,#20170a,#0d0d0d)}
+.innovationIntro strong{color:var(--yellow);font-size:10px;letter-spacing:.16em}
+.innovationIntro p{margin:7px 0 0;color:#d8d0c7;font-size:12px;line-height:1.55}
+.topicChips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}
+.topicChips span{border:1px solid #ffffff24;border-radius:999px;padding:6px 9px;font-size:7px;letter-spacing:.12em;color:#ddd;background:#111}
+.innovationGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.innovationCard{border:1px solid #ffffff22;border-radius:10px;overflow:hidden;background:#0d0d0d;box-shadow:0 15px 40px #0007}
+.innovationTop{display:grid;grid-template-columns:42% 58%;min-height:250px}
+.innovationPerson{background:#181818 center/cover no-repeat;min-height:250px}
+.innovationCopy{padding:15px}
+.innovationCopy small{font-size:7px;letter-spacing:.15em;color:var(--accent,#ffc400)}
+.innovationCopy h3{font:400 27px Georgia,serif;margin:6px 0 9px;color:#f2e9dd}
+.innovationCopy p{font-size:10px;line-height:1.55;color:#cfc7be;margin:0}
+.innovationFact{margin-top:12px;padding:9px 10px;border-left:3px solid var(--accent,#ffc400);background:#17120d}
+.innovationFact b{font-size:7px;letter-spacing:.14em;color:var(--accent,#ffc400)}
+.innovationFact span{display:block;margin-top:4px;font-size:9px;line-height:1.45;color:#ded6cc}
+.inventionVisual{border-top:1px solid #ffffff18;background:#17120f;padding:10px}
+.inventionVisual img{display:block;width:100%;height:190px;object-fit:contain;background:#120f0d;border-radius:5px}
+.innovationPerson{overflow:hidden;background:#17120f}.innovationPerson img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.innovationPerson.archival{display:flex;align-items:center;justify-content:center;padding:14px;background:linear-gradient(135deg,#211812,#0d0d0d)}.innovationPerson.archival img{object-fit:contain;filter:sepia(.08)}.archivalBadge{position:absolute;left:10px;bottom:10px;background:#090909dd;border:1px solid #ffc40066;color:#ffc400;padding:6px 8px;font-size:7px;letter-spacing:.1em}
+
+.inventionCaption{font-size:8px;letter-spacing:.08em;color:#bdb4ab;padding:8px 2px 2px}
+.artImage img{object-fit:contain!important;background:#15110f!important}
+@media(max-width:900px){.innovationGrid{grid-template-columns:1fr}.innovationTop{grid-template-columns:40% 60%;min-height:235px}.innovationPerson{min-height:235px}.inventionVisual img{height:170px}}
+@media(max-width:560px){.innovationTop{grid-template-columns:1fr}.innovationPerson{height:250px;min-height:250px}.innovationCopy h3{font-size:25px}.inventionVisual img{height:190px}}
+
+/* V35: unified expandable science stories + reliable reading */
+.bna{min-width:172px}.bna img{width:40px;height:40px;flex:0 0 40px;object-fit:contain}.bna strong{font-size:12px}.bna small{font-size:7px}
+#app .scene#welcome.active ~ *{ }
+body.home-mode .topnav{display:none!important}
+#welcome .heroInner{margin-inline:auto}
+#welcome .tree{margin-inline:auto;display:block;object-position:center}
+.scienceGrid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.personCard,.innovationCard{cursor:pointer;position:relative}
+.personCard:focus-visible,.innovationCard:focus-visible,.genre:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.personCard:after,.innovationCard:after{content:none!important}
+.innovationCard{transition:.3s}.innovationCard:hover{transform:translateY(-5px);border-color:var(--yellow)}
+.innovationCard .inventionVisual{min-height:190px}
+.innovationCard .inventionVisual img{object-fit:contain}
+.close{right:14px;top:12px;min-width:92px;height:38px;border:1px solid #ffc40088;background:#111;color:#fff;border-radius:4px;font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;gap:6px;z-index:5}.close span{font:700 7px Arial;letter-spacing:.13em;color:#ffc400}
+.currentUse{margin-top:15px;padding:14px;border:1px solid #69bd4566;background:linear-gradient(135deg,#102016,#0d0d0d)}.currentUse b{font-size:8px;letter-spacing:.15em;color:var(--green)}.currentUse p{font-size:11px;line-height:1.55;color:#ded6cc;margin:7px 0 0}
+.modalCard{padding-top:58px}.modalCard h2{padding-right:10px}.modalPhoto{background-color:#181818}
+/* Music: genre cards reveal deeper context on tap */
+.genre{min-height:330px}.genreBody .genreMore{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #ffffff20;color:#ddd;font-size:8px;line-height:1.5}.genre.open .genreMore{display:block}.genre.open{min-height:390px;transform:translateY(-4px);border-color:var(--c)}.genre.open .genreBody b{color:var(--c)}
+/* Art portraits: favor faces / avoid accidental top or bottom cropping */
+.artImage img{object-fit:cover!important;object-position:center 20%!important}.artCard:nth-child(2) .artImage img{object-position:center 18%!important}.artCard:nth-child(4) .artImage img{object-position:center 18%!important}
+/* Home: tree is always visible; navigation appears after entering */
+#welcome .tree{display:block;object-fit:contain;filter:drop-shadow(0 8px 28px #000)}
+.door h3{font-size:clamp(18px,2vw,27px)}
+@media(max-width:900px){.scienceGrid{grid-template-columns:1fr}.innovationCard:after{bottom:10px}.personCard:after{bottom:10px}}
+@media(max-width:600px){.bna{min-width:166px;padding:5px 9px}.bna img{width:38px;height:38px;flex-basis:38px}.bna strong{font-size:10px}.bna small{font-size:6px}.personCard:after,.innovationCard:after{font-size:6px;padding:6px 7px}.close{top:9px;right:9px;min-width:82px;height:34px}.modalCard{padding-top:54px}.currentUse p{font-size:10px}.genre.open{min-height:410px}.artImage{height:220px}.artImage img{object-position:center 18%!important}}
+
+body.modal-open{overflow:hidden}
+
+/* V36 reliability + layout overrides */
+.home-mode .topnav{display:none!important}
+.bna img{width:42px!important;height:42px!important;object-fit:contain!important;display:block!important;flex:0 0 42px}
+.bna{min-width:170px}
+#welcome .tree{width:min(280px,46vw);height:auto;max-height:34vh;object-fit:contain}
+/* All science stories use the same left-photo / right-copy card. */
+.scienceGrid .innovationCard{position:relative;min-height:280px;border:1px solid #ffffff30;background:#101010e8;border-radius:8px;overflow:hidden;cursor:pointer;display:grid;grid-template-columns:42% 58%;transition:.3s}
+.scienceGrid .innovationCard:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 20px 60px #000}
+.scienceGrid .innovationCard .innovationTop{display:contents}
+.scienceGrid .innovationCard .innovationPerson{min-height:280px;height:auto;display:flex;align-items:stretch;justify-content:center;overflow:hidden;background:#17120f}
+.scienceGrid .innovationCard .innovationPerson img{width:100%;height:100%;min-height:280px;object-fit:cover;object-position:center}
+.scienceGrid .innovationCard .innovationPerson.archival img{object-fit:contain;padding:18px}
+.scienceGrid .innovationCard .innovationCopy{padding:20px}
+.scienceGrid .innovationCard .innovationCopy small{font-size:8px;letter-spacing:.17em}
+.scienceGrid .innovationCard .innovationCopy h3{font:400 28px Georgia,serif;margin:7px 0}
+.scienceGrid .innovationCard .innovationCopy p{font-size:11px;line-height:1.5;color:#f1e9df;margin:0 0 12px}
+.scienceGrid .innovationCard .innovationFact{border-left:2px solid var(--accent);padding-left:9px;margin-top:0;font-size:9px;line-height:1.5;color:#c8c0b8}
+.scienceGrid .innovationCard .inventionVisual{display:none}
+.exploreLink{display:inline-flex;align-items:center;gap:7px;margin-top:15px;padding:8px 10px;background:transparent;border:1px solid var(--accent,#ffc400);color:var(--accent,#ffc400);font-size:8px;letter-spacing:.13em;border-radius:3px;pointer-events:none}
+.personCopy .exploreLink{display:inline-flex}
+@media(max-width:900px){.scienceGrid .innovationCard{grid-template-columns:40% 60%}.scienceGrid .innovationCard .innovationPerson,.scienceGrid .innovationCard .innovationPerson img{min-height:235px}}
+@media(max-width:600px){.scienceGrid .innovationCard{grid-template-columns:40% 60%;min-height:245px}.scienceGrid .innovationCard .innovationPerson,.scienceGrid .innovationCard .innovationPerson img{min-height:245px}.scienceGrid .innovationCard .innovationCopy{padding:14px}.scienceGrid .innovationCard .innovationCopy h3{font-size:22px}.scienceGrid .innovationCard .innovationCopy p{font-size:10px}.scienceGrid .innovationCard .innovationFact{font-size:8px}.exploreLink{font-size:7px;padding:7px 8px}}
+/* Facts: keep a visible local illustration even if a remote archival image fails. */
+.factImage img{width:100%;height:100%;object-fit:contain;background:#17120f;display:block}
+.factImage{height:165px;padding:8px}
+/* Music: the grid is a clean genre index; details open in a dedicated overlay. */
+.genreGrid{grid-template-columns:repeat(3,1fr)!important}
+.genre{min-height:230px!important;justify-content:center!important}
+.genreVisual{position:relative!important;inset:auto!important;height:150px!important;flex:0 0 150px}
+.genreBody{background:#090909!important;text-align:center;padding:14px!important}
+.genreBody h3,.genreBody p,.genreBody b,.genreBody small{display:none!important}
+.genreBody:after{content:'TAP TO EXPLORE →';display:block;color:var(--c);font-size:8px;letter-spacing:.14em;margin-top:7px}
+.genreMore{display:none!important}
+.genre.open{min-height:230px!important;transform:translateY(-4px)}
+.musicModal{position:fixed;inset:0;z-index:300;display:none;background:#050505ed;padding:7vh 5vw;overflow:auto}
+.musicModal.open{display:block}
+.musicModalCard{max-width:1050px;margin:0 auto;background:#101010;border:1px solid #ffffff28;border-radius:12px;box-shadow:0 30px 90px #000;position:relative;padding:30px}
+.musicModalClose{position:absolute;right:14px;top:14px;background:#0b0b0b;border:1px solid #ffffff35;color:#fff;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:9px;letter-spacing:.12em}
+.musicModalHead small{color:var(--yellow);letter-spacing:.16em;font-size:8px}
+.musicModalHead h2{font:400 clamp(32px,5vw,56px) Georgia,serif;margin:5px 0 8px}
+.musicModalHead p{max-width:760px;color:#cfc7be;font-size:11px;line-height:1.6}
+.artistGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.artistCard{border:1px solid #ffffff22;border-radius:8px;overflow:hidden;background:#0b0b0b}
+.artistCard img{display:block;width:100%;height:210px;object-fit:cover;background:#211812}
+.artistCard .artistBody{padding:13px}.artistCard h3{font:400 23px Georgia,serif;margin:0 0 6px}.artistCard p{font-size:9px;line-height:1.5;color:#cfc7be;margin:0}.artistCard small{display:block;color:var(--c,#ffc400);font-size:7px;letter-spacing:.13em;margin-bottom:6px}
+@media(max-width:800px){.genreGrid{grid-template-columns:repeat(2,1fr)!important}.artistGrid{grid-template-columns:1fr 1fr}.artistCard img{height:170px}}
+@media(max-width:560px){.genreGrid{grid-template-columns:1fr 1fr!important;gap:7px}.genre{min-height:190px!important}.genreVisual{height:105px!important;flex-basis:105px}.genreVisual span{font-size:18px}.artistGrid{grid-template-columns:1fr}.artistCard img{height:230px}.musicModal{padding:3vh 3vw}.musicModalCard{padding:22px 16px 28px}}
+
+.close{z-index:20!important;background:#0b0b0b!important;border:1px solid #ffffff55!important;color:#fff!important;min-width:110px!important;height:38px!important;display:inline-flex!important;align-items:center;justify-content:center;gap:6px!important;box-shadow:0 8px 24px #0008!important}
+
+/* V37 refinements */
+.personCopy p,.innovationCopy p{font-size:12px!important;line-height:1.62!important}
+.personCopy .microfact,.innovationCopy .innovationFact{font-size:10px!important;line-height:1.55!important}
+.personCard,.innovationCard{grid-template-columns:42% 58%!important}
+.scienceGrid .innovationPerson.archival img{object-fit:cover!important;padding:0!important}
+.modalPhoto{background-size:cover!important;background-position:center!important}
+.invBox img{object-fit:contain!important}
+.close{font-size:12px!important;letter-spacing:.08em!important}
+.close span{font-size:10px!important;letter-spacing:.14em!important}
+.bna img{object-fit:contain!important}
+
+/* V39 proofed UI */
+.bna{border:1px solid #222;box-shadow:0 10px 30px #0007;color:#111}
+.bna img{width:42px;height:42px;object-fit:contain;background:#fff;border-radius:6px}
+.tree{width:min(260px,55vw);height:auto;object-fit:contain;display:block;filter:none}
+.personCard{grid-template-columns:40% 60%;min-height:300px}
+.personPhoto{background-size:cover!important;background-position:center!important;min-height:300px}
+.personCopy .hook{font-size:13px;line-height:1.6}
+.personCopy .microfact{font-size:10px;line-height:1.55}
+.exploreLink{font-size:9px!important;padding:9px 11px!important;pointer-events:auto;cursor:pointer}
+.invBox{grid-template-columns:40% 60%;min-height:360px}
+.invBox img{height:360px;min-height:360px;object-fit:contain}
+.currentUse{margin-top:15px;padding:16px;border:1px solid #69bd45;background:#0c160c}
+.currentUse b{font-size:9px;letter-spacing:.14em;color:#69bd45}
+.currentUse p{font-size:12px;line-height:1.6;color:#ddd}
+.modalCard .lead{font-size:14px;line-height:1.7}
+.fact2 p{font-size:11px;line-height:1.6}
+.close,.musicModalClose{z-index:5;min-width:96px;min-height:38px;padding:6px 10px;border:1px solid #ffffff55;background:#111;color:#fff;border-radius:4px;font-size:11px;letter-spacing:.08em}
+.modalCard{padding-top:64px;padding-bottom:62px}
+.personHero .modalPhoto{min-height:360px}
+.artistCard img{display:block;width:100%;height:240px;object-fit:cover;background:#161616}
+.artImage img{display:block;width:100%;height:320px;object-fit:cover}
+.artText p,.artImpact span,.musicHead p,.roomHead>p,.factsHead p{font-size:13px;line-height:1.65}
+@media(max-width:600px){.bna{background:#fff;min-width:178px}.bna img{width:38px;height:38px}.tree{width:190px}.personCard{grid-template-columns:40% 60%;min-height:260px}.personPhoto{min-height:260px}.personCopy .hook{font-size:11px;line-height:1.55}.personCopy .microfact{font-size:9px;line-height:1.5}.invBox{grid-template-columns:1fr}.invBox img{height:270px;min-height:270px}.modalCard{padding-top:58px;padding-bottom:64px}.close{top:9px;right:9px}.currentUse p{font-size:11px}.artistCard img{height:220px}.artImage img{height:240px}}
+.imageUnavailable{min-height:220px;background:#171717 url('./assets/bna-logo.png') center/80px auto no-repeat;opacity:.65}
+.imageZoom{position:fixed;inset:0;z-index:260;display:none;background:#050505f2;backdrop-filter:blur(8px);padding:12px}.imageZoom.open{display:flex;align-items:center;justify-content:center}.imageZoomCard{position:relative;width:min(1100px,96vw);height:min(92vh,900px);background:#111;border:1px solid #ffffff30;border-radius:10px;padding:56px 18px 18px;display:flex;flex-direction:column;align-items:center}.imageZoomCard img{max-width:100%;max-height:calc(100% - 35px);object-fit:contain;background:#fff}.imageZoomCard p{font-size:10px;color:#cfc7bf;margin:8px 0 0;text-align:center}.imageZoomClose{position:absolute;right:12px;top:10px;z-index:2;min-width:96px;min-height:38px;padding:6px 10px;border:1px solid #ffffff55;background:#111;color:#fff;border-radius:4px;font-size:11px;letter-spacing:.08em;cursor:pointer}.factImage img{cursor:zoom-in}.factImage img:focus{outline:2px solid var(--yellow);outline-offset:-2px}@media(max-width:600px){.imageZoomCard{height:90vh;padding:54px 8px 10px}.imageZoomCard img{max-height:calc(100% - 32px)}}
+
+/* FINAL 360 / MOBILE-FIRST PASS */
+body{overflow:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.bna{background:#fff!important;color:#111!important;border:1px solid #111!important;min-height:52px;padding:7px 12px;gap:10px}
+.bna img{width:38px!important;height:38px!important;object-fit:contain;display:block;flex:0 0 38px}
+.bna strong{color:#111!important;font-size:12px!important}.bna small{color:#222!important;font-size:7px!important}
+.tree{background:transparent!important;mix-blend-mode:normal;filter:drop-shadow(0 0 20px #ffc40044)}
+.personCard{grid-template-columns:38% 62%;min-height:270px;border:1px solid #ffffff2b;background:#101010e8;border-radius:10px;overflow:hidden}
+.personPhoto{background-position:center 20%;background-size:cover;background-color:#171717}
+.personCopy{padding:16px;min-width:0}.personCopy h3{font-size:clamp(22px,3vw,30px)}
+.personCopy .hook,.personCopy .microfact{font-size:12px;line-height:1.55}
+.exploreLink{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 12px;margin-top:12px;border:1px solid currentColor;border-radius:4px;background:transparent;color:var(--accent,#ffc400);font-size:9px;letter-spacing:.1em;cursor:pointer}
+.exploreLink:hover{background:#fff;color:#111}
+.scienceGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:1100px;margin:auto}
+.modalCard{width:min(1040px,96vw);max-height:94vh;overflow:auto;-webkit-overflow-scrolling:touch}
+.invBox{grid-template-columns:42% 58%;min-height:330px}.invBox img{height:100%;min-height:330px;object-fit:contain;cursor:zoom-in}
+.invBox img:focus{outline:2px solid var(--yellow);outline-offset:-2px}
+.artImage img{cursor:zoom-in}.artistCard img{cursor:zoom-in}
+.musicModal{padding:3vh 3vw}.musicModalCard{padding:62px 16px 22px}.musicModalClose{top:10px;right:10px;min-width:110px;min-height:42px;font-size:10px}
+.musicModalCard:after{content:none!important}
+@media(max-width:600px){
+ .scienceGrid{grid-template-columns:1fr;gap:10px}.personCard{grid-template-columns:40% 60%;min-height:250px}.personPhoto{min-height:250px}.personCopy{padding:13px}.personCopy h3{font-size:22px}.personCopy .hook{font-size:11px}.personCopy .microfact{font-size:9px}.exploreLink{width:100%;min-height:44px;font-size:8px}
+ .invBox{grid-template-columns:1fr;gap:12px}.invBox img{height:300px;min-height:300px}
+ .artImage img{height:240px}.artistCard img{height:230px}
+ .modal{padding:8px}.modalCard{max-height:96vh;padding-left:13px;padding-right:13px}.modalPhoto{min-height:300px;max-height:none}.modalCard .lead{font-size:12px}.fact2 p{font-size:11px;line-height:1.55}.invBox p{font-size:11px;line-height:1.55}.currentUse p,.impact p{font-size:12px;line-height:1.6}
+ .bna{top:8px;left:8px;min-width:178px}.bna img{width:40px!important;height:40px!important;flex-basis:40px}.topnav{top:10px;right:8px}.topnav button{font-size:9px;padding:9px 10px}
+ .tree{width:min(190px,52vw);max-height:210px}.brand{font-size:clamp(56px,16vw,78px)}.tagline{font-size:10px;line-height:1.65;max-width:340px}
+}
+
+/* FINAL DELIVERY PASS */
+.modalCard{padding-bottom:92px!important}
+
+.musicModalCloseBottom{position:fixed!important;left:50%!important;right:auto!important;bottom:14px!important;top:auto!important;transform:translateX(-50%)!important;margin:0!important;width:min(220px,78vw)!important;min-width:0!important;min-height:46px!important;z-index:1001!important}
+.artistCard img{object-position:center 18%!important}
+@media(max-width:600px){.bna{min-width:174px!important;max-width:calc(100vw - 24px)!important}.bna img{width:40px!important;height:40px!important;flex-basis:40px!important}.bna strong{font-size:12px!important}.bna small{font-size:7px!important}}
+</style>
+<style id="v40-runtime">
+.bna{background:#fff!important;color:#111!important;z-index:1000!important;border:1px solid #111!important;min-width:182px!important;padding:7px 11px!important}
+.bna img{background:#fff!important;border-radius:5px!important;object-fit:contain!important;display:block!important;opacity:1!important}.bna strong{color:#111!important}.bna small{color:#333!important}
+.personCard:after,.innovationCard:after{display:none!important}
+
+.modalCard{padding-bottom:22px!important}.modalCard .invBox img{cursor:zoom-in!important}
+.factImage{height:240px!important;padding:10px!important}.factImage img{object-fit:contain!important;cursor:zoom-in!important}
+.artistCard img{object-fit:cover!important;object-position:center 22%!important;background:#18130f!important}.artistCard img.imageUnavailable{display:block!important;width:100%!important;height:240px!important;object-fit:contain!important;padding:18px!important;opacity:1!important}
+.musicModalCloseBottom{position:sticky!important;top:auto!important;right:auto!important;bottom:8px!important;display:flex!important;width:max-content!important;margin:22px 0 0 auto!important;min-width:110px!important;min-height:42px!important;align-items:center!important;justify-content:center!important;background:#0b0b0b!important;border:1px solid #ffc400!important;color:#fff!important;cursor:pointer!important}
+.personPhoto{position:relative;background-color:#181818!important}.portraitPlaceholder{width:100%;height:100%;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;background:radial-gradient(circle at 50% 35%,#3a2b20,#12100e 65%);color:#f2e9dd}.portraitPlaceholder:before{content:'';width:92px;height:92px;border-radius:50%;background:#c9aa86;box-shadow:0 110px 0 36px #40362e;margin-bottom:75px;opacity:.85}.portraitPlaceholder span{font:400 18px Georgia,serif;letter-spacing:.04em}.portraitPlaceholder small{margin-top:7px;color:#ffc400;font-size:7px;letter-spacing:.12em}.modalPhoto.unverifiedPortrait{background:radial-gradient(circle at 50% 30%,#3a2b20,#111)!important;display:flex;align-items:center;justify-content:center;text-align:center}.modalPhoto.unverifiedPortrait:after{content:'ARCHIVAL PORTRAIT';color:#ffc400;font:700 9px Arial;letter-spacing:.14em;max-width:180px;line-height:1.5}
+@media(max-width:600px){.bna{min-width:180px!important}.bna img{width:40px!important;height:40px!important}.factImage{height:230px!important}.artistCard img,.artistCard img.imageUnavailable{height:230px!important;object-position:center 20%!important}.musicModalCloseBottom{min-height:44px!important}}
+</style>
+
+<style id="v43-fact-preview">
+/* V43 — mobile-first Did You Know preview
+   The patent sheets contain large white margins, so the card preview is deliberately
+   enlarged while the full-resolution source remains available through tap-to-zoom. */
+.factImage{
+  height:340px!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:relative!important;
+  background:#15110d!important;
+}
+.factImage img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  transform-origin:center center!important;
+  image-rendering:auto!important;
+  cursor:zoom-in!important;
+}
+/* Patent-sheet previews: enlarge the useful drawing area without changing the zoom source. */
+.factCard:nth-child(1) .factImage img{transform:scale(1.48)!important}
+.factCard:nth-child(2) .factImage img{transform:scale(1.55)!important}
+.factCard:nth-child(3) .factImage img{transform:scale(1.12)!important}
+.factCard:nth-child(4) .factImage img{transform:scale(1.55)!important}
+.factCard:nth-child(5) .factImage img{transform:scale(1.48)!important}
+.factImage::after{
+  content:'TAP TO EXPAND';
+  position:absolute;
+  right:10px;bottom:10px;
+  padding:6px 8px;
+  font:700 9px Arial,sans-serif;
+  letter-spacing:.12em;
+  color:#fff;
+  background:rgba(0,0,0,.72);
+  border:1px solid rgba(255,196,0,.75);
+  border-radius:3px;
+  pointer-events:none;
+}
+@media(max-width:600px){
+  .factImage{height:320px!important}
+  .factCard:nth-child(1) .factImage img{transform:scale(1.42)!important}
+  .factCard:nth-child(2) .factImage img{transform:scale(1.48)!important}
+  .factCard:nth-child(3) .factImage img{transform:scale(1.08)!important}
+  .factCard:nth-child(4) .factImage img{transform:scale(1.48)!important}
+  .factCard:nth-child(5) .factImage img{transform:scale(1.42)!important}
+}
+</style>
+<style id="v48-portrait-fix">
+.scienceGrid .personCard[data-person="Mary Beatrice Davidson Kenner"] .personPhoto{background-size:contain!important;background-repeat:no-repeat!important;background-position:center top!important;background-color:#17120f!important}
+</style>
+<style id="v48-feedback">
+.ratingRow{display:flex;gap:5px;margin:2px 0 2px}.ratingStar{border:1px solid #ffffff2d;background:#080808;color:#625b53;width:38px;height:36px;border-radius:4px;font-size:20px;line-height:1;cursor:pointer;transition:.18s}.ratingStar:hover,.ratingStar.selected{color:var(--yellow);border-color:#ffc40088;transform:translateY(-1px)}.ratingHint{font-size:8px;color:#aaa;margin:0 0 14px}.feedbackNote{font-size:7px;line-height:1.45;color:#8d857d;margin:12px 0 0}.wallHeader{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.wallHeader h3{margin-bottom:6px}.ratingSummary{text-align:right;min-width:90px;color:var(--yellow);font-size:9px;line-height:1.45}.ratingSummary b{font-size:18px;font-family:Georgia,serif}.commentRating{color:var(--yellow);letter-spacing:.08em;font-size:10px}.commentMeta{font-size:7px;color:#777;margin-top:4px}
+@media(max-width:600px){.ratingStar{width:34px;height:34px}.wallHeader{display:block}.ratingSummary{text-align:left;margin-top:8px}}
+</style>
 </head>
-
 <body>
+<div id="app">
+<div class="bna"><img alt="BNA — Black Network Alliance" src="./assets/bna-logo.png" /><span><strong>BNA</strong><small>BLACK NETWORK ALLIANCE</small></span></div>
+<div class="topnav"><button data-go="welcome">HOME</button><button data-go="menu">EXHIBITIONS</button><button data-go="facts">DID YOU KNOW?</button><button data-go="feedback">YOUR MARK</button></div>
+<section class="scene active" id="welcome"><div class="hero"><div class="heroInner"><img alt="RAÍCES tree mark" class="tree" src="./assets/raices-tree-transparent.png"/><h1 class="brand">RAÍCES</h1><div class="tagline">Stories that <b>inspire</b>. Contributions that <b>transform</b>.<br/>Digital museum of innovation, culture, and Black diaspora legacy.</div><div class="cta"><button id="start">START THE JOURNEY</button></div></div></div></section>
+<section class="scene" id="menu"><div class="lobby"><div class="lobbyBg"></div><div class="lobbyContent"><div class="lobbyHead"><div class="ey">LOBBY · RAÍCES</div><h2>Explore the exhibitions</h2><p>Each room opens a different story of innovation, culture, and legacy.</p></div><div class="doors">
+<div class="door fact" data-go="facts"><span class="num">00</span><span class="miniIcon">?</span><h3>DID YOU KNOW...?</h3><p>Everyday objects with stories you may never have heard.</p></div>
+<div class="door science" data-go="science"><span class="num">01</span><span class="miniIcon">✦</span><h3>SCIENCE · MEDICINE · TECHNOLOGY</h3><p>Innovators who changed what science and technology could do.</p></div>
+<div class="door music" data-go="music"><span class="num">02</span><span class="miniIcon">♫</span><h3>MUSIC</h3><p>Pioneers and revolutionaries who changed sound.</p></div>
+<div class="door art" data-go="art"><span class="num">03</span><span class="miniIcon">✺</span><h3>ART &amp; CULTURE</h3><p>Images, words, design, and identity that left a mark.</p></div>
+</div><div class="lobbyBottom"><div class="bottomCard wideBottom" data-go="feedback"><strong>YOUR MARK</strong><span>What surprised you most at RAÍCES? Share a detail, an idea, or a story you want to remember.</span></div></div><div class="hint">CHOOSE A ROOM TO EXPLORE · YOU CAN RETURN ANYTIME</div></div></div></section>
+<section class="scene" id="facts"><div class="roomBg factsRoom"></div><div class="factsScroll"><div class="factsHead"><div class="ey">EXHIBITION 00 · EVERYDAY DISCOVERIES</div><h2>Did you know?</h2><p>You use it. You see it. You hear it. Now look again: behind the everyday are stories worth telling.</p></div><div class="factGrid">
+<article class="factCard" style="--accent:#e31b23"><div class="factImage"><img alt="Three-position traffic signal" data-original-src="./assets/didyouknow-garrett-morgan.jpg" data-zoom-src="./assets/didyouknow-garrett-morgan.jpg" loading="eager" src="./assets/didyouknow-garrett-morgan-preview.jpg"/><div class="factZoomHint">TAP TO EXPAND</div></div><div class="copy"><small>GARRETT MORGAN · 1923</small><h3>Three-position traffic signal</h3><p>His signal added a warning phase and helped transform traffic safety.</p></div></article>
+<article class="factCard" style="--accent:#ffc400"><div class="factImage"><img alt="Marie Van Brittan Brown — patent drawing for the home security system" data-original-src="./assets/didyouknow-marie-brown.jpg" data-zoom-src="./assets/didyouknow-marie-brown.jpg" loading="eager" src="./assets/didyouknow-marie-brown-preview.jpg"/><div class="factZoomHint">TAP TO EXPAND</div></div><div class="copy"><small>MARIE VAN BRITTAN BROWN · 1966</small><h3>The house that could watch itself</h3><p>Concerned about neighborhood safety, Brown designed a home security system with cameras, a monitor, and two-way communication.</p></div></article>
+<article class="factCard" style="--accent:#00a7a7"><div class="factImage"><img alt="Shoemaking by machine" data-original-src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Matzeliger_lasting_machine_diagram.png" data-zoom-src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Matzeliger_lasting_machine_diagram.png" loading="eager" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Matzeliger_lasting_machine_diagram.png"/><div class="factZoomHint">TAP TO EXPAND</div></div><div class="copy"><small>JAN MATZELIGER · 1883</small><h3>Shoemaking by machine</h3><p>His lasting machine automated a crucial step in shoemaking and helped make footwear more affordable.</p></div></article>
+<article class="factCard" style="--accent:#e31b23"><div class="factImage"><img alt="Alice H. Parker — patent drawing for the heating furnace" data-original-src="./assets/didyouknow-alice-parker.jpg" data-zoom-src="./assets/didyouknow-alice-parker.jpg" loading="eager" src="./assets/didyouknow-alice-parker-preview.jpg"/><div class="factZoomHint">TAP TO EXPAND</div></div><div class="copy"><small>ALICE H. PARKER · 1919</small><h3>Heat distributed throughout the home</h3><p>She patented a natural-gas heating furnace that could distribute warm air to different rooms and control heating zones independently.</p></div></article>
+<article class="factCard" style="--accent:#69bd45"><div class="factImage"><img alt="Joseph R. Winters — patent drawing for the fire-escape ladder" data-original-src="./assets/didyouknow-joseph-winters.png" data-zoom-src="./assets/didyouknow-joseph-winters.png" loading="eager" src="./assets/didyouknow-joseph-winters-preview.jpg"/><div class="factZoomHint">TAP TO EXPAND</div></div><div class="copy"><small>JOSEPH R. WINTERS · 1878</small><h3>An escape when every second counts</h3><p>He patented a fire-escape ladder designed to help firefighters reach people quickly during emergencies.</p></div></article>
+</div><div class="factMore"><button data-go="science">SEE MORE STORIES →</button></div></div><button class="back" data-go="menu">← BACK TO LOBBY</button></section>
+<section class="scene" id="science"><div class="roomBg scienceBg"></div><div class="roomScroll"><div class="roomHead"><div><div class="ey">EXHIBITION 01 · SCIENCE · MEDICINE · TECHNOLOGY</div><h2>Innovators who changed what science and technology could do.</h2></div><p>Discover how Black innovators reshaped medicine, space, physics, communication, engineering, transportation, and electricity.</p></div><div class="scienceGrid"></div>
+<div class="scienceNote"><strong>ONE ROOM, MANY FORMS OF INNOVATION</strong><p>From surgery to a camera on the Moon, from a resistor to an internet call: Black innovation appears in big and small problems that still shape everyday life.</p></div></div><button class="back" data-go="menu">← BACK TO LOBBY</button></section>
+<section class="scene" id="music"><div class="roomBg musicBg"></div><div class="musicScroll"><div class="musicHead"><div class="ey">EXHIBITION 02 · MUSIC</div><h2>People who changed sound.</h2><p>We are not looking for one person who “invented” each genre. We follow pioneers and revolutionaries who transformed how music is composed, performed, recorded, and heard.</p></div><div class="genreGrid">
+<article class="genre g1"><div class="genreVisual"><span>BLUES</span></div><div class="genreBody"><small>ROOT</small><h3>Ma Rainey · Bessie Smith</h3><p>Two foundational voices who brought the blues to wider audiences and turned experience and memory into musical language.</p><b>SHIFT → VOICE AS IDENTITY</b></div></article>
+<article class="genre g2"><div class="genreVisual"><span>JAZZ</span></div><div class="genreBody"><small>IMPROVISATION</small><h3>Louis Armstrong · Duke Ellington · Mary Lou Williams</h3><p>Soloists, composers, and arrangers who turned jazz into a laboratory of sound.</p><b>SHIFT → THE MUSICIAN AS PROTAGONIST</b></div></article>
+<article class="genre g3"><div class="genreVisual"><span>ROCK</span></div><div class="genreBody"><small>GUITAR · GOSPEL · R&amp;B</small><h3>Sister Rosetta Tharpe · Little Richard · Chuck Berry</h3><p>Gospel, blues, and R&amp;B crossed with the electric guitar and helped build rock.</p><b>SHIFT → A NEW ENERGY</b></div></article>
+<article class="genre g4"><div class="genreVisual"><span>SOUL · R&amp;B</span></div><div class="genreBody"><small>EMOTION</small><h3>Aretha Franklin · Ray Charles</h3><p>Gospel tradition met R&amp;B to create a new vocal and emotional intensity.</p><b>SHIFT → EMOTION IN THE LEAD</b></div></article>
+<article class="genre g5"><div class="genreVisual"><span>FUNK</span></div><div class="genreBody"><small>RHYTHM</small><h3>James Brown</h3><p>Rhythm moved to the foreground: bass, drums, and percussion built a new language.</p><b>SHIFT → THE BEAT AS THE ENGINE</b></div></article>
+<article class="genre g6"><div class="genreVisual"><span>HIP-HOP</span></div><div class="genreBody"><small>DJ · MC · BREAK</small><h3>DJ Kool Herc · Grandmaster Flash</h3><p>In the Bronx, turntables, words, dance, and street art became a global culture.</p><b>SHIFT → TECHNOLOGY AS THE INSTRUMENT</b></div></article>
+</div><div class="musicQuote">“The story did not end with them.”<span>BLUES → JAZZ → ROCK → SOUL → FUNK → HIP-HOP → WHAT COMES NEXT?</span></div></div><button class="back" data-go="menu">← BACK TO LOBBY</button></section>
+<section class="scene" id="art"><div class="roomBg artBg"></div><div class="roomScroll"><div class="roomHead"><div><div class="ey">EXHIBITION 03 · ART &amp; CULTURE</div><h2>Culture creates, too.</h2></div><p>People of the Black diaspora transformed how we see, photograph, write, design, and tell our stories. Innovation lives here too.</p></div><div class="artIntro"><strong>INVENTION IN ART? YES — BUT NOT EVERYTHING HAS A PATENT.</strong><p>A new technique, a way to document a community, a school that opens opportunities, or a work that changes the conversation can also be innovation. In this room, impact is the center of the story.</p></div><div class="artGrid"><article class="artCard" style="--accent:#ffc400"><div class="artImage"><img alt="Augusta Savage — fotografía histórica" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/4/44/AugustaSavage.jpg"/></div><div class="artText"><small>SCULPTURE · EDUCATION</small><h3>Augusta Savage</h3><p>Augusta Savage turned art into representation and opportunity. Her work and schools helped create space for Black artists during the Harlem Renaissance.</p><div class="artImpact"><b>1939 · THE HARP</b><span>She created a monumental sculpture for the New York World’s Fair inspired by “Lift Every Voice and Sing.” The work was destroyed, but her educational legacy remained.</span></div></div></article><article class="artCard" style="--accent:#69bd45"><div class="artImage"><img alt="Jacob Lawrence — fotografía histórica" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Portrait_of_Jacob_Lawrence_LCCN2004663191.jpg"/></div><div class="artText"><small>PAINTING · HISTORY</small><h3>Jacob Lawrence</h3><p>With vivid colors and simplified forms, Lawrence turned major chapters of African American history into series that could be read as visual narratives.</p><div class="artImpact"><b>1941 · THE MIGRATION SERIES</b><span>At 23, he completed 60 panels about the Great Migration. The series became a landmark of African American art history.</span></div></div></article><article class="artCard" style="--accent:#00a7a7"><div class="artImage"><img alt="James Van Der Zee — fotografía histórica" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/James_Van_Der_Zee.jpg"/></div><div class="artText"><small>PHOTOGRAPHY · HARLEM</small><h3>James Van Der Zee</h3><p>Van Der Zee photographed weddings, families, artists, and Harlem scenes for decades, creating an extraordinary visual archive of Black urban life.</p><div class="artImpact"><b>1910s–1930s · HARLEM IN IMAGES</b><span>His portraits helped build a visual memory of Harlem and the identity of the African American community.</span></div></div></article><article class="artCard" style="--accent:#e31b23"><div class="artImage"><img alt="Zora Neale Hurston — fotografía histórica" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Zora_Neale_Hurston_(1891-1960)_portrait.jpg"/></div><div class="artText"><small>LITERATURE · FOLKLORE</small><h3>Zora Neale Hurston</h3><p>A writer, anthropologist, and storyteller, Hurston collected African American stories, expressions, and traditions and carried them into literature and cultural record.</p><div class="artImpact"><b>1930s · VOICE AS ARCHIVE</b><span>Her fieldwork and literature helped preserve and make visible African American traditions and voices.</span></div></div></article><article class="artCard" style="--accent:#ff7a18"><div class="artImage"><img alt="Gordon Parks — fotografía histórica" loading="eager" referrerpolicy="no-referrer" src="https://upload.wikimedia.org/wikipedia/commons/7/71/GordonParks3.jpg"/></div><div class="artText"><small>PHOTOGRAPHY · FILM · JOURNALISM</small><h3>Gordon Parks</h3><p>Parks used photography, film, and writing to document inequality, identity, and everyday life. His perspective turned individual stories into national conversations.</p><div class="artImpact"><b>1960s+ · THE CAMERA AS VOICE</b><span>His work in photography and film expanded the presence of Black experiences in American media.</span></div></div></article></div><div class="artInnovation"><h3>Innovation can also be an image.</h3><p>At RAÍCES, “inventing” does not only mean building a machine. It can also mean creating a new way to represent, preserve memory, teach, document, or make an experience visible. That is the cultural innovation we want visitors to discover.</p></div></div><button class="back" data-go="menu">← BACK TO LOBBY</button></section>
+<section class="scene" id="feedback"><div class="roomBg feedbackRoom"></div><div class="feedbackScroll"><div class="feedbackWrap"><div class="feedbackHead"><div class="ey">YOUR MARK · RAÍCES</div><h2>Share your experience.</h2><p>Your feedback is collected anonymously through Microsoft Forms and is not displayed publicly on the museum site.</p></div><div class="formBox" style="max-width:720px;margin:30px auto;text-align:center"><p style="color:#d1c8c0;line-height:1.6;margin:0 0 18px">Rate your experience and leave a comment. Your response will be sent securely to the RAÍCES feedback form.</p><a class="gold" href="https://forms.cloud.microsoft/r/kWnVbHaQrC" style="display:inline-flex;text-decoration:none">OPEN YOUR MARK FORM</a><p class="feedbackNote" style="margin-top:18px">Responses are reviewed privately through Microsoft Forms and can be opened in Excel by the museum team.</p></div></div></div><button class="back" data-go="menu">← BACK TO LOBBY</button></section>
+<div aria-hidden="true" class="imageZoom" id="imageZoom"><div class="imageZoomCard"><button class="imageZoomClose" id="imageZoomClose" type="button">× CLOSE</button><img alt="Expanded historical document" id="imageZoomImg"/><p id="imageZoomCaption"></p></div></div>
+<div aria-hidden="true" class="modal" id="personModal"><div class="modalCard"><button aria-label="Close story" class="close" id="closePerson">× <span>CLOSE</span></button><div class="personHero"><div class="modalPhoto" id="modalPhoto"></div><div><div class="modalKicker" id="modalKicker"></div><h2 id="modalName"></h2><p class="lead" id="modalBio"></p><div class="emotion"><strong>THE MOMENT THAT CHANGED THE STORY</strong><p id="modalHook"></p></div></div></div><div class="facts2" id="modalFacts"></div><div class="invBox"><img alt="Invention" id="invImg"/><div><div class="modalKicker">INVENTION / CONTRIBUTION</div><h3 id="invTitle"></h3><p id="invText"></p></div></div><div class="currentUse"><b>HOW IT IS USED TODAY</b><p id="currentUse"></p></div><div class="impact"><b>WHY IT MATTERS</b><p id="impact"></p></div><div class="source" id="source"></div></div></div>
+<div aria-hidden="true" class="musicModal" id="musicModal"><div class="musicModalCard"><button aria-label="Close genre information" class="musicModalClose" id="musicModalClose">× CLOSE</button><div class="musicModalHead"><small id="musicModalKicker"></small><h2 id="musicModalTitle"></h2><p id="musicModalIntro"></p></div><div class="artistGrid" id="artistGrid"></div></div></div></div>
+<script>
+const P={
+"Patricia Bath":{k:"MEDICINE · OPHTHALMOLOGY",bio:"Médica, científica, educadora e inventora. Bath no solo vio una enfermedad: vio una desigualdad y decidió convertirla en una oportunidad para innovar y ampliar el acceso a la salud visual.",hook:"A cataract could steal a person’s sight. Bath imagined that a laser could change how the problem was treated.",inv:"Laserphaco Probe",invImg:"https://www.invent.org/sites/default/files/styles/fire_medium_x1_768px_/public/inductees/2024-12/Museum_2022_7086.JPG",invText:"Un aparato y método basado en láser para tratar cataratas. Su patente estadounidense fue concedida en 1988.",photo:"https://upload.wikimedia.org/wikipedia/commons/0/08/Patriciabath.jpg",facts:[["FIRST","A door that opened","Fue la primera mujer afroamericana en recibir una patente estadounidense por un dispositivo médico."],["1981","The idea","Concibió el concepto del Laserphaco para hacer el tratamiento de cataratas más preciso."],["1988","The patent","Obtuvo la patente estadounidense US 4,744,360."],["LEGACY","Science + justice","Defendió la prevención de la ceguera y el acceso a la atención visual."]],details:[["THE PATENT","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNiI+CjxwYXRoIGQ9Ik03NSAxNjBoMjM1Ii8+PHBhdGggZD0iTTMwMCAxNDJsMTAwLTQyIi8+PHBhdGggZD0iTTMwMCAxNzhsMTAwIDQyIi8+PHBhdGggZD0iTTQwMCAxMDBsNTUgMzAtNTUgMzAiLz48cGF0aCBkPSJNNDAwIDIyMGw1NS0zMC01NS0zMCIvPgo8Y2lyY2xlIGN4PSI3NSIgY3k9IjE2MCIgcj0iMjUiLz48cGF0aCBkPSJNMzEwIDE0MnYzNiIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MQVNFUlBIQUNPIFBST0JFPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5QQVRFTlRFIMK3IFVTIDQsNzQ0LDM2MDwvdGV4dD48L3N2Zz4="],["THE PROBLEM","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNiI+CjxwYXRoIGQ9Ik03NSAxNjBoMjM1Ii8+PHBhdGggZD0iTTMwMCAxNDJsMTAwLTQyIi8+PHBhdGggZD0iTTMwMCAxNzhsMTAwIDQyIi8+PHBhdGggZD0iTTQwMCAxMDBsNTUgMzAtNTUgMzAiLz48cGF0aCBkPSJNNDAwIDIyMGw1NS0zMC01NS0zMCIvPgo8Y2lyY2xlIGN4PSI3NSIgY3k9IjE2MCIgcj0iMjUiLz48cGF0aCBkPSJNMzEwIDE0MnYzNiIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MQVNFUlBIQUNPIFBST0JFPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5QQVRFTlRFIMK3IFVTIDQsNzQ0LDM2MDwvdGV4dD48L3N2Zz4="],["THE SOLUTION","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNiI+CjxwYXRoIGQ9Ik03NSAxNjBoMjM1Ii8+PHBhdGggZD0iTTMwMCAxNDJsMTAwLTQyIi8+PHBhdGggZD0iTTMwMCAxNzhsMTAwIDQyIi8+PHBhdGggZD0iTTQwMCAxMDBsNTUgMzAtNTUgMzAiLz48cGF0aCBkPSJNNDAwIDIyMGw1NS0zMC01NS0zMCIvPgo8Y2lyY2xlIGN4PSI3NSIgY3k9IjE2MCIgcj0iMjUiLz48cGF0aCBkPSJNMzEwIDE0MnYzNiIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MQVNFUlBIQUNPIFBST0JFPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5QQVRFTlRFIMK3IFVTIDQsNzQ0LDM2MDwvdGV4dD48L3N2Zz4="]],impact:"Su historia demuestra que la innovación puede nacer de una pregunta científica y, al mismo tiempo, de una convicción sobre quién merece tener acceso a la salud.",source:"Sources: Smithsonian Institution · National Library of Medicine."},
+"Elijah McCoy":{k:"ENGINEERING · MECHANICAL",bio:"Ingeniero e inventor cuya experiencia con locomotoras lo llevó a resolver un problema aparentemente pequeño que tenía consecuencias enormes: lubricar máquinas sin tener que detenerlas constantemente.",hook:"¿Y si una máquina pudiera cuidarse mientras sigue trabajando?",inv:"Lubricador automático",invImg:"https://upload.wikimedia.org/wikipedia/commons/9/96/Elijah_McCoy_c1895.jpg",invText:"Su sistema suministraba aceite a partes móviles de maquinaria mientras esta funcionaba, reduciendo paradas y mantenimiento manual.",photo:"https://upload.wikimedia.org/wikipedia/commons/9/96/Elijah_McCoy_c1895.jpg",facts:[["1872","The solution","Patentó un lubricador automático para máquinas de vapor."],["THE REAL McCOY","Una frase con historia","Sus soluciones fueron reconocidas por su calidad; su nombre quedó asociado a la expresión popular “the real McCoy”."],["50+","Inventos","Registró numerosas patentes a lo largo de su carrera."],["IMPACT","Less downtime","La lubricación automática ayudó a mantener maquinaria trabajando durante más tiempo."]],details:[["PATENT","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxlbGxpcHNlIGN4PSIyNTAiIGN5PSI4MCIgcng9IjcwIiByeT0iMjUiLz48cGF0aCBkPSJNMTgwIDgwdjEzNXEwIDQ1IDcwIDQ1dDcwLTQ1VjgwIi8+PHBhdGggZD0iTTE4MCAxMjVoMTQwIi8+PHBhdGggZD0iTTI1MCAxMDV2MTA1Ii8+PHBhdGggZD0iTTMyMCAxNDVoNzB2NTVoLTcwIi8+PHBhdGggZD0iTTE4MCAxODBoLTU1djQwaDU1Ii8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjgwIiByPSIxMiIgZmlsbD0iI2M5YTA3MSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MVUJSSUNBRE9SIEFVVE9Nw4FUSUNPPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5FTElKQUggTWNDT1kgwrcgMTg3MjwvdGV4dD48L3N2Zz4="],["MECANISMO","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxlbGxpcHNlIGN4PSIyNTAiIGN5PSI4MCIgcng9IjcwIiByeT0iMjUiLz48cGF0aCBkPSJNMTgwIDgwdjEzNXEwIDQ1IDcwIDQ1dDcwLTQ1VjgwIi8+PHBhdGggZD0iTTE4MCAxMjVoMTQwIi8+PHBhdGggZD0iTTI1MCAxMDV2MTA1Ii8+PHBhdGggZD0iTTMyMCAxNDVoNzB2NTVoLTcwIi8+PHBhdGggZD0iTTE4MCAxODBoLTU1djQwaDU1Ii8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjgwIiByPSIxMiIgZmlsbD0iI2M5YTA3MSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MVUJSSUNBRE9SIEFVVE9Nw4FUSUNPPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5FTElKQUggTWNDT1kgwrcgMTg3MjwvdGV4dD48L3N2Zz4="],["EN MOVIMIENTO","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxlbGxpcHNlIGN4PSIyNTAiIGN5PSI4MCIgcng9IjcwIiByeT0iMjUiLz48cGF0aCBkPSJNMTgwIDgwdjEzNXEwIDQ1IDcwIDQ1dDcwLTQ1VjgwIi8+PHBhdGggZD0iTTE4MCAxMjVoMTQwIi8+PHBhdGggZD0iTTI1MCAxMDV2MTA1Ii8+PHBhdGggZD0iTTMyMCAxNDVoNzB2NTVoLTcwIi8+PHBhdGggZD0iTTE4MCAxODBoLTU1djQwaDU1Ii8+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjgwIiByPSIxMiIgZmlsbD0iI2M5YTA3MSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5MVUJSSUNBRE9SIEFVVE9Nw4FUSUNPPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5FTElKQUggTWNDT1kgwrcgMTg3MjwvdGV4dD48L3N2Zz4="]],impact:"Su legado está en una idea poderosa: mejorar un pequeño proceso puede cambiar la eficiencia de un sistema entero.",source:"Source: National Inventors Hall of Fame."},
+"Frederick McKinley Jones":{k:"REFRIGERATION · TRANSPORTATION",bio:"Inventor e ingeniero autodidacta que ayudó a resolver un problema esencial de la vida moderna: mantener productos perecederos fríos mientras viajaban.",hook:"Fresh food cannot wait. Jones made cold travel.",inv:"Sistema de refrigeración móvil",invImg:"https://blogdofrio.com.br/wp-content/uploads/2018/02/frederick-mckinley-jones-1950-sociedade-historica-de-minnesota-1200x630.jpg",invText:"Un sistema de refrigeración compacto para camiones y otros vehículos que permitió transportar productos perecederos a grandes distancias.",photo:"https://upload.wikimedia.org/wikipedia/commons/2/25/Fred_McKinley_Jones_USDA.jpg",facts:[["1940","El frío viaja","Patentó un sistema de refrigeración para transporte que podía operar mientras el vehículo estaba en movimiento."],["LOGÍSTICA","Comida a distancia","La tecnología ayudó a distribuir carne, lácteos y otros productos perecederos."],["AUTODIDACTA","Aprender haciendo","Su trayectoria combinó curiosidad, reparación de máquinas y una enorme capacidad práctica."],["LEGACY","Cadena de frío","Su trabajo contribuyó al desarrollo moderno del transporte refrigerado."]],details:[["EL SISTEMA","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxyZWN0IHg9IjEyMCIgeT0iNzUiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTQ1IiByeD0iMTAiLz48cGF0aCBkPSJNMTUwIDEwNWgyMDAiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxNjAiIHI9IjM4Ii8+PHBhdGggZD0iTTI1MCAxMjJ2NzZNMjEyIDE2MGg3Nk0yMjMgMTMzbDU0IDU0TTI3NyAxMzNsLTU0IDU0Ii8+CjxwYXRoIGQ9Ik05MCAyNDVoMzIwIi8+PHBhdGggZD0iTTE0NSAyMjB2MjVNMzU1IDIyMHYyNSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIxIj5SRUZSSUdFUkFDScOTTiBNw5NWSUw8L3RleHQ+Cjx0ZXh0IHg9IjI1MCIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhOTg5NjciIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgbGV0dGVyLXNwYWNpbmc9IjMiPkZSRURFUklDSyBNY0tJTkxFWSBKT05FUzwvdGV4dD48L3N2Zz4="],["EL VEHÍCULO","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxyZWN0IHg9IjEyMCIgeT0iNzUiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTQ1IiByeD0iMTAiLz48cGF0aCBkPSJNMTUwIDEwNWgyMDAiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxNjAiIHI9IjM4Ii8+PHBhdGggZD0iTTI1MCAxMjJ2NzZNMjEyIDE2MGg3Nk0yMjMgMTMzbDU0IDU0TTI3NyAxMzNsLTU0IDU0Ii8+CjxwYXRoIGQ9Ik05MCAyNDVoMzIwIi8+PHBhdGggZD0iTTE0NSAyMjB2MjVNMzU1IDIyMHYyNSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIxIj5SRUZSSUdFUkFDScOTTiBNw5NWSUw8L3RleHQ+Cjx0ZXh0IHg9IjI1MCIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhOTg5NjciIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgbGV0dGVyLXNwYWNpbmc9IjMiPkZSRURFUklDSyBNY0tJTkxFWSBKT05FUzwvdGV4dD48L3N2Zz4="],["EL IMPACT","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxyZWN0IHg9IjEyMCIgeT0iNzUiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTQ1IiByeD0iMTAiLz48cGF0aCBkPSJNMTUwIDEwNWgyMDAiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxNjAiIHI9IjM4Ii8+PHBhdGggZD0iTTI1MCAxMjJ2NzZNMjEyIDE2MGg3Nk0yMjMgMTMzbDU0IDU0TTI3NyAxMzNsLTU0IDU0Ii8+CjxwYXRoIGQ9Ik05MCAyNDVoMzIwIi8+PHBhdGggZD0iTTE0NSAyMjB2MjVNMzU1IDIyMHYyNSIvPgo8L2c+PHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIxIj5SRUZSSUdFUkFDScOTTiBNw5NWSUw8L3RleHQ+Cjx0ZXh0IHg9IjI1MCIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhOTg5NjciIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgbGV0dGVyLXNwYWNpbmc9IjMiPkZSRURFUklDSyBNY0tJTkxFWSBKT05FUzwvdGV4dD48L3N2Zz4="]],impact:"Cada vez que un producto fresco llega lejos de donde fue producido, existe una historia de ingeniería detrás. Jones ayudó a hacer posible esa cadena de frío.",source:"Source: National Inventors Hall of Fame."},
+"James E. West":{k:"PHYSICS · SOUND",bio:"Físico e inventor que, junto con Gerhard Sessler, desarrolló el micrófono electret: una tecnología pequeña, económica y fiable que cambió la forma en que captamos el sonido.",hook:"Your voice becomes a signal. West helped make that transformation small, practical, and widespread.",inv:"Micrófono electret",invImg:"https://upload.wikimedia.org/wikipedia/commons/0/0a/James_West.JPG",invText:"Desarrollado junto con Gerhard Sessler y patentado en 1962, combinó pequeño tamaño, bajo costo, sensibilidad y fiabilidad.",photo:"https://upload.wikimedia.org/wikipedia/commons/0/0a/James_West.JPG",facts:[["1962","Una patente que viajó","West y Sessler patentaron el micrófono electret."],["90%","Casi en todas partes","La National Inventors Hall of Fame estima que la tecnología electret representa alrededor del 90% de los micrófonos fabricados anualmente."],["70+","Patents","West obtuvo más de 70 patentes estadounidenses durante su carrera."],["MUSIC + SCIENCE","Dos pasiones","Su trabajo científico convivió con su pasión por la música y su impulso a la diversidad en STEM."]],details:[["EL MICRÓFONO","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEzMCIgcj0iNjgiLz48cGF0aCBkPSJNMjUwIDYydjEzNk0xODIgMTMwaDEzNiIvPjxwYXRoIGQ9Ik0yNTAgMTk4djU1TTIxMCAyNTNoODAiLz48cGF0aCBkPSJNMjA1IDkycTQ1LTQyIDkwIDAiLz48cGF0aCBkPSJNMTk1IDE3MHE1NSA0MCAxMTAgMCIvPgo8L2c+PGcgZmlsbD0iI2M5YTA3MSI+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTMwIiByPSIxMCIvPjwvZz4KPHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5NSUNSw5NGT05PIEVMRUNUUkVUPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5KQU1FUyBFLiBXRVNUPC90ZXh0Pjwvc3ZnPg=="],["THE PATENT","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEzMCIgcj0iNjgiLz48cGF0aCBkPSJNMjUwIDYydjEzNk0xODIgMTMwaDEzNiIvPjxwYXRoIGQ9Ik0yNTAgMTk4djU1TTIxMCAyNTNoODAiLz48cGF0aCBkPSJNMjA1IDkycTQ1LTQyIDkwIDAiLz48cGF0aCBkPSJNMTk1IDE3MHE1NSA0MCAxMTAgMCIvPgo8L2c+PGcgZmlsbD0iI2M5YTA3MSI+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTMwIiByPSIxMCIvPjwvZz4KPHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5NSUNSw5NGT05PIEVMRUNUUkVUPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5KQU1FUyBFLiBXRVNUPC90ZXh0Pjwvc3ZnPg=="],["EL SONIDO","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMzIwIj4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSIzMjAiIGZpbGw9IiMyMTE4MTIiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNjOWEwNzEiIHN0cm9rZS13aWR0aD0iNyI+CjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEzMCIgcj0iNjgiLz48cGF0aCBkPSJNMjUwIDYydjEzNk0xODIgMTMwaDEzNiIvPjxwYXRoIGQ9Ik0yNTAgMTk4djU1TTIxMCAyNTNoODAiLz48cGF0aCBkPSJNMjA1IDkycTQ1LTQyIDkwIDAiLz48cGF0aCBkPSJNMTk1IDE3MHE1NSA0MCAxMTAgMCIvPgo8L2c+PGcgZmlsbD0iI2M5YTA3MSI+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTMwIiByPSIxMCIvPjwvZz4KPHRleHQgeD0iMjUwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlNmQ2YzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhIiBmb250LXNpemU9IjIyIj5NSUNSw5NGT05PIEVMRUNUUkVUPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYTk4OTY3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGxldHRlci1zcGFjaW5nPSIzIj5KQU1FUyBFLiBXRVNUPC90ZXh0Pjwvc3ZnPg=="]],impact:"Una pieza diminuta puede cambiar la manera en que millones de personas hablan, graban, escuchan y se comunican.",source:"Source: National Inventors Hall of Fame."}
+};
+const SCIENCE_EN={
+"Patricia Bath":{k:"MEDICINE · OPHTHALMOLOGY",bio:"Physician, scientist, educator, and inventor who saw a gap in eye care and turned it into an opportunity to innovate.",hook:"A cataract could steal a person's sight. Bath imagined that a laser could change how the problem was treated.",inv:"Laserphaco Probe",invImg:"https://www.invent.org/sites/default/files/styles/fire_medium_x1_768px_/public/inductees/2024-12/Museum_2022_7086.JPG",invText:"A laser-based device and method for treating cataracts. Her U.S. patent was granted in 1988.",photo:"https://upload.wikimedia.org/wikipedia/commons/0/08/Patriciabath.jpg",facts:[["FIRST","A door opened","She became the first Black woman to receive a U.S. patent for a medical device."],["1981","The idea","She conceived the Laserphaco concept to make cataract treatment more precise."],["1988","The patent","U.S. Patent 4,744,360 was granted."],["LEGACY","Science + justice","She championed blindness prevention and access to eye care." ]],currentUse:"Laser technology remains part of modern ophthalmic surgery, including cataract procedures.",impact:"Her story connects scientific invention with a fight to make better vision care more accessible.",source:"Sources: National Library of Medicine · Smithsonian Institution."},
+"Elijah McCoy":{k:"ENGINEERING · MECHANICAL",bio:"Engineer and inventor whose experience with locomotives led him to solve a deceptively small problem with huge consequences: keeping machines lubricated while they kept working.",hook:"What if a machine could care for itself while it was still running? McCoy helped make that possible.",inv:"Automatic Lubricator",invImg:"https://thfemu.s3.amazonaws.com/CollectionImages/_detail/photos/thf17595.jpg",photo:"https://upload.wikimedia.org/wikipedia/commons/9/96/Elijah_McCoy_c1895.jpg",facts:[["1872","Keep it moving","His automatic lubricator delivered oil to moving machinery without constant manual stops."],["ENGINEERING","Small part, huge effect","Better lubrication reduced friction, wear, and downtime."],["REAL McCOY","A phrase with a story","His precision products became associated with the idea of getting the genuine article."],["LEGACY","Reliability","Automatic lubrication remains a core engineering principle." ]],currentUse:"Automatic and centralized lubrication systems are still used in industrial machinery, engines, and heavy equipment.",impact:"McCoy showed how solving a small maintenance problem can improve an entire system.",source:"Source: National Inventors Hall of Fame."},
+"Frederick McKinley Jones":{k:"TRANSPORTATION · REFRIGERATION",bio:"Self-taught inventor and engineer who solved a defining problem of modern logistics: keeping perishable products cold while they traveled.",hook:"Fresh food cannot wait. Jones made cold travel.",inv:"Mobile Refrigeration System",invImg:"https://blogdofrio.com.br/wp-content/uploads/2018/02/frederick-mckinley-jones-1950-sociedade-historica-de-minnesota-1200x630.jpg",photo:"https://upload.wikimedia.org/wikipedia/commons/2/25/Fred_McKinley_Jones_USDA.jpg",facts:[["1940","Cold on the move","He patented a transport refrigeration system that could operate while a vehicle was moving."],["LOGISTICS","Food at a distance","The technology helped move meat, dairy, and other perishables farther and more safely."],["SELF-TAUGHT","Learn by doing","His career combined curiosity, machine repair, and practical problem solving."],["LEGACY","The cold chain","His work helped shape modern refrigerated transport." ]],currentUse:"Mobile refrigeration remains essential in refrigerated trucks and containers for food and medicines.",impact:"Every long journey made by a fresh product carries a story of engineering behind it.",source:"Source: National Inventors Hall of Fame."},
+"James E. West":{k:"PHYSICS · SOUND",bio:"Physicist and inventor who, with Gerhard Sessler, developed the electret microphone: small, affordable, sensitive, and reliable.",hook:"Your voice becomes a signal. West helped make that transformation small, practical, and widespread.",inv:"Electret Microphone",invImg:"https://aip.brightspotcdn.com/dims4/default/be380ba/2147483647/strip/true/crop/800x541%2B0%2B0/resize/704x476%21/quality/90/?url=https%3A%2F%2Fk1-prod-aip.s3.us-east-2.amazonaws.com%2Fbrightspot%2Fdb%2F1c%2Ff416e196de300bdcb741e71d789f%2Fjames-west-800-px-png.png",photo:"https://upload.wikimedia.org/wikipedia/commons/0/0a/James_West.JPG",facts:[["1962","A patent that traveled","West and Sessler patented the electret microphone."],["90%","Almost everywhere","Electret technology has been used in the overwhelming majority of microphones manufactured annually."],["70+","Patents","West held more than 70 U.S. patents during his career."],["MUSIC + SCIENCE","Two passions","His scientific work lived alongside his love of music and his commitment to diversity in STEM." ]],currentUse:"Electret microphone technology and its descendants remain in phones, computers, cameras, headsets, and consumer devices.",impact:"A tiny component can change how millions of people speak, record, listen, and communicate.",source:"Source: National Inventors Hall of Fame."},
+"George Carruthers":{k:"SPACE · ASTRONOMY",bio:"Physicist and inventor who built instruments that let scientists study the universe in ultraviolet light from space.",hook:"Some light never reaches the ground. Carruthers built a way to see it anyway.",inv:"Far-Ultraviolet Camera / Spectrograph",photo:"https://upload.wikimedia.org/wikipedia/commons/f/f2/George_Carruthers%2C_right%2C_and_William_Conway.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/c/ce/Lunar_Surface_Ultraviolet_Camera_(9460222206).jpg",facts:[["APOLLO 16","A camera on the Moon","His far-ultraviolet camera flew on Apollo 16 and operated from the lunar surface."],["ULTRAVIOLET","Seeing hidden light","The instrument revealed ultraviolet information about stars, galaxies, and Earth's upper atmosphere."],["SPACE SCIENCE","A new window","His instruments expanded what scientists could observe beyond visible light."],["LEGACY","Look beyond visible","Space telescopes still rely on instruments that detect wavelengths unavailable from the ground." ]],currentUse:"Ultraviolet detectors and space instruments continue to study stars, galaxies, planets, and the solar system.",impact:"Carruthers opened a new observational window on the universe.",source:"Sources: NASA · National Inventors Hall of Fame."},
+"Valerie L. Thomas":{k:"SPACE · COMPUTING",bio:"NASA scientist and inventor who worked with Landsat image processing and developed systems for turning satellite data into useful information.",hook:"A satellite can see the Earth. Thomas helped turn that view into information people could use.",inv:"Illusion Transmitter",photo:"https://upload.wikimedia.org/wikipedia/commons/7/74/NASA_photo_of_data_scientist_Valerie_L._Thomas.gif",invImg:"./assets/valerie-illusion-transmitter.svg",facts:[["1980","A new kind of image","She patented the Illusion Transmitter, a system for producing three-dimensional images."],["LANDSAT","Earth from orbit","Her work in image processing helped transform satellite observations into usable data."],["NASA","Computing meets science","She worked on digital image processing during the growth of Earth-observing satellites."],["LEGACY","Data becomes insight","Modern Earth observation still depends on processing huge streams of satellite imagery." ]],currentUse:"The optical principles behind the Illusion Transmitter continue to inform 3D imaging, display systems, visualization, and medical imaging research.",impact:"Thomas helped turn raw satellite signals into information that could change how we understand Earth.",source:"Source: NASA."},
+"Granville T. Woods":{k:"COMMUNICATION · TRANSPORTATION",bio:"Engineer and inventor who developed systems that helped trains communicate while moving.",hook:"When trains move, information has to move with them. Woods helped make that communication possible.",inv:"Railway Telegraphy",photo:"https://upload.wikimedia.org/wikipedia/commons/3/39/Granville_T_Woods_1903.png",invImg:"https://upload.wikimedia.org/wikipedia/commons/8/8e/Woods1.jpg",facts:[["1887","Messages between trains","His railway telegraph system helped send information between moving trains and stations."],["SAFETY","Better coordination","Communication improved coordination and safety on rail networks."],["ENGINEERING","Signal + motion","His work connected electrical communication with transportation systems."],["LEGACY","Connected railways","Modern rail systems still depend on electronic communication and signaling." ]],currentUse:"Modern railways use electronic communication and signaling systems to coordinate trains, tracks, and control centers.",impact:"Woods helped turn the railway into a connected electrical system.",source:"Source: National Inventors Hall of Fame."},
+"Daniel Hale Williams":{k:"MEDICINE · SURGERY",bio:"Physician and medical pioneer who founded Provident Hospital and performed one of the early successful open-heart procedures without modern blood transfusion or antibiotics.",hook:"When the tools of modern medicine did not yet exist, Williams still had to act.",inv:"Provident Hospital & Surgical Innovation",photo:"https://upload.wikimedia.org/wikipedia/commons/8/83/Daniel_Hale_Williams.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/5/55/Operation_at_Provident_Hospital_on_South_Side_of_Chicago%2C_Illinois_(1941)._Original_from_Library_of_Congress._Digitally_enhanced.jpg",facts:[["1893","A pioneering operation","Williams performed a landmark cardiac operation at Provident Hospital."],["PROVIDENT","A hospital built for access","He founded Provident Hospital, creating training and care opportunities for Black physicians and nurses."],["TRAINING","Medicine needs institutions","His legacy included medical education and professional opportunity."],["LEGACY","Care + access","Clinical innovation and access to training became part of the same mission." ]],currentUse:"Modern cardiac surgery continues to build on generations of advances in surgical technique, anesthesia, imaging, and critical care.",impact:"Williams connected medical innovation with the creation of institutions where Black professionals could train and patients could receive care.",source:"Sources: National Library of Medicine · American College of Surgeons."},
+"Mary Beatrice Davidson Kenner":{k:"EVERYDAY INVENTIONS · HEALTH",bio:"Inventor who designed practical solutions for everyday life, including an adjustable sanitary belt that improved how menstrual pads stayed in place.",hook:"A simple everyday problem became a design challenge—and discrimination delayed the idea for decades.",inv:"Adjustable Sanitary Belt",photo:"./assets/mary-beatrice.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/d/d9/Sanitary_Belt.jpg",facts:[["FIVE","A prolific inventor","Kenner received five U.S. patents for practical household and personal-care inventions."],["1950s","A better fit","Her adjustable sanitary belt was designed to keep pads securely in place and reduce leakage."],["DISCRIMINATION","An idea delayed","A company lost interest after learning she was Black, delaying adoption of her invention."],["LEGACY","Everyday design","Her inventions focused on comfort, access, and practical problems people live with every day." ]],currentUse:"Modern menstrual products continue to solve the same core needs of fit, absorption, comfort, and protection from leaks.",impact:"Kenner's story shows how an everyday design can matter—and how bias can delay useful innovation.",source:"Source: Lemelson-MIT · Science Museum Group."},
+"Lyda D. Newman":{k:"EVERYDAY INVENTIONS · DESIGN",bio:"Inventor whose improved hairbrush design focused on durability, hygiene, and easier cleaning.",hook:"A hairbrush looks simple—until you ask how to make it cleaner, stronger, and easier to maintain.",inv:"Improved Hairbrush",photo:"./assets/lyda-newman.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/f/f7/Lyda_Newman%27s_hairbrush.gif",facts:[["1898","A better brush","Newman patented an improved hairbrush designed to be durable and easier to clean."],["DESIGN","Everyday engineering","She treated a familiar household object as a problem worth solving."],["HYGIENE","Built to be cleaned","Her design included a removable section that made cleaning the brush easier."],["LEGACY","Small objects matter","Good design can improve an everyday routine without looking revolutionary." ]],currentUse:"Modern hairbrushes still use design principles that balance effective brushing, durability, hygiene, and ease of cleaning.",impact:"Newman's invention reminds us that innovation can hide inside the objects we use every morning.",source:"Source: U.S. Patent 614,335."},
+"Otis Boykin":{k:"ELECTRICITY · ELECTRONICS",bio:"Inventor whose precision resistors improved the reliability and control of electronic circuits.",hook:"Some of the most important inventions are the parts nobody sees.",inv:"Precision Resistor",photo:"https://upload.wikimedia.org/wikipedia/commons/c/c5/Otis_F._Boykin.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/4/41/Otis_Boykin%27s_resister_patent_(cropped).png",facts:[["1950s","Control the current","Boykin developed improved resistors for controlling electrical current in circuits."],["ELECTRONICS","Tiny component, big role","Resistors help regulate voltage and current across electronic systems."],["MEDICAL DEVICES","Reliability matters","His work is associated with electronics used in devices where dependable control is essential."],["LEGACY","The invisible infrastructure","Electronic systems depend on thousands of components that rarely get noticed." ]],currentUse:"Precision resistors remain basic components in medical equipment, computers, control systems, and consumer electronics.",impact:"Boykin shows that innovation is not always the visible machine—it can be the tiny component that makes the machine dependable.",source:"Source: National Inventors Hall of Fame."},
+"Norbert Rillieux":{k:"ENGINEERING · INDUSTRIAL PROCESS",bio:"Engineer who developed a multiple-effect evaporator that made sugar processing more efficient and safer.",hook:"What if the same heat could do more work? Rillieux redesigned the process around that idea.",inv:"Multiple-Effect Evaporator",photo:"https://upload.wikimedia.org/wikipedia/commons/7/73/Norbert_Rillieux.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/5/52/Norbert_Rillieux%27s_Vacuum_Pan_-_DPLA_-_ee6aab99057fbfbd3cc16a21b66454c0.jpg",facts:[["1840s","Use heat more than once","His system reused vapor to evaporate successive batches of liquid."],["SUGAR","A major industrial shift","The process improved efficiency and helped standardize sugar refining."],["ENGINEERING","Systems thinking","Rillieux solved the process as a whole rather than one isolated step."],["LEGACY","Efficiency by design","Multiple-effect evaporation remains an important industrial principle." ]],currentUse:"Multiple-effect evaporation is still used to concentrate liquids while reducing energy use in industrial processes.",impact:"Rillieux demonstrated how redesigning a process can be as transformative as inventing a machine.",source:"Sources: National Inventors Hall of Fame · engineering history archives."},
+"Lewis H. Latimer":{k:"ELECTRICITY · LIGHTING",bio:"Inventor, draftsman, and engineer whose work on carbon filaments helped make incandescent lighting more practical and durable.",hook:"The light bulb was not a single invention. Latimer helped make the technology work better in the real world.",inv:"Carbon-Filament Lamp",photo:"https://upload.wikimedia.org/wikipedia/commons/d/d4/Lewis_latimer.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/5/50/Light_bulb_by_Lewis_Latimer%2C_1883_-_Museum_of_Science_and_Industry_(Chicago)_-_DSC06448.JPG",facts:[["1881","A longer-lasting light","Latimer developed an improved carbon filament for incandescent lamps."],["ENGINEERING","Make it practical","His work helped address durability and manufacturability."],["ELECTRIFICATION","Light at scale","Better lamps supported the broader adoption of electric lighting."],["LEGACY","From filament to LED","Lighting has evolved dramatically, but efficiency and durability remain core design goals." ]],currentUse:"Lighting has evolved to LEDs and advanced solid-state systems, while the engineering goals of efficiency and durability remain.",impact:"Latimer's story shows how improving an existing technology can be just as important as creating a new one.",source:"Sources: National Inventors Hall of Fame · Smithsonian Institution."},
+"Marian Croak":{k:"COMMUNICATION · DIGITAL TECHNOLOGY",bio:"Engineer and researcher whose work helped turn voice communication over the internet into an everyday technology.",hook:"A voice call can cross a network instead of a traditional phone line. Croak helped make that shift scalable.",inv:"Voice over IP Technology",photo:"https://upload.wikimedia.org/wikipedia/commons/d/d7/Marian_Croak.jpg",invImg:"https://upload.wikimedia.org/wikipedia/commons/2/28/Drcroakcardfront.jpg",facts:[["VOIP","Voice becomes data","Her work helped develop technologies that carry voice communications over digital networks."],["SCALE","From experiment to infrastructure","Digital voice systems had to work reliably for millions of users."],["COMMUNICATION","A new default","Internet-based calling became central to collaboration and customer service."],["LEGACY","Networks as platforms","Voice is now one application running on the same networks that carry data and video." ]],currentUse:"Voice over IP is now part of calls, video meetings, customer service, and digital collaboration worldwide.",impact:"Croak's work helped turn internet voice from an experiment into everyday infrastructure.",source:"Sources: National Inventors Hall of Fame · IEEE."}
+};
 
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a
-        href="index.html"
-        class="brand"
-        aria-label="Finance & Risk Lab - Inicio"
-      >
-        <img
-          src="assets/brand/logo-symbol.svg"
-          alt=""
-          class="brand-logo"
-        >
-        <span>Finance & Risk Lab</span>
-      </a>
+// FINAL PROOFREAD: one authoritative 14-person collection.
+const FINAL_EN={
+"Patricia Bath":{bio:"Physician, scientist, educator, and inventor who saw a gap in eye care and turned it into an opportunity to innovate.",hook:"A cataract could steal a person's sight. Bath imagined that a laser could change how the problem was treated.",invText:"A laser-based device and method for treating cataracts. Her U.S. patent was granted in 1988.",facts:[["FIRST","A door that opened","She became the first Black woman to receive a U.S. patent for a medical device."],["1981","The idea","She conceived the Laserphaco concept to make cataract treatment more precise."],["1988","The patent","U.S. Patent 4,744,360 was granted."],["LEGACY","Science + justice","She championed blindness prevention and access to eye care."]],currentUse:"Laser technology remains part of modern ophthalmic surgery, including cataract procedures.",impact:"Her story connects scientific invention with a fight to make better vision care more accessible."},
+"Elijah McCoy":{bio:"Engineer and inventor whose experience with locomotives led him to solve a deceptively small problem with huge consequences: keeping machines lubricated while they were running.",hook:"What if a machine could care for itself while it was still running? McCoy helped make that possible.",invText:"An automatic lubricator that supplied oil to moving machine parts while equipment was operating.",facts:[["1872","The solution","He patented an automatic lubricator for steam machinery."],["THE REAL McCOY","A phrase with a history","His engineering solutions became associated with quality and reliability."],["50+","Inventive work","He held numerous patents during his career."],["IMPACT","Less downtime","Automatic lubrication helped machinery keep working longer."]],currentUse:"Automatic and centralized lubrication systems are still used in industrial machinery, engines, and heavy equipment.",impact:"McCoy shows how improving a small mechanical process can change the efficiency of an entire system."},
+"Frederick McKinley Jones":{bio:"Self-taught inventor and engineer who solved a defining problem of modern logistics: keeping perishable products cold while they traveled.",hook:"Fresh food cannot wait. Jones made cold travel possible.",invText:"A compact mobile refrigeration system that allowed perishable goods to stay cold while being transported.",facts:[["1940","Cold on the move","He patented transport refrigeration that could operate while a vehicle was moving."],["LOGISTICS","Food at a distance","The technology helped move meat, dairy, and other perishables farther."],["SELF-TAUGHT","Learning by doing","His career combined mechanical curiosity, repair, and practical engineering."],["LEGACY","The cold chain","His work contributed to modern refrigerated transport."]],currentUse:"Mobile refrigeration remains essential in refrigerated trucks and containers for food and medicines.",impact:"Jones helped turn temperature control into reliable transportation infrastructure."},
+"James E. West":{bio:"Physicist and inventor who, with Gerhard Sessler, developed the electret microphone: small, affordable, sensitive, and reliable.",hook:"Your voice becomes a signal. West helped make that transformation small, practical, and widespread.",invText:"The electret microphone, a compact and sensitive microphone technology developed with Gerhard Sessler.",facts:[["1962","The microphone","West and Sessler patented the electret microphone."],["SMALL + SENSITIVE","A practical breakthrough","The design made high-quality microphones easier to build at scale."],["70+","Patents","West held more than 70 U.S. patents during his career."],["MUSIC + SCIENCE","Two passions","His scientific work lived alongside his love of music and commitment to diversity in STEM."]],currentUse:"Electret microphone technology and its descendants remain in phones, computers, cameras, headsets, and consumer devices.",impact:"A tiny component can change how millions of people speak, record, listen, and communicate."},
+"George Carruthers":{bio:"Physicist and inventor who built instruments that let scientists study the universe in ultraviolet light from space.",hook:"Some light never reaches the ground. Carruthers built a way to see it anyway.",invText:"A far-ultraviolet camera and spectrograph that flew on Apollo 16 and enabled ultraviolet observations from the Moon.",facts:[["APOLLO 16","Science on the Moon","His ultraviolet camera became an astronomical instrument operated from the lunar surface."],["ULTRAVIOLET","See what eyes cannot","The instrument revealed ultraviolet light from stars, galaxies, and Earth's upper atmosphere."],["INSTRUMENTATION","Precision matters","The work combined optics, electronics, and space engineering."],["LEGACY","A new vantage point","Carruthers expanded what scientists could observe beyond Earth."]],currentUse:"Ultraviolet detectors and space instruments continue to study stars, galaxies, planets, and the solar system.",impact:"Carruthers changed the vantage point of astronomy by taking sensitive instruments beyond Earth."},
+"Valerie L. Thomas":{bio:"NASA scientist and inventor who worked with Landsat image processing and developed systems for turning satellite data into useful information.",hook:"A satellite can see the Earth. Thomas helped turn that view into information people could use.",invText:"The Illusion Transmitter, a patented system for producing three-dimensional images, alongside her pioneering work with satellite image processing.",facts:[["LANDSAT","Turning images into information","Thomas worked on systems that processed satellite imagery for Earth observation."],["1980","The Illusion Transmitter","She patented a system for producing three-dimensional images without special glasses."],["NASA","Science at scale","Her career connected computing, imaging, and Earth observation."],["LEGACY","Seeing from above","Satellite imagery is now part of research, mapping, and environmental monitoring."]],currentUse:"Satellite image processing is used today for climate research, agriculture, mapping, disaster response, and environmental monitoring.",impact:"Thomas shows how better ways of seeing can become better ways of understanding the planet."},
+"Granville T. Woods":{bio:"Engineer and inventor who developed systems that helped trains communicate while moving.",hook:"When trains move, information has to move with them. Woods helped make that communication possible.",invText:"Railway telegraphy and electrical systems that helped transmit information between trains and railway stations.",facts:[["1887","Railway communication","Woods patented systems for transmitting information in railway operations."],["SAFETY","Information in motion","Better communication helped coordinate trains and reduce uncertainty on the line."],["ENGINEERING","Electrical problem solving","His work combined electrical systems with the needs of transportation."],["LEGACY","Connected railways","Modern railway signaling continues to depend on rapid, reliable communication."]],currentUse:"Modern railways use electronic communication and signaling systems to coordinate trains, tracks, and control centers.",impact:"Woods helped make transportation safer by making information move with the machines."},
+"Daniel Hale Williams":{bio:"Physician and medical pioneer who founded Provident Hospital and performed one of the early successful open-heart procedures before modern blood transfusion and surgical support existed.",hook:"When the tools of modern medicine did not yet exist, Williams still had to act.",invText:"Provident Hospital and pioneering surgical practice, including an early successful open-heart procedure.",facts:[["1893","Provident Hospital","He founded a hospital that expanded access to care and medical training."],["SURGERY","A bold procedure","Williams performed an early successful open-heart operation before modern surgical infrastructure existed."],["TRAINING","Opening doors","Provident created opportunities for Black physicians and nurses."],["LEGACY","Care + opportunity","His work linked medical innovation with institutional change."]],currentUse:"Modern cardiac surgery and clinical training continue to build on surgical advances and institutions that expand access to care.",impact:"Williams connected medical courage with a commitment to expanding who could receive care and who could become a medical professional."},
+"Mary Beatrice Davidson Kenner":{bio:"Inventor who designed practical solutions for everyday life, including an adjustable sanitary belt that improved how menstrual pads stayed in place.",hook:"A simple everyday problem became a design challenge—and discrimination delayed the idea for decades.",invText:"An adjustable sanitary belt designed to keep menstrual pads securely in place and improve comfort and reliability.",facts:[["1956","The patent","Kenner patented an adjustable sanitary belt with a waterproof pocket."],["EVERYDAY DESIGN","A practical problem","She focused on fit, movement, comfort, and leak protection."],["BARRIERS","Recognition delayed","Racism prevented a company from initially accepting her product."],["LEGACY","Design for daily life","Her work shows how everyday needs can inspire meaningful engineering."]],currentUse:"Modern menstrual products still address the core needs of fit, absorption, comfort, and leak protection.",impact:"Kenner's story shows that practical innovation can be powerful even when recognition arrives late."},
+"Lyda D. Newman":{bio:"Inventor whose improved hairbrush design focused on durability, hygiene, and easier cleaning.",hook:"A hairbrush looks simple—until you ask how to make it cleaner, stronger, and easier to maintain.",invText:"An improved hairbrush design with a ventilated back and removable bristle compartment for easier cleaning.",facts:[["1898","The patent","Newman patented an improved hairbrush."],["HYGIENE","Designed to clean","Her design made it easier to remove debris and maintain the brush."],["DURABILITY","Everyday engineering","The improvement focused on materials, structure, and repeated use."],["LEGACY","Better by design","Small improvements can make everyday objects more useful."]],currentUse:"Modern hairbrushes still combine effective bristles with designs that make grooming and cleaning easier.",impact:"Newman's work reminds us that engineering can begin with an ordinary object and a better question."},
+"Otis Boykin":{bio:"Inventor whose precision resistors improved the reliability and control of electronic circuits.",hook:"Some of the most important inventions are the parts nobody sees.",invText:"Precision resistor technology designed to control electrical current reliably in electronic circuits.",facts:[["1950s","Control the current","Boykin developed improved resistors for controlling electrical current in circuits."],["ELECTRONICS","Tiny component, big role","Resistors help regulate voltage and current across electronic systems."],["MEDICAL DEVICES","Reliability matters","His work is associated with electronics used in devices where dependable control is essential."],["LEGACY","Invisible infrastructure","Electronic systems depend on thousands of components that rarely get noticed."]],currentUse:"Precision resistors remain fundamental components used in medical equipment, computers, control systems, and consumer electronics.",impact:"Boykin shows that innovation is not always the visible machine—it can be the tiny component that makes the machine dependable."},
+"Norbert Rillieux":{bio:"Engineer who developed a multiple-effect evaporator that made sugar processing more efficient and safer.",hook:"What if the same heat could do more work? Rillieux redesigned the process around that idea.",invText:"A multiple-effect evaporation system that reused heat to make sugar refining more efficient.",facts:[["1840s","Use heat more than once","His system reused vapor to evaporate successive batches of liquid."],["SUGAR","A major industrial shift","The process improved efficiency and helped standardize sugar refining."],["ENGINEERING","Systems thinking","Rillieux solved the process as a whole rather than one isolated step."],["LEGACY","Efficiency by design","Multiple-effect evaporation remains an important industrial principle."]],currentUse:"Multiple-effect evaporation is still used in industry to concentrate liquids while reducing energy use.",impact:"Rillieux demonstrated how redesigning a process can be as transformative as inventing a machine."},
+"Lewis H. Latimer":{bio:"Inventor, draftsman, and engineer whose work on carbon filaments helped make incandescent lighting more practical and durable.",hook:"The light bulb was not a single invention. Latimer helped make the technology work better in the real world.",invText:"An improved carbon-filament lamp that contributed to more durable incandescent lighting.",facts:[["1881","A longer-lasting light","Latimer developed an improved carbon filament for incandescent lamps."],["ENGINEERING","Make it practical","His work helped address durability and manufacturability."],["ELECTRIFICATION","Light at scale","Better lamps supported the broader adoption of electric lighting."],["LEGACY","Improve what exists","Technology advances through both new ideas and better execution."]],currentUse:"Lighting has evolved to LEDs and advanced solid-state systems, while efficiency and durability remain core design goals.",impact:"Latimer's story shows how improving an existing technology can be just as important as creating a new one."},
+"Marian Croak":{bio:"Engineer and researcher whose work helped turn voice communication over the internet into an everyday technology.",hook:"A voice call can cross a network instead of a traditional phone line. Croak helped make that shift scalable.",invText:"Voice-over-IP technology and the systems that allow voice communication to travel as digital data over networks.",facts:[["VOIP","Voice becomes data","Her work helped develop technologies that carry voice communications over digital networks."],["SCALE","From experiment to infrastructure","Digital voice systems had to work reliably for millions of users."],["COMMUNICATION","A new default","Internet-based calling became central to collaboration and customer service."],["LEGACY","Networks as platforms","Voice is now one application running on the same networks that carry data and video."]],currentUse:"Voice over IP is now part of calls, video meetings, customer service, and digital collaboration worldwide.",impact:"Croak's work helped turn internet voice from an experiment into everyday infrastructure."}
+};
+Object.keys(FINAL_EN).forEach(n=>{if(SCIENCE_EN[n]) Object.assign(SCIENCE_EN[n],FINAL_EN[n]);});
 
-      <nav>
-        <a class="active" href="index.html">Inicio</a>
-        <a href="#herramientas">Herramientas</a>
-        <a href="aprender.html">Aprender</a>
-        <a href="metodologia.html">Metodología</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
-    </div>
-  </header>
+function portraitFallback(name){
+ const safe=String(name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+ return `<div class="portraitPlaceholder"><span>${safe}</span><small>${name==='Lyda D. Newman'?'ARCHIVAL PORTRAIT':'ARCHIVAL PORTRAIT UNAVAILABLE OFFLINE'}</small></div>`;
+}
+function setPortraitElement(el,url,name){
+ if(!el)return; el.innerHTML=''; el.style.backgroundImage='none'; el.classList.remove('unverifiedPortrait');
+ if(!url){el.classList.add('unverifiedPortrait');el.innerHTML=portraitFallback(name);return;}
+ const probe=new Image(); probe.referrerPolicy="no-referrer"; probe.onload=()=>{el.style.backgroundImage=`url("${url}")`;}; probe.onerror=()=>{el.innerHTML=portraitFallback(name);}; probe.src=url;
+}
 
-  <main>
+function renderScienceV37(){
+ const grid=document.querySelector('#science .scienceGrid'); if(!grid)return;
+ const names=Object.keys(SCIENCE_EN); grid.replaceChildren();
+ names.forEach(name=>{const d=SCIENCE_EN[name]; const article=document.createElement('article'); article.className='personCard'; article.dataset.person=name; article.style.setProperty('--accent',({"Patricia Bath":"#ffc400","Elijah McCoy":"#69bd45","Frederick McKinley Jones":"#00a7a7","James E. West":"#e31b23","George Carruthers":"#ffc400","Valerie L. Thomas":"#00a7a7","Granville T. Woods":"#e31b23","Daniel Hale Williams":"#69bd45","Mary Beatrice Davidson Kenner":"#ffc400","Lyda D. Newman":"#00a7a7","Otis Boykin":"#e31b23","Norbert Rillieux":"#69bd45","Lewis H. Latimer":"#ffc400","Marian Croak":"#00a7a7"})[name]);
+ article.innerHTML=`<div class="personPhoto" role="img" aria-label="Portrait of ${name}" data-photo="${d.photo||''}"></div><div class="personCopy"><small>${d.k}</small><h3>${name}</h3><p class="hook">${d.hook}</p><div class="microfact"><b>${d.facts[0][0]}</b><br/>${d.facts[0][2]}</div><button type="button" class="exploreLink">EXPLORE STORY →</button></div>`; grid.appendChild(article); article.querySelectorAll('.exploreLink').forEach((b,i)=>{if(i>0)b.remove();});
+ });
+}
 
-    <section class="hero">
-      <div class="container hero-grid">
+const modal=document.getElementById('personModal');
+const currentUseMap={
+'Patricia Bath':'Laser technology remains part of modern ophthalmic surgery, including cataract procedures.',
+'Elijah McCoy':'Automatic and centralized lubrication systems are still used in industrial machinery, engines, and heavy equipment.',
+'Frederick McKinley Jones':'Mobile refrigeration remains essential in refrigerated trucks and containers for food and medicines.',
+'James E. West':'Electret microphone technology and its descendants remain in phones, computers, cameras, headsets, and consumer devices.',
+'George Carruthers':'Ultraviolet detectors and space instruments continue to study stars, galaxies, planets, and the solar system.',
+'Valerie L. Thomas':'Satellite image processing is used today for climate research, agriculture, mapping, disaster response, and environmental monitoring.',
+'Granville T. Woods':'Modern railways use electronic communication and signaling systems to coordinate trains, tracks, and control centers.',
+'Daniel Hale Williams':'Modern cardiac surgery and clinical training continue to build on surgical advances and institutions that expand access to care.',
+'Mary Beatrice Davidson Kenner':'Modern menstrual products still solve the core needs of fit, absorption, comfort, and leak protection.',
+'Lyda D. Newman':'Modern hairbrushes still combine effective bristles with designs that make grooming and cleaning easier.',
+'Otis Boykin':'Precision resistors remain fundamental electronic components used in medical equipment, computers, and control systems.',
+'Norbert Rillieux':'Multiple-effect evaporation principles are still used in industry to concentrate liquids with greater energy efficiency.',
+'Lewis H. Latimer':'Lighting has evolved to LEDs and advanced solid-state systems, while efficiency and durability remain core design goals.',
+'Marian Croak':'Voice over IP is now part of calls, video meetings, customer service, and digital collaboration worldwide.'
+};
+function text(el,sel){const x=el.querySelector(sel);return x?x.textContent.trim():''}
+function buildFromCard(card){
+ const name=card.dataset.person||text(card,'.innovationCopy h3')||text(card,'.personCopy h3');
+ const innovation=card.classList.contains('innovationCard');
+ const copy=card.querySelector(innovation?'.innovationCopy':'.personCopy');
+ const img=card.querySelector(innovation?'.innovationPerson img':'.personPhoto');
+ const inv=card.querySelector('.inventionVisual img');
+ const fact=card.querySelector(innovation?'.innovationFact':'.microfact');
+ const kicker=text(copy,'small');
+ const bio=text(copy,'p');
+ const hook=innovation?(fact?text(fact,'span'):bio):(card.querySelector('.personCopy .hook')?.textContent||bio);
+ return {name,k:kicker,bio,hook,photo:img?.getAttribute('src')||'',inv:innovation?text(card,'.inventionCaption').split(' · ')[0]||'Contribution / invention':'Contribution / invention',invImg:inv?.getAttribute('src')||'',invText:innovation?bio:(text(card,'.microfact')||''),impact:innovation?(fact?text(fact,'span'):bio):bio,source:innovation?'Source and visual reference are identified in the story.':'Fuente y referencia visual indicadas en la historia.',currentUse:currentUseMap[name]||'The contribution continues to shape technologies, practices, or knowledge that keep evolving today.'};
+}
+function openHistory(card){
+ const name=card.dataset.person||text(card,'h3');
+ const base=SCIENCE_EN[name]||P[name]||buildFromCard(card); const d=Object.assign({},base,{currentUse:(SCIENCE_EN[name]&&SCIENCE_EN[name].currentUse)||currentUseMap[name]||base.currentUse||''});
+ const photoEl=document.getElementById('modalPhoto');
+ setPortraitElement(photoEl,d.photo||'',name);
+ document.getElementById('modalKicker').textContent=d.k||'';
+ document.getElementById('modalName').textContent=name;
+ document.getElementById('modalBio').textContent=d.bio||'';
+ document.getElementById('modalHook').textContent=d.hook||'';
+ const inv=document.getElementById('invImg');inv.src=d.invImg||'';inv.alt=d.inv||'Contribution / invention'; inv.onerror=()=>{inv.removeAttribute('src');inv.alt='Invention image unavailable offline';};
+ document.getElementById('invTitle').textContent=d.inv||'Contribution / invention';
+ document.getElementById('invText').textContent=d.invText||'';
+ document.getElementById('impact').textContent=d.impact||'';
+ document.getElementById('source').textContent=d.source||'';
+ document.getElementById('currentUse').textContent=d.currentUse||currentUseMap[name]||'';
+ let facts=[];
+ if(SCIENCE_EN[name]) facts=SCIENCE_EN[name].facts||[]; else if(P[name]) facts=P[name].facts||[];
+ else {
+   const f=card.querySelector('.innovationFact');
+   if(f) facts.push([text(f,'b')||'THE CONTRIBUTION', 'The problem and the idea', text(f,'span')||'']);
+   facts.push(['HOW IT IS USED TODAY','An idea that still lives on',currentUseMap[name]||'The contribution continues to shape technologies, practices, or knowledge today.']);
+   facts.push(['OBJECT / SYSTEM','What remained',text(card,'.inventionCaption')||'']);
+ }
+ document.getElementById('modalFacts').innerHTML=facts.map(f=>`<div class="fact2"><b>${f[0]}</b><h4>${f[1]}</h4><p>${f[2]}</p></div>`).join('');
+ modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');
+}
+renderScienceV37();
+document.querySelectorAll('#science .personPhoto').forEach(el=>setPortraitElement(el,el.dataset.photo||'',el.closest('.personCard')?.dataset.person||''));
+document.querySelectorAll('#science .personCard').forEach(card=>{card.setAttribute('tabindex','0');card.setAttribute('role','button');card.addEventListener('click',e=>{if(e.target.closest('.exploreLink')) openHistory(card)});card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openHistory(card)}})});
+function closeHistory(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
+document.getElementById('closePerson').onclick=closeHistory;modal.addEventListener('click',e=>{if(e.target===modal)closeHistory()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeHistory()});
+// Navigation / home state
+const scenes=[...document.querySelectorAll('.scene')];
+function resetSceneScroll(scene){
+  if(!scene)return;
+  scene.querySelectorAll('.scroll,.lobbyContent,.roomScroll,.factsScroll,.musicScroll,.feedbackScroll').forEach(el=>{el.scrollTop=0;el.scrollLeft=0});
+  scene.querySelectorAll('[style*="overflow"], [class*="Scroll"]').forEach(el=>{if(el.scrollHeight>el.clientHeight||el.scrollWidth>el.clientWidth){el.scrollTop=0;el.scrollLeft=0}});
+}
+function go(id){
+  scenes.forEach(s=>{s.classList.toggle('active',s.id===id);if(s.id===id)resetSceneScroll(s)});
+  document.body.classList.toggle('home-mode',id==='welcome');
+  window.scrollTo(0,0);
+  requestAnimationFrame(()=>{const active=document.getElementById(id);resetSceneScroll(active);window.scrollTo(0,0)});
+}
+document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',()=>{if(el.dataset.go==='feedback'){window.location.href='https://forms.cloud.microsoft/r/kWnVbHaQrC';return}go(el.dataset.go)}));
+const start=document.getElementById('start');
+if(start){start.onclick=()=>go('menu')}
 
-        <div>
-          <span class="eyebrow">Educación financiera práctica</span>
-
-          <h1>
-            Comprende tus finanzas. Toma decisiones con mayor claridad.
-          </h1>
-
-          <p>
-            Compara propuestas, estima préstamos, analiza cómo una nueva cuota
-            afectaría tu presupuesto y comprende cómo se distribuyen tus pagos.
-            Todo con explicaciones sencillas y un enfoque educativo.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button primary" href="#herramientas">
-              Explorar herramientas
-            </a>
-            <a class="button secondary" href="aprender.html">
-              Empezar a aprender
-            </a>
-          </div>
-
-          <div class="chips">
-            <span>Sin registro</span>
-            <span>Datos no almacenados</span>
-            <span>Uso educativo</span>
-          </div>
-        </div>
-
-        <aside class="hero-card">
-          <small>Recorrido recomendado</small>
-
-          <h2>Compara, calcula, analiza y aprende</h2>
-
-          <ol class="journey">
-            <li>
-              Si tienes dos propuestas, compáralas para entender qué cambia.
-            </li>
-            <li>
-              Si solo quieres evaluar una opción, estima su cuota y sus costos.
-            </li>
-            <li>
-              Revisa cómo esa nueva cuota afectaría tu presupuesto mensual.
-            </li>
-            <li>
-              Explora cómo se distribuyen tus pagos y cómo podrían cambiar con abonos.
-            </li>
-            <li>
-              Consulta explicaciones y referencias cuando quieras profundizar.
-            </li>
-          </ol>
-        </aside>
-
-      </div>
-    </section>
-
-    <section id="herramientas" class="section tools-section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">Herramientas</span>
-
-          <h2>Elige el análisis que necesitas.</h2>
-
-          <p>
-            No necesitas seguir un único recorrido. Puedes entrar directamente
-            a la herramienta que responda mejor a lo que quieres comprender.
-          </p>
-        </div>
-
-        <div class="tools-grid compact-grid">
-
-          <article class="tool-card featured">
-            <div class="tool-icon">01</div>
-            <span class="status status-ready">Disponible</span>
-
-            <h3>Comparador de propuestas bancarias</h3>
-
-            <p>
-              Compara dos propuestas considerando tasa, plazo, seguros,
-              comisiones y otros costos. Identifica qué condiciones son iguales,
-              cuáles cambian y por qué pueden producir resultados distintos.
-            </p>
-
-            <a class="tool-link" href="comparador.html">
-              Comparar propuestas →
-            </a>
-          </article>
-
-          <article class="tool-card featured-soft">
-            <div class="tool-icon">02</div>
-            <span class="status status-ready">Disponible</span>
-
-            <h3>Calculadora de préstamos</h3>
-
-            <p>
-              Estima una obligación individual: cuota mensual, intereses,
-              capital financiado, costos adicionales y total aproximado pagado.
-            </p>
-
-            <a class="tool-link" href="calculadora.html">
-              Calcular préstamo →
-            </a>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-icon">03</div>
-            <span class="status status-ready">Disponible</span>
-
-            <h3>Centro de referencias de tasas</h3>
-
-            <p>
-              Consulta referencias históricas separadas por producto y segmento
-              para poner en contexto una tasa que hayas recibido o quieras analizar.
-            </p>
-
-            <a class="tool-link" href="tasas.html">
-              Consultar tasas →
-            </a>
-          </article>
-
-          <article class="tool-card featured-soft">
-            <div class="tool-icon">04</div>
-            <span class="status status-ready">Disponible</span>
-
-            <h3>Capacidad de pago</h3>
-
-            <p>
-              Observa cómo una nueva cuota modificaría tu presupuesto familiar,
-              qué parte de tus ingresos ya está comprometida y cuánto dinero
-              quedaría disponible cada mes.
-            </p>
-
-            <a class="tool-link" href="capacidad-pago.html">
-              Analizar mi presupuesto →
-            </a>
-          </article>
-
-          <article class="tool-card featured">
-            <div class="tool-icon">05</div>
-            <span class="status status-ready">Disponible</span>
-
-            <h3>Amortización inteligente</h3>
-
-            <p>
-              Explora cómo se distribuyen tus pagos entre capital, intereses,
-              seguros y otros costos. También puedes analizar cómo ciertos abonos
-              podrían reducir intereses, plazo o cuota.
-            </p>
-
-            <a class="tool-link" href="amortizacion.html">
-              Explorar mi tabla de pagos →
-            </a>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-icon">06</div>
-            <span class="status">Próximamente</span>
-
-            <h3>Educación y cálculo para tarjetas de crédito</h3>
-
-            <p>
-              Comprende saldos rotativos, pago mínimo, intereses y el efecto de
-              realizar pagos mayores para reducir una deuda de tarjeta.
-            </p>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-icon">07</div>
-            <span class="status">Próximamente</span>
-
-            <h3>Conversor de tasas</h3>
-
-            <p>
-              Convierte tasas nominales, efectivas, mensuales y anuales para
-              facilitar su interpretación y comparación.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section project-section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="eyebrow">Nuestra forma de trabajar</span>
-
-          <h2>Herramientas que explican, no que deciden por ti.</h2>
-        </div>
-
-        <div class="principles-grid">
-
-          <article>
-            <h3>Educación</h3>
-            <p>
-              Cada resultado busca ayudarte a comprender qué significa una cifra
-              y qué puede estar provocando una diferencia.
-            </p>
-          </article>
-
-          <article>
-            <h3>Neutralidad</h3>
-            <p>
-              No recomendamos bancos ni calificamos una propuesta como mejor,
-              aprobada o rechazada. La decisión sigue siendo tuya.
-            </p>
-          </article>
-
-          <article>
-            <h3>Privacidad</h3>
-            <p>
-              No necesitas crear una cuenta. La información utilizada para las
-              simulaciones se procesa en tu navegador.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section quote-section">
-      <div class="container">
-        <blockquote>
-          “Las mejores decisiones financieras no nacen de tener más
-          herramientas, sino de comprender mejor la información.”
-        </blockquote>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-wrap">
-      <span>© 2026 Finance & Risk Lab</span>
-      <span>Herramientas educativas. No constituyen asesoría financiera.</span>
-    </div>
-  </footer>
+// Initial state
+go('welcome');
+</script>
+<script>const MUSIC_DETAILS={"BLUES": ["Roots · Blues", "Blues grew from African American musical traditions and became one of the foundational roots of modern popular music.", [["Ma Rainey", "Known as the “Mother of the Blues,” she helped bring blues to stages and recordings, turning experience and voice into artistic identity.", "https://upload.wikimedia.org/wikipedia/commons/5/52/MaRainey.jpg"], ["Bessie Smith", "One of the most influential voices of recorded blues in the 1920s and 1930s.", "https://upload.wikimedia.org/wikipedia/commons/7/79/BessieSmith.jpg"]]], "JAZZ": ["Improvisation · Jazz", "Jazz turned improvisation, arranging, and interaction between musicians into a laboratory of sound.", [["Louis Armstrong", "Trumpeter and singer whose improvisation helped make the soloist a central figure in jazz.", "https://upload.wikimedia.org/wikipedia/commons/d/d2/LouisArmstrong1949.jpg"], ["Duke Ellington", "Composer, pianist, and bandleader who expanded the possibilities of the jazz orchestra.", "./assets/duke-ellington.jpg"], ["Mary Lou Williams", "Composer, arranger, and pianist who crossed multiple eras of jazz and opened doors for women in music.", "https://upload.wikimedia.org/wikipedia/commons/9/90/Mary_Lou_Williams.jpg"]]], "ROCK": ["Guitar · Gospel · R&B", "Rock grew from gospel, blues, R&B, and new ways of using the electric guitar.", [["Sister Rosetta Tharpe", "Her electric guitar and stage energy connected gospel, blues, and rock before the genre even had its name.", "https://upload.wikimedia.org/wikipedia/commons/b/b2/Sister_Rosetta_Tharpe_(1938_publicity_photo_-_headshot).jpg"], ["Little Richard", "His voice, piano, and stage presence helped define the explosive energy of rock and roll.", "https://upload.wikimedia.org/wikipedia/commons/7/73/Little_Richard_1957.JPG"], ["Chuck Berry", "He combined guitar, storytelling, and rhythm into a language that became central to rock.", "./assets/chuck-berry.jpg"]]], "SOUL · R&B": ["Emotion · Soul / R&B", "Soul carried gospel vocal and spiritual intensity into R&B and pop.", [["Aretha Franklin", "She turned the voice into a powerful expressive force and left a deep mark on soul, R&B, and pop.", "https://upload.wikimedia.org/wikipedia/commons/c/c6/Aretha_Franklin_1968.jpg"], ["Ray Charles", "He fused gospel, blues, jazz, and R&B into a new popular language.", "./assets/ray-charles.jpg"]]], "FUNK": ["Rhythm · Funk", "James Brown helped put rhythm in the foreground: bass, drums, and syncopation as language.", [["James Brown", "His rhythmic approach and band transformed the relationship between voice, drums, bass, and stage movement.", "./assets/james-brown.webp"]]], "HIP-HOP": ["DJ · MC · Break · Hip-Hop", "In the Bronx, DJs, MCs, breakers, and visual artists built a new culture through creative uses of existing technology.", [["DJ Kool Herc", "His Bronx parties helped establish DJ techniques that became fundamental to hip-hop.", "./assets/dj-kool-herc.jpg"], ["Grandmaster Flash", "He innovated in mixing and turntable techniques, turning technology into an instrument.", "https://upload.wikimedia.org/wikipedia/commons/0/0f/Grandmaster_Flash.jpg"]]]};
+const musicModal=document.getElementById('musicModal');
+const musicTitle=document.getElementById('musicModalTitle');
+const musicKicker=document.getElementById('musicModalKicker');
+const musicIntro=document.getElementById('musicModalIntro');
+const artistGrid=document.getElementById('artistGrid');
+function artistFallback(name){
+ const initials=name.split(/\s+/).map(x=>x[0]).slice(0,2).join('').toUpperCase();
+ const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop stop-color='#241b12'/><stop offset='1' stop-color='#090909'/></linearGradient></defs><rect width='800' height='600' fill='url(#g)'/><circle cx='400' cy='225' r='88' fill='#d2b28b' opacity='.88'/><path d='M240 560c18-128 92-188 160-188s142 60 160 188' fill='#3b3129'/><text x='400' y='585' text-anchor='middle' fill='#ffc400' font-family='Arial' font-size='30' letter-spacing='4'>${initials}</text></svg>`;
+ return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+function openGenre(key){const d=MUSIC_DETAILS[key]; if(!d)return; musicKicker.textContent=d[0]; musicTitle.textContent=key; musicIntro.textContent=d[1]; artistGrid.innerHTML=''; d[2].forEach((a,i)=>{const el=document.createElement('article');el.className='artistCard';el.style.setProperty('--c',['#ffc400','#00a7a7','#e31b23','#69bd45'][i%4]);el.innerHTML='<img loading="eager" referrerpolicy="no-referrer" alt="'+a[0]+'" src="'+a[2]+'"><div class="artistBody"><small>PIONEER · '+key+'</small><h3>'+a[0]+'</h3><p>'+a[1]+'</p></div>';const im=el.querySelector('img');im.referrerPolicy='no-referrer';im.onerror=()=>{im.src=artistFallback(a[0]);im.alt=a[0]+' — archival portrait unavailable offline';im.classList.add('imageUnavailable');im.dataset.fallback=a[0]};artistGrid.appendChild(el)});musicModal.classList.add('open');musicModal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+document.querySelectorAll('#art img[referrerpolicy="no-referrer"]').forEach(im=>{im.onerror=()=>{im.onerror=null;im.src='./assets/bna-logo.png';im.alt=(im.alt||'Museum image')+' — image unavailable';im.style.objectFit='contain';im.style.padding='28px';}});
+document.querySelectorAll('.genre').forEach(card=>{card.addEventListener('click',()=>openGenre(card.querySelector('.genreVisual span').textContent.trim()));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGenre(card.querySelector('.genreVisual span').textContent.trim())}})});
+document.getElementById('musicModalClose').onclick=()=>{musicModal.classList.remove('open');musicModal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')};
+musicModal.addEventListener('click',e=>{if(e.target===musicModal){document.getElementById('musicModalClose').click()}});
+</script><script>
+(function(){
+ const zm=document.getElementById('imageZoom'),zi=document.getElementById('imageZoomImg'),zc=document.getElementById('imageZoomCaption'),zx=document.getElementById('imageZoomClose');
+ if(!zm)return;
+ function openImg(img){zi.src=img.dataset.zoomSrc||img.currentSrc||img.src;zi.alt=img.alt||'Expanded museum image';zc.textContent=img.alt||'';zm.classList.add('open');zm.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}
+ function close(){zm.classList.remove('open');zm.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');zi.removeAttribute('src')}
+ document.querySelectorAll('#facts .factImage img,#art .artImage img,#personModal #invImg').forEach(img=>{img.tabIndex=0;img.addEventListener('click',()=>openImg(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openImg(img)}})});
+ zx.onclick=close;zm.addEventListener('click',e=>{if(e.target===zm)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&zm.classList.contains('open'))close()});
+})();
+(function(){
+ const mm=document.getElementById('musicModal'), card=mm&&mm.querySelector('.musicModalCard'); if(!mm||!card)return;
+ if(card.querySelector('.musicModalCloseBottom')) return;
+ const bottom=document.createElement('button');bottom.type='button';bottom.className='musicModalCloseBottom';bottom.textContent='CLOSE';bottom.setAttribute('aria-label','Close genre information');card.appendChild(bottom);
+ function close(){mm.classList.remove('open');mm.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')} bottom.onclick=close;
+})();
+</script>
+<style id="v44-final">
+.bna{background:#fff!important;color:#111!important;border:1px solid #222!important;box-shadow:0 8px 24px #0008!important;padding:7px 12px!important;display:flex!important;align-items:center!important;gap:10px!important}
+.bna img{width:42px!important;height:42px!important;flex:0 0 42px!important;object-fit:contain!important;background:#fff!important;border-radius:4px!important}
+.bna strong{color:#111!important}.bna small{color:#222!important}
+.close{position:sticky!important;top:8px!important;right:8px!important;float:right!important;z-index:40!important;min-width:96px!important;min-height:40px!important;background:#111!important;color:#fff!important;border:1px solid #ffc400!important;border-radius:4px!important;cursor:pointer!important}
+.factImage{height:300px!important;background:#15110d!important}.factImage img{width:100%!important;height:100%!important;object-fit:contain!important;image-rendering:auto!important}
+.artistCard img{height:270px!important;object-fit:cover!important;object-position:center 18%!important}
+.personCopy p,.roomHead>p,.factCard .copy p,.artText p,.genreBody p,.feedbackHead p,.wall p{font-size:clamp(13px,2.8vw,17px)!important;line-height:1.65!important}
+.modalCard .lead,.modalCard .fact2 p,.modalCard .invBox p,.modalCard .currentUse p,.modalCard .impact p{font-size:clamp(13px,2.8vw,16px)!important;line-height:1.65!important}
+@media(max-width:600px){.bna{min-width:182px!important;max-width:calc(100vw - 24px)!important}.bna img{width:40px!important;height:40px!important;flex-basis:40px!important}.factImage{height:280px!important}.artistCard img{height:250px!important}.close{position:sticky!important;top:6px!important;float:right!important}}
+</style>
 
 </body>
+
+
+<style id="v44-final-didyouknow">
+.factImage{position:relative;height:360px!important;overflow:hidden!important;background:#15110d!important;cursor:zoom-in!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.factImage img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;image-rendering:auto!important;display:block!important}
+.factZoomHint{position:absolute;right:12px;bottom:10px;z-index:3;background:rgba(0,0,0,.82);color:#f4dfad;border:1px solid rgba(255,196,0,.75);padding:7px 10px;font:700 10px/1 Arial,sans-serif;letter-spacing:1.4px;border-radius:3px;pointer-events:none}
+.imageZoom{z-index:100!important}
+.imageZoomCard{max-width:min(96vw,1200px)!important;max-height:94vh!important;padding:14px!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:10px!important}
+.imageZoomCard img{max-width:94vw!important;max-height:78vh!important;width:auto!important;height:auto!important;object-fit:contain!important}
+.imageZoomClose{min-height:44px!important;min-width:112px!important;font-size:12px!important;letter-spacing:1px!important}
+@media(max-width:600px){
+ .factImage{height:340px!important}
+ .factZoomHint{right:9px;bottom:9px;font-size:9px;padding:7px 8px}
+ .imageZoomCard{width:96vw!important;max-height:92vh!important;padding:10px!important}
+ .imageZoomCard img{max-width:92vw!important;max-height:76vh!important}
+}
+</style>
+
 </html>
+
+
+
