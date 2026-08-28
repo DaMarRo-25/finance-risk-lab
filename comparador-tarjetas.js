@@ -82,19 +82,32 @@
     set('resultMinA',money(d.A.minimum));set('resultMinB',money(d.B.minimum));
     set('analyzeCardA',`Analizar ${nA}`);set('analyzeCardB',`Analizar ${nB}`);
 
-    const shared=[],different=[];
+    const shared=[],different=[],sharedBenefits=[];
     comparable.forEach(k=>{
       const av=k==='annualFee'?d.A.annualFeeAnnualized:d.A[k], bv=k==='annualFee'?d.B.annualFeeAnnualized:d.B[k];
       if(av!=null&&bv!=null&&Math.abs(av-bv)<0.005)shared.push({k,av});
       else if(av!=null||bv!=null)different.push({k,av,bv});
     });
+    ['cashback','points','miles','other'].forEach(k=>{
+      const a=d.A[k], b=d.B[k];
+      if(a!=null&&b!=null){
+        const equal = k==='cashback' ? Math.abs(Number(a)-Number(b))<0.005 : String(a).trim()===String(b).trim();
+        if(equal) sharedBenefits.push({k,av:a});
+      }
+    });
     const sharedBox=$('cardSharedValues');
-    if(sharedBox){sharedBox.innerHTML=shared.map(x=>`<article class="frl-detail-card"><span>${labels[x.k]}</span><strong>${fmt(x.k,x.av)}</strong><small>Igual en ambas propuestas; no explica una diferencia.</small></article>`).join('');$('cardSharedConditions').hidden=shared.length===0;}
+    if(sharedBox){
+      sharedBox.innerHTML=[
+        ...shared.map(x=>`<article class="frl-detail-card"><span>${labels[x.k]}</span><strong>${fmt(x.k,x.av)}</strong><small>Igual en ambas propuestas; no explica una diferencia.</small></article>`),
+        ...sharedBenefits.map(x=>`<article class="frl-detail-card"><span>${{cashback:'Cashback',points:'Puntos',miles:'Millas',other:'Otra condición'}[x.k]}</span><strong>${x.k==='cashback'?pct(x.av):esc(x.av)}</strong><small>Igual en ambas propuestas; no explica una diferencia.</small></article>`)
+      ].join('');
+      $('cardSharedConditions').hidden=(shared.length+sharedBenefits.length)===0;
+    }
     const diffBox=$('cardDifferenceCards');
     if(diffBox){
       diffBox.innerHTML=different.map(x=>{const ex=differenceExplanation(x.k,x.av,x.bv,nA,nB);return `<article class="frl-difference-card"><span>${labels[x.k]}</span><div class="frl-difference-values"><p><small>${esc(nA)}</small><strong>${x.av==null?'—':fmt(x.k,x.av)}</strong></p><p><small>${esc(nB)}</small><strong>${x.bv==null?'—':fmt(x.k,x.bv)}</strong></p></div><p class="frl-difference-amount">${esc(ex.title)}</p><small class="frl-difference-explanation">${esc(ex.text)}</small></article>`;}).join('');
     }
-    const benefitDiff=['cashback','points','miles','other'].map(k=>({key:k,info:benefitText(d,k,nA,nB)})).filter(x=>x.info);
+    const benefitDiff=['cashback','points','miles','other'].map(k=>({key:k,info:benefitText(d,k,nA,nB)})).filter(x=>x.info && !sharedBenefits.some(s=>s.k===x.key));
     if(diffBox&&benefitDiff.length){
       diffBox.insertAdjacentHTML('beforeend',benefitDiff.map(x=>{const a=d.A[x.key],b=d.B[x.key],title={cashback:'Cashback',points:'Puntos',miles:'Millas',other:'Otra condición'}[x.key];return `<article class="frl-difference-card benefit-difference-card"><span>${title}</span><div class="frl-difference-values"><p><small>${esc(nA)}</small><strong>${a==null?'No indicado':esc(a)}</strong></p><p><small>${esc(nB)}</small><strong>${b==null?'No indicado':esc(b)}</strong></p></div><p class="frl-difference-amount">${esc(x.info.title)}</p><small class="frl-difference-explanation">${esc(x.info.text)}</small></article>`;}).join(''));
     }
@@ -140,8 +153,12 @@
   function downloadPdf(){
     const d=data(), button=$('cardComparePdf');
     const different=comparable.map(k=>({k,a:k==='annualFee'?d.A.annualFeeAnnualized:d.A[k],b:k==='annualFee'?d.B.annualFeeAnnualized:d.B[k]})).filter(x=>x.a!=null&&x.b!=null&&Math.abs(x.a-x.b)>=0.005);
+    const benefitDifferent=['cashback','points','miles','other'].map(k=>({k,a:d.A[k],b:d.B[k]})).filter(x=>x.a!=null&&x.b!=null&&(x.k==='cashback'?Math.abs(Number(x.a)-Number(x.b))>=0.005:String(x.a).trim()!==String(x.b).trim()));
     const raw=['Finance & Risk Lab','Comparador de tarjetas de crédito','',`${d.A.name}`,`Límite: ${money(d.A.limit)}`,`Tasa anual: ${pct(d.A.rate)}`,`Anualidad: ${d.A.annualFee==null?'—':money(d.A.annualFee)+' '+(d.A.annualFeeFrequency==='monthly'?'al mes':'al año')}`,`Pago mínimo indicado: ${money(d.A.minimum)}`,'',`${d.B.name}`,`Límite: ${money(d.B.limit)}`,`Tasa anual: ${pct(d.B.rate)}`,`Anualidad: ${d.B.annualFee==null?'—':money(d.B.annualFee)+' '+(d.B.annualFeeFrequency==='monthly'?'al mes':'al año')}`,`Pago mínimo indicado: ${money(d.B.minimum)}`,'','Condiciones que cambian entre las propuestas'];
-    if(different.length){different.forEach(x=>{const label=labels[x.k];const diff=Math.abs(x.a-x.b);raw.push(`${label}: ${d.A.name} = ${fmt(x.k,x.a)} | ${d.B.name} = ${fmt(x.k,x.b)}`);raw.push(`Diferencia: ${x.k==='rate'?pct(diff):money(diff)}`);});}else raw.push('No hay diferencias cuantificables con los datos principales ingresados.');
+    if(different.length||benefitDifferent.length){
+      different.forEach(x=>{const label=labels[x.k];const diff=Math.abs(x.a-x.b);raw.push(`${label}: ${d.A.name} = ${fmt(x.k,x.a)} | ${d.B.name} = ${fmt(x.k,x.b)}`);raw.push(`Diferencia: ${x.k==='rate'?pct(diff):money(diff)}`);});
+      benefitDifferent.forEach(x=>{const label={cashback:'Cashback',points:'Puntos',miles:'Millas',other:'Otra condición'}[x.k];raw.push(`${label}: ${d.A.name} = ${x.a} | ${d.B.name} = ${x.b}`);});
+    }else raw.push('No hay diferencias cuantificables con los datos principales ingresados.');
     raw.push('','Lectura educativa','La comparación organiza las condiciones que cambian y ayuda a entender su significado. No declara una propuesta como mejor ni sustituye la revisión de los documentos oficiales.');
     const lines=[];raw.forEach(line=>wrapPdfLine(line).forEach(part=>lines.push(part)));
     if(button){button.disabled=true;button.textContent='Preparando PDF…';}
